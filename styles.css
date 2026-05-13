@@ -1,0 +1,142 @@
+:root {
+    --primary-color: #800000; /* Maroon */
+    --secondary-color: #f4f4f4;
+    --text-color: #333;
+    --accent-color: #a00000;
+    --nav-height: 70px;
+    --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-heading: 'Georgia', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--text-color);
+    line-height: 1.6;
+    background: #fff;
+}
+
+/* Header & Navigation */
+header {
+    background: var(--primary-color);
+    color: white;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+nav {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+}
+
+.nav-links a:hover {
+    color: rgba(255,255,255,0.7);
+}
+
+/* Hero Section */
+.hero {
+    height: 400px;
+    background: linear-gradient(rgba(128, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.hero h1 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    opacity: 0.9;
+}
+
+/* Main Content Layout */
+main {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+    min-height: 50vh;
+}
+
+.content-placeholder {
+    border: 2px dashed #ddd;
+    padding: 4rem;
+    text-align: center;
+    color: #999;
+    border-radius: 8px;
+    background: #fafafa;
+}
+
+/* Footer */
+footer {
+    background: #222;
+    color: white;
+    padding: 3rem 2rem;
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Add mobile menu logic if needed later */
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+}
