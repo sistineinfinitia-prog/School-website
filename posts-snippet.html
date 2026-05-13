@@ -1,0 +1,143 @@
+<!-- BEGIN POSTS DISPLAY SECTION SNIPPET -->
+<div class="posts-feed" style="margin-top: 4rem;">
+    <h2 style="font-family: 'Playfair Display', serif; color: var(--primary); margin-bottom: 2rem; border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem; display: inline-block;">Latest Announcements</h2>
+    <div id="posts-container" style="display: flex; flex-direction: column; gap: 2rem;">
+        <p>Loading announcements...</p>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAyVpu_pdHkwqETOcj5ePZYAUNAoU0IvqQ",
+        authDomain: "computer-science-webstie.firebaseapp.com",
+        databaseURL: "https://computer-science-webstie-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "computer-science-webstie",
+        storageBucket: "computer-science-webstie.firebasestorage.app",
+        messagingSenderId: "775591822351",
+        appId: "1:775591822351:web:dc928bb5fa692592cd8f7a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const postsRef = ref(db, 'posts');
+    const container = document.getElementById("posts-container");
+
+    onValue(postsRef, (snapshot) => {
+        container.innerHTML = ""; // Clear loading text
+        const posts = [];
+        snapshot.forEach((childSnapshot) => {
+            posts.push(childSnapshot.val());
+        });
+
+        // Sort newest first by date
+        posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        if (posts.length === 0) {
+            container.innerHTML = "<p>No announcements available at this time.</p>";
+            return;
+        }
+
+        posts.forEach(post => {
+            const postElement = document.createElement("div");
+            postElement.className = "card";
+            postElement.style.padding = "2rem";
+            
+            const title = document.createElement("h3");
+            title.style.fontFamily = "'Playfair Display', serif";
+            title.style.color = "var(--primary)";
+            title.style.marginBottom = "0.5rem";
+            title.textContent = post.title;
+            
+            const date = document.createElement("p");
+            const postDate = new Date(post.date);
+            date.textContent = postDate.toLocaleDateString() + " " + postDate.toLocaleTimeString();
+            date.style.color = "gray";
+            date.style.fontSize = "0.9rem";
+            date.style.marginBottom = "1.5rem";
+
+            const desc = document.createElement("p");
+            desc.textContent = post.description;
+            desc.style.marginBottom = "1.5rem";
+            
+            postElement.appendChild(title);
+            postElement.appendChild(date);
+            postElement.appendChild(desc);
+
+            // Handle Image Upload
+            if (post.imageUrl) {
+                const img = document.createElement("img");
+                img.src = post.imageUrl;
+                img.style.maxWidth = "100%";
+                img.style.height = "auto";
+                img.style.borderRadius = "8px";
+                img.style.marginBottom = "1.5rem";
+                postElement.appendChild(img);
+            }
+
+            // Handle Google Drive embed or fallback button
+            if (post.driveLink) {
+                let isEmbeddable = false;
+                let embedUrl = post.driveLink;
+                
+                if (post.driveLink.includes("drive.google.com/file/d/")) {
+                    embedUrl = post.driveLink.replace(/\/view.*$/, "/preview");
+                    isEmbeddable = true;
+                }
+
+                if (post.imageUrl) {
+                    // If both image and Drive link exist, show Drive link as a button
+                    const linkBtn = document.createElement("a");
+                    linkBtn.href = post.driveLink;
+                    linkBtn.className = "btn";
+                    linkBtn.target = "_blank";
+                    linkBtn.textContent = "Open Attached File";
+                    postElement.appendChild(linkBtn);
+                } else {
+                    // If no image, embed the Drive iframe (if supported) or fallback link
+                    if (isEmbeddable) {
+                        const iframeContainer = document.createElement("div");
+                        iframeContainer.style.position = "relative";
+                        iframeContainer.style.width = "100%";
+                        iframeContainer.style.height = "500px";
+                        iframeContainer.style.borderRadius = "8px";
+                        iframeContainer.style.overflow = "hidden";
+                        iframeContainer.style.border = "1px solid #ddd";
+                        iframeContainer.style.marginBottom = "1.5rem";
+
+                        const iframe = document.createElement("iframe");
+                        iframe.src = embedUrl;
+                        iframe.style.width = "100%";
+                        iframe.style.height = "100%";
+                        iframe.style.border = "none";
+                        
+                        iframeContainer.appendChild(iframe);
+                        postElement.appendChild(iframeContainer);
+
+                        const linkBtn = document.createElement("a");
+                        linkBtn.href = post.driveLink;
+                        linkBtn.className = "btn";
+                        linkBtn.target = "_blank";
+                        linkBtn.textContent = "Open Full Screen";
+                        postElement.appendChild(linkBtn);
+                    } else {
+                        const linkBtn = document.createElement("a");
+                        linkBtn.href = post.driveLink;
+                        linkBtn.className = "btn";
+                        linkBtn.target = "_blank";
+                        linkBtn.textContent = "Open Attached File";
+                        postElement.appendChild(linkBtn);
+                    }
+                }
+            }
+
+            container.appendChild(postElement);
+        });
+    }, (error) => {
+        container.innerHTML = "<p>Error loading announcements.</p>";
+        console.error("Firebase DB Error:", error);
+    });
+</script>
+<!-- END POSTS DISPLAY SECTION SNIPPET -->

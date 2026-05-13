@@ -49,21 +49,191 @@
                 <a href="theme-d.html" class="btn">Explore Theme</a>
             </div>
         </div>
+
+        <!-- BEGIN POSTS DISPLAY SECTION -->
+        <div class="posts-feed" style="margin-top: 5rem;">
+            <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 3rem;">
+                <h2 style="font-family: 'Playfair Display', serif; color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem;">Latest Announcements</h2>
+            </div>
+            <div id="posts-container" style="display: flex; flex-direction: column; gap: 2.5rem; max-width: 900px; margin: 0 auto;">
+                <p style="text-align: center;">Loading announcements...</p>
+            </div>
+        </div>
+
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+            import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyAyVpu_pdHkwqETOcj5ePZYAUNAoU0IvqQ",
+                authDomain: "computer-science-webstie.firebaseapp.com",
+                databaseURL: "https://computer-science-webstie-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "computer-science-webstie",
+                storageBucket: "computer-science-webstie.firebasestorage.app",
+                messagingSenderId: "775591822351",
+                appId: "1:775591822351:web:dc928bb5fa692592cd8f7a"
+            };
+
+            const app = initializeApp(firebaseConfig);
+            const db = getDatabase(app);
+            const postsRef = ref(db, 'posts');
+            const container = document.getElementById("posts-container");
+
+            onValue(postsRef, (snapshot) => {
+                container.innerHTML = ""; // Clear loading text
+                const posts = [];
+                snapshot.forEach((childSnapshot) => {
+                    posts.push(childSnapshot.val());
+                });
+
+                // Sort newest first by date
+                posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                if (posts.length === 0) {
+                    container.innerHTML = "<p style='text-align: center;'>No announcements available at this time.</p>";
+                    return;
+                }
+
+                posts.forEach(post => {
+                    const postElement = document.createElement("div");
+                    postElement.className = "card";
+                    postElement.style.padding = "3rem";
+                    
+                    const title = document.createElement("h3");
+                    title.style.fontFamily = "'Playfair Display', serif";
+                    title.style.color = "var(--primary)";
+                    title.style.fontSize = "1.8rem";
+                    title.style.marginBottom = "0.5rem";
+                    title.textContent = post.title;
+                    
+                    const date = document.createElement("p");
+                    const postDate = new Date(post.date);
+                    date.textContent = postDate.toLocaleDateString() + " " + postDate.toLocaleTimeString();
+                    date.style.color = "gray";
+                    date.style.fontSize = "0.95rem";
+                    date.style.marginBottom = "1.5rem";
+
+                    const desc = document.createElement("p");
+                    desc.textContent = post.description;
+                    desc.style.marginBottom = "2rem";
+                    desc.style.fontSize = "1.1rem";
+                    desc.style.lineHeight = "1.8";
+                    
+                    postElement.appendChild(title);
+                    postElement.appendChild(date);
+                    postElement.appendChild(desc);
+
+                    // Handle Image Upload
+                    if (post.imageUrl) {
+                        const img = document.createElement("img");
+                        img.src = post.imageUrl;
+                        img.style.maxWidth = "100%";
+                        img.style.height = "auto";
+                        img.style.borderRadius = "12px";
+                        img.style.marginBottom = "2rem";
+                        img.style.display = "block";
+                        img.style.boxShadow = "var(--shadow)";
+                        postElement.appendChild(img);
+                    }
+
+                    // Handle Google Drive embed or fallback button
+                    if (post.driveLink) {
+                        let isEmbeddable = false;
+                        let embedUrl = post.driveLink;
+                        
+                        if (post.driveLink.includes("drive.google.com/file/d/")) {
+                            embedUrl = post.driveLink.replace(/\/view.*$/, "/preview");
+                            isEmbeddable = true;
+                        }
+
+                        if (post.imageUrl) {
+                            // If both image and Drive link exist, show Drive link as a button
+                            const linkBtn = document.createElement("a");
+                            linkBtn.href = post.driveLink;
+                            linkBtn.className = "btn";
+                            linkBtn.target = "_blank";
+                            linkBtn.textContent = "Open Attached File";
+                            postElement.appendChild(linkBtn);
+                        } else {
+                            // If no image, embed the Drive iframe (if supported) or fallback link
+                            if (isEmbeddable) {
+                                const iframeContainer = document.createElement("div");
+                                iframeContainer.style.position = "relative";
+                                iframeContainer.style.width = "100%";
+                                iframeContainer.style.height = "600px";
+                                iframeContainer.style.borderRadius = "12px";
+                                iframeContainer.style.overflow = "hidden";
+                                iframeContainer.style.border = "1px solid rgba(0,0,0,0.1)";
+                                iframeContainer.style.marginBottom = "2rem";
+                                iframeContainer.style.boxShadow = "var(--shadow)";
+
+                                const iframe = document.createElement("iframe");
+                                iframe.src = embedUrl;
+                                iframe.style.width = "100%";
+                                iframe.style.height = "100%";
+                                iframe.style.border = "none";
+                                
+                                iframeContainer.appendChild(iframe);
+                                postElement.appendChild(iframeContainer);
+
+                                const linkBtn = document.createElement("a");
+                                linkBtn.href = post.driveLink;
+                                linkBtn.className = "btn";
+                                linkBtn.target = "_blank";
+                                linkBtn.textContent = "Open Full Screen";
+                                postElement.appendChild(linkBtn);
+                            } else {
+                                const linkBtn = document.createElement("a");
+                                linkBtn.href = post.driveLink;
+                                linkBtn.className = "btn";
+                                linkBtn.target = "_blank";
+                                linkBtn.textContent = "Open Attached File";
+                                postElement.appendChild(linkBtn);
+                            }
+                        }
+                    }
+
+                    container.appendChild(postElement);
+                });
+            }, (error) => {
+                container.innerHTML = "<p style='text-align: center; color: red;'>Error loading announcements.</p>";
+                console.error("Firebase DB Error:", error);
+            });
+        </script>
+        <!-- END POSTS DISPLAY SECTION -->
     </main>
 
     <footer>
-        <span class="footer-logo">CS DEPARTMENT</span>
-        <div class="footer-nav">
-            <a href="index.html">Courses</a>
-            <a href="curriculum.html">Curriculum</a>
-            <a href="theme-a.html">Theme A</a>
-            <a href="theme-b.html">Theme B</a>
-            <a href="theme-c.html">Theme C</a>
-            <a href="theme-d.html">Theme D</a>
-            <a href="ia.html">IA</a>
-            <a href="case-study.html">Case Study</a>
+        <div class="footer-container">
+            <div class="footer-info">
+                <div class="footer-contact">
+                    <h3>Speaking Requests</h3>
+                    <p>For speaking requests and inquiries, please contact:</p>
+                    <p><strong>Neha Siddiqui</strong></p>
+                    <p><a href="mailto:Siddiquin@eischools.ae">Siddiquin@eischools.ae</a></p>
+                </div>
+                <div class="footer-ambassadors">
+                    <h3>Ambassadors</h3>
+                    <p><strong>Tech Ambassador:</strong> Anish Dongarkar</p>
+                    <p><strong>AI Ambassador:</strong> Rudolph Babaren</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <span class="footer-logo">CS DEPARTMENT</span>
+                <div class="footer-nav">
+                    <a href="index.html">Courses</a>
+                    <a href="curriculum.html">Curriculum</a>
+                    <a href="theme-a.html">Theme A</a>
+                    <a href="theme-b.html">Theme B</a>
+                    <a href="theme-c.html">Theme C</a>
+                    <a href="ia.html">IA</a>
+                    <a href="case-study.html">Case Study</a>
+                    <a href="admin.html">Admin Login</a>
+                </div>
+                <p>&copy; 2026 Computer Science Academy. Excellence in Engineering.</p>
+            </div>
         </div>
-        <p>&copy; 2026 Computer Science Academy. Excellence in Engineering.</p>
     </footer>
 
     <script src="script.js"></script>

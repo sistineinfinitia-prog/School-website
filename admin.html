@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Computer Science</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .admin-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+        .form-group input[type="file"] {
+            padding: 0.5rem 0;
+        }
+        .error-message {
+            color: red;
+            margin-top: 1rem;
+        }
+        .success-message {
+            color: green;
+            margin-top: 1rem;
+        }
+        .post-list {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .post-card {
+            position: relative;
+        }
+        .delete-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .delete-btn:hover {
+            background: #c82333;
+        }
+        .admin-img-preview {
+            max-width: 100%;
+            height: auto;
+            margin-top: 1rem;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">CS DEPARTMENT</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Courses</a></li>
+                <li><a href="curriculum.html">Curriculum</a></li>
+                <li><a href="theme-a.html">Theme A</a></li>
+                <li><a href="theme-b.html">Theme B</a></li>
+                <li><a href="theme-c.html">Theme C</a></li>
+                <li><a href="ia.html">IA</a></li>
+                <li><a href="case-study.html">Case Study</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" style="height: 40vh; min-height: 300px;">
+        <h1>Admin Dashboard</h1>
+        <p>Manage announcements and resources</p>
+    </section>
+
+    <main>
+        <div class="admin-container">
+            
+            <div id="login-section" class="card">
+                <h2>Admin Login</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                    <p id="login-error" class="error-message" style="display: none;"></p>
+                </form>
+            </div>
+
+            <div id="admin-section" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h2>Create New Post</h2>
+                    <button id="logout-btn" class="btn" style="background: var(--dark);">Logout</button>
+                </div>
+                
+                <div class="card">
+                    <form id="post-form">
+                        <div class="form-group">
+                            <label for="post-title">Post Title</label>
+                            <input type="text" id="post-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="post-desc">Description</label>
+                            <textarea id="post-desc" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="post-image">Image Upload</label>
+                            <input type="file" id="post-image" accept="image/*">
+                        </div>
+                        <div class="form-group">
+                            <label for="post-link">Google Drive Link (Optional)</label>
+                            <input type="url" id="post-link" placeholder="https://drive.google.com/...">
+                        </div>
+                        <progress id="upload-progress" value="0" max="100" style="display: none; width: 100%; margin-bottom: 1rem;"></progress>
+                        <button type="submit" class="btn" id="submit-btn">Publish Post</button>
+                        <p id="post-status"></p>
+                    </form>
+                </div>
+
+                <div class="post-list" id="post-list">
+                    <h3>Existing Posts</h3>
+                    <div id="posts-container">
+                        <p>Loading posts...</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <div class="footer-contact">
+                    <h3>Speaking Requests</h3>
+                    <p>For speaking requests and inquiries, please contact:</p>
+                    <p><strong>Neha Siddiqui</strong></p>
+                    <p><a href="mailto:Siddiquin@eischools.ae">Siddiquin@eischools.ae</a></p>
+                </div>
+                <div class="footer-ambassadors">
+                    <h3>Ambassadors</h3>
+                    <p><strong>Tech Ambassador:</strong> Anish Dongarkar</p>
+                    <p><strong>AI Ambassador:</strong> Rudolph Babaren</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <span class="footer-logo">CS DEPARTMENT</span>
+                <div class="footer-nav">
+                    <a href="index.html">Courses</a>
+                    <a href="curriculum.html">Curriculum</a>
+                    <a href="theme-a.html">Theme A</a>
+                    <a href="theme-b.html">Theme B</a>
+                    <a href="theme-c.html">Theme C</a>
+                    <a href="ia.html">IA</a>
+                    <a href="case-study.html">Case Study</a>
+                    <a href="admin.html">Admin Login</a>
+                </div>
+                <p>&copy; 2026 Computer Science Academy. Excellence in Engineering.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+        import { getDatabase, ref as dbRef, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
+        import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-storage.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAyVpu_pdHkwqETOcj5ePZYAUNAoU0IvqQ",
+            authDomain: "computer-science-webstie.firebaseapp.com",
+            databaseURL: "https://computer-science-webstie-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "computer-science-webstie",
+            storageBucket: "computer-science-webstie.firebasestorage.app",
+            messagingSenderId: "775591822351",
+            appId: "1:775591822351:web:dc928bb5fa692592cd8f7a"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase(app);
+        const storage = getStorage(app);
+
+        const loginSection = document.getElementById("login-section");
+        const adminSection = document.getElementById("admin-section");
+        const loginForm = document.getElementById("login-form");
+        const loginError = document.getElementById("login-error");
+        const logoutBtn = document.getElementById("logout-btn");
+        const postForm = document.getElementById("post-form");
+        const postStatus = document.getElementById("post-status");
+        const submitBtn = document.getElementById("submit-btn");
+        const postsContainer = document.getElementById("posts-container");
+        const progressBar = document.getElementById("upload-progress");
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                loginSection.style.display = "none";
+                adminSection.style.display = "block";
+                loadPosts();
+            } else {
+                loginSection.style.display = "block";
+                adminSection.style.display = "none";
+            }
+        });
+
+        loginForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then(() => {
+                    loginError.style.display = "none";
+                    loginForm.reset();
+                })
+                .catch((error) => {
+                    loginError.textContent = "Login failed: " + error.message;
+                    loginError.style.display = "block";
+                });
+        });
+
+        logoutBtn.addEventListener("click", () => {
+            signOut(auth);
+        });
+
+        postForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            submitBtn.textContent = "Publishing...";
+            submitBtn.disabled = true;
+            postStatus.className = "";
+            postStatus.textContent = "Starting publish process...";
+            console.log("Publish started");
+
+            try {
+                const title = document.getElementById("post-title").value;
+                const desc = document.getElementById("post-desc").value;
+                const link = document.getElementById("post-link").value;
+                const imageInput = document.getElementById("post-image");
+                const imageFile = imageInput.files.length > 0 ? imageInput.files[0] : null;
+                const date = new Date().toISOString();
+
+                let imageUrl = null;
+
+                if (imageFile) {
+                    console.log("Uploading image to storage...");
+                    progressBar.style.display = "block";
+                    progressBar.value = 0;
+                    
+                    const imgRef = storageRef(storage, 'post_images/' + Date.now() + '_' + imageFile.name);
+                    const uploadTask = uploadBytesResumable(imgRef, imageFile);
+
+                    imageUrl = await new Promise((resolve, reject) => {
+                        uploadTask.on('state_changed', 
+                            (snapshot) => {
+                                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                                progressBar.value = progress;
+                                postStatus.textContent = "Uploading image: " + Math.round(progress) + "%";
+                            }, 
+                            (error) => {
+                                console.error("Upload failed:", error);
+                                reject(error);
+                            }, 
+                            async () => {
+                                const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                                resolve(downloadURL);
+                            }
+                        );
+                    });
+                    
+                    console.log("Image uploaded, URL:", imageUrl);
+                    progressBar.style.display = "none";
+                }
+
+                console.log("Saving post data to realtime database...");
+                postStatus.textContent = "Saving to database...";
+                
+                const postData = {
+                    title: title,
+                    description: desc,
+                    date: date
+                };
+                
+                // Only add optional fields if they have a value
+                if (link && link.trim() !== "") {
+                    postData.driveLink = link.trim();
+                }
+                if (imageUrl) {
+                    postData.imageUrl = imageUrl;
+                }
+
+                const newPostRef = push(dbRef(db, 'posts'));
+                await set(newPostRef, postData);
+                console.log("Post saved successfully");
+
+                postStatus.textContent = "Post published successfully!";
+                postStatus.className = "success-message";
+                postForm.reset();
+            } catch (error) {
+                console.error("Error during publish:", error);
+                postStatus.textContent = "Error publishing post: " + error.message;
+                postStatus.className = "error-message";
+            } finally {
+                submitBtn.textContent = "Publish Post";
+                submitBtn.disabled = false;
+                setTimeout(() => {
+                    if(postStatus.className === "success-message") {
+                        postStatus.textContent = "";
+                    }
+                }, 4000);
+            }
+        });
+
+        function loadPosts() {
+            const postsDbRef = dbRef(db, 'posts');
+            onValue(postsDbRef, (snapshot) => {
+                postsContainer.innerHTML = "";
+                const posts = [];
+                snapshot.forEach((childSnapshot) => {
+                    posts.push({ id: childSnapshot.key, ...childSnapshot.val() });
+                });
+
+                posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                if (posts.length === 0) {
+                    postsContainer.innerHTML = "<p>No posts found.</p>";
+                    return;
+                }
+
+                posts.forEach(post => {
+                    const postCard = document.createElement("div");
+                    postCard.className = "card post-card";
+                    
+                    const deleteBtn = document.createElement("button");
+                    deleteBtn.className = "delete-btn";
+                    deleteBtn.textContent = "Delete";
+                    deleteBtn.onclick = () => deletePost(post.id);
+                    
+                    const title = document.createElement("h2");
+                    title.textContent = post.title;
+                    
+                    const date = document.createElement("p");
+                    date.style.color = "gray";
+                    date.style.fontSize = "0.9rem";
+                    date.style.marginBottom = "1rem";
+                    date.textContent = new Date(post.date).toLocaleString();
+
+                    const desc = document.createElement("p");
+                    desc.textContent = post.description;
+
+                    postCard.appendChild(deleteBtn);
+                    postCard.appendChild(title);
+                    postCard.appendChild(date);
+                    postCard.appendChild(desc);
+
+                    if (post.imageUrl) {
+                        const img = document.createElement("img");
+                        img.src = post.imageUrl;
+                        img.className = "admin-img-preview";
+                        postCard.appendChild(img);
+                    }
+
+                    if (post.driveLink) {
+                        const link = document.createElement("a");
+                        link.href = post.driveLink;
+                        link.target = "_blank";
+                        link.textContent = "View Drive Link";
+                        link.style.display = "block";
+                        link.style.marginTop = "1rem";
+                        postCard.appendChild(link);
+                    }
+
+                    postsContainer.appendChild(postCard);
+                });
+            });
+        }
+
+        async function deletePost(postId) {
+            if (confirm("Are you sure you want to delete this post?")) {
+                try {
+                    await remove(dbRef(db, 'posts/' + postId));
+                } catch (error) {
+                    alert("Error deleting post: " + error.message);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
