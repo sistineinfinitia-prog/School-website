@@ -19,28 +19,33 @@ body {
     overflow-x: hidden;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5, h6 {
     color: var(--text-main);
 }
+
+
 
 /* --- Navigation --- */
 header {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    height: 90px;
     z-index: 1000;
+    background: var(--bg-main);
+    height: 80px;
+    box-shadow: var(--shadow-soft);
     display: flex;
     align-items: center;
-    transition: var(--transition);
-    background: transparent;
 }
 
 header.scrolled {
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--bg-main);
     backdrop-filter: blur(10px);
     height: 80px;
     box-shadow: var(--shadow-soft);
+    display: flex;
+    align-items: center;
 }
 
 nav {
@@ -56,7 +61,7 @@ nav {
 .logo {
     font-weight: 700;
     font-size: 1.4rem;
-    color: var(--primary);
+    color: var(--text-inverse);
     text-decoration: none;
     letter-spacing: -0.5px;
     white-space: nowrap;
@@ -71,7 +76,7 @@ nav {
 }
 
 .nav-links a {
-    color: var(--text-body);
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     font-weight: 500;
     font-size: 0.85rem; /* Slightly smaller font */
@@ -83,8 +88,8 @@ nav {
 
 .nav-links a:hover,
 .nav-links a.active {
-    color: var(--primary);
-    background: var(--bg-accent);
+    color: var(--text-inverse);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 /* Mobile Toggle */
@@ -105,7 +110,7 @@ nav {
 /* --- Hero Section (Idea 6 - SaaS) --- */
 .hero {
     padding-top: 150px;
-    padding-bottom: var(--spacing-xxl);
+    padding-bottom: var(--spacing-lg);
     max-width: var(--container-max);
     margin: 0 auto;
     display: flex;
@@ -113,6 +118,8 @@ nav {
     justify-content: space-between;
     gap: var(--spacing-xl);
     padding-inline: var(--spacing-md);
+    background: var(--bg-main);
+    color: var(--text-inverse);
 }
 
 .hero-content {
@@ -120,28 +127,34 @@ nav {
     max-width: 600px;
 }
 
+.hero p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
 .hero-badge {
     display: inline-block;
     padding: 6px 16px;
-    background: var(--bg-accent);
-    color: var(--primary);
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--text-inverse);
     border-radius: var(--border-radius-pill);
     font-weight: 600;
     font-size: 0.85rem;
     margin-bottom: var(--spacing-md);
 }
 
-.hero-content h1 {
+.hero h1 {
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 800;
     letter-spacing: -2px;
     line-height: 1.1;
     margin-bottom: var(--spacing-md);
+    color: var(--text-inverse);
 }
 
 .hero-content p {
     font-size: 1.125rem;
     margin-bottom: var(--spacing-lg);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 
@@ -164,7 +177,16 @@ nav {
 .btn:hover {
     background: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(128, 0, 0, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-inverse {
+    background: white;
+    color: var(--primary);
+}
+
+.btn-inverse:hover {
+    background: #f0f0f0;
 }
 
 .hero-visual {
@@ -286,9 +308,9 @@ nav {
 
 /* --- Footer --- */
 footer {
-    background: var(--bg-main);
+    background: var(--bg-footer);
+    color: var(--text-inverse);
     padding: var(--spacing-xl) var(--spacing-md);
-    border-top: 1px solid rgba(0,0,0,0.05);
 }
 
 .footer-container {
@@ -307,8 +329,12 @@ footer {
 
 .footer-contact h3, .footer-ambassadors h3 {
     font-size: 1.1rem;
-    color: var(--text-main);
+    color: var(--text-inverse);
     margin-bottom: var(--spacing-sm);
+}
+
+.footer-info p, .footer-info a {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .footer-nav {
@@ -320,7 +346,7 @@ footer {
 }
 
 .footer-nav a {
-    color: var(--text-body);
+    color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
     transition: var(--transition);
     font-weight: 500;
@@ -337,7 +363,7 @@ footer {
 .footer-logo {
     display: block;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--text-inverse);
     margin-bottom: var(--spacing-sm);
 }
 

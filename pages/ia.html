@@ -11,17 +11,82 @@
     <section class="hero" style="padding-top: 120px; flex-direction: column; text-align: center;">
         <span class="tag tag-blue">Internal Assessment</span>
         <h1 style="font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; margin-top: 10px;">Internal Assessment (IA)</h1>
-        <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Guidelines, rubrics, and inspiration for your final individual project.</p>
+        <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.9); max-width: 700px; margin: 15px auto;">
+            Your comprehensive guide to the IBDP Computer Science IA — from initial solution design to final documentation.
+        </p>
     </section>
+
     <div class="wave-divider"></div>
+
     <main class="content-section">
         <div class="section-container">
-            <div class="card">
-                <h2>IA Guidelines</h2>
-                <p>Everything you need to know to excel in your Internal Assessment.</p>
+            <!-- Video Tutorials Section -->
+            <div class="card" style="margin-bottom: var(--spacing-xl); padding: 0; overflow: hidden;">
+                <div style="padding: var(--spacing-lg); border-bottom: 1px solid rgba(0,0,0,0.05);">
+                    <h2 style="margin: 0; font-size: 1.5rem; display: flex; align-items: center; gap: 10px;">
+                        <i class="fab fa-youtube" style="color: #ff0000;"></i> IA Masterclass Tutorials
+                    </h2>
+                    <p style="margin: 10px 0 0; color: var(--text-body);">A step-by-step walkthrough of the entire IA process by Mr. Wachs.</p>
+                </div>
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                    <iframe 
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" 
+                        src="https://www.youtube.com/embed/videoseries?list=PLZbVESc4rBHkMp5sywd89W07IACJ8oWIm" 
+                        title="YouTube video player" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl);">
+                <!-- PDF Guide Preview -->
+                <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                    <div style="padding: var(--spacing-lg); border-bottom: 1px solid rgba(0,0,0,0.05);">
+                        <h2 style="margin: 0; font-size: 1.3rem;">Assessment Guide</h2>
+                        <p style="margin: 5px 0 0; color: var(--text-body); font-size: 0.9rem;">Official rubrics and criteria breakdown.</p>
+                    </div>
+                    <div style="flex-grow: 1; height: 500px;">
+                        <iframe 
+                            src="https://drive.google.com/file/d/10UpqjN-yrhiJL5oOSiYBInVLxT0dWZVW/preview" 
+                            width="100%" 
+                            height="100%" 
+                            style="border: none;">
+                        </iframe>
+                    </div>
+                    <div style="padding: 15px; text-align: center; background: #f8f9fa;">
+                        <a href="https://drive.google.com/file/d/10UpqjN-yrhiJL5oOSiYBInVLxT0dWZVW/view" target="_blank" class="btn btn-primary" style="width: 100%;">
+                            Open Full PDF <i class="fas fa-external-link-alt" style="font-size: 0.8rem; margin-left: 5px;"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Drive Folder Card -->
+                <div style="display: flex; flex-direction: column; gap: var(--spacing-lg);">
+                    <div class="card" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: var(--spacing-xl);">
+                        <div style="width: 80px; height: 80px; background: #e8f0fe; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: var(--spacing-lg);">
+                            <i class="fab fa-google-drive" style="font-size: 2.5rem; color: #4285f4;"></i>
+                        </div>
+                        <h2 style="margin-bottom: var(--spacing-sm);">Resource Library</h2>
+                        <p style="color: var(--text-body); margin-bottom: var(--spacing-xl);">
+                            Access shared folders containing sample projects, code templates, and technical checklists to help you succeed.
+                        </p>
+                        <a href="https://drive.google.com/drive/folders/10lfPWSCkd9drgfe-7fY5sn7MvzCkhrS6" target="_blank" class="btn" style="width: 100%; background: #4285f4; color: white;">
+                            Browse Drive Folder
+                        </a>
+                    </div>
+
+                    <div class="card" style="background: var(--bg-main); color: white; padding: var(--spacing-lg);">
+                        <h3 style="margin-bottom: 10px; color: white;">Pro Tip 💡</h3>
+                        <p style="font-size: 0.95rem; opacity: 0.9; line-height: 1.5;">
+                            Start with <strong>Criterion A</strong> as early as possible. Clear identification of your client and their problem is the foundation of a high-scoring IA.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
+
     <footer></footer>
     <script src="../js/ui.js"></script>
 </body>

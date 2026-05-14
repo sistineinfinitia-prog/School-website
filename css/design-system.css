@@ -6,14 +6,16 @@
     --primary-dark: #5a0000; /* Hover state */
     
     /* Backgrounds */
-    --bg-main: #F9F0F0;      /* Slightly darker red-tinted background */
-    --bg-section: #FFFFFF;   /* Pure White */
-    --bg-accent: #F2E2E2;    /* Slightly darker accent */
+    --bg-main: #800000;      /* Dark Red for Top */
+    --bg-section: #FFFFFF;   /* White for Base */
+    --bg-footer: #111111;    /* Black for Footer */
+    --bg-accent: #5a0000;    /* Darker Red Accent */
     
     /* Text */
     --text-main: #111111;    /* Near Black */
     --text-body: #5F6B6A;    /* Dark Gray */
     --text-muted: #8C9594;   /* Light Gray */
+    --text-inverse: #FFFFFF; /* White text for dark backgrounds */
     
     /* Tags */
     --tag-blue: #55C7F3;

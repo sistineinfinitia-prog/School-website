@@ -9,19 +9,50 @@
 <body>
     <header></header>
     <section class="hero" style="padding-top: 120px; flex-direction: column; text-align: center;">
-        <span class="tag tag-purple">Research & Analysis</span>
-        <h1 style="font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; margin-top: 10px;">Case Study</h1>
-        <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Analysis of real-world scenarios and technological applications.</p>
+        <span class="tag tag-purple">IBDP Paper 3</span>
+        <h1 style="font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; margin-top: 10px;">The Perfect Chatbot</h1>
+        <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.9); max-width: 700px; margin: 15px auto;">
+            Case study booklet for the 2024-2025 academic session. Required for Higher Level Computer Science candidates.
+        </p>
     </section>
+
     <div class="wave-divider"></div>
+
     <main class="content-section">
         <div class="section-container">
-            <div class="card">
-                <h2>Current Case Study</h2>
-                <p>Explore the current research topics and required materials.</p>
+            <!-- Metadata Cards -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-xl);">
+                <div class="card" style="text-align: center; border-top: 4px solid var(--primary);">
+                    <h3 style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--primary); margin-bottom: 5px;">Exam Session</h3>
+                    <p style="font-weight: 700; font-size: 1.1rem;">May & Nov 2025</p>
+                </div>
+                <div class="card" style="text-align: center; border-top: 4px solid var(--accent);">
+                    <h3 style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 5px;">Requirement</h3>
+                    <p style="font-weight: 700; font-size: 1.1rem;">Higher Level Only</p>
+                </div>
+                <div class="card" style="text-align: center; border-top: 4px solid var(--success);">
+                    <h3 style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--success); margin-bottom: 5px;">Topic Focus</h3>
+                    <p style="font-weight: 700; font-size: 1.1rem;">Chatbots & AI</p>
+                </div>
+            </div>
+
+            <!-- PDF Viewer Section -->
+            <div class="card" style="padding: 0; overflow: hidden; height: 800px; position: relative;">
+                <div style="padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.05);">
+                    <h2 style="margin: 0; font-size: 1.2rem;">Official Booklet Preview</h2>
+                    <a href="https://drive.google.com/file/d/1fyQgu6x-KSFOlxhUQIQi9ZigUefAkewb/view" target="_blank" class="btn btn-inverse" style="padding: 8px 16px; font-size: 0.9rem;">
+                        Open Fullscreen <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                <iframe src="https://drive.google.com/file/d/1fyQgu6x-KSFOlxhUQIQi9ZigUefAkewb/preview" width="100%" height="100%" allow="autoplay" style="border: none;"></iframe>
+            </div>
+            
+            <div style="margin-top: var(--spacing-xl); text-align: center;">
+                <p style="color: var(--text-body); font-style: italic;">Note: If the preview doesn't load, please use the button above to open the file directly in Google Drive.</p>
             </div>
         </div>
     </main>
+
     <footer></footer>
     <script src="../js/ui.js"></script>
 </body>
