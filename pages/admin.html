@@ -44,6 +44,7 @@
                         <input type="password" id="password" required>
                     </div>
                     <button type="submit" class="btn">Login</button>
+                    <button type="button" id="debug-btn" class="btn" style="background: var(--dark); margin-left: 1rem;">Debug Bypass</button>
                     <p id="login-error" class="error-message" style="display: none;"></p>
                 </form>
             </div>
@@ -104,6 +105,7 @@
         const postForm = document.getElementById("post-form");
         const postStatus = document.getElementById("post-status");
         const submitBtn = document.getElementById("submit-btn");
+        const debugBtn = document.getElementById("debug-btn");
         const postsContainer = document.getElementById("posts-container");
 
         onAuthStateChanged(auth, (user) => {
@@ -127,6 +129,14 @@
         });
 
         logoutBtn.addEventListener("click", () => signOut(auth));
+
+        // Debug Bypass Logic
+        debugBtn.addEventListener("click", () => {
+            console.warn("DEBUG: Bypassing authentication...");
+            loginSection.style.display = "none";
+            adminSection.style.display = "block";
+            loadPosts();
+        });
 
         postForm.addEventListener("submit", async (e) => {
             e.preventDefault();
