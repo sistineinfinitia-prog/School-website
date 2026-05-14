@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Highwood CS | Home</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
     <header class="glass-panel"></header>
 
@@ -26,9 +30,12 @@
 
         <div class="posts-feed" style="margin-top: 5rem;">
             <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 3rem;">
-                <h2 style="font-family: var(--font-heading); color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem;">Latest Announcements</h2>
+                <h2
+                    style="font-family: var(--font-heading); color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem;">
+                    Latest Announcements</h2>
             </div>
-            <div id="posts-container" style="display: flex; flex-direction: column; gap: 2.5rem; max-width: 900px; margin: 0 auto;">
+            <div id="posts-container"
+                style="display: flex; flex-direction: column; gap: 2.5rem; max-width: 900px; margin: 0 auto;">
                 <p style="text-align: center;">Loading announcements...</p>
             </div>
         </div>
@@ -78,21 +85,12 @@
                 const postElement = document.createElement("div");
                 postElement.className = "card";
                 postElement.style.padding = "3rem";
-                
+
                 postElement.innerHTML = `
                     <h3>${post.title}</h3>
                     <p style="color:gray; font-size:0.9rem; margin-bottom:1rem;">${new Date(post.date).toLocaleString()}</p>
                     <p style="margin-bottom:2rem; font-size:1.1rem; line-height:1.8;">${post.description}</p>
                 `;
-
-                if (post.imageUrl) {
-                    const img = document.createElement("img");
-                    img.src = post.imageUrl;
-                    img.style.width = "100%";
-                    img.style.borderRadius = "12px";
-                    img.style.marginBottom = "2rem";
-                    postElement.appendChild(img);
-                }
 
                 if (post.driveLink) {
                     const linkBtn = document.createElement("a");
@@ -108,4 +106,5 @@
         });
     </script>
 </body>
+
 </html>

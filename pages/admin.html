@@ -11,15 +11,133 @@
     
     <link rel="stylesheet" href="../css/main.css">
     <style>
-        .admin-container { max-width: 800px; margin: 0 auto; }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary); }
-        .form-group input, .form-group textarea { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
-        .error-message { color: var(--primary); margin-top: 1rem; }
-        .success-message { color: green; margin-top: 1rem; }
-        .post-list { margin-top: 3rem; display: flex; flex-direction: column; gap: 2rem; }
-        .post-card { position: relative; }
-        .delete-btn { position: absolute; top: 1rem; right: 1rem; background: #dc3545; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; }
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .admin-container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            padding: 2rem;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur-effect);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-premium);
+            padding: 3rem;
+            margin-bottom: 2rem;
+            border-radius: var(--border-radius);
+        }
+
+        .form-group { margin-bottom: 2rem; }
+        
+        .form-group label { 
+            display: block; 
+            margin-bottom: 0.8rem; 
+            font-weight: 600; 
+            color: var(--primary); 
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .form-group input, 
+        .form-group textarea { 
+            width: 100%; 
+            padding: 1rem; 
+            border: 1px solid rgba(0,0,0,0.1); 
+            border-radius: 12px; 
+            font-family: var(--font-body);
+            background: rgba(255, 255, 255, 0.8);
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(128, 0, 0, 0.1);
+            background: #fff;
+        }
+
+        .error-message { 
+            background: #ffebee;
+            color: #c62828;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .success-message { 
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .post-list { margin-top: 4rem; }
+        .post-list h3 { 
+            font-family: var(--font-heading); 
+            color: var(--primary);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .post-card { 
+            position: relative; 
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background: #fff;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .post-card:hover {
+            transform: scale(1.02);
+        }
+
+        .delete-btn { 
+            align-self: flex-end;
+            background: #ff4d4d; 
+            color: white; 
+            border: none; 
+            padding: 0.6rem 1.2rem; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .delete-btn:hover {
+            background: #cc0000;
+            box-shadow: 0 4px 12px rgba(255, 77, 77, 0.3);
+        }
+
+        .hero h1 { margin-bottom: 0.5rem; }
+        .hero p { opacity: 0.8; font-size: 1.1rem; }
+
+        /* Additional UI Polish */
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--light);
+            color: var(--light);
+        }
+
+        .btn-outline:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
     </style>
 </head>
 <body>
@@ -36,23 +154,20 @@
                 <h2>Admin Login</h2>
                 <form id="login-form">
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" required>
+                        <label for="admin-key">Admin Access Key</label>
+                        <input type="password" id="admin-key" placeholder="Enter key..." required>
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" required>
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <button type="submit" class="btn">Access Dashboard</button>
                     </div>
-                    <button type="submit" class="btn">Login</button>
-                    <button type="button" id="debug-btn" class="btn" style="background: var(--dark); margin-left: 1rem;">Debug Bypass</button>
                     <p id="login-error" class="error-message" style="display: none;"></p>
                 </form>
             </div>
 
             <div id="admin-section" style="display: none;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                    <h2>Create New Post</h2>
-                    <button id="logout-btn" class="btn" style="background: var(--dark);">Logout</button>
+                    <h2 style="color: var(--light); font-family: var(--font-heading); text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Create New Post</h2>
+                    <button id="logout-btn" class="btn btn-outline">Logout</button>
                 </div>
                 
                 <div class="card">
@@ -64,10 +179,6 @@
                         <div class="form-group">
                             <label for="post-desc">Description</label>
                             <textarea id="post-desc" rows="4" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="post-image">Image Upload</label>
-                            <input type="file" id="post-image" accept="image/*">
                         </div>
                         <div class="form-group">
                             <label for="post-link">Google Drive Link (Optional)</label>
@@ -95,7 +206,6 @@
         import { auth, db, storage, ref } from "../js/config.js";
         import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
         import { ref as dbRef, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
-        import { ref as storageRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-storage.js";
 
         const loginSection = document.getElementById("login-section");
         const adminSection = document.getElementById("admin-section");
@@ -105,7 +215,6 @@
         const postForm = document.getElementById("post-form");
         const postStatus = document.getElementById("post-status");
         const submitBtn = document.getElementById("submit-btn");
-        const debugBtn = document.getElementById("debug-btn");
         const postsContainer = document.getElementById("posts-container");
 
         onAuthStateChanged(auth, (user) => {
@@ -121,22 +230,18 @@
 
         loginForm.addEventListener("submit", (e) => {
             e.preventDefault();
-            signInWithEmailAndPassword(auth, document.getElementById("email").value, document.getElementById("password").value)
+            const key = document.getElementById("admin-key").value;
+            // Secretly log in with the admin email using the key as the password
+            signInWithEmailAndPassword(auth, "admin@highwood.edu", key)
                 .catch((error) => {
-                    loginError.textContent = "Login failed: " + error.message;
+                    loginError.textContent = "Access Denied: Incorrect Key.";
                     loginError.style.display = "block";
                 });
         });
 
         logoutBtn.addEventListener("click", () => signOut(auth));
 
-        // Debug Bypass Logic
-        debugBtn.addEventListener("click", () => {
-            console.warn("DEBUG: Bypassing authentication...");
-            loginSection.style.display = "none";
-            adminSection.style.display = "block";
-            loadPosts();
-        });
+
 
         postForm.addEventListener("submit", async (e) => {
             e.preventDefault();
@@ -147,18 +252,9 @@
                 const title = document.getElementById("post-title").value;
                 const desc = document.getElementById("post-desc").value;
                 const link = document.getElementById("post-link").value;
-                const imageInput = document.getElementById("post-image");
-                const imageFile = imageInput.files[0];
-                let imageUrl = null;
-
-                if (imageFile) {
-                    const imgRef = storageRef(storage, 'post_images/' + Date.now() + '_' + imageFile.name);
-                    const uploadTask = await uploadBytesResumable(imgRef, imageFile);
-                    imageUrl = await getDownloadURL(uploadTask.ref);
-                }
 
                 const newPostRef = push(dbRef(db, 'posts'));
-                await set(newPostRef, { title, description: desc, date: new Date().toISOString(), imageUrl, driveLink: link });
+                await set(newPostRef, { title, description: desc, date: new Date().toISOString(), driveLink: link });
 
                 postStatus.textContent = "Post published successfully!";
                 postStatus.className = "success-message";
@@ -175,14 +271,31 @@
         function loadPosts() {
             onValue(dbRef(db, 'posts'), (snapshot) => {
                 postsContainer.innerHTML = "";
+                const posts = [];
                 snapshot.forEach((childSnapshot) => {
-                    const post = childSnapshot.val();
+                    posts.push({ id: childSnapshot.key, ...childSnapshot.val() });
+                });
+
+                posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                if (posts.length === 0) {
+                    postsContainer.innerHTML = "<p style='text-align: center; opacity: 0.6;'>No announcements found.</p>";
+                    return;
+                }
+
+                posts.forEach(post => {
                     const card = document.createElement("div");
-                    card.className = "card post-card";
+                    card.className = "post-card";
                     card.innerHTML = `
-                        <button class="delete-btn" onclick="window.deletePost('${childSnapshot.key}')">Delete</button>
-                        <h2>${post.title}</h2>
-                        <p>${post.description}</p>
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <h4 style="font-family: var(--font-heading); color: var(--primary); font-size: 1.3rem; margin-bottom: 0.5rem;">${post.title}</h4>
+                                <p style="font-size: 0.8rem; color: #666; margin-bottom: 1rem;">Published on ${new Date(post.date).toLocaleDateString()} at ${new Date(post.date).toLocaleTimeString()}</p>
+                            </div>
+                            <button class="delete-btn" onclick="window.deletePost('${post.id}')">Delete Post</button>
+                        </div>
+                        <p style="color: #444; line-height: 1.6;">${post.description}</p>
+                        ${post.driveLink ? `<div style="margin-top: 0.5rem;"><span style="font-size: 0.7rem; background: #e3f2fd; color: #1565c0; padding: 4px 8px; border-radius: 4px;">Link Attached</span></div>` : ''}
                     `;
                     postsContainer.appendChild(card);
                 });

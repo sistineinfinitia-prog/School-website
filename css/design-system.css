@@ -1,11 +1,12 @@
 :root {
-    /* Brand Colors */
-    --primary: #800000;         /* Deep Maroon */
-    --primary-light: #a52a2a;
-    --primary-accent: #ffd700;  /* Gold */
-    --dark: #1a1a1a;
+    /* Premium Color Palette */
+    --primary: #800000;      /* Academy Maroon */
+    --primary-light: #a00000;
+    --accent: #d4af37;       /* Academy Gold */
+    --dark: #1a0505;         /* Deep Night Maroon (instead of pure black) */
     --light: #ffffff;
     --gray: #f8f9fa;
+    --gray-dark: #332222;    /* Tinted Dark Gray */
     --text-muted: #666666;
 
     /* Glassmorphism */
