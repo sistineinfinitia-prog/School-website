@@ -20,7 +20,8 @@ function initNavigation() {
                 <span></span><span></span><span></span>
             </div>
             <ul class="nav-links" id="nav-links">
-                <li><a href="${pathPrefix}index.html">Courses</a></li>
+                <li><a href="${pathPrefix}index.html">Home</a></li>
+                <li><a href="${pagePrefix}about-us.html">About Us</a></li>
                 <li><a href="${pagePrefix}curriculum.html">Curriculum Syllabus</a></li>
                 <li><a href="${pagePrefix}theme-a.html">Theme A</a></li>
                 <li><a href="${pagePrefix}theme-b.html">Theme B</a></li>
@@ -42,13 +43,16 @@ function initNavigation() {
                 <div class="footer-ambassadors">
                     <h3>Ambassadors</h3>
                     <p>Tech: Anish Dongarkar</p>
-                    <p>AI: Rudolph Babaren</p>
+                    <p><a href="mailto:anishdongarkar@gmail.com" style="font-size: 0.8rem; opacity: 0.8;">anishdongarkar@gmail.com</a></p>
+                    <p style="margin-top: 10px;">AI: Rudolph Babaren</p>
+                    <p><a href="mailto:rudolphmacrinebabaran@gmail.com" style="font-size: 0.8rem; opacity: 0.8;">rudolphmacrinebabaran@gmail.com</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
                 <span class="footer-logo">CS DEPARTMENT</span>
                 <div class="footer-nav">
-                    <a href="${pathPrefix}index.html">Courses</a>
+                    <a href="${pathPrefix}index.html">Home</a>
+                    <a href="${pagePrefix}about-us.html">About Us</a>
                     <a href="${pagePrefix}curriculum.html">Curriculum Syllabus</a>
                     <a href="${pagePrefix}theme-a.html">Theme A</a>
                     <a href="${pagePrefix}theme-b.html">Theme B</a>

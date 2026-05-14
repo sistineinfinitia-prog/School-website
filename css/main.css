@@ -55,26 +55,30 @@ nav {
 
 .logo {
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: var(--primary);
     text-decoration: none;
     letter-spacing: -0.5px;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: var(--spacing-md);
+    gap: 8px; /* Reduced gap to fit all items */
+    align-items: center;
 }
 
 .nav-links a {
     color: var(--text-body);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 0.85rem; /* Slightly smaller font */
     transition: var(--transition);
-    padding: var(--spacing-xs) var(--spacing-sm);
+    padding: 6px 12px;
     border-radius: var(--border-radius-pill);
+    white-space: nowrap;
 }
 
 .nav-links a:hover,
@@ -140,23 +144,7 @@ nav {
     margin-bottom: var(--spacing-lg);
 }
 
-.hero-search {
-    display: flex;
-    background: var(--bg-section);
-    padding: 8px;
-    border-radius: var(--border-radius-pill);
-    box-shadow: var(--shadow-soft);
-}
 
-.hero-search input {
-    flex: 1;
-    border: none;
-    padding: 0 var(--spacing-md);
-    outline: none;
-    font-family: var(--font-main);
-    font-size: 1rem;
-    background: transparent;
-}
 
 .btn {
     padding: 14px 28px;
@@ -354,7 +342,7 @@ footer {
 }
 
 /* --- Responsive --- */
-@media (max-width: 992px) {
+@media (max-width: 1150px) {
     .nav-links {
         position: fixed;
         right: -100%;

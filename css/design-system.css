@@ -6,9 +6,9 @@
     --primary-dark: #5a0000; /* Hover state */
     
     /* Backgrounds */
-    --bg-main: #FFF8F8;      /* Soft Red-Tinted White */
+    --bg-main: #F9F0F0;      /* Slightly darker red-tinted background */
     --bg-section: #FFFFFF;   /* Pure White */
-    --bg-accent: #FFEAEA;    /* Soft Pink Accent */
+    --bg-accent: #F2E2E2;    /* Slightly darker accent */
     
     /* Text */
     --text-main: #111111;    /* Near Black */
@@ -21,7 +21,7 @@
     --tag-coral: #FF5C5C;
     
     /* Spacing & Layout */
-    --container-max: 1200px;
+    --container-max: 1300px;
     --spacing-xs: 8px;
     --spacing-sm: 16px;
     --spacing-md: 24px;

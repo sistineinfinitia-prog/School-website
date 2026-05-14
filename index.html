@@ -7,6 +7,26 @@
     <title>Highwood CS | Home</title>
 
     <link rel="stylesheet" href="css/main.css">
+    <style>
+        .announcements-wrapper {
+            background: #fff;
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-soft);
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .empty-state img {
+            width: 150px;
+            opacity: 0.5;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -18,10 +38,6 @@
             <h1>Computer Science Academy</h1>
             <p>A comprehensive journey through modern computation, algorithmic thinking, and digital innovation.</p>
             
-            <div class="hero-search">
-                <input type="text" placeholder="Search for modules or resources...">
-                <button class="btn">Explore</button>
-            </div>
         </div>
         <div class="hero-visual">
             <div class="circle-bg"></div>
@@ -33,20 +49,24 @@
 
     <div class="wave-divider"></div>
 
-    <main class="content-section">
+    <main class="content-section" style="background: var(--bg-main);">
         <div class="section-container">
-            <div class="section-header">
-                <h2>Explore the Curriculum</h2>
-            </div>
-            <div class="card-grid" id="courses-grid">
-                <!-- Courses injected here -->
-            </div>
+            <div class="announcements-wrapper">
+                <div class="section-header" style="text-align: left; margin-bottom: var(--spacing-lg); display: flex; align-items: center; justify-content: space-between;">
+                    <div>
+                        <span class="tag tag-coral">Stay Updated</span>
+                        <h2 style="font-size: 2.5rem; margin-top: 10px;">Latest Announcements</h2>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--text-muted);">
+                        Real-time updates from our department
+                    </div>
+                </div>
 
-            <div class="section-header" style="margin-top: var(--spacing-xxl);">
-                <h2>Latest Announcements</h2>
-            </div>
-            <div id="posts-container" class="card-grid" style="max-width: 900px; margin: 0 auto; display: flex; flex-direction: column;">
-                <p style="text-align: center;">Loading announcements...</p>
+                <div id="posts-container" style="display: flex; flex-direction: column; gap: 30px;">
+                    <div class="empty-state" id="loading-state">
+                        <p>Loading the latest updates for you...</p>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -59,29 +79,22 @@
         import { db, ref } from "./js/config.js";
         import { onValue } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
 
-        // Load Courses
-        fetch('data/courses.json')
-            .then(res => res.json())
-            .then(courses => {
-                const grid = document.getElementById('courses-grid');
-                grid.innerHTML = courses.map((course, i) => {
-                    const tagClass = i % 3 === 0 ? 'tag-purple' : i % 3 === 1 ? 'tag-blue' : 'tag-coral';
-                    return `
-                    <div class="card">
-                        <span class="tag ${tagClass}">Module ${i + 1}</span>
-                        <h2>${course.title}</h2>
-                        <p>${course.description}</p>
-                        <a href="${course.link}" class="btn">Explore Module</a>
-                    </div>
-                `}).join('');
-            });
-
-        // Load Announcements
         const postsRef = ref(db, 'posts');
         const container = document.getElementById("posts-container");
 
         onValue(postsRef, (snapshot) => {
             container.innerHTML = "";
+            
+            if (!snapshot.exists()) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h3 style="color: var(--primary);">All quiet for now!</h3>
+                        <p>No announcements have been posted yet. Check back soon for exciting news.</p>
+                    </div>
+                `;
+                return;
+            }
+
             const posts = [];
             snapshot.forEach((childSnapshot) => {
                 posts.push(childSnapshot.val());
@@ -90,19 +103,32 @@
             posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
             if (posts.length === 0) {
-                container.innerHTML = "<p style='text-align: center;'>No announcements available.</p>";
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h3 style="color: var(--primary);">All quiet for now!</h3>
+                        <p>No announcements have been posted yet. Check back soon for exciting news.</p>
+                    </div>
+                `;
                 return;
             }
 
-            posts.forEach(post => {
+            posts.forEach((post, index) => {
                 const postElement = document.createElement("div");
                 postElement.className = "card";
+                postElement.style.width = "100%";
+                postElement.style.borderLeft = index === 0 ? "5px solid var(--primary)" : "none";
 
                 postElement.innerHTML = `
-                    <span class="tag tag-coral">Announcement</span>
-                    <h3>${post.title}</h3>
-                    <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem;">${new Date(post.date).toLocaleString()}</p>
-                    <p style="margin-bottom:2rem; font-size:1rem; line-height:1.7;">${post.description}</p>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
+                        <div>
+                            <span class="tag ${index === 0 ? 'tag-purple' : 'tag-coral'}">${index === 0 ? 'Featured' : 'Announcement'}</span>
+                            <h3 style="font-size: 1.8rem; margin-top: 10px;">${post.title}</h3>
+                        </div>
+                        <span style="font-size: 0.85rem; color: var(--text-muted); background: var(--bg-accent); padding: 5px 12px; border-radius: 20px;">
+                            ${new Date(post.date).toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' })}
+                        </span>
+                    </div>
+                    <p style="margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.8; color: var(--text-body);">${post.description}</p>
                 `;
 
                 if (post.driveLink) {
@@ -110,7 +136,8 @@
                     linkBtn.href = post.driveLink;
                     linkBtn.className = "btn";
                     linkBtn.target = "_blank";
-                    linkBtn.textContent = "Open Attached File";
+                    linkBtn.style.padding = "10px 20px";
+                    linkBtn.innerHTML = `View Document <svg style="margin-left:8px;" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/></svg>`;
                     postElement.appendChild(linkBtn);
                 }
 
