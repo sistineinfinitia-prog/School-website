@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "Introduction to CS",
+        "description": "Establishing the foundation of logical reasoning and fundamental programming constructs.",
+        "link": "#"
+    },
+    {
+        "id": 2,
+        "title": "Data Structures",
+        "description": "Optimizing information storage and retrieval through efficient algorithmic patterns.",
+        "link": "#"
+    },
+    {
+        "id": 3,
+        "title": "Theme D",
+        "description": "Exploration of Module content for Theme D and its practical applications.",
+        "link": "pages/theme-d.html"
+    }
+]

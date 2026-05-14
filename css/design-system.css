@@ -1,0 +1,29 @@
+:root {
+    /* Brand Colors */
+    --primary: #800000;         /* Deep Maroon */
+    --primary-light: #a52a2a;
+    --primary-accent: #ffd700;  /* Gold */
+    --dark: #1a1a1a;
+    --light: #ffffff;
+    --gray: #f8f9fa;
+    --text-muted: #666666;
+
+    /* Glassmorphism */
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --blur-effect: blur(10px);
+
+    /* Spacing & Layout */
+    --container-max: 1200px;
+    --section-padding: clamp(3rem, 10vh, 6rem);
+    
+    /* Typography */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Outfit', sans-serif;
+
+    /* Effects */
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --shadow-premium: 0 20px 40px rgba(0,0,0,0.15);
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    --border-radius: 20px;
+}

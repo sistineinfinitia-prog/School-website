@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Highwood CS</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/main.css">
+    <style>
+        .admin-container { max-width: 800px; margin: 0 auto; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary); }
+        .form-group input, .form-group textarea { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
+        .error-message { color: var(--primary); margin-top: 1rem; }
+        .success-message { color: green; margin-top: 1rem; }
+        .post-list { margin-top: 3rem; display: flex; flex-direction: column; gap: 2rem; }
+        .post-card { position: relative; }
+        .delete-btn { position: absolute; top: 1rem; right: 1rem; background: #dc3545; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <header class="glass-panel"></header>
+
+    <section class="hero" style="height: 40vh; min-height: 300px;">
+        <h1>Admin Dashboard</h1>
+        <p>Manage announcements and academy resources</p>
+    </section>
+
+    <main>
+        <div class="admin-container">
+            <div id="login-section" class="card">
+                <h2>Admin Login</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                    <p id="login-error" class="error-message" style="display: none;"></p>
+                </form>
+            </div>
+
+            <div id="admin-section" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h2>Create New Post</h2>
+                    <button id="logout-btn" class="btn" style="background: var(--dark);">Logout</button>
+                </div>
+                
+                <div class="card">
+                    <form id="post-form">
+                        <div class="form-group">
+                            <label for="post-title">Post Title</label>
+                            <input type="text" id="post-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="post-desc">Description</label>
+                            <textarea id="post-desc" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="post-image">Image Upload</label>
+                            <input type="file" id="post-image" accept="image/*">
+                        </div>
+                        <div class="form-group">
+                            <label for="post-link">Google Drive Link (Optional)</label>
+                            <input type="url" id="post-link" placeholder="https://drive.google.com/...">
+                        </div>
+                        <button type="submit" class="btn" id="submit-btn">Publish Post</button>
+                        <p id="post-status"></p>
+                    </form>
+                </div>
+
+                <div class="post-list" id="post-list">
+                    <h3>Existing Posts</h3>
+                    <div id="posts-container">
+                        <p>Loading posts...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer></footer>
+
+    <script src="../js/ui.js"></script>
+    <script type="module">
+        import { auth, db, storage, ref } from "../js/config.js";
+        import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+        import { ref as dbRef, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
+        import { ref as storageRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-storage.js";
+
+        const loginSection = document.getElementById("login-section");
+        const adminSection = document.getElementById("admin-section");
+        const loginForm = document.getElementById("login-form");
+        const loginError = document.getElementById("login-error");
+        const logoutBtn = document.getElementById("logout-btn");
+        const postForm = document.getElementById("post-form");
+        const postStatus = document.getElementById("post-status");
+        const submitBtn = document.getElementById("submit-btn");
+        const postsContainer = document.getElementById("posts-container");
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                loginSection.style.display = "none";
+                adminSection.style.display = "block";
+                loadPosts();
+            } else {
+                loginSection.style.display = "block";
+                adminSection.style.display = "none";
+            }
+        });
+
+        loginForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            signInWithEmailAndPassword(auth, document.getElementById("email").value, document.getElementById("password").value)
+                .catch((error) => {
+                    loginError.textContent = "Login failed: " + error.message;
+                    loginError.style.display = "block";
+                });
+        });
+
+        logoutBtn.addEventListener("click", () => signOut(auth));
+
+        postForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            submitBtn.textContent = "Publishing...";
+            submitBtn.disabled = true;
+
+            try {
+                const title = document.getElementById("post-title").value;
+                const desc = document.getElementById("post-desc").value;
+                const link = document.getElementById("post-link").value;
+                const imageInput = document.getElementById("post-image");
+                const imageFile = imageInput.files[0];
+                let imageUrl = null;
+
+                if (imageFile) {
+                    const imgRef = storageRef(storage, 'post_images/' + Date.now() + '_' + imageFile.name);
+                    const uploadTask = await uploadBytesResumable(imgRef, imageFile);
+                    imageUrl = await getDownloadURL(uploadTask.ref);
+                }
+
+                const newPostRef = push(dbRef(db, 'posts'));
+                await set(newPostRef, { title, description: desc, date: new Date().toISOString(), imageUrl, driveLink: link });
+
+                postStatus.textContent = "Post published successfully!";
+                postStatus.className = "success-message";
+                postForm.reset();
+            } catch (error) {
+                postStatus.textContent = "Error: " + error.message;
+                postStatus.className = "error-message";
+            } finally {
+                submitBtn.textContent = "Publish Post";
+                submitBtn.disabled = false;
+            }
+        });
+
+        function loadPosts() {
+            onValue(dbRef(db, 'posts'), (snapshot) => {
+                postsContainer.innerHTML = "";
+                snapshot.forEach((childSnapshot) => {
+                    const post = childSnapshot.val();
+                    const card = document.createElement("div");
+                    card.className = "card post-card";
+                    card.innerHTML = `
+                        <button class="delete-btn" onclick="window.deletePost('${childSnapshot.key}')">Delete</button>
+                        <h2>${post.title}</h2>
+                        <p>${post.description}</p>
+                    `;
+                    postsContainer.appendChild(card);
+                });
+            });
+        }
+
+        window.deletePost = async (id) => {
+            if (confirm("Delete this post?")) {
+                await remove(dbRef(db, 'posts/' + id));
+            }
+        };
+    </script>
+</body>
+</html>
