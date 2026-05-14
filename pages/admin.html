@@ -5,53 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard | Highwood CS</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="../css/main.css">
     <style>
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
+            background-color: var(--bg-main);
         }
 
         .admin-container { 
             max-width: 1000px; 
             margin: 0 auto; 
-            padding: 2rem;
+            padding: var(--spacing-xl) var(--spacing-md);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            color: var(--text-main);
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
         }
 
         .card {
-            background: var(--glass-bg);
-            backdrop-filter: var(--blur-effect);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: var(--shadow-premium);
-            padding: 3rem;
-            margin-bottom: 2rem;
+            background: var(--bg-section);
+            padding: var(--spacing-lg);
             border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+            margin-bottom: var(--spacing-lg);
+            border: 1px solid rgba(0,0,0,0.03);
         }
 
-        .form-group { margin-bottom: 2rem; }
+        .form-group { margin-bottom: var(--spacing-md); }
         
         .form-group label { 
             display: block; 
-            margin-bottom: 0.8rem; 
+            margin-bottom: 8px; 
             font-weight: 600; 
-            color: var(--primary); 
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
+            color: var(--text-main);
+            font-size: 0.9rem;
         }
 
         .form-group input, 
         .form-group textarea { 
             width: 100%; 
-            padding: 1rem; 
+            padding: 12px 16px; 
             border: 1px solid rgba(0,0,0,0.1); 
             border-radius: 12px; 
-            font-family: var(--font-body);
-            background: rgba(255, 255, 255, 0.8);
+            font-family: var(--font-main);
+            background: var(--bg-main);
             transition: var(--transition);
         }
 
@@ -59,7 +60,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(128, 0, 0, 0.1);
+            box-shadow: 0 0 0 4px rgba(128, 0, 0, 0.05);
             background: #fff;
         }
 
@@ -70,6 +71,7 @@
             border-radius: 8px;
             margin-top: 1rem;
             font-size: 0.9rem;
+            font-weight: 500;
         }
 
         .success-message { 
@@ -79,39 +81,31 @@
             border-radius: 8px;
             margin-top: 1rem;
             font-size: 0.9rem;
+            font-weight: 500;
         }
 
-        .post-list { margin-top: 4rem; }
         .post-list h3 { 
-            font-family: var(--font-heading); 
-            color: var(--primary);
-            margin-bottom: 2rem;
-            font-size: 2rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
             text-align: center;
         }
 
         .post-card { 
-            position: relative; 
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
             background: #fff;
             border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            box-shadow: var(--shadow-soft);
             transition: var(--transition);
-        }
-
-        .post-card:hover {
-            transform: scale(1.02);
+            border: 1px solid rgba(0,0,0,0.02);
         }
 
         .delete-btn { 
-            align-self: flex-end;
             background: #ff4d4d; 
             color: white; 
             border: none; 
-            padding: 0.6rem 1.2rem; 
+            padding: 8px 16px; 
             border-radius: 8px; 
             cursor: pointer; 
             font-weight: 600;
@@ -121,89 +115,84 @@
 
         .delete-btn:hover {
             background: #cc0000;
-            box-shadow: 0 4px 12px rgba(255, 77, 77, 0.3);
+            transform: scale(1.05);
         }
 
-        .hero h1 { margin-bottom: 0.5rem; }
-        .hero p { opacity: 0.8; font-size: 1.1rem; }
-
-        /* Additional UI Polish */
-        .btn-outline {
+        .logout-btn {
             background: transparent;
-            border: 2px solid var(--light);
-            color: var(--light);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: var(--border-radius-pill);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
         }
 
-        .btn-outline:hover {
-            background: var(--light);
-            color: var(--primary);
+        .logout-btn:hover {
+            background: var(--primary);
+            color: white;
         }
     </style>
 </head>
 <body>
-    <header class="glass-panel"></header>
+    <header></header>
 
-    <section class="hero" style="height: 40vh; min-height: 300px;">
-        <h1>Admin Dashboard</h1>
-        <p>Manage announcements and academy resources</p>
-    </section>
-
-    <main>
-        <div class="admin-container">
-            <div id="login-section" class="card">
-                <h2>Admin Login</h2>
+    <div class="admin-container">
+        <div id="login-section">
+            <h1 class="section-title">Admin Access</h1>
+            <div class="card" style="max-width: 500px; margin: 0 auto;">
                 <form id="login-form">
                     <div class="form-group">
-                        <label for="admin-key">Admin Access Key</label>
+                        <label for="admin-key">Admin Passkey</label>
                         <input type="password" id="admin-key" placeholder="Enter key..." required>
                     </div>
-                    <div style="display: flex; gap: 1rem; align-items: center;">
-                        <button type="submit" class="btn">Access Dashboard</button>
-                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Sign In</button>
                     <p id="login-error" class="error-message" style="display: none;"></p>
                 </form>
             </div>
+        </div>
 
-            <div id="admin-section" style="display: none;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                    <h2 style="color: var(--light); font-family: var(--font-heading); text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Create New Post</h2>
-                    <button id="logout-btn" class="btn btn-outline">Logout</button>
-                </div>
-                
-                <div class="card">
-                    <form id="post-form">
-                        <div class="form-group">
-                            <label for="post-title">Post Title</label>
-                            <input type="text" id="post-title" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="post-desc">Description</label>
-                            <textarea id="post-desc" rows="4" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="post-link">Google Drive Link (Optional)</label>
-                            <input type="url" id="post-link" placeholder="https://drive.google.com/...">
-                        </div>
-                        <button type="submit" class="btn" id="submit-btn">Publish Post</button>
-                        <p id="post-status"></p>
-                    </form>
-                </div>
-
-                <div class="post-list" id="post-list">
-                    <h3>Existing Posts</h3>
-                    <div id="posts-container">
-                        <p>Loading posts...</p>
+        <div id="admin-section" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg);">
+                <h1 style="font-weight: 800; font-size: 2rem; letter-spacing: -1px;">Dashboard</h1>
+                <button id="logout-btn" class="logout-btn">Sign Out</button>
+            </div>
+            
+            <div class="card">
+                <h2 style="margin-bottom: var(--spacing-md); font-weight: 700;">New Announcement</h2>
+                <form id="post-form">
+                    <div class="form-group">
+                        <label for="post-title">Title</label>
+                        <input type="text" id="post-title" required>
                     </div>
+                    <div class="form-group">
+                        <label for="post-desc">Content</label>
+                        <textarea id="post-desc" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="post-link">Drive Link (Optional)</label>
+                        <input type="url" id="post-link" placeholder="https://drive.google.com/...">
+                    </div>
+                    <button type="submit" class="btn" id="submit-btn">Publish Announcement</button>
+                    <p id="post-status"></p>
+                </form>
+            </div>
+
+            <div class="post-list" id="post-list">
+                <h3>Manage Announcements</h3>
+                <div id="posts-container">
+                    <p style="text-align: center;">Loading...</p>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 
     <footer></footer>
 
     <script src="../js/ui.js"></script>
     <script type="module">
-        import { auth, db, storage, ref } from "../js/config.js";
+        import { auth, db, ref } from "../js/config.js";
         import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
         import { ref as dbRef, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
 
@@ -231,7 +220,6 @@
         loginForm.addEventListener("submit", (e) => {
             e.preventDefault();
             const key = document.getElementById("admin-key").value;
-            // Secretly log in with the admin email using the key as the password
             signInWithEmailAndPassword(auth, "admin@highwood.edu", key)
                 .catch((error) => {
                     loginError.textContent = "Access Denied: Incorrect Key.";
@@ -240,8 +228,6 @@
         });
 
         logoutBtn.addEventListener("click", () => signOut(auth));
-
-
 
         postForm.addEventListener("submit", async (e) => {
             e.preventDefault();
@@ -256,14 +242,14 @@
                 const newPostRef = push(dbRef(db, 'posts'));
                 await set(newPostRef, { title, description: desc, date: new Date().toISOString(), driveLink: link });
 
-                postStatus.textContent = "Post published successfully!";
+                postStatus.textContent = "Announcement published!";
                 postStatus.className = "success-message";
                 postForm.reset();
             } catch (error) {
                 postStatus.textContent = "Error: " + error.message;
                 postStatus.className = "error-message";
             } finally {
-                submitBtn.textContent = "Publish Post";
+                submitBtn.textContent = "Publish Announcement";
                 submitBtn.disabled = false;
             }
         });
@@ -288,14 +274,13 @@
                     card.className = "post-card";
                     card.innerHTML = `
                         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                            <div>
-                                <h4 style="font-family: var(--font-heading); color: var(--primary); font-size: 1.3rem; margin-bottom: 0.5rem;">${post.title}</h4>
-                                <p style="font-size: 0.8rem; color: #666; margin-bottom: 1rem;">Published on ${new Date(post.date).toLocaleDateString()} at ${new Date(post.date).toLocaleTimeString()}</p>
+                            <div style="flex: 1;">
+                                <h4 style="font-weight: 700; color: var(--primary); font-size: 1.2rem; margin-bottom: 4px;">${post.title}</h4>
+                                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">${new Date(post.date).toLocaleDateString()}</p>
+                                <p style="color: var(--text-body); font-size: 0.95rem; line-height: 1.6;">${post.description}</p>
                             </div>
-                            <button class="delete-btn" onclick="window.deletePost('${post.id}')">Delete Post</button>
+                            <button class="delete-btn" onclick="window.deletePost('${post.id}')">Delete</button>
                         </div>
-                        <p style="color: #444; line-height: 1.6;">${post.description}</p>
-                        ${post.driveLink ? `<div style="margin-top: 0.5rem;"><span style="font-size: 0.7rem; background: #e3f2fd; color: #1565c0; padding: 4px 8px; border-radius: 4px;">Link Attached</span></div>` : ''}
                     `;
                     postsContainer.appendChild(card);
                 });
@@ -303,7 +288,7 @@
         }
 
         window.deletePost = async (id) => {
-            if (confirm("Delete this post?")) {
+            if (confirm("Delete this announcement?")) {
                 await remove(dbRef(db, 'posts/' + id));
             }
         };

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idea 2: Institutional Hero | Highwood CS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #800000; --primary-light: #a00000; --accent: #d4af37;
+            --dark: #1a0505; --light: #ffffff; --gray: #f8f9fa; --gray-dark: #332222; --text-muted: #666666;
+            --container-max: 1200px; --font-heading: 'Playfair Display', serif; --font-body: 'Outfit', sans-serif;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1); --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); --border-radius: 20px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); color: var(--dark); line-height: 1.7; background-color: var(--gray); overflow-x: hidden; }
+        header { position: fixed; top: 0; width: 100%; height: 80px; z-index: 1000; display: flex; align-items: center; background: rgba(128, 0, 0, 0.95); }
+        nav { width: 100%; max-width: var(--container-max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+        .logo { font-family: var(--font-heading); font-size: 1.6rem; color: var(--light); text-decoration: none; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: var(--light); text-decoration: none; }
+        /* NEW HERO */
+        .hero { 
+            height: 75vh; min-height: 600px; padding-top: 80px;
+            background: linear-gradient(105deg, var(--gray) 0%, var(--gray) 60%, var(--primary) 60.1%, var(--dark) 100%);
+            display: flex; align-items: center; position: relative;
+        }
+        .hero-container {
+            max-width: var(--container-max); margin: 0 auto; padding: 0 2rem; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .hero-content { flex: 0 0 50%; padding-right: 2rem; }
+        .hero-content h1 { font-family: var(--font-heading); font-size: clamp(3rem, 5vw, 5rem); color: var(--primary); line-height: 1.1; margin-bottom: 1.5rem; }
+        .hero-content p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; }
+        .hero-visual { flex: 0 0 40%; text-align: right; }
+        .crest-svg { width: 100%; max-width: 400px; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3)); }
+        
+        main { max-width: var(--container-max); margin: 40px auto 100px; padding: 0 2rem; position: relative; z-index: 10; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+        .card { background: var(--light); padding: 3rem; border-radius: var(--border-radius); box-shadow: var(--shadow); transition: var(--transition); border: 1px solid rgba(0, 0, 0, 0.05); }
+        .card h2 { font-family: var(--font-heading); margin-bottom: 1rem; color: var(--primary); }
+        .btn { display: inline-block; padding: 0.8rem 2rem; background: var(--primary); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; }
+        .back-link { position: fixed; bottom: 20px; right: 20px; background: var(--dark); color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; z-index: 10000; font-family: sans-serif;}
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">Highwood CS</a>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Courses</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Advanced<br>CS Academy</h1>
+                <p>A comprehensive journey through modern computation, algorithmic thinking, and digital innovation.</p>
+                <a href="#" class="btn">View Curriculum</a>
+            </div>
+            <div class="hero-visual">
+                <svg class="crest-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#d4af37" d="M47.7,-57.2C62.4,-44.6,75.4,-30.5,80.1,-13.8C84.8,2.9,81.1,22.3,71,38.1C60.9,53.8,44.4,66,26.4,72.4C8.4,78.8,-11.2,79.5,-29.4,73.5C-47.5,67.6,-64.3,55.1,-74.6,38.7C-84.9,22.4,-88.7,2.2,-83.4,-15C-78.1,-32.2,-63.8,-46.4,-47.9,-58.5C-32,-70.7,-16,-80.8,0.7,-81.6C17.3,-82.4,34.6,-73.9,47.7,-57.2Z" transform="translate(100 100) scale(1.1)" />
+                    <path fill="#800000" d="M38.1,-48.9C49.9,-37.2,60.5,-25.1,65.3,-10.8C70.2,3.5,69.4,20,59.9,32.2C50.5,44.4,32.4,52.3,14.6,56.5C-3.2,60.7,-20.8,61.2,-37.5,54C-54.2,46.7,-70.1,31.7,-75.4,14C-80.6,-3.6,-75.3,-23.9,-63.7,-38.7C-52,-53.4,-33.9,-62.7,-18.2,-64.5C-2.4,-66.3,11,-60.7,26.3,-50.7Z" transform="translate(100 100)" />
+                </svg>
+            </div>
+        </div>
+    </section>
+    <main>
+        <div class="card-grid">
+            <div class="card">
+                <h2>Introduction to CS</h2>
+                <p>Establishing the foundation of logical reasoning and fundamental programming constructs.</p>
+                <br><a href="#" class="btn">Explore Module</a>
+            </div>
+            <div class="card">
+                <h2>Data Structures</h2>
+                <p>Optimizing information storage and retrieval through efficient algorithmic patterns.</p>
+                <br><a href="#" class="btn">Explore Module</a>
+            </div>
+            <div class="card">
+                <h2>Theme D</h2>
+                <p>Exploration of Module content for Theme D and its practical applications.</p>
+                <br><a href="#" class="btn">Explore Module</a>
+            </div>
+        </div>
+    </main>
+    <a href="index.html" class="back-link">← Back to Gallery</a>
+</body>
+</html>

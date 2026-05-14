@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idea 3: Accent Cards | Highwood CS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #800000; --accent: #d4af37; --dark: #1a0505; --light: #ffffff; --gray: #f8f9fa;
+            --font-heading: 'Playfair Display', serif; --font-body: 'Outfit', sans-serif;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05); --transition: all 0.3s ease; --border-radius: 12px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); color: var(--dark); line-height: 1.7; background-color: var(--gray); overflow-x: hidden; }
+        header { position: fixed; top: 0; width: 100%; height: 80px; z-index: 1000; display: flex; align-items: center; background: rgba(128, 0, 0, 0.95); }
+        nav { width: 100%; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+        .logo { font-family: var(--font-heading); font-size: 1.6rem; color: var(--light); text-decoration: none; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: var(--light); text-decoration: none; }
+        .hero { height: 70vh; min-height: 500px; background: linear-gradient(135deg, rgba(128, 0, 0, 0.85), rgba(26, 26, 26, 0.9)); display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--light); text-align: center; clip-path: ellipse(150% 100% at 50% 0%); }
+        .hero h1 { font-family: var(--font-heading); font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 1.5rem; }
+        main { max-width: 1200px; margin: -100px auto 100px; padding: 0 2rem; position: relative; z-index: 10; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+        
+        /* NEW CARD STYLES */
+        .card { 
+            background: var(--light); padding: 3rem; border-radius: var(--border-radius); 
+            box-shadow: var(--shadow); transition: var(--transition); 
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--accent); /* Formal Accent Border */
+            position: relative;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.15); /* Gold glow shadow */
+        }
+        .module-badge {
+            position: absolute; top: 1.5rem; left: 3rem;
+            font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            color: var(--primary); background: rgba(128, 0, 0, 0.05); padding: 4px 10px; border-radius: 4px;
+        }
+        .card h2 { font-family: var(--font-heading); margin-top: 1rem; margin-bottom: 1rem; color: var(--dark); font-size: 1.8rem; }
+        .btn { display: inline-block; padding: 0.8rem 2rem; background: var(--primary); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: var(--transition); border: none; cursor: pointer; }
+        .btn:hover { background: #5a0000; transform: translateY(-2px); }
+        .back-link { position: fixed; bottom: 20px; right: 20px; background: var(--dark); color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; z-index: 10000; font-family: sans-serif;}
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">Highwood CS</a>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Courses</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero">
+        <h1>Advanced CS Academy</h1>
+        <p>A comprehensive journey through modern computation, algorithmic thinking, and digital innovation.</p>
+    </section>
+    <main>
+        <div class="card-grid">
+            <div class="card">
+                <div class="module-badge">Module 1</div>
+                <h2>Introduction to CS</h2>
+                <p>Establishing the foundation of logical reasoning and fundamental programming constructs.</p>
+                <br><a href="#" class="btn">Explore Module</a>
+            </div>
+            <div class="card">
+                <div class="module-badge">Module 2</div>
+                <h2>Data Structures</h2>
+                <p>Optimizing information storage and retrieval through efficient algorithmic patterns.</p>
+                <br><a href="#" class="btn">Explore Module</a>
+            </div>
+            <div class="card">
+                <div class="module-badge">Module 3</div>
+                <h2>Theme D</h2>
+                <p>Exploration of Module content for Theme D and its practical applications.</p>
+                <br><a href="#" class="btn">Explore Module</a>
+            </div>
+        </div>
+    </main>
+    <a href="index.html" class="back-link">← Back to Gallery</a>
+</body>
+</html>

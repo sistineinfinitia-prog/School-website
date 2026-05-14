@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mockup Gallery | Highwood CS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #800000; --dark: #1a0505; --light: #ffffff; --gray: #f8f9fa;
+            --font-heading: 'Playfair Display', serif; --font-body: 'Outfit', sans-serif;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        body { font-family: var(--font-body); color: var(--dark); line-height: 1.7; background-color: var(--gray); padding: 4rem 2rem; max-width: 1000px; margin: 0 auto; }
+        h1 { font-family: var(--font-heading); color: var(--primary); margin-bottom: 1rem; text-align: center; font-size: 3rem;}
+        p.desc { text-align: center; margin-bottom: 3rem; color: #666; font-size: 1.2rem;}
+        .grid { display: grid; gap: 1.5rem; }
+        .mockup-link { 
+            display: flex; align-items: center; background: var(--light); padding: 1.5rem 2rem; 
+            border-radius: 12px; text-decoration: none; color: var(--dark);
+            box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s;
+            border-left: 5px solid var(--primary);
+        }
+        .mockup-link:hover { transform: translateX(10px); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
+        .mockup-link h2 { margin-right: auto; font-family: var(--font-heading); font-size: 1.5rem;}
+        .mockup-link span { color: #666; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <h1>UI Concept Gallery</h1>
+    <p class="desc">Select an idea below to preview the live mockup.</p>
+    
+    <div class="grid">
+        <a href="mockup-1-fonts.html" class="mockup-link">
+            <h2>Idea 1: Academic Font Pairing</h2>
+            <span>Cormorant Garamond + Source Serif 4 →</span>
+        </a>
+        <a href="mockup-2-hero.html" class="mockup-link">
+            <h2>Idea 2: Institutional Hero</h2>
+            <span>Asymmetric 2-column layout + Crest →</span>
+        </a>
+        <a href="mockup-3-cards.html" class="mockup-link">
+            <h2>Idea 3: Bordered Accent Cards</h2>
+            <span>Formal journal-style borders + module tags →</span>
+        </a>
+        <a href="mockup-4-banner.html" class="mockup-link">
+            <h2>Idea 4: Sticky Announcement Banner</h2>
+            <span>Animated ticker bar below nav →</span>
+        </a>
+        <a href="mockup-5-tabs.html" class="mockup-link">
+            <h2>Idea 5: Tab-Based Layout</h2>
+            <span>Pill tab switcher for main sections →</span>
+        </a>
+        <a href="mockup-6-saas.html" class="mockup-link">
+            <h2>Idea 6: Educational SaaS (Red)</h2>
+            <span>Soft pastels, rounded cards, wave dividers →</span>
+        </a>
+        <a href="mockup-7-brutalism.html" class="mockup-link">
+            <h2>Idea 7: Neo-Brutalism</h2>
+            <span>High contrast, thick borders, Space Grotesk →</span>
+        </a>
+        <a href="mockup-8-glass.html" class="mockup-link">
+            <h2>Idea 8: Red Glassmorphism</h2>
+            <span>Frosted glass, soft ambient blobs, Plus Jakarta Sans →</span>
+        </a>
+        <a href="mockup-9-bento.html" class="mockup-link">
+            <h2>Idea 9: Bento Grid Minimalist</h2>
+            <span>Asymmetric masonry, flat design, Inter →</span>
+        </a>
+        <a href="mockup-10-clay.html" class="mockup-link">
+            <h2>Idea 10: Soft Claymorphism</h2>
+            <span>Fluffy 3D feel, double shadows, Quicksand →</span>
+        </a>
+    </div>
+</body>
+</html>

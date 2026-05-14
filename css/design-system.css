@@ -1,30 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
 :root {
-    /* Premium Color Palette */
-    --primary: #800000;      /* Academy Maroon */
-    --primary-light: #a00000;
-    --accent: #d4af37;       /* Academy Gold */
-    --dark: #1a0505;         /* Deep Night Maroon (instead of pure black) */
-    --light: #ffffff;
-    --gray: #f8f9fa;
-    --gray-dark: #332222;    /* Tinted Dark Gray */
-    --text-muted: #666666;
-
-    /* Glassmorphism */
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.3);
-    --blur-effect: blur(10px);
-
+    /* Educational SaaS Color Palette (Red Edition) */
+    --primary: #800000;      /* Deep Red */
+    --primary-dark: #5a0000; /* Hover state */
+    
+    /* Backgrounds */
+    --bg-main: #FFF8F8;      /* Soft Red-Tinted White */
+    --bg-section: #FFFFFF;   /* Pure White */
+    --bg-accent: #FFEAEA;    /* Soft Pink Accent */
+    
+    /* Text */
+    --text-main: #111111;    /* Near Black */
+    --text-body: #5F6B6A;    /* Dark Gray */
+    --text-muted: #8C9594;   /* Light Gray */
+    
+    /* Tags */
+    --tag-blue: #55C7F3;
+    --tag-purple: #9B6BFF;
+    --tag-coral: #FF5C5C;
+    
     /* Spacing & Layout */
     --container-max: 1200px;
-    --section-padding: clamp(3rem, 10vh, 6rem);
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 40px;
+    --spacing-xl: 64px;
+    --spacing-xxl: 96px;
     
     /* Typography */
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Outfit', sans-serif;
-
+    --font-main: 'Poppins', sans-serif;
+    
     /* Effects */
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    --shadow-premium: 0 20px 40px rgba(0,0,0,0.15);
-    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     --border-radius: 20px;
+    --border-radius-pill: 50px;
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.06);
+    --shadow-hover: 0 20px 40px rgba(128, 0, 0, 0.08);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }

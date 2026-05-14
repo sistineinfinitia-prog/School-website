@@ -6,36 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Highwood CS | Home</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:wght@700&display=swap"
-        rel="stylesheet">
-
     <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
-    <header class="glass-panel"></header>
+    <header></header>
 
     <section class="hero">
-        <h1>Advanced CS Academy</h1>
-        <p>A comprehensive journey through modern computation, algorithmic thinking, and digital innovation.</p>
+        <div class="hero-content">
+            <span class="hero-badge">Advanced Placement & Beyond</span>
+            <h1>Computer Science Academy</h1>
+            <p>A comprehensive journey through modern computation, algorithmic thinking, and digital innovation.</p>
+            
+            <div class="hero-search">
+                <input type="text" placeholder="Search for modules or resources...">
+                <button class="btn">Explore</button>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="circle-bg"></div>
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&q=80" alt="Student 1" class="float-img img-1">
+            <img src="https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?w=400&q=80" alt="Student 2" class="float-img img-2">
+            <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400&q=80" alt="Student 3" class="float-img img-3">
+        </div>
     </section>
 
-    <main>
-        <div class="card-grid" id="courses-grid">
-            <!-- Courses injected here -->
-        </div>
+    <div class="wave-divider"></div>
 
-        <div class="posts-feed" style="margin-top: 5rem;">
-            <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 3rem;">
-                <h2
-                    style="font-family: var(--font-heading); color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem;">
-                    Latest Announcements</h2>
+    <main class="content-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2>Explore the Curriculum</h2>
             </div>
-            <div id="posts-container"
-                style="display: flex; flex-direction: column; gap: 2.5rem; max-width: 900px; margin: 0 auto;">
+            <div class="card-grid" id="courses-grid">
+                <!-- Courses injected here -->
+            </div>
+
+            <div class="section-header" style="margin-top: var(--spacing-xxl);">
+                <h2>Latest Announcements</h2>
+            </div>
+            <div id="posts-container" class="card-grid" style="max-width: 900px; margin: 0 auto; display: flex; flex-direction: column;">
                 <p style="text-align: center;">Loading announcements...</p>
             </div>
         </div>
@@ -54,13 +64,16 @@
             .then(res => res.json())
             .then(courses => {
                 const grid = document.getElementById('courses-grid');
-                grid.innerHTML = courses.map(course => `
+                grid.innerHTML = courses.map((course, i) => {
+                    const tagClass = i % 3 === 0 ? 'tag-purple' : i % 3 === 1 ? 'tag-blue' : 'tag-coral';
+                    return `
                     <div class="card">
+                        <span class="tag ${tagClass}">Module ${i + 1}</span>
                         <h2>${course.title}</h2>
                         <p>${course.description}</p>
                         <a href="${course.link}" class="btn">Explore Module</a>
                     </div>
-                `).join('');
+                `}).join('');
             });
 
         // Load Announcements
@@ -84,12 +97,12 @@
             posts.forEach(post => {
                 const postElement = document.createElement("div");
                 postElement.className = "card";
-                postElement.style.padding = "3rem";
 
                 postElement.innerHTML = `
+                    <span class="tag tag-coral">Announcement</span>
                     <h3>${post.title}</h3>
-                    <p style="color:gray; font-size:0.9rem; margin-bottom:1rem;">${new Date(post.date).toLocaleString()}</p>
-                    <p style="margin-bottom:2rem; font-size:1.1rem; line-height:1.8;">${post.description}</p>
+                    <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem;">${new Date(post.date).toLocaleString()}</p>
+                    <p style="margin-bottom:2rem; font-size:1rem; line-height:1.7;">${post.description}</p>
                 `;
 
                 if (post.driveLink) {

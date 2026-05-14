@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idea 4: Sticky Banner | Highwood CS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #800000; --accent: #d4af37; --dark: #1a0505; --light: #ffffff; --gray: #f8f9fa;
+            --font-heading: 'Playfair Display', serif; --font-body: 'Outfit', sans-serif;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1); --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); --border-radius: 20px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); color: var(--dark); line-height: 1.7; background-color: var(--gray); overflow-x: hidden; }
+        header { position: fixed; top: 0; width: 100%; height: 80px; z-index: 1000; display: flex; align-items: center; background: rgba(128, 0, 0, 0.95); }
+        nav { width: 100%; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+        .logo { font-family: var(--font-heading); font-size: 1.6rem; color: var(--light); text-decoration: none; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: var(--light); text-decoration: none; }
+        
+        /* NEW STICKY BANNER */
+        .announcement-banner {
+            position: fixed; top: 80px; width: 100%; height: 44px; z-index: 999;
+            background: linear-gradient(90deg, #5a0000 0%, #800000 50%, #5a0000 100%);
+            display: flex; justify-content: center; align-items: center;
+            color: var(--light); font-size: 0.9rem; border-bottom: 2px solid var(--accent);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .banner-label { font-weight: 600; color: var(--accent); margin-right: 15px; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; }
+        .ticker-container { overflow: hidden; height: 20px; width: 60%; position: relative; }
+        .ticker-item { position: absolute; width: 100%; animation: tickerFade 12s infinite; opacity: 0; }
+        .ticker-item:nth-child(1) { animation-delay: 0s; }
+        .ticker-item:nth-child(2) { animation-delay: 4s; }
+        .ticker-item:nth-child(3) { animation-delay: 8s; }
+        @keyframes tickerFade { 0%, 25%, 100% { opacity: 0; transform: translateY(10px); } 5%, 20% { opacity: 1; transform: translateY(0); } }
+
+        .hero { margin-top: 44px; height: 70vh; min-height: 500px; background: linear-gradient(135deg, rgba(128, 0, 0, 0.85), rgba(26, 26, 26, 0.9)); display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--light); text-align: center; clip-path: ellipse(150% 100% at 50% 0%); }
+        .hero h1 { font-family: var(--font-heading); font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 1.5rem; }
+        main { max-width: 1200px; margin: -100px auto 100px; padding: 0 2rem; position: relative; z-index: 10; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+        .card { background: var(--light); padding: 3rem; border-radius: var(--border-radius); box-shadow: var(--shadow); transition: var(--transition); border: 1px solid rgba(0, 0, 0, 0.05); }
+        .card h2 { font-family: var(--font-heading); margin-bottom: 1rem; color: var(--primary); }
+        .btn { display: inline-block; padding: 0.8rem 2rem; background: var(--primary); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; }
+        .back-link { position: fixed; bottom: 20px; right: 20px; background: var(--dark); color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; z-index: 10000; font-family: sans-serif;}
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">Highwood CS</a>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Courses</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="announcement-banner">
+        <span class="banner-label">📢 Announcement:</span>
+        <div class="ticker-container">
+            <div class="ticker-item"><strong>Midterm Exam Schedule Released</strong> — Check your assigned slots.</div>
+            <div class="ticker-item"><strong>Assignment 3 Deadline Extended</strong> — New deadline is May 17.</div>
+            <div class="ticker-item"><strong>Welcome to Term 2</strong> — New modules available shortly.</div>
+        </div>
+    </div>
+
+    <section class="hero">
+        <h1>Advanced CS Academy</h1>
+        <p>A comprehensive journey through modern computation, algorithmic thinking, and digital innovation.</p>
+    </section>
+    <main>
+        <div class="card-grid">
+            <div class="card">
+                <h2>Introduction to CS</h2>
+                <p>Establishing the foundation of logical reasoning and fundamental programming constructs.</p>
+                <br><a href="#" class="btn">Explore Module</a>
+            </div>
+            <div class="card">
+                <h2>Data Structures</h2>
+                <p>Optimizing information storage and retrieval through efficient algorithmic patterns.</p>
+                <br><a href="#" class="btn">Explore Module</a>
+            </div>
+            <div class="card">
+                <h2>Theme D</h2>
+                <p>Exploration of Module content for Theme D and its practical applications.</p>
+                <br><a href="#" class="btn">Explore Module</a>
+            </div>
+        </div>
+    </main>
+    <a href="index.html" class="back-link">← Back to Gallery</a>
+</body>
+</html>

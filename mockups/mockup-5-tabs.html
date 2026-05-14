@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idea 5: Tab Switcher | Highwood CS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #800000; --accent: #d4af37; --dark: #1a0505; --light: #ffffff; --gray: #f8f9fa;
+            --font-heading: 'Playfair Display', serif; --font-body: 'Outfit', sans-serif;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1); --transition: all 0.3s ease; --border-radius: 20px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); color: var(--dark); line-height: 1.7; background-color: var(--gray); overflow-x: hidden; }
+        header { position: fixed; top: 0; width: 100%; height: 80px; z-index: 1000; display: flex; align-items: center; background: rgba(128, 0, 0, 0.95); }
+        nav { width: 100%; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+        .logo { font-family: var(--font-heading); font-size: 1.6rem; color: var(--light); text-decoration: none; }
+        .hero { height: 60vh; min-height: 400px; background: linear-gradient(135deg, rgba(128, 0, 0, 0.85), rgba(26, 26, 26, 0.9)); display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--light); text-align: center; }
+        .hero h1 { font-family: var(--font-heading); font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 1rem; }
+        
+        main { max-width: 1200px; margin: -50px auto 100px; padding: 0 2rem; position: relative; z-index: 10; }
+        
+        /* NEW TAB SWITCHER */
+        .tab-nav {
+            display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem;
+            background: var(--light); padding: 10px; border-radius: 50px; box-shadow: var(--shadow);
+            max-width: fit-content; margin-left: auto; margin-right: auto;
+        }
+        .tab-btn {
+            padding: 12px 30px; border: none; background: transparent; border-radius: 40px;
+            font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--text-muted);
+            cursor: pointer; transition: var(--transition); position: relative;
+        }
+        .tab-btn.active { background: var(--primary); color: var(--light); }
+        .tab-btn.active::after {
+            content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+            width: 30px; height: 3px; background: var(--accent); border-radius: 3px;
+        }
+        
+        .tab-content { display: none; animation: fadeIn 0.4s ease; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+        .card { background: var(--light); padding: 3rem; border-radius: var(--border-radius); box-shadow: var(--shadow); transition: var(--transition); border: 1px solid rgba(0, 0, 0, 0.05); }
+        .card h2, .card h3 { font-family: var(--font-heading); margin-bottom: 1rem; color: var(--primary); }
+        .btn { display: inline-block; padding: 0.8rem 2rem; background: var(--primary); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; }
+        .back-link { position: fixed; bottom: 20px; right: 20px; background: var(--dark); color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; z-index: 10000; font-family: sans-serif;}
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">Highwood CS</a>
+        </nav>
+    </header>
+    <section class="hero">
+        <h1>Advanced CS Academy</h1>
+        <p>A comprehensive journey through modern computation.</p>
+    </section>
+    
+    <main>
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="switchTab('courses')">Courses</button>
+            <button class="tab-btn" onclick="switchTab('announcements')">Announcements</button>
+            <button class="tab-btn" onclick="switchTab('resources')">Resources</button>
+        </div>
+
+        <div id="courses" class="tab-content active">
+            <div class="card-grid">
+                <div class="card">
+                    <h2>Introduction to CS</h2>
+                    <p>Establishing the foundation of logical reasoning and fundamental programming constructs.</p>
+                    <br><a href="#" class="btn">Explore Module</a>
+                </div>
+                <div class="card">
+                    <h2>Data Structures</h2>
+                    <p>Optimizing information storage and retrieval through efficient algorithmic patterns.</p>
+                    <br><a href="#" class="btn">Explore Module</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="announcements" class="tab-content">
+            <div style="display: flex; flex-direction: column; gap: 2.5rem; max-width: 900px; margin: 0 auto;">
+                <div class="card">
+                    <h3>Midterm Exam Schedule Released</h3>
+                    <p style="color:gray; font-size:0.9rem; margin-bottom:1rem;">May 12, 2026</p>
+                    <p>The schedule for the upcoming midterm examinations has been posted. Please review your assigned slots and prepare accordingly.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="resources" class="tab-content">
+            <div class="card" style="text-align: center; padding: 5rem;">
+                <h2 style="color: var(--text-muted);">Resources Coming Soon</h2>
+                <p>Additional study materials and software guides will be posted here.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+    <a href="index.html" class="back-link">← Back to Gallery</a>
+</body>
+</html>

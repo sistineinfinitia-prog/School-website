@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idea 7: Neo-Brutalism | Highwood CS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #800000; --accent: #d4af37; --bg: #ffffff; --text: #000000;
+            --border: 3px solid #000; --shadow: 6px 6px 0px #000;
+            --font-heading: 'Space Grotesk', sans-serif; --font-body: 'Inter', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text); padding: 40px; }
+        
+        nav { display: flex; justify-content: space-between; align-items: center; border: var(--border); padding: 20px 40px; background: #fff; box-shadow: var(--shadow); margin-bottom: 60px; max-width: 1200px; margin-left: auto; margin-right: auto; }
+        .logo { font-family: var(--font-heading); font-size: 24px; color: var(--text); text-decoration: none; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 40px; list-style: none; font-weight: 600; text-transform: uppercase; }
+        .nav-links a { text-decoration: none; color: var(--text); }
+        
+        .hero { max-width: 1200px; margin: 0 auto 80px; padding: 60px; border: var(--border); box-shadow: var(--shadow); background: var(--accent); }
+        .hero h1 { font-family: var(--font-heading); font-size: clamp(3rem, 7vw, 6rem); line-height: 1; text-transform: uppercase; margin-bottom: 20px; }
+        .hero p { font-size: 1.5rem; font-weight: 600; max-width: 600px; }
+        
+        .main-content { max-width: 1200px; margin: 0 auto; }
+        .section-header { font-family: var(--font-heading); font-size: 3rem; text-transform: uppercase; border-bottom: var(--border); padding-bottom: 10px; margin-bottom: 40px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .card { border: var(--border); padding: 40px; box-shadow: var(--shadow); background: #fff; transition: transform 0.1s; }
+        .card:hover { transform: translate(-4px, -4px); box-shadow: 10px 10px 0px #000; }
+        .card.red { background: var(--primary); color: #fff; }
+        .card h3 { font-family: var(--font-heading); font-size: 2rem; text-transform: uppercase; margin-bottom: 20px; }
+        .card p { font-size: 1.1rem; line-height: 1.5; font-weight: 600; margin-bottom: 30px; }
+        
+        .btn { display: inline-block; border: var(--border); padding: 15px 30px; font-weight: 600; text-transform: uppercase; text-decoration: none; background: #fff; color: #000; box-shadow: 4px 4px 0px #000; transition: 0.1s; }
+        .btn:active { transform: translate(4px, 4px); box-shadow: 0px 0px 0px #000; }
+        .back-link { position: fixed; bottom: 20px; right: 20px; background: #000; color: white; padding: 10px 20px; text-decoration: none; z-index: 10000; font-family: sans-serif; font-weight: bold; border: 2px solid white; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo">Highwood CS</a>
+        <ul class="nav-links">
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Announcements</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <h1>Advanced<br>CS Academy</h1>
+        <p>A comprehensive journey through modern computation, algorithmic thinking, and digital innovation.</p>
+    </div>
+
+    <div class="main-content">
+        <h2 class="section-header">Modules</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Intro to CS</h3>
+                <p>Establishing the foundation of logical reasoning and fundamental programming constructs.</p>
+                <a href="#" class="btn">Explore</a>
+            </div>
+            <div class="card red">
+                <h3 style="color:#fff;">Data Structures</h3>
+                <p>Optimizing information storage and retrieval through efficient algorithmic patterns.</p>
+                <a href="#" class="btn">Explore</a>
+            </div>
+            <div class="card">
+                <h3>Theme D</h3>
+                <p>Exploration of Module content for Theme D and its practical applications.</p>
+                <a href="#" class="btn">Explore</a>
+            </div>
+        </div>
+    </div>
+    <a href="index.html" class="back-link">← Back to Gallery</a>
+</body>
+</html>

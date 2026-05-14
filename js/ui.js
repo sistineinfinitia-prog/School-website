@@ -21,7 +21,9 @@ function initNavigation() {
             </div>
             <ul class="nav-links" id="nav-links">
                 <li><a href="${pathPrefix}index.html">Courses</a></li>
-                <li><a href="${pagePrefix}curriculum.html">Curriculum</a></li>
+                <li><a href="${pagePrefix}curriculum.html">Curriculum Syllabus</a></li>
+                <li><a href="${pagePrefix}theme-a.html">Theme A</a></li>
+                <li><a href="${pagePrefix}theme-b.html">Theme B</a></li>
                 <li><a href="${pagePrefix}ia.html">IA</a></li>
                 <li><a href="${pagePrefix}case-study.html">Case Study</a></li>
                 <li><a href="${pagePrefix}admin.html" class="admin-link">Admin</a></li>
@@ -46,11 +48,13 @@ function initNavigation() {
             <div class="footer-bottom">
                 <span class="footer-logo">CS DEPARTMENT</span>
                 <div class="footer-nav">
-                    <a href="${pathPrefix}index.html">Home</a>
-                    <a href="${pagePrefix}curriculum.html">Curriculum</a>
+                    <a href="${pathPrefix}index.html">Courses</a>
+                    <a href="${pagePrefix}curriculum.html">Curriculum Syllabus</a>
+                    <a href="${pagePrefix}theme-a.html">Theme A</a>
+                    <a href="${pagePrefix}theme-b.html">Theme B</a>
                     <a href="${pagePrefix}ia.html">IA</a>
                     <a href="${pagePrefix}case-study.html">Case Study</a>
-                    <a href="${pagePrefix}admin.html">Admin Login</a>
+                    <a href="${pagePrefix}admin.html">Admin</a>
                 </div>
                 <p>&copy; 2026 Computer Science Academy.</p>
             </div>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idea 8: Red Glassmorphism | Highwood CS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fcf9f9;
+            --glass-bg: rgba(255, 255, 255, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --primary: #800000;
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-main); background: var(--bg-color); color: #222; min-height: 100vh; position: relative; overflow-x: hidden; }
+        
+        /* Ambient Blobs */
+        .blob { position: absolute; filter: blur(80px); z-index: -1; opacity: 0.5; border-radius: 50%; }
+        .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: rgba(128,0,0,0.3); }
+        .blob-2 { bottom: -10%; right: -10%; width: 40vw; height: 40vw; background: rgba(212,175,55,0.3); }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        
+        /* Glass Navbar */
+        nav { background: var(--glass-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--glass-border); padding: 20px 40px; border-radius: 24px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px; box-shadow: 0 8px 32px rgba(128,0,0,0.05); }
+        .logo { font-weight: 700; font-size: 24px; color: var(--primary); text-decoration: none; }
+        .nav-links { display: flex; gap: 30px; list-style: none; font-weight: 500; }
+        .nav-links a { color: #444; text-decoration: none; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* Glass Hero */
+        .hero { text-align: center; padding: 80px 20px; margin-bottom: 60px; }
+        .hero h1 { font-size: 5rem; font-weight: 700; background: linear-gradient(135deg, #800000, #d4af37); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; color: #555; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+
+        /* Glass Cards */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: var(--glass-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--glass-border); border-radius: 24px; padding: 40px; box-shadow: 0 8px 32px rgba(128,0,0,0.05); transition: transform 0.3s, background 0.3s; }
+        .card:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.6); }
+        .card h3 { font-size: 1.5rem; color: var(--primary); margin-bottom: 15px; }
+        .card p { color: #555; line-height: 1.6; }
+        .back-link { position: fixed; bottom: 20px; right: 20px; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); color: var(--primary); border: 1px solid var(--glass-border); padding: 10px 20px; border-radius: 12px; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    
+    <div class="container">
+        <nav>
+            <a href="#" class="logo">Highwood CS</a>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Modules</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero">
+            <h1>Advanced CS</h1>
+            <p>A comprehensive journey through modern computation, algorithmic thinking, and digital innovation.</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Introduction to CS</h3>
+                <p>Establishing the foundation of logical reasoning and fundamental programming constructs.</p>
+            </div>
+            <div class="card">
+                <h3>Data Structures</h3>
+                <p>Optimizing information storage and retrieval through efficient algorithmic patterns.</p>
+            </div>
+            <div class="card">
+                <h3>Theme D</h3>
+                <p>Exploration of Module content for Theme D and its practical applications.</p>
+            </div>
+        </div>
+    </div>
+    <a href="index.html" class="back-link">← Back to Gallery</a>
+</body>
+</html>

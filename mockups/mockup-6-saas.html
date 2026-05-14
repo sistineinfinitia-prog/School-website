@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idea 6: Educational SaaS | Highwood CS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #800000; --primary-dark: #5a0000;
+            --bg-main: #FFF8F8; --bg-section: #FFFFFF; --bg-accent: #FFEAEA; --text-main: #111111; --text-body: #5F6B6A; --text-muted: #8C9594;
+            --accent-purple: #9B6BFF; --accent-coral: #FF5C5C; --accent-sky: #55C7F3; --accent-gold: #d4af37;
+            --font-main: 'Poppins', sans-serif; --shadow-soft: 0 10px 30px rgba(0,0,0,0.06);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-main); background: var(--bg-main); color: var(--text-body); line-height: 1.7; overflow-x: hidden; }
+        
+        /* Minimal Navbar */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 24px 40px; max-width: 1200px; margin: 0 auto; }
+        .logo { font-weight: 700; font-size: 24px; color: var(--primary); text-decoration: none; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-main); font-weight: 500; font-size: 15px; }
+
+        /* SaaS Hero */
+        .hero { display: flex; max-width: 1200px; margin: 64px auto 96px; padding: 0 40px; align-items: center; gap: 64px; }
+        .hero-text { flex: 1; }
+        .hero-text h1 { font-size: 64px; font-weight: 800; color: var(--text-main); line-height: 1.05; letter-spacing: -2px; margin-bottom: 24px; }
+        .hero-text h1 span { color: var(--primary); }
+        .hero-text p { font-size: 18px; margin-bottom: 40px; max-width: 450px; }
+        
+        /* Pill Search */
+        .search-pill { display: flex; background: #fff; border-radius: 999px; height: 56px; padding: 6px; box-shadow: var(--shadow-soft); max-width: 400px; }
+        .search-pill input { flex: 1; border: none; outline: none; padding: 0 24px; font-family: var(--font-main); font-size: 16px; border-radius: 999px; background: transparent; }
+        .search-pill button { background: var(--primary); color: #fff; border: none; border-radius: 999px; padding: 0 24px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+        .search-pill button:hover { background: var(--primary-dark); transform: scale(1.02); }
+
+        /* Floating Profiles */
+        .hero-visual { flex: 1; position: relative; height: 500px; display: flex; justify-content: center; align-items: center; }
+        .circle-bg { width: 400px; height: 400px; background: var(--bg-accent); border-radius: 50%; position: absolute; z-index: 1; }
+        .profile { position: absolute; border-radius: 50%; border: 6px solid #fff; box-shadow: var(--shadow-soft); z-index: 2; object-fit: cover; animation: float 6s ease-in-out infinite; }
+        .p1 { width: 120px; height: 120px; top: 10%; left: 20%; animation-delay: 0s; }
+        .p2 { width: 160px; height: 160px; top: 30%; right: 10%; animation-delay: -2s; }
+        .p3 { width: 100px; height: 100px; bottom: 20%; left: 30%; animation-delay: -4s; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+        /* Wave Section */
+        .wave-section { background: var(--bg-section); padding: 96px 40px; position: relative; }
+        .wave-top { position: absolute; top: -50px; left: 0; width: 100%; height: 50px; background: var(--bg-section); border-radius: 50% 50% 0 0 / 100% 100% 0 0; }
+        
+        .section-inner { max-width: 1200px; margin: 0 auto; }
+        h2.section-title { font-size: 36px; font-weight: 700; color: var(--text-main); margin-bottom: 40px; text-align: center; }
+        
+        /* Cards */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .card { background: #fff; padding: 32px; border-radius: 20px; box-shadow: var(--shadow-soft); transition: 0.3s; border: 1px solid #f0f0f0; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(128,0,0,0.08); }
+        .card h3 { font-size: 20px; font-weight: 600; color: var(--text-main); margin-bottom: 16px; }
+        .card p { font-size: 16px; margin-bottom: 24px; }
+        .tag { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; margin-bottom: 16px; }
+        .tag-1 { background: rgba(155, 107, 255, 0.1); color: var(--accent-purple); }
+        .tag-2 { background: rgba(255, 92, 92, 0.1); color: var(--accent-coral); }
+        .tag-3 { background: rgba(85, 199, 243, 0.1); color: var(--accent-sky); }
+        .back-link { position: fixed; bottom: 20px; right: 20px; background: var(--text-main); color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; z-index: 10000; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo">Highwood CS.</a>
+        <ul class="nav-links">
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Announcements</a></li>
+            <li><a href="#">Resources</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-text">
+            <h1>Advanced<br><span>CS Academy</span></h1>
+            <p>A comprehensive journey through modern computation, algorithmic thinking, and digital innovation.</p>
+            <div class="search-pill">
+                <input type="text" placeholder="What do you want to learn?">
+                <button>Search</button>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="circle-bg"></div>
+            <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=300&h=300&fit=crop" class="profile p1" alt="Student">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&h=400&fit=crop" class="profile p2" alt="Student">
+            <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=200&h=200&fit=crop" class="profile p3" alt="Student">
+        </div>
+    </div>
+
+    <div class="wave-section">
+        <div class="wave-top"></div>
+        <div class="section-inner">
+            <h2 class="section-title">Explore Modules</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <span class="tag tag-1">Module 1</span>
+                    <h3>Introduction to CS</h3>
+                    <p>Establishing the foundation of logical reasoning and fundamental programming constructs.</p>
+                </div>
+                <div class="card">
+                    <span class="tag tag-2">Module 2</span>
+                    <h3>Data Structures</h3>
+                    <p>Optimizing information storage and retrieval through efficient algorithmic patterns.</p>
+                </div>
+                <div class="card">
+                    <span class="tag tag-3">Theme D</span>
+                    <h3>Theme D</h3>
+                    <p>Exploration of Module content for Theme D and its practical applications.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="index.html" class="back-link">← Back to Gallery</a>
+</body>
+</html>
