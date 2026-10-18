@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="monochrome" data-texture="animated">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highwood CS | Terminal IDE (Curated Edition)</title>
+    <link rel="stylesheet" href="shared-tokens.css">
+    <style>
+        :root {
+            --font-code: 'JetBrains Mono', 'Fira Code', monospace;
+            --font-ui: 'Inter', sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: var(--font-ui);
+            background: var(--bg-base);
+            color: var(--text-primary);
+        }
+
+        .ide-shell {
+            position: relative;
+            z-index: 1;
+            width: 100vw;
+            height: 100vh;
+            background: var(--bg-surface);
+            border: none;
+            border-radius: 0;
+            margin: 0;
+            box-shadow: none;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .ide-title-bar {
+            height: 38px;
+            flex-shrink: 0;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 18px;
+            font-family: var(--font-code);
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+        }
+        .window-dots {
+            display: flex;
+            gap: 8px;
+        }
+        .dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+        }
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+        .ide-title-text {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+        }
+        .ide-title-text strong {
+            color: var(--text-primary);
+        }
+
+        .ide-tab-bar {
+            height: 38px;
+            flex-shrink: 0;
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+        }
+        .tab-item {
+            padding: 0 20px;
+            height: 100%;
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-right: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+        .tab-item:hover {
+            color: var(--text-primary);
+            background: var(--bg-card-hover);
+        }
+        .tab-item.active {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .ide-body {
+            flex: 1;
+            min-height: 0;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            overflow: hidden;
+        }
+
+        .ide-sidebar {
+            background: var(--bg-card);
+            border-right: 1px solid var(--border-subtle);
+            padding: 20px 14px;
+            font-family: var(--font-code);
+            font-size: 0.78rem;
+            overflow-y: auto;
+            height: 100%;
+        }
+        .sidebar-section-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            padding-left: 8px;
+            font-weight: 700;
+        }
+        .file-tree {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .tree-item a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            color: var(--text-secondary);
+            transition: background 0.15s;
+        }
+        .tree-item a:hover, .tree-item.active a {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+        }
+
+        .ide-editor-content {
+            padding: 40px 48px;
+            background: var(--bg-surface);
+            overflow-y: auto;
+            height: 100%;
+        }
+        .terminal-header-hero {
+            margin-bottom: 36px;
+        }
+        .terminal-header-hero h1 {
+            font-family: var(--font-code);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+            letter-spacing: -0.03em;
+        }
+        .terminal-header-hero p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 680px;
+        }
+
+        .shell-console {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 24px;
+            font-family: var(--font-code);
+            font-size: 0.85rem;
+            line-height: 1.7;
+            margin-bottom: 36px;
+        }
+        .shell-line {
+            display: flex;
+            gap: 12px;
+        }
+        .shell-prompt {
+            color: var(--text-primary);
+            font-weight: 700;
+            user-select: none;
+        }
+        .shell-output {
+            color: var(--text-secondary);
+            margin-left: 24px;
+        }
+
+        .ide-modules-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+        .ide-module-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 22px;
+            font-family: var(--font-code);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .ide-module-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+        .ide-module-card h3 {
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+        .ide-module-card p {
+            font-family: var(--font-ui);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .ide-status-bar {
+            height: 28px;
+            flex-shrink: 0;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-family: var(--font-code);
+            font-size: 0.72rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+        }
+        .status-left, .status-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        @media (max-width: 850px) {
+            .ide-body { grid-template-columns: 1fr; }
+            .ide-sidebar { display: none; }
+            .ide-modules-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tailored Animated Texture: CRT Phosphor Scanline Drift -->
+    <div class="texture-crt-scanline"></div>
+
+    <div class="ide-shell">
+        <!-- Top Window Bar -->
+        <div class="ide-title-bar">
+            <div class="window-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+            </div>
+            <div class="ide-title-text">
+                <span>highwood-cs-academy</span>
+                <span>—</span>
+                <strong>main* (IBDP 2026 // SL & HL)</strong>
+            </div>
+            <div>
+                <span class="badge-chip" style="font-size:0.68rem; padding: 2px 8px;">JVM 21 • Python 3.12</span>
+            </div>
+        </div>
+
+        <!-- Editor Tabs -->
+        <div class="ide-tab-bar">
+            <div class="tab-item active">
+                <span>☕</span>
+                <span>ThemeA_Systems.java</span>
+            </div>
+            <div class="tab-item">
+                <span>🐍</span>
+                <span>IA_CriterionB.py</span>
+            </div>
+            <div class="tab-item">
+                <span>📖</span>
+                <span>Paper3_CaseStudy.md</span>
+            </div>
+            <div class="tab-item">
+                <span>📊</span>
+                <span>PastPapers.json</span>
+            </div>
+        </div>
+
+        <!-- IDE Workspace -->
+        <div class="ide-body">
+            <!-- Sidebar Explorer -->
+            <aside class="ide-sidebar">
+                <div class="sidebar-section-title">Project Explorer</div>
+                <ul class="file-tree">
+                    <li class="tree-item active"><a href="#">📁 src/curriculum/</a></li>
+                    <li class="tree-item" style="padding-left:14px;"><a href="#">📄 Theme_A.java</a></li>
+                    <li class="tree-item" style="padding-left:14px;"><a href="#">📄 Theme_B.sql</a></li>
+                    <li class="tree-item" style="padding-left:14px;"><a href="#">📄 Theme_C.py</a></li>
+                    <li class="tree-item"><a href="#">📁 internal_assessment/</a></li>
+                    <li class="tree-item" style="padding-left:14px;"><a href="#">📝 Criterion_A.docx</a></li>
+                    <li class="tree-item" style="padding-left:14px;"><a href="#">📐 UML_Diagrams.png</a></li>
+                    <li class="tree-item"><a href="#">📁 case_study_2025/</a></li>
+                    <li class="tree-item"><a href="#">📁 past_examinations/</a></li>
+                </ul>
+            </aside>
+
+            <!-- Main Editor Area -->
+            <main class="ide-editor-content">
+                <div class="terminal-header-hero">
+                    <h1>&gt; Highwood_CS_Terminal.sh</h1>
+                    <p>
+                        Authentic computational workbench for IBDP scholars. Test algorithmic proofs, organize criteria documentation, and trace execution paths.
+                    </p>
+                </div>
+
+                <!-- Shell Console Output -->
+                <div class="shell-console">
+                    <div class="shell-line">
+                        <span class="shell-prompt">$</span>
+                        <span>ib-cli run verify-syllabus --level HL</span>
+                    </div>
+                    <div class="shell-output">
+                        [INIT] Indexing syllabus components...<br>
+                        [THEME A] Computer organization: 100% Validated<br>
+                        [THEME B] Computer networks: Verified<br>
+                        [THEME C] Databases & SQL: Loaded<br>
+                        [IA] 30/30 marks benchmark templates: Ready
+                    </div>
+                    <div class="shell-line" style="margin-top: 10px;">
+                        <span class="shell-prompt">$</span>
+                        <span>echo "Master the algorithms. Own the Level 7."</span>
+                    </div>
+                </div>
+
+                <!-- 4 Module Cards -->
+                <div class="ide-modules-grid">
+                    <div class="ide-module-card">
+                        <h3>[01] // Core Syllabus Modules</h3>
+                        <p>Detailed lecture slides, worksheets, and algorithmic breakdown covering SL & HL content.</p>
+                    </div>
+
+                    <div class="ide-module-card">
+                        <h3>[02] // Internal Assessment Studio</h3>
+                        <p>Complete project templates, client interview questionnaires, and criterion rubrics.</p>
+                    </div>
+
+                    <div class="ide-module-card">
+                        <h3>[03] // Paper 3 Dossier</h3>
+                        <p>In-depth case study booklet with neural network architecture analysis and predicted questions.</p>
+                    </div>
+
+                    <div class="ide-module-card">
+                        <h3>[04] // Past Exam Repository</h3>
+                        <p>Mark schemes, specimen papers, and student exemplar trace tables with step-by-step logic.</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="ide-status-bar">
+            <div class="status-left">
+                <span>git:(main) ✓</span>
+                <span>0 errors, 0 warnings</span>
+                <span>UTF-8</span>
+            </div>
+            <div class="status-right">
+                <span>Java 21 • IBDP CS SL/HL</span>
+                <span>LN 42, COL 18</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="theme-switcher.js"></script>
+</body>
+</html>

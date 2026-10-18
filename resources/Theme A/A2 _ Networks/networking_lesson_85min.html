@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Networking Models & Segmentation — 85 Min Lesson</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --surface3: #202d42;
+    --accent: #00e5ff;
+    --accent2: #a855f7;
+    --accent3: #22d3a2;
+    --warn: #f97316;
+    --danger: #ef4444;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --border: #1e293b;
+    --radius: 14px;
+    --shadow: 0 4px 32px rgba(0,229,255,0.07);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    background: linear-gradient(135deg, #0d1b2e 0%, #0a0e1a 60%, #0d1025 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 32px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .header-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  .header-title span { color: var(--accent); }
+  .header-meta {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .badge {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 0.72rem;
+    font-family: 'DM Mono', monospace;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .badge.accent { border-color: var(--accent); color: var(--accent); }
+  .badge.purple { border-color: var(--accent2); color: var(--accent2); }
+
+  /* ===== PROGRESS BAR ===== */
+  .progress-bar-wrap {
+    height: 3px;
+    background: var(--border);
+    position: relative;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+
+  /* ===== NAV TABS ===== */
+  .tabs-wrap {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+  }
+  .tab-btn {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 14px 18px;
+    border: none;
+    background: none;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-num {
+    background: var(--surface2);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 0.65rem;
+    color: var(--muted);
+  }
+  .tab-btn.active .tab-num { background: rgba(0,229,255,0.15); color: var(--accent); }
+
+  /* ===== SECTIONS ===== */
+  .section { display: none; padding: 32px; max-width: 1000px; margin: 0 auto; }
+  .section.active { display: block; animation: fadeUp 0.35s ease; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+  }
+  .card-accent { border-left: 3px solid var(--accent); }
+  .card-purple { border-left: 3px solid var(--accent2); }
+  .card-green { border-left: 3px solid var(--accent3); }
+  .card-orange { border-left: 3px solid var(--warn); }
+  .card-red { border-left: 3px solid var(--danger); }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.6rem;
+    letter-spacing: -0.03em;
+    margin-bottom: 6px;
+  }
+  .section-title .accent { color: var(--accent); }
+  .section-title .purple { color: var(--accent2); }
+  .section-title .green { color: var(--accent3); }
+  .section-sub {
+    color: var(--muted);
+    font-size: 0.88rem;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .timer-pill {
+    background: rgba(0,229,255,0.1);
+    border: 1px solid rgba(0,229,255,0.3);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 0.73rem;
+    font-family: 'DM Mono', monospace;
+    color: var(--accent);
+  }
+
+  h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  p { font-size: 0.9rem; line-height: 1.65; color: #cbd5e1; margin-bottom: 8px; }
+  ul, ol { padding-left: 20px; }
+  li { font-size: 0.88rem; line-height: 1.7; color: #cbd5e1; }
+
+  /* ===== DIFF LEVELS ===== */
+  .diff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .diff-card {
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid;
+    position: relative;
+    overflow: hidden;
+  }
+  .diff-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .diff-card.foundation { background: rgba(34,211,162,0.06); border-color: rgba(34,211,162,0.25); }
+  .diff-card.foundation::before { background: var(--accent3); }
+  .diff-card.core { background: rgba(0,229,255,0.06); border-color: rgba(0,229,255,0.25); }
+  .diff-card.core::before { background: var(--accent); }
+  .diff-card.extension { background: rgba(168,85,247,0.06); border-color: rgba(168,85,247,0.25); }
+  .diff-card.extension::before { background: var(--accent2); }
+
+  .diff-label {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .diff-label.f { color: var(--accent3); }
+  .diff-label.c { color: var(--accent); }
+  .diff-label.e { color: var(--accent2); }
+  .diff-label .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dot.f { background: var(--accent3); }
+  .dot.c { background: var(--accent); }
+  .dot.e { background: var(--accent2); }
+
+  /* ===== INTERACTIVE QUIZ ===== */
+  .quiz-wrap { margin-top: 16px; }
+  .question-block {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 14px;
+  }
+  .question-text {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.92rem;
+    margin-bottom: 14px;
+    color: #fff;
+  }
+  .options {
+    display: grid;
+    gap: 8px;
+  }
+  .option-btn {
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .option-btn:hover { border-color: var(--accent); background: rgba(0,229,255,0.05); }
+  .option-btn.correct { border-color: var(--accent3); background: rgba(34,211,162,0.12); color: #fff; }
+  .option-btn.wrong { border-color: var(--danger); background: rgba(239,68,68,0.1); color: #fca5a5; }
+  .option-btn:disabled { cursor: not-allowed; }
+  .opt-letter {
+    width: 24px; height: 24px;
+    background: var(--border);
+    border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.73rem;
+    flex-shrink: 0;
+  }
+  .feedback {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border-radius: 7px;
+    font-size: 0.82rem;
+    display: none;
+  }
+  .feedback.show { display: block; }
+  .feedback.correct { background: rgba(34,211,162,0.1); color: var(--accent3); }
+  .feedback.wrong { background: rgba(239,68,68,0.08); color: #fca5a5; }
+
+  /* ===== DRAG DROP ===== */
+  .drag-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 16px;
+  }
+  .drag-col h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .drag-items { min-height: 80px; }
+  .drag-item {
+    background: var(--surface3);
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    padding: 9px 14px;
+    font-size: 0.84rem;
+    cursor: grab;
+    margin-bottom: 7px;
+    transition: all 0.2s;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .drag-item::before {
+    content: '⠿';
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .drag-item:hover { border-color: var(--accent); background: rgba(0,229,255,0.06); }
+  .drag-item.dragging { opacity: 0.4; }
+  .drop-zone {
+    min-height: 200px;
+    border: 2px dashed var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    transition: all 0.2s;
+  }
+  .drop-zone.dragover { border-color: var(--accent); background: rgba(0,229,255,0.04); }
+  .drop-zone.cs { border-color: rgba(0,229,255,0.3); }
+  .drop-zone.p2p { border-color: rgba(168,85,247,0.3); }
+
+  /* ===== SCENARIO CARDS ===== */
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 16px;
+  }
+  .scenario-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .scenario-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+  .scenario-icon { font-size: 1.6rem; margin-bottom: 10px; }
+  .scenario-card h4 { font-family: 'Syne', sans-serif; font-size: 0.88rem; font-weight: 700; margin-bottom: 6px; }
+  .scenario-card p { font-size: 0.8rem; color: var(--muted); margin: 0; }
+  .scenario-reveal {
+    margin-top: 10px;
+    padding: 10px;
+    background: var(--surface3);
+    border-radius: 7px;
+    font-size: 0.8rem;
+    color: var(--accent3);
+    display: none;
+  }
+  .scenario-card.revealed .scenario-reveal { display: block; }
+  .scenario-card.revealed { border-color: var(--accent3); }
+
+  /* ===== MATCHING ===== */
+  .match-wrap { margin-top: 16px; }
+  .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .match-col { display: flex; flex-direction: column; gap: 8px; }
+  .match-col h4 { font-family: 'Syne', sans-serif; font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .match-item {
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.84rem;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    transition: all 0.2s;
+  }
+  .match-item:hover { border-color: var(--accent2); }
+  .match-item.selected-left { border-color: var(--accent2); background: rgba(168,85,247,0.1); }
+  .match-item.matched { border-color: var(--accent3); background: rgba(34,211,162,0.1); color: var(--accent3); cursor: default; }
+  .match-item.wrong-match { border-color: var(--danger); background: rgba(239,68,68,0.08); }
+
+  /* ===== FILL-IN TEXT ===== */
+  .fill-input {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    padding: 4px 10px;
+    width: 140px;
+    display: inline-block;
+    transition: border-color 0.2s;
+  }
+  .fill-input:focus { outline: none; border-color: var(--accent); }
+  .fill-input.correct { border-color: var(--accent3); background: rgba(34,211,162,0.08); }
+  .fill-input.wrong { border-color: var(--danger); background: rgba(239,68,68,0.08); }
+  .fill-sentence { font-size: 0.9rem; line-height: 2.4; }
+
+  /* ===== BUTTONS ===== */
+  .btn {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
+  }
+  .btn-primary:hover { background: #33eaff; transform: translateY(-1px); }
+  .btn-secondary {
+    background: var(--surface2);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-purple {
+    background: var(--accent2);
+    color: #fff;
+  }
+  .btn-purple:hover { background: #b975f8; transform: translateY(-1px); }
+  .btn-green {
+    background: var(--accent3);
+    color: #000;
+  }
+  .btn-green:hover { background: #34e8b4; }
+
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+
+  /* ===== SCORE TRACKER ===== */
+  .score-panel {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .score-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .score-label { font-size: 0.78rem; color: var(--muted); }
+  .score-bar-wrap { flex: 1; min-width: 120px; }
+  .score-bar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .score-bar-inner { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent3)); transition: width 0.5s; }
+
+  /* ===== EXIT TICKET ===== */
+  .exit-form textarea {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    padding: 12px;
+    resize: vertical;
+    min-height: 80px;
+    margin-top: 8px;
+    transition: border-color 0.2s;
+  }
+  .exit-form textarea:focus { outline: none; border-color: var(--accent); }
+  .exit-label { font-size: 0.85rem; color: #94a3b8; margin-bottom: 4px; display: block; }
+  .exit-q { margin-bottom: 18px; }
+  .confidence-bar {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .conf-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--muted);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+  .conf-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .conf-btn.selected-conf { background: rgba(0,229,255,0.12); border-color: var(--accent); color: var(--accent); }
+
+  /* ===== PLENARY ===== */
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 16px; }
+  .team-card {
+    border-radius: 10px;
+    padding: 18px;
+    border: 1px solid;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .team-card:hover { transform: translateY(-3px); }
+  .team-card .team-emoji { font-size: 2rem; margin-bottom: 8px; }
+  .team-card h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.88rem; }
+  .team-card p { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+
+  .summary-reveal {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 16px;
+    display: none;
+  }
+  .summary-reveal.show { display: block; animation: fadeUp 0.3s ease; }
+
+  /* ===== PROGRESS STEPS ===== */
+  .steps-bar {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 28px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .step-item {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-shrink: 0;
+  }
+  .step-dot {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    border: 2px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+    flex-shrink: 0;
+    transition: all 0.3s;
+  }
+  .step-dot.done { background: var(--accent3); border-color: var(--accent3); color: #000; }
+  .step-dot.active { background: var(--accent); border-color: var(--accent); color: #000; }
+  .step-line {
+    width: 40px; height: 2px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+  .step-line.done { background: var(--accent3); }
+
+  /* ===== INFO BOX ===== */
+  .info-box {
+    background: rgba(0,229,255,0.06);
+    border: 1px solid rgba(0,229,255,0.2);
+    border-radius: 10px;
+    padding: 16px;
+    margin: 16px 0;
+    font-size: 0.86rem;
+    color: #94a3b8;
+  }
+  .info-box strong { color: var(--accent); }
+
+  /* ===== TIMER ===== */
+  .timer-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .timer-display {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    min-width: 80px;
+  }
+  .timer-display.warning { color: var(--warn); }
+  .timer-display.danger { color: var(--danger); }
+  .timer-label { font-size: 0.78rem; color: var(--muted); }
+  .timer-controls { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  /* ===== CONCEPT MAP ===== */
+  .concept-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .concept-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .concept-item:hover { border-color: var(--accent2); background: var(--surface3); }
+  .concept-item h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.88rem; margin-bottom: 6px; }
+  .concept-body { font-size: 0.82rem; color: var(--muted); display: none; margin-top: 8px; border-top: 1px solid var(--border); padding-top: 8px; }
+  .concept-item.open .concept-body { display: block; }
+  .concept-item.open { border-color: var(--accent2); }
+  .expand-icon { float: right; color: var(--muted); transition: transform 0.2s; }
+  .concept-item.open .expand-icon { transform: rotate(180deg); }
+
+  /* ===== MODAL ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    max-width: 480px;
+    width: 90%;
+    animation: fadeUp 0.3s ease;
+  }
+  .modal-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; margin-bottom: 12px; }
+  .modal-body { font-size: 0.88rem; color: #94a3b8; margin-bottom: 20px; line-height: 1.7; }
+
+  /* ===== CELEBRATION ===== */
+  @keyframes pop { 0%{transform:scale(0.5);opacity:0;} 80%{transform:scale(1.1);} 100%{transform:scale(1);opacity:1;} }
+  .celebrate { animation: pop 0.5s cubic-bezier(.36,.07,.19,.97); }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--surface3); border-radius: 3px; }
+
+  @media(max-width: 640px) {
+    .drag-area, .match-grid, .concept-wrap { grid-template-columns: 1fr; }
+    .section { padding: 20px 16px; }
+    .tabs-wrap { padding: 0 16px; }
+    .header-inner { padding: 12px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-title">Net<span>Works</span> — A2.2 Lesson</div>
+    <div class="header-meta">
+      <span class="badge accent">85 mins</span>
+      <span class="badge purple">A2.2.3 + A2.2.4</span>
+      <span class="badge" id="score-badge">XP: 0</span>
+    </div>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progress-fill"></div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-wrap">
+  <button class="tab-btn active" onclick="switchTab(0)">🚀 <span>Starter</span> <span class="tab-num">10m</span></button>
+  <button class="tab-btn" onclick="switchTab(1)">🌐 <span>Models</span> <span class="tab-num">20m</span></button>
+  <button class="tab-btn" onclick="switchTab(2)">🔒 <span>Segmentation</span> <span class="tab-num">20m</span></button>
+  <button class="tab-btn" onclick="switchTab(3)">⚡ <span>Challenge</span> <span class="tab-num">15m</span></button>
+  <button class="tab-btn" onclick="switchTab(4)">🎯 <span>Plenary</span> <span class="tab-num">10m</span></button>
+  <button class="tab-btn" onclick="switchTab(5)">✅ <span>Exit Ticket</span> <span class="tab-num">10m</span></button>
+</div>
+
+<!-- ===== SECTION 0: STARTER ===== -->
+<div class="section active" id="sec-0">
+  <div class="section-title">🚀 <span class="accent">Starter</span> Activity</div>
+  <div class="section-sub">Warm-up & Prior Knowledge Activation <span class="timer-pill">⏱ 10 minutes</span></div>
+
+  <!-- Timer -->
+  <div class="timer-box">
+    <div>
+      <div class="timer-display" id="timer-0">10:00</div>
+      <div class="timer-label">Starter Timer</div>
+    </div>
+    <div class="timer-controls">
+      <button class="btn btn-primary" onclick="startTimer(0, 10)">▶ Start</button>
+      <button class="btn btn-secondary" onclick="resetTimer(0, 10)">↺ Reset</button>
+    </div>
+  </div>
+
+  <div class="card card-accent">
+    <h3>🎯 Learning Objectives</h3>
+    <p>By the end of this lesson you will be able to:</p>
+    <ul style="margin-top:8px">
+      <li>Compare and contrast client-server and P2P networking models</li>
+      <li>Explain real-world applications of each model</li>
+      <li>Describe the concepts and benefits of network segmentation</li>
+      <li>Distinguish between subnetting and VLANs</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📋 Differentiated Starter: "What Do You Know?"</h3>
+    <p style="margin-bottom:16px">Choose your challenge level and complete the activity below. All levels contribute to the class discussion!</p>
+
+    <div class="diff-grid">
+      <!-- Foundation -->
+      <div class="diff-card foundation">
+        <div class="diff-label f"><span class="dot f"></span> Foundation</div>
+        <h3 style="margin-bottom:8px; font-size:0.9rem">Label the Network</h3>
+        <p>Look at the two diagrams below. Which one shows a central server connecting to devices, and which shows devices directly connecting to each other?</p>
+        <br>
+        <div style="display:flex; gap:10px; margin-top:6px;">
+          <div style="flex:1; background:var(--surface3); border-radius:8px; padding:12px; text-align:center; font-size:0.8rem;">
+            <div style="font-size:1.4rem;">🖥️→💻💻💻</div>
+            <div style="color:var(--muted); margin-top:4px;">Model: ?</div>
+            <select style="margin-top:8px; background:var(--surface2); border:1px solid var(--border); border-radius:6px; color:var(--text); padding:4px 8px; font-size:0.8rem;" id="dia1">
+              <option value="">-- Select --</option>
+              <option value="cs">Client-Server</option>
+              <option value="p2p">Peer-to-Peer</option>
+            </select>
+          </div>
+          <div style="flex:1; background:var(--surface3); border-radius:8px; padding:12px; text-align:center; font-size:0.8rem;">
+            <div style="font-size:1.4rem;">💻↔️💻↔️💻</div>
+            <div style="color:var(--muted); margin-top:4px;">Model: ?</div>
+            <select style="margin-top:8px; background:var(--surface2); border:1px solid var(--border); border-radius:6px; color:var(--text); padding:4px 8px; font-size:0.8rem;" id="dia2">
+              <option value="">-- Select --</option>
+              <option value="cs">Client-Server</option>
+              <option value="p2p">Peer-to-Peer</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-green" style="margin-top:12px; font-size:0.78rem;" onclick="checkDiagrams()">Check ✓</button>
+        <div id="dia-feedback" style="margin-top:8px; font-size:0.8rem; display:none;"></div>
+      </div>
+
+      <!-- Core -->
+      <div class="diff-card core">
+        <div class="diff-label c"><span class="dot c"></span> Core</div>
+        <h3 style="margin-bottom:8px; font-size:0.9rem">Sort It Out</h3>
+        <p>Drag each feature to the correct network model. Think carefully — some could apply to both!</p>
+        <div style="display:flex; gap:10px; margin-top:12px; flex-direction:column;">
+          <div style="font-size:0.8rem; color:var(--muted); margin-bottom:4px;">Click a feature, then click a column to sort it:</div>
+          <div id="sort-features" style="display:flex; flex-wrap:wrap; gap:6px; min-height:36px;">
+            <span class="drag-item" onclick="selectFeature(this)" data-correct="cs" style="padding:5px 10px; font-size:0.78rem; cursor:pointer;">Centralised control</span>
+            <span class="drag-item" onclick="selectFeature(this)" data-correct="p2p" style="padding:5px 10px; font-size:0.78rem; cursor:pointer;">No single point of failure</span>
+            <span class="drag-item" onclick="selectFeature(this)" data-correct="cs" style="padding:5px 10px; font-size:0.78rem; cursor:pointer;">Expensive server needed</span>
+            <span class="drag-item" onclick="selectFeature(this)" data-correct="p2p" style="padding:5px 10px; font-size:0.78rem; cursor:pointer;">Resources distributed across peers</span>
+            <span class="drag-item" onclick="selectFeature(this)" data-correct="cs" style="padding:5px 10px; font-size:0.78rem; cursor:pointer;">Easy data backup</span>
+            <span class="drag-item" onclick="selectFeature(this)" data-correct="p2p" style="padding:5px 10px; font-size:0.78rem; cursor:pointer;">More vulnerable to malware</span>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+            <div>
+              <div style="font-size:0.72rem; color:var(--accent); font-weight:700; text-transform:uppercase; margin-bottom:6px;">Client-Server</div>
+              <div id="sort-cs" onclick="placeFeature('cs')" style="min-height:80px; border:2px dashed rgba(0,229,255,0.3); border-radius:8px; padding:8px; display:flex; flex-direction:column; gap:4px;"></div>
+            </div>
+            <div>
+              <div style="font-size:0.72rem; color:var(--accent2); font-weight:700; text-transform:uppercase; margin-bottom:6px;">Peer-to-Peer</div>
+              <div id="sort-p2p" onclick="placeFeature('p2p')" style="min-height:80px; border:2px dashed rgba(168,85,247,0.3); border-radius:8px; padding:8px; display:flex; flex-direction:column; gap:4px;"></div>
+            </div>
+          </div>
+          <button class="btn btn-primary" style="font-size:0.78rem; margin-top:6px;" onclick="checkSort()">Check Sort ✓</button>
+          <div id="sort-feedback" style="font-size:0.8rem; display:none; padding:6px 10px; border-radius:6px;"></div>
+        </div>
+      </div>
+
+      <!-- Extension -->
+      <div class="diff-card extension">
+        <div class="diff-label e"><span class="dot e"></span> Extension</div>
+        <h3 style="margin-bottom:8px; font-size:0.9rem">Analyse & Evaluate</h3>
+        <p>A hospital wants to set up a network for patient records and staff communication. It needs to be secure, reliable, and fast.</p>
+        <br>
+        <p style="color:#94a3b8; font-size:0.82rem;">In 3-4 sentences: <strong style="color:#c4b5fd;">Which network model(s) would you recommend and why? What are the trade-offs?</strong></p>
+        <textarea id="ext-answer" style="width:100%; margin-top:10px; background:var(--surface3); border:1px solid var(--border); border-radius:7px; color:var(--text); font-family:'DM Sans',sans-serif; font-size:0.82rem; padding:10px; min-height:90px; resize:vertical;" placeholder="Type your analysis here..."></textarea>
+        <button class="btn btn-purple" style="margin-top:8px; font-size:0.78rem;" onclick="revealExtHint()">💡 See Model Answer</button>
+        <div id="ext-hint" style="display:none; margin-top:8px; background:rgba(168,85,247,0.08); border:1px solid rgba(168,85,247,0.2); border-radius:7px; padding:12px; font-size:0.8rem; color:#c4b5fd;">
+          <strong>Model answer:</strong> A hospital should primarily use a <em>client-server</em> model for patient records — this provides centralised control, easier security management, and reliable backups (critical for sensitive data). A <em>hybrid approach</em> could incorporate P2P for non-critical tasks like internal staff file-sharing. Key trade-off: client-server is more expensive and has a single point of failure, so redundant servers would be essential. Security policies enforced centrally are far easier to audit.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="switchTab(1)">Next: Networking Models →</button>
+  </div>
+</div>
+
+<!-- ===== SECTION 1: NETWORKING MODELS ===== -->
+<div class="section" id="sec-1">
+  <div class="section-title">🌐 <span class="accent">Networking</span> Models</div>
+  <div class="section-sub">Client-Server vs Peer-to-Peer Deep Dive <span class="timer-pill">⏱ 20 minutes</span></div>
+
+  <div class="timer-box">
+    <div>
+      <div class="timer-display" id="timer-1">20:00</div>
+      <div class="timer-label">Activity Timer</div>
+    </div>
+    <div class="timer-controls">
+      <button class="btn btn-primary" onclick="startTimer(1, 20)">▶ Start</button>
+      <button class="btn btn-secondary" onclick="resetTimer(1, 20)">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- Score -->
+  <div class="score-panel">
+    <div>
+      <div class="score-num" id="score-1">0</div>
+      <div class="score-label">Points Earned</div>
+    </div>
+    <div class="score-bar-wrap">
+      <div style="font-size:0.75rem; color:var(--muted); margin-bottom:6px;">Progress through activities</div>
+      <div class="score-bar"><div class="score-bar-inner" id="score-bar-1" style="width:0%"></div></div>
+    </div>
+    <span style="font-size:0.78rem; color:var(--muted);">Max: 40 pts</span>
+  </div>
+
+  <!-- Activity A: Quick Quiz -->
+  <div class="card card-accent">
+    <h3>⚡ Activity A — Knowledge Check Quiz <span style="font-size:0.75rem; color:var(--muted);">(20 pts)</span></h3>
+    <div class="quiz-wrap" id="quiz-models">
+
+      <div class="question-block">
+        <div class="question-text">Q1. Which networking model has a single point of failure?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answerQ(this,'q1','a')"><span class="opt-letter">A</span> Peer-to-Peer</button>
+          <button class="option-btn" onclick="answerQ(this,'q1','b')"><span class="opt-letter">B</span> Client-Server</button>
+          <button class="option-btn" onclick="answerQ(this,'q1','c')"><span class="opt-letter">C</span> Both models equally</button>
+          <button class="option-btn" onclick="answerQ(this,'q1','d')"><span class="opt-letter">D</span> Neither model</button>
+        </div>
+        <div class="feedback" id="fb-q1"></div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q2. Which model does Bitcoin's blockchain rely on?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answerQ(this,'q2','a')"><span class="opt-letter">A</span> Client-Server</button>
+          <button class="option-btn" onclick="answerQ(this,'q2','b')"><span class="opt-letter">B</span> Hybrid</button>
+          <button class="option-btn" onclick="answerQ(this,'q2','c')"><span class="opt-letter">C</span> Peer-to-Peer</button>
+          <button class="option-btn" onclick="answerQ(this,'q2','d')"><span class="opt-letter">D</span> Star topology</button>
+        </div>
+        <div class="feedback" id="fb-q2"></div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q3. Dropbox and Google Drive use which networking model?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answerQ(this,'q3','a')"><span class="opt-letter">A</span> Peer-to-Peer</button>
+          <button class="option-btn" onclick="answerQ(this,'q3','b')"><span class="opt-letter">B</span> Client-Server</button>
+          <button class="option-btn" onclick="answerQ(this,'q3','c')"><span class="opt-letter">C</span> Mesh</button>
+          <button class="option-btn" onclick="answerQ(this,'q3','d')"><span class="opt-letter">D</span> Ring</button>
+        </div>
+        <div class="feedback" id="fb-q3"></div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">Q4. What is a key benefit of the P2P model over client-server?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answerQ(this,'q4','a')"><span class="opt-letter">A</span> Easier to manage and update</button>
+          <button class="option-btn" onclick="answerQ(this,'q4','b')"><span class="opt-letter">B</span> More resilient — no single server can fail</button>
+          <button class="option-btn" onclick="answerQ(this,'q4','c')"><span class="opt-letter">C</span> Higher security against malware</button>
+          <button class="option-btn" onclick="answerQ(this,'q4','d')"><span class="opt-letter">D</span> Easier data backup</button>
+        </div>
+        <div class="feedback" id="fb-q4"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Activity B: Real-World Scenarios -->
+  <div class="card card-purple">
+    <h3>🌍 Activity B — Real-World Scenarios <span style="font-size:0.75rem; color:var(--muted);">(20 pts)</span></h3>
+    <p>Click each scenario card to reveal which model it uses and why.</p>
+    <div class="scenario-grid">
+      <div class="scenario-card" onclick="revealScenario(this)">
+        <div class="scenario-icon">🏦</div>
+        <h4>Online Banking</h4>
+        <p>Checking your balance and transferring funds</p>
+        <div class="scenario-reveal">✅ <strong>Client-Server.</strong> Banks need centralised control and security. Your login goes to their server which verifies credentials and manages your account data securely.</div>
+      </div>
+      <div class="scenario-card" onclick="revealScenario(this)">
+        <div class="scenario-icon">🎬</div>
+        <h4>BitTorrent Download</h4>
+        <p>Downloading a large file using torrent software</p>
+        <div class="scenario-reveal">✅ <strong>Peer-to-Peer.</strong> Pieces of the file are downloaded simultaneously from many different users (seeders), distributing the load and often making downloads faster.</div>
+      </div>
+      <div class="scenario-card" onclick="revealScenario(this)">
+        <div class="scenario-icon">📧</div>
+        <h4>Email (Gmail/Outlook)</h4>
+        <p>Sending and receiving emails</p>
+        <div class="scenario-reveal">✅ <strong>Client-Server.</strong> Your email client connects to a mail server. The server stores emails and routes them to recipients' mail servers — a central hub model.</div>
+      </div>
+      <div class="scenario-card" onclick="revealScenario(this)">
+        <div class="scenario-icon">📞</div>
+        <h4>Skype / Zoom Call</h4>
+        <p>Making a video call to someone</p>
+        <div class="scenario-reveal">✅ <strong>Hybrid!</strong> Server sets up and manages the call (client-server), but the actual audio/video may flow directly peer-to-peer to reduce latency and improve quality.</div>
+      </div>
+      <div class="scenario-card" onclick="revealScenario(this)">
+        <div class="scenario-icon">🌐</div>
+        <h4>Browsing www.bbc.co.uk</h4>
+        <p>Loading a news website in your browser</p>
+        <div class="scenario-reveal">✅ <strong>Client-Server.</strong> Your browser (client) sends an HTTP request to BBC's web servers. The server responds with the webpage content displayed in your browser.</div>
+      </div>
+      <div class="scenario-card" onclick="revealScenario(this)">
+        <div class="scenario-icon">₿</div>
+        <h4>Bitcoin Transaction</h4>
+        <p>Sending cryptocurrency to someone</p>
+        <div class="scenario-reveal">✅ <strong>Peer-to-Peer.</strong> Transactions broadcast to the P2P network of nodes. Each node holds a copy of the blockchain. No central authority validates transactions — the network does.</div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-purple" onclick="awardScenarioPoints()">✓ Mark Complete (+20 pts)</button>
+    </div>
+    <div id="scenario-done" style="display:none; color:var(--accent3); font-size:0.85rem; margin-top:8px;">🎉 Well done! Points awarded.</div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-secondary" onclick="switchTab(0)">← Back</button>
+    <button class="btn btn-primary" onclick="switchTab(2)">Next: Segmentation →</button>
+  </div>
+</div>
+
+<!-- ===== SECTION 2: SEGMENTATION ===== -->
+<div class="section" id="sec-2">
+  <div class="section-title">🔒 <span class="green">Network</span> Segmentation</div>
+  <div class="section-sub">Subnetting, VLANs & Security Benefits <span class="timer-pill">⏱ 20 minutes</span></div>
+
+  <div class="timer-box">
+    <div>
+      <div class="timer-display" id="timer-2">20:00</div>
+      <div class="timer-label">Activity Timer</div>
+    </div>
+    <div class="timer-controls">
+      <button class="btn btn-green" onclick="startTimer(2, 20)">▶ Start</button>
+      <button class="btn btn-secondary" onclick="resetTimer(2, 20)">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- Concept Explorer -->
+  <div class="card card-green">
+    <h3>🗺️ Activity C — Concept Explorer</h3>
+    <p>Click each concept to expand and explore. Can you explain each one in your own words after reading?</p>
+    <div class="concept-wrap">
+      <div class="concept-item" onclick="toggleConcept(this)">
+        <h4>Network Segmentation <span class="expand-icon">▾</span></h4>
+        <div class="concept-body">
+          <p>The overall strategy of dividing a large network into smaller, more manageable zones — like departments in a company. Achieved using routers, switches, firewalls, and special protocols.</p>
+          <p><strong style="color:var(--accent3);">Key benefit:</strong> If one segment is breached, attackers can't easily move to others. Think of watertight compartments on a ship!</p>
+        </div>
+      </div>
+      <div class="concept-item" onclick="toggleConcept(this)">
+        <h4>Subnetting <span class="expand-icon">▾</span></h4>
+        <div class="concept-body">
+          <p>Divides a network into smaller subnetworks based on IP addresses. Like assigning different area codes to different cities.</p>
+          <p><strong style="color:var(--accent3);">Key benefit:</strong> Routers make smarter routing decisions — data only travels to relevant subnets, reducing broadcast traffic and congestion.</p>
+        </div>
+      </div>
+      <div class="concept-item" onclick="toggleConcept(this)">
+        <h4>VLANs (Virtual LANs) <span class="expand-icon">▾</span></h4>
+        <div class="concept-body">
+          <p>Groups devices by function or department regardless of physical location. The HR VLAN and Finance VLAN can share the same physical switches but remain logically separated.</p>
+          <p><strong style="color:var(--accent3);">Key benefit:</strong> Creates separate broadcast domains — traffic in one VLAN stays in that VLAN. You can also apply different security rules per VLAN.</p>
+        </div>
+      </div>
+      <div class="concept-item" onclick="toggleConcept(this)">
+        <h4>Access Control <span class="expand-icon">▾</span></h4>
+        <div class="concept-body">
+          <p>Segmentation allows network admins to restrict who can access what. Only authorised users/devices in a specific segment can reach sensitive resources.</p>
+          <p><strong style="color:var(--accent3);">Key benefit:</strong> Reduces the "blast radius" of a cyberattack. Even if attackers get in, they're limited to one segment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Activity D: Fill in the blanks -->
+  <div class="card card-orange">
+    <h3>✏️ Activity D — Fill in the Blanks <span style="font-size:0.75rem; color:var(--muted);">(15 pts)</span></h3>
+    <p style="margin-bottom:16px">Complete the sentences using the correct networking terms.</p>
+    <div class="fill-sentence" id="fill-area">
+      <p>1. Network segmentation improves security by <input class="fill-input" id="f1" placeholder="..."> threats to a single segment, preventing them from spreading.</p>
+      <p>2. <input class="fill-input" id="f2" placeholder="..."> divides a network into subnetworks based on IP addresses, helping routers make smarter routing decisions.</p>
+      <p>3. A VLAN groups devices by their <input class="fill-input" id="f3" placeholder="..."> or department, regardless of physical location.</p>
+      <p>4. VLANs create separate <input class="fill-input" id="f4" placeholder="..."> domains, preventing broadcast traffic from flooding the whole network.</p>
+      <p>5. Segmentation makes troubleshooting easier by allowing you to isolate a problem to a specific <input class="fill-input" id="f5" placeholder="...">.</p>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="checkFills()">Check Answers ✓</button>
+      <button class="btn btn-secondary" onclick="showFillHints()">💡 Show Hints</button>
+    </div>
+    <div id="fill-feedback" style="margin-top:10px; display:none; font-size:0.84rem; padding:10px; border-radius:8px;"></div>
+    <div id="fill-hints" style="display:none; margin-top:10px; background:var(--surface2); border-radius:8px; padding:12px; font-size:0.82rem; color:var(--muted);">
+      <strong style="color:var(--accent);">Word bank:</strong> containing • Subnetting • function • broadcast • segment
+    </div>
+  </div>
+
+  <!-- Activity E: Match -->
+  <div class="card card-purple">
+    <h3>🔗 Activity E — Match the Technique <span style="font-size:0.75rem; color:var(--muted);">(15 pts)</span></h3>
+    <p style="margin-bottom:16px">Click a technique, then click its matching description. Complete all 4 matches!</p>
+    <div class="match-wrap">
+      <div class="match-grid">
+        <div class="match-col">
+          <h4>Technique</h4>
+          <div class="match-item" onclick="selectMatch(this,'m1')" data-id="m1">Subnetting</div>
+          <div class="match-item" onclick="selectMatch(this,'m2')" data-id="m2">VLAN</div>
+          <div class="match-item" onclick="selectMatch(this,'m3')" data-id="m3">Firewall</div>
+          <div class="match-item" onclick="selectMatch(this,'m4')" data-id="m4">Network Segmentation</div>
+        </div>
+        <div class="match-col">
+          <h4>Description</h4>
+          <div class="match-item" onclick="matchRight(this,'m2')" data-match="m2">Groups devices by department regardless of physical location</div>
+          <div class="match-item" onclick="matchRight(this,'m4')" data-match="m4">Overall strategy of dividing a network into smaller zones</div>
+          <div class="match-item" onclick="matchRight(this,'m1')" data-match="m1">Divides network based on IP address ranges</div>
+          <div class="match-item" onclick="matchRight(this,'m3')" data-match="m3">Monitors and controls incoming/outgoing network traffic</div>
+        </div>
+      </div>
+    </div>
+    <div id="match-score" style="margin-top:12px; font-size:0.85rem; color:var(--accent3); display:none;"></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-secondary" onclick="switchTab(1)">← Back</button>
+    <button class="btn btn-primary" onclick="switchTab(3)">Next: Challenge →</button>
+  </div>
+</div>
+
+<!-- ===== SECTION 3: CHALLENGE ===== -->
+<div class="section" id="sec-3">
+  <div class="section-title">⚡ <span class="purple">Challenge</span> Tasks</div>
+  <div class="section-sub">Higher-Order Thinking — Push Your Understanding <span class="timer-pill">⏱ 15 minutes</span></div>
+
+  <div class="timer-box">
+    <div>
+      <div class="timer-display" id="timer-3">15:00</div>
+      <div class="timer-label">Challenge Timer</div>
+    </div>
+    <div class="timer-controls">
+      <button class="btn btn-purple" onclick="startTimer(3, 15)">▶ Start</button>
+      <button class="btn btn-secondary" onclick="resetTimer(3, 20)">↺ Reset</button>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <strong>🧠 Challenge Mode:</strong> These tasks require evaluation, analysis, and synthesis. They mirror A-level exam command words. Choose your level and work through the tasks.
+  </div>
+
+  <!-- Challenge Task 1 -->
+  <div class="card card-orange">
+    <h3>🔥 Challenge 1 — Analyse the Breach</h3>
+    <div style="background:var(--surface2); border-radius:10px; padding:16px; margin-bottom:16px; border-left:3px solid var(--warn);">
+      <p style="font-style:italic; color:#fbd38d;">📖 Scenario: A multinational company runs all its departments (Finance, HR, R&D, Customer Service) on a single, flat network with no segmentation. A phishing email tricks an HR employee, and attackers gain access to the network. Within hours, they have accessed R&D source code and customer payment data.</p>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-card foundation">
+        <div class="diff-label f"><span class="dot f"></span> Foundation</div>
+        <p style="font-size:0.83rem;">List <strong>2 problems</strong> that a flat (non-segmented) network caused in this breach.</p>
+        <textarea style="width:100%; margin-top:8px; background:var(--surface3); border:1px solid var(--border); border-radius:7px; color:var(--text); font-family:'DM Sans',sans-serif; font-size:0.82rem; padding:10px; min-height:70px; resize:vertical;" placeholder="1. \n2. "></textarea>
+      </div>
+      <div class="diff-card core">
+        <div class="diff-label c"><span class="dot c"></span> Core</div>
+        <p style="font-size:0.83rem;">Explain how implementing <strong>VLANs</strong> could have limited the impact of this attack. Use technical vocabulary.</p>
+        <textarea style="width:100%; margin-top:8px; background:var(--surface3); border:1px solid var(--border); border-radius:7px; color:var(--text); font-family:'DM Sans',sans-serif; font-size:0.82rem; padding:10px; min-height:70px; resize:vertical;" placeholder="VLANs would have..."></textarea>
+      </div>
+      <div class="diff-card extension">
+        <div class="diff-label e"><span class="dot e"></span> Extension</div>
+        <p style="font-size:0.83rem;">Evaluate the <strong>most effective segmentation strategy</strong> for this company. Consider: cost, security level, manageability, and what model (subnetting vs VLANs vs both) you'd recommend and why.</p>
+        <textarea style="width:100%; margin-top:8px; background:var(--surface3); border:1px solid var(--border); border-radius:7px; color:var(--text); font-family:'DM Sans',sans-serif; font-size:0.82rem; padding:10px; min-height:90px; resize:vertical;" placeholder="The most effective strategy would be..."></textarea>
+      </div>
+    </div>
+    <button class="btn btn-secondary" style="margin-top:14px;" onclick="revealC1()">👁 View Model Answer</button>
+    <div id="c1-answer" style="display:none; margin-top:12px; background:var(--surface2); border-radius:10px; padding:16px; font-size:0.84rem; color:#94a3b8; border:1px solid var(--border);">
+      <p><strong style="color:var(--warn);">Foundation:</strong> 1) Attackers could move freely between departments once inside. 2) There was no access control stopping HR-level access from reaching Finance/R&D data.</p>
+      <p style="margin-top:8px;"><strong style="color:var(--accent);">Core:</strong> VLANs would have isolated HR, Finance, R&D, and Customer Service into separate broadcast domains. Even with access to the HR VLAN, the attacker could not cross to R&D or Finance without router-level authorisation between VLANs (inter-VLAN routing controlled by ACLs/firewalls).</p>
+      <p style="margin-top:8px;"><strong style="color:var(--accent2);">Extension:</strong> Best strategy = VLANs + subnetting + firewalls. VLANs provide logical isolation per department. Subnetting allows IP-based routing controls. Firewalls between VLANs enforce strict access policies. Cost is moderate (switch configuration + firewall rules). This is more manageable than physical separation and provides layered defence-in-depth.</p>
+    </div>
+  </div>
+
+  <!-- Challenge Task 2 -->
+  <div class="card card-purple">
+    <h3>🔥 Challenge 2 — Design a Network</h3>
+    <p style="margin-bottom:12px">A school wants to design a network for: Students, Teachers, Admin/Finance, and Guest WiFi. They have one physical building with multiple floors.</p>
+    <div style="background:var(--surface2); border-radius:10px; padding:16px; margin-bottom:16px;">
+      <p style="font-size:0.85rem; color:#94a3b8;">Design the network segmentation strategy. Consider:</p>
+      <ul style="margin-top:8px; font-size:0.83rem; color:#94a3b8;">
+        <li>Which groups should be isolated from each other and why?</li>
+        <li>Would you use VLANs, subnetting, or both?</li>
+        <li>What security boundaries are most important?</li>
+        <li>What model (client-server/P2P) would underpin the overall network?</li>
+      </ul>
+    </div>
+    <textarea style="width:100%; background:var(--surface2); border:1px solid var(--border); border-radius:8px; color:var(--text); font-family:'DM Sans',sans-serif; font-size:0.87rem; padding:14px; min-height:140px; resize:vertical;" placeholder="My network design:&#10;&#10;Segments:&#10;- Student VLAN: ...&#10;- Teacher VLAN: ...&#10;- Admin VLAN: ...&#10;- Guest VLAN: ...&#10;&#10;Reasoning: ..."></textarea>
+    <button class="btn btn-purple" style="margin-top:12px;" onclick="revealC2()">👁 View Model Answer</button>
+    <div id="c2-answer" style="display:none; margin-top:12px; background:rgba(168,85,247,0.06); border:1px solid rgba(168,85,247,0.2); border-radius:10px; padding:16px; font-size:0.84rem; color:#c4b5fd;">
+      <strong>Recommended Design:</strong>
+      <ul style="margin-top:8px; line-height:2;">
+        <li><strong>4 VLANs:</strong> Student (VLAN 10), Teacher (VLAN 20), Admin/Finance (VLAN 30), Guest (VLAN 40)</li>
+        <li><strong>Admin/Finance most isolated</strong> — firewall rules prevent student/teacher access. Contains sensitive payroll and personal data.</li>
+        <li><strong>Guest VLAN</strong> internet access only — no internal resources reachable. DMZ configuration.</li>
+        <li><strong>Subnetting</strong> assigns different IP ranges per VLAN for clean routing.</li>
+        <li><strong>Client-server model</strong> for central authentication (Active Directory server) — teachers and students log in with credentials managed centrally.</li>
+        <li><strong>Firewalls</strong> between each VLAN for inter-VLAN traffic control.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Challenge Task 3 — Extension Only -->
+  <div class="card" style="border-color: rgba(168,85,247,0.4); background: rgba(168,85,247,0.04);">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+      <h3 style="margin:0;">🔥🔥 Challenge 3 — Critical Evaluation</h3>
+      <span style="background:rgba(168,85,247,0.15); border:1px solid rgba(168,85,247,0.4); border-radius:20px; padding:2px 10px; font-size:0.7rem; font-family:'DM Mono',monospace; color:var(--accent2);">EXTENSION</span>
+    </div>
+    <p>"Network segmentation always improves security." <strong style="color:#c4b5fd;">Evaluate this statement.</strong> To what extent do you agree? Use examples and consider counter-arguments.</p>
+    <div class="info-box" style="margin:12px 0;">
+      <strong>Think about:</strong> What could segmentation not protect against? Are there any risks introduced by segmentation? What happens if it's misconfigured?
+    </div>
+    <textarea style="width:100%; background:var(--surface2); border:1px solid rgba(168,85,247,0.3); border-radius:8px; color:var(--text); font-family:'DM Sans',sans-serif; font-size:0.87rem; padding:14px; min-height:120px; resize:vertical;" placeholder="To a large extent, segmentation improves security because...&#10;However, it does not protect against...&#10;Furthermore, misconfiguration could...&#10;Overall, I would argue..."></textarea>
+    <button class="btn btn-purple" style="margin-top:12px;" onclick="revealC3()">👁 View Model Points</button>
+    <div id="c3-answer" style="display:none; margin-top:12px; background:rgba(168,85,247,0.06); border:1px solid rgba(168,85,247,0.2); border-radius:10px; padding:16px; font-size:0.84rem; color:#c4b5fd; line-height:1.8;">
+      <strong>Model Points (AO2/AO3 level):</strong><br>
+      ✅ <em>Agree:</em> Contains breaches to single segments, reduces attack surface, enforces least-privilege access, makes monitoring easier.<br>
+      ❌ <em>Counter:</em> Insider threats operating within an authorised segment bypass segmentation. Misconfigured VLAN rules can create unintended access paths. Over-segmentation increases complexity → human error risk. Doesn't protect against encrypted C2 traffic that passes through firewall rules.<br>
+      ⚖️ <em>Conclusion:</em> Segmentation is a highly effective <em>layer</em> of security but not a complete solution — must be combined with monitoring, authentication, encryption, and user training.
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-secondary" onclick="switchTab(2)">← Back</button>
+    <button class="btn btn-primary" onclick="switchTab(4)">Next: Plenary →</button>
+  </div>
+</div>
+
+<!-- ===== SECTION 4: PLENARY ===== -->
+<div class="section" id="sec-4">
+  <div class="section-title">🎯 <span class="accent">Plenary</span></div>
+  <div class="section-sub">Consolidation & Whole-Class Discussion <span class="timer-pill">⏱ 10 minutes</span></div>
+
+  <div class="timer-box">
+    <div>
+      <div class="timer-display" id="timer-4">10:00</div>
+      <div class="timer-label">Plenary Timer</div>
+    </div>
+    <div class="timer-controls">
+      <button class="btn btn-primary" onclick="startTimer(4, 10)">▶ Start</button>
+      <button class="btn btn-secondary" onclick="resetTimer(4, 10)">↺ Reset</button>
+    </div>
+  </div>
+
+  <!-- Team Discussion -->
+  <div class="card card-accent">
+    <h3>👥 Team Discussion — "Hot Seat"</h3>
+    <p style="margin-bottom:16px">Select a team role and answer the question posed to that team. Click to reveal the question!</p>
+    <div class="team-grid">
+      <div class="team-card" style="background:rgba(0,229,255,0.06); border-color:rgba(0,229,255,0.25);" onclick="revealTeam(this,'t1')">
+        <div class="team-emoji">🛡️</div>
+        <h4>Security Team</h4>
+        <p>How does each model affect network security?</p>
+        <div class="scenario-reveal" id="t1-reveal">How would you advise a company that has suffered a ransomware attack to redesign their network? Which segmentation tools would you use?</div>
+      </div>
+      <div class="team-card" style="background:rgba(34,211,162,0.06); border-color:rgba(34,211,162,0.25);" onclick="revealTeam(this,'t2')">
+        <div class="team-emoji">⚡</div>
+        <h4>Performance Team</h4>
+        <p>How does segmentation improve speed?</p>
+        <div class="scenario-reveal" id="t2-reveal">Your company's network is experiencing slowdowns. How would you use subnetting and VLANs to reduce congestion? Explain the technical mechanism.</div>
+      </div>
+      <div class="team-card" style="background:rgba(168,85,247,0.06); border-color:rgba(168,85,247,0.25);" onclick="revealTeam(this,'t3')">
+        <div class="team-emoji">💰</div>
+        <h4>Finance Team</h4>
+        <p>Which model is most cost-effective?</p>
+        <div class="scenario-reveal" id="t3-reveal">A startup with 5 employees wants to build a network. Compare the costs and benefits of client-server vs P2P for them. What would you recommend and why?</div>
+      </div>
+      <div class="team-card" style="background:rgba(249,115,22,0.06); border-color:rgba(249,115,22,0.25);" onclick="revealTeam(this,'t4')">
+        <div class="team-emoji">🔮</div>
+        <h4>Future Tech Team</h4>
+        <p>What's next for networking?</p>
+        <div class="scenario-reveal" id="t4-reveal">How might Software-Defined Networking (SDN) change the way we implement network segmentation? What advantages might it offer over traditional VLANs?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Big Picture Summary -->
+  <div class="card card-green">
+    <h3>🗺️ Big Picture — Linking the Concepts</h3>
+    <p style="margin-bottom:16px">Click the buttons to reveal how today's concepts connect to each other and to the real world.</p>
+    <div style="display:flex; flex-wrap:wrap; gap:10px;">
+      <button class="btn btn-secondary" onclick="revealSummary('s1')">🔗 Models → Security</button>
+      <button class="btn btn-secondary" onclick="revealSummary('s2')">🔗 Segmentation → Performance</button>
+      <button class="btn btn-secondary" onclick="revealSummary('s3')">🔗 Real World Applications</button>
+      <button class="btn btn-secondary" onclick="revealSummary('s4')">🔗 Exam Tips</button>
+    </div>
+    <div class="summary-reveal" id="s1">
+      <h4 style="color:var(--accent3); margin-bottom:8px;">Models → Security</h4>
+      <p>Client-server models centralise security control (easier to enforce policies) but create high-value targets. P2P distributes risk but makes it harder to enforce security consistently. Segmentation is your tool for limiting impact when any model is compromised.</p>
+    </div>
+    <div class="summary-reveal" id="s2">
+      <h4 style="color:var(--accent); margin-bottom:8px;">Segmentation → Performance</h4>
+      <p>Broadcast traffic is the main performance killer in large networks. VLANs contain broadcasts within segments. Subnetting directs traffic only to relevant devices. Together, they reduce noise and optimise bandwidth for high-priority applications.</p>
+    </div>
+    <div class="summary-reveal" id="s3">
+      <h4 style="color:var(--accent2); margin-bottom:8px;">Real World Applications</h4>
+      <p>🏥 Hospitals: Client-server for patient records + VLANs separating clinical/admin/IoT devices | 🏫 Schools: VLANs per user group | 🏦 Banks: Heavily segmented networks with DMZs for online banking | ☁️ Cloud providers: Micro-segmentation for tenant isolation</p>
+    </div>
+    <div class="summary-reveal" id="s4">
+      <h4 style="color:var(--warn); margin-bottom:8px;">Exam Tips</h4>
+      <ul style="font-size:0.85rem; line-height:1.9;">
+        <li><strong>"Compare"</strong> = give both similarities AND differences with analysis</li>
+        <li><strong>"Evaluate"</strong> = weigh up pros and cons, reach a justified conclusion</li>
+        <li>Always use <strong>technical vocabulary</strong>: broadcast domain, VLAN, subnet mask, CIDR</li>
+        <li>Link to <strong>real examples</strong> to gain application marks</li>
+        <li>For security questions: think Confidentiality, Integrity, Availability (CIA triad)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-secondary" onclick="switchTab(3)">← Back</button>
+    <button class="btn btn-primary" onclick="switchTab(5)">Final: Exit Ticket →</button>
+  </div>
+</div>
+
+<!-- ===== SECTION 5: EXIT TICKET ===== -->
+<div class="section" id="sec-5">
+  <div class="section-title">✅ <span class="green">Exit</span> Ticket</div>
+  <div class="section-sub">Show What You Know — Individual Assessment <span class="timer-pill">⏱ 10 minutes</span></div>
+
+  <div class="timer-box">
+    <div>
+      <div class="timer-display" id="timer-5">10:00</div>
+      <div class="timer-label">Exit Ticket Timer</div>
+    </div>
+    <div class="timer-controls">
+      <button class="btn btn-green" onclick="startTimer(5, 10)">▶ Start</button>
+      <button class="btn btn-secondary" onclick="resetTimer(5, 10)">↺ Reset</button>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <strong>📋 Instructions:</strong> Complete all 5 questions independently and honestly. This helps your teacher understand what you've learned and what needs revisiting. There are no wrong answers for the reflection questions!
+  </div>
+
+  <!-- Quick Fire Questions -->
+  <div class="card card-accent">
+    <h3>⚡ Part 1 — Quick Fire (Factual Recall)</h3>
+    <div class="quiz-wrap" id="quiz-exit">
+
+      <div class="question-block">
+        <div class="question-text">ET1. In a P2P network, each device acts as both a client AND a:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answerExit(this,'et1','a')"><span class="opt-letter">A</span> Router</button>
+          <button class="option-btn" onclick="answerExit(this,'et1','b')"><span class="opt-letter">B</span> Server</button>
+          <button class="option-btn" onclick="answerExit(this,'et1','c')"><span class="opt-letter">C</span> Switch</button>
+          <button class="option-btn" onclick="answerExit(this,'et1','d')"><span class="opt-letter">D</span> Firewall</button>
+        </div>
+        <div class="feedback" id="fb-et1"></div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">ET2. Which technique groups devices by function, regardless of physical location?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answerExit(this,'et2','a')"><span class="opt-letter">A</span> Subnetting</button>
+          <button class="option-btn" onclick="answerExit(this,'et2','b')"><span class="opt-letter">B</span> Routing</button>
+          <button class="option-btn" onclick="answerExit(this,'et2','c')"><span class="opt-letter">C</span> VLAN</button>
+          <button class="option-btn" onclick="answerExit(this,'et2','d')"><span class="opt-letter">D</span> DNS</button>
+        </div>
+        <div class="feedback" id="fb-et2"></div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-text">ET3. Network segmentation helps reduce "congestion" mainly by:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answerExit(this,'et3','a')"><span class="opt-letter">A</span> Speeding up individual computers</button>
+          <button class="option-btn" onclick="answerExit(this,'et3','b')"><span class="opt-letter">B</span> Limiting broadcast traffic to smaller segments</button>
+          <button class="option-btn" onclick="answerExit(this,'et3','c')"><span class="opt-letter">C</span> Adding more physical cables</button>
+          <button class="option-btn" onclick="answerExit(this,'et3','d')"><span class="opt-letter">D</span> Using P2P instead of client-server</button>
+        </div>
+        <div class="feedback" id="fb-et3"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Reflection Questions -->
+  <div class="card card-purple">
+    <h3>💭 Part 2 — Reflection</h3>
+    <div class="exit-form">
+      <div class="exit-q">
+        <label class="exit-label">ET4. Explain ONE key difference between network segmentation and subnetting in your own words:</label>
+        <textarea id="et4" placeholder="Segmentation is... while subnetting is..."></textarea>
+      </div>
+      <div class="exit-q">
+        <label class="exit-label">ET5. Give a real-world example of when a P2P model would be MORE suitable than client-server, and explain why:</label>
+        <textarea id="et5" placeholder="A P2P model would be better for... because..."></textarea>
+      </div>
+      <div class="exit-q">
+        <label class="exit-label">🌟 How confident do you feel about today's content?</label>
+        <div class="confidence-bar">
+          <button class="conf-btn" onclick="selectConf(this,1)">😕<br><span style="font-size:0.7rem;">Not sure</span></button>
+          <button class="conf-btn" onclick="selectConf(this,2)">🤔<br><span style="font-size:0.7rem;">Getting there</span></button>
+          <button class="conf-btn" onclick="selectConf(this,3)">😊<br><span style="font-size:0.7rem;">Confident</span></button>
+          <button class="conf-btn" onclick="selectConf(this,4)">🚀<br><span style="font-size:0.7rem;">Smashed it!</span></button>
+        </div>
+      </div>
+      <div class="exit-q">
+        <label class="exit-label">📝 One thing I still want to understand better:</label>
+        <textarea id="et6" placeholder="I'd like to know more about..." style="min-height:60px;"></textarea>
+      </div>
+    </div>
+    <button class="btn btn-green" style="margin-top:16px;" onclick="submitTicket()">Submit Exit Ticket ✓</button>
+  </div>
+
+  <!-- Final Score -->
+  <div class="card" id="final-score-card" style="display:none; border-color:var(--accent3); background:rgba(34,211,162,0.05); text-align:center;">
+    <div style="font-size:3rem; margin-bottom:12px;">🎉</div>
+    <div class="section-title" style="font-size:1.4rem; margin-bottom:8px;">Lesson Complete!</div>
+    <div class="score-num" id="final-score-num" style="font-size:3rem; display:block; margin:12px 0;">0</div>
+    <div style="font-size:0.9rem; color:var(--muted);">Total XP Earned</div>
+    <div id="final-grade" style="margin-top:16px; padding:12px 20px; border-radius:10px; display:inline-block; font-family:'Syne',sans-serif; font-weight:700; font-size:1.1rem;"></div>
+    <p style="margin-top:16px; font-size:0.85rem; color:var(--muted);">Review your work and revisit any sections you found challenging. Great effort today!</p>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-secondary" onclick="switchTab(4)">← Back</button>
+    <button class="btn btn-secondary" onclick="switchTab(0)">↺ Restart Lesson</button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <div class="modal-title" id="modal-title">Well Done! 🎉</div>
+    <div class="modal-body" id="modal-body"></div>
+    <button class="btn btn-primary" onclick="closeModal()">Continue →</button>
+  </div>
+</div>
+
+<script>
+// ===== STATE =====
+let totalXP = 0;
+let timers = {};
+let timerIntervals = {};
+const correctAnswers = {
+  q1: 'b', q2: 'c', q3: 'b', q4: 'b',
+  et1: 'b', et2: 'c', et3: 'b'
+};
+const feedbackText = {
+  q1: { b: "✅ Correct! Client-server has a single point of failure — if the server goes down, no client can access services.", wrong: "❌ Not quite. Think about which model depends on one central server." },
+  q2: { c: "✅ Correct! Blockchain (including Bitcoin) uses a P2P model — every node has a copy of the blockchain.", wrong: "❌ Not quite. Remember: blockchain is decentralised with no central authority." },
+  q3: { b: "✅ Correct! Cloud storage services like Dropbox and Google Drive store your files on their central servers.", wrong: "❌ Not quite. Think about where your files actually live — on whose machines?" },
+  q4: { b: "✅ Correct! In P2P there's no central server to fail — the network keeps working even if some peers go offline.", wrong: "❌ Not quite. Review the benefits of P2P compared to client-server." },
+  et1: { b: "✅ Correct! In P2P, every device (peer) simultaneously acts as both a client requesting and a server providing resources.", wrong: "❌ Not quite. Recall how P2P works — each device has dual roles." },
+  et2: { c: "✅ Correct! VLANs group devices by function or department regardless of their physical network location.", wrong: "❌ Not quite. Subnetting works with IP addresses. Think about which technique is about logical grouping by role." },
+  et3: { b: "✅ Correct! Segmentation contains broadcasts within smaller segments, preventing traffic from flooding the entire network.", wrong: "❌ Not quite. Think about what causes network congestion — unnecessary broadcast traffic." }
+};
+
+let selectedMatch = null;
+let matchCorrect = 0;
+let scenarioDone = false;
+let selectedConf = 0;
+let quizScores = { models: 0, exit: 0 };
+let currentTab = 0;
+let selectedFeature = null;
+
+// ===== TABS =====
+function switchTab(n) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + n).classList.add('active');
+  document.querySelectorAll('.tab-btn')[n].classList.add('active');
+  currentTab = n;
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateProgress() {
+  const pct = (currentTab / 5) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+// ===== TIMER =====
+function startTimer(id, mins) {
+  if (timerIntervals[id]) clearInterval(timerIntervals[id]);
+  let seconds = mins * 60;
+  const el = document.getElementById('timer-' + id);
+  el.classList.remove('warning','danger');
+  timerIntervals[id] = setInterval(() => {
+    if (seconds <= 0) {
+      clearInterval(timerIntervals[id]);
+      el.textContent = "00:00";
+      el.classList.add('danger');
+      return;
+    }
+    seconds--;
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    el.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    if (seconds <= 60) el.classList.add('danger');
+    else if (seconds <= mins * 60 * 0.3) el.classList.add('warning');
+  }, 1000);
+}
+
+function resetTimer(id, mins) {
+  if (timerIntervals[id]) clearInterval(timerIntervals[id]);
+  const el = document.getElementById('timer-' + id);
+  el.textContent = String(mins).padStart(2,'0') + ':00';
+  el.classList.remove('warning','danger');
+}
+
+// ===== QUIZ =====
+function answerQ(btn, q, choice) {
+  const block = btn.closest('.question-block');
+  const allBtns = block.querySelectorAll('.option-btn');
+  allBtns.forEach(b => b.disabled = true);
+  const fb = document.getElementById('fb-' + q);
+  const correct = correctAnswers[q];
+  const isCorrect = choice === correct;
+  if (isCorrect) {
+    btn.classList.add('correct');
+    fb.textContent = feedbackText[q][correct];
+    fb.classList.add('show', 'correct');
+    awardXP(5, q);
+    quizScores.models += 5;
+    updateScore1();
+  } else {
+    btn.classList.add('wrong');
+    allBtns.forEach(b => { if(b.textContent.includes(correct.toUpperCase())) b.classList.add('correct'); });
+    fb.textContent = feedbackText[q].wrong;
+    fb.classList.add('show', 'wrong');
+  }
+}
+
+function answerExit(btn, q, choice) {
+  const block = btn.closest('.question-block');
+  const allBtns = block.querySelectorAll('.option-btn');
+  allBtns.forEach(b => b.disabled = true);
+  const fb = document.getElementById('fb-' + q);
+  const correct = correctAnswers[q];
+  const isCorrect = choice === correct;
+  if (isCorrect) {
+    btn.classList.add('correct');
+    fb.textContent = feedbackText[q][correct];
+    fb.classList.add('show', 'correct');
+    awardXP(5, q);
+    quizScores.exit += 5;
+  } else {
+    btn.classList.add('wrong');
+    allBtns.forEach(b => { if(b.querySelector('.opt-letter') && b.querySelector('.opt-letter').textContent === correct.toUpperCase()) b.classList.add('correct'); });
+    fb.textContent = feedbackText[q].wrong;
+    fb.classList.add('show', 'wrong');
+  }
+}
+
+// ===== XP =====
+function awardXP(amt, reason) {
+  totalXP += amt;
+  document.getElementById('score-badge').textContent = 'XP: ' + totalXP;
+}
+
+function updateScore1() {
+  const s = document.getElementById('score-1');
+  if(s) s.textContent = quizScores.models;
+  const bar = document.getElementById('score-bar-1');
+  if(bar) bar.style.width = Math.min((quizScores.models/40)*100, 100) + '%';
+}
+
+// ===== SCENARIOS =====
+function revealScenario(card) {
+  card.classList.toggle('revealed');
+}
+
+function awardScenarioPoints() {
+  if (scenarioDone) return;
+  scenarioDone = true;
+  awardXP(20, 'scenarios');
+  quizScores.models += 20;
+  updateScore1();
+  document.getElementById('scenario-done').style.display = 'block';
+  document.getElementById('score-badge').textContent = 'XP: ' + totalXP;
+}
+
+// ===== CONCEPT TOGGLE =====
+function toggleConcept(el) {
+  el.classList.toggle('open');
+}
+
+// ===== FILL IN BLANKS =====
+const fillAnswers = ['containing', 'subnetting', 'function', 'broadcast', 'segment'];
+function checkFills() {
+  const inputs = ['f1','f2','f3','f4','f5'];
+  let correct = 0;
+  inputs.forEach((id, i) => {
+    const el = document.getElementById(id);
+    const val = el.value.trim().toLowerCase();
+    el.classList.remove('correct','wrong');
+    if (val === fillAnswers[i] || val.includes(fillAnswers[i])) {
+      el.classList.add('correct');
+      correct++;
+    } else {
+      el.classList.add('wrong');
+    }
+  });
+  const fb = document.getElementById('fill-feedback');
+  fb.style.display = 'block';
+  const pts = correct * 3;
+  if (correct === 5) {
+    fb.style.background = 'rgba(34,211,162,0.1)';
+    fb.style.color = 'var(--accent3)';
+    fb.textContent = `🎉 All 5 correct! +${pts} pts`;
+    awardXP(pts, 'fills');
+  } else {
+    fb.style.background = 'rgba(249,115,22,0.1)';
+    fb.style.color = '#fbd38d';
+    fb.textContent = `${correct}/5 correct. +${pts} pts — check the highlighted inputs and try again!`;
+    awardXP(pts, 'fills');
+  }
+  document.getElementById('score-badge').textContent = 'XP: ' + totalXP;
+}
+
+function showFillHints() {
+  const h = document.getElementById('fill-hints');
+  h.style.display = h.style.display === 'none' ? 'block' : 'none';
+}
+
+// ===== MATCHING =====
+function selectMatch(el, id) {
+  document.querySelectorAll('.match-col:first-child .match-item').forEach(m => m.classList.remove('selected-left'));
+  if (!el.classList.contains('matched')) {
+    el.classList.add('selected-left');
+    selectedMatch = id;
+  } else {
+    selectedMatch = null;
+  }
+}
+
+function matchRight(el, id) {
+  if (!selectedMatch) return;
+  if (el.classList.contains('matched')) return;
+  const leftItem = document.querySelector(`.match-item[data-id="${selectedMatch}"]`);
+  if (selectedMatch === id) {
+    el.classList.add('matched');
+    if (leftItem) leftItem.classList.add('matched', 'selected-left');
+    matchCorrect++;
+    awardXP(4, 'match');
+    if (matchCorrect === 4) {
+      const ms = document.getElementById('match-score');
+      ms.style.display = 'block';
+      ms.textContent = '🎉 All matches correct! +16 pts';
+      showModal('Matching Complete!', 'You matched all 4 networking techniques to their correct descriptions. Excellent work!');
+    }
+  } else {
+    el.classList.add('wrong-match');
+    setTimeout(() => el.classList.remove('wrong-match'), 800);
+  }
+  selectedMatch = null;
+  document.querySelectorAll('.match-col:first-child .match-item').forEach(m => m.classList.remove('selected-left'));
+}
+
+// ===== DIAGRAMS (Starter Foundation) =====
+function checkDiagrams() {
+  const d1 = document.getElementById('dia1').value;
+  const d2 = document.getElementById('dia2').value;
+  const fb = document.getElementById('dia-feedback');
+  fb.style.display = 'block';
+  if (d1 === 'cs' && d2 === 'p2p') {
+    fb.style.color = 'var(--accent3)';
+    fb.textContent = '✅ Correct! The first (star pattern) is Client-Server. The second (chain) is Peer-to-Peer.';
+    awardXP(5, 'diagrams');
+  } else {
+    fb.style.color = '#fca5a5';
+    fb.textContent = '❌ Not quite. Hint: the model with all arrows pointing to/from one central device is Client-Server.';
+  }
+  document.getElementById('score-badge').textContent = 'XP: ' + totalXP;
+}
+
+// ===== SORT (Core Starter) =====
+function selectFeature(el) {
+  document.querySelectorAll('#sort-features .drag-item').forEach(d => d.style.borderColor = '');
+  el.style.borderColor = 'var(--accent)';
+  el.style.background = 'rgba(0,229,255,0.08)';
+  selectedFeature = el;
+}
+
+function placeFeature(col) {
+  if (!selectedFeature) return;
+  const target = document.getElementById('sort-' + col);
+  const clone = selectedFeature.cloneNode(true);
+  clone.style.borderColor = '';
+  clone.style.background = '';
+  clone.style.cursor = 'default';
+  clone.onclick = null;
+  clone.dataset.placed = col;
+  target.appendChild(clone);
+  selectedFeature.style.opacity = '0.3';
+  selectedFeature.style.pointerEvents = 'none';
+  selectedFeature = null;
+}
+
+function checkSort() {
+  const csItems = document.querySelectorAll('#sort-cs .drag-item');
+  const p2pItems = document.querySelectorAll('#sort-p2p .drag-item');
+  let correct = 0, total = 0;
+  csItems.forEach(item => { total++; if(item.dataset.correct === 'cs') correct++; });
+  p2pItems.forEach(item => { total++; if(item.dataset.correct === 'p2p') correct++; });
+  const fb = document.getElementById('sort-feedback');
+  fb.style.display = 'block';
+  if (correct === total && total > 0) {
+    fb.style.background = 'rgba(34,211,162,0.1)'; fb.style.color = 'var(--accent3)';
+    fb.textContent = `🎉 ${correct}/${total} correct! Great sorting!`;
+    awardXP(10, 'sort');
+  } else {
+    fb.style.background = 'rgba(249,115,22,0.1)'; fb.style.color = '#fbd38d';
+    fb.textContent = `${correct}/${total} correct. Keep trying!`;
+    awardXP(correct * 2, 'sort');
+  }
+  document.getElementById('score-badge').textContent = 'XP: ' + totalXP;
+}
+
+// ===== EXTENSION STARTER =====
+function revealExtHint() {
+  const h = document.getElementById('ext-hint');
+  h.style.display = h.style.display === 'none' ? 'block' : 'none';
+}
+
+// ===== CHALLENGE REVEALS =====
+function revealC1() {
+  const el = document.getElementById('c1-answer');
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+function revealC2() {
+  const el = document.getElementById('c2-answer');
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+function revealC3() {
+  const el = document.getElementById('c3-answer');
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+
+// ===== PLENARY =====
+function revealTeam(card, id) {
+  card.classList.toggle('revealed');
+  const reveal = document.getElementById(id + '-reveal');
+  if (reveal) reveal.style.display = reveal.style.display === 'none' ? 'block' : 'none';
+}
+
+function revealSummary(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('show');
+}
+
+// ===== EXIT TICKET =====
+function selectConf(btn, val) {
+  document.querySelectorAll('.conf-btn').forEach(b => b.classList.remove('selected-conf'));
+  btn.classList.add('selected-conf');
+  selectedConf = val;
+}
+
+function submitTicket() {
+  const et4 = document.getElementById('et4').value.trim();
+  const et5 = document.getElementById('et5').value.trim();
+  const et6 = document.getElementById('et6').value.trim();
+  if (!et4 || !et5) {
+    alert('Please complete at least ET4 and ET5 before submitting!');
+    return;
+  }
+  if (et4.length > 10) awardXP(10, 'et4');
+  if (et5.length > 10) awardXP(10, 'et5');
+  awardXP(5, 'conf');
+
+  const card = document.getElementById('final-score-card');
+  card.style.display = 'block';
+  card.classList.add('celebrate');
+  document.getElementById('final-score-num').textContent = totalXP;
+  document.getElementById('score-badge').textContent = 'XP: ' + totalXP;
+
+  const grade = document.getElementById('final-grade');
+  if (totalXP >= 90) {
+    grade.style.background = 'rgba(34,211,162,0.15)';
+    grade.style.color = 'var(--accent3)';
+    grade.textContent = '🌟 Outstanding — Distinction Level!';
+  } else if (totalXP >= 65) {
+    grade.style.background = 'rgba(0,229,255,0.1)';
+    grade.style.color = 'var(--accent)';
+    grade.textContent = '👍 Strong — Merit Level!';
+  } else if (totalXP >= 40) {
+    grade.style.background = 'rgba(249,115,22,0.1)';
+    grade.style.color = 'var(--warn)';
+    grade.textContent = '📈 Good start — revisit the key concepts!';
+  } else {
+    grade.style.background = 'rgba(239,68,68,0.1)';
+    grade.style.color = 'var(--danger)';
+    grade.textContent = '🔄 Keep practising — ask your teacher for support!';
+  }
+
+  card.scrollIntoView({ behavior: 'smooth' });
+  updateProgress();
+}
+
+// ===== MODAL =====
+function showModal(title, body) {
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-body').textContent = body;
+  document.getElementById('modal').classList.add('show');
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('show');
+}
+
+// ===== INIT =====
+updateProgress();
+</script>
+</body>
+</html>

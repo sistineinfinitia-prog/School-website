@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="stealth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highwood CS | Linear Sleek Edition</title>
+    <link rel="stylesheet" href="shared-tokens.css">
+    <style>
+        :root {
+            --font-linear: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        body {
+            font-family: var(--font-linear);
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+        }
+
+        /* Top Header */
+        .linear-header {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: rgba(10, 11, 15, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-subtle);
+            height: 56px;
+            display: flex;
+            align-items: center;
+        }
+        [data-theme="crimson"] .linear-header,
+        [data-theme="paper"] .linear-header {
+            background: rgba(255, 255, 255, 0.9);
+        }
+        .header-inner {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .brand-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .brand-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 800;
+        }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .kbd-chip {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Linear Command Hero */
+        .linear-hero {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 100px 24px 60px;
+            text-align: center;
+        }
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-accent);
+            border-radius: 999px;
+            padding: 6px 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            box-shadow: 0 0 20px -5px var(--accent-glow);
+            margin-bottom: 28px;
+        }
+        .status-pill .indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            box-shadow: 0 0 10px var(--accent-primary);
+        }
+        .linear-hero h1 {
+            font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.035em;
+            margin-bottom: 20px;
+        }
+        .linear-hero p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 620px;
+            margin: 0 auto 36px;
+            line-height: 1.6;
+        }
+
+        /* Simulated Command Bar */
+        .cmd-bar {
+            max-width: 580px;
+            margin: 0 auto 60px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-hover);
+            border-radius: 14px;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: var(--shadow-card);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .cmd-bar:focus-within {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 25px -4px var(--accent-glow);
+        }
+        .cmd-bar input {
+            flex: 1;
+            background: none;
+            border: none;
+            outline: none;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+        .cmd-bar input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Sprint Tracker / Roadmap Grid */
+        .content-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+        }
+        .linear-section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 14px;
+        }
+        .linear-section-title h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .linear-section-title span {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Issue / Milestone Cards */
+        .roadmap-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 60px;
+        }
+        .roadmap-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            transition: transform 0.15s, border-color 0.15s, background-color 0.15s;
+            cursor: pointer;
+        }
+        .roadmap-item:hover {
+            transform: translateX(4px);
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+        }
+        .item-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .item-id {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            width: 75px;
+        }
+        .item-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .item-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .priority-badge {
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .p-high { background: rgba(248, 113, 113, 0.15); color: #f87171; }
+        .p-medium { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
+        .p-ready { background: rgba(52, 211, 153, 0.15); color: #34d399; }
+
+        /* Grid Feature Boxes */
+        .feature-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .feature-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 220px;
+            transition: border-color 0.2s;
+        }
+        .feature-box:hover {
+            border-color: var(--border-accent);
+        }
+        .feature-box h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin: 12px 0 8px;
+        }
+        .feature-box p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .tag-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 800px) {
+            .feature-columns { grid-template-columns: 1fr; }
+            .item-right .item-date { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="linear-header">
+        <div class="header-inner">
+            <div class="brand-badge">
+                <div class="brand-icon">H</div>
+                <span>Highwood CS Workspace</span>
+            </div>
+            <div class="nav-actions">
+                <div class="kbd-chip"><span>Press</span> <kbd>⌘K</kbd> <span>to search</span></div>
+                <a href="#portal" class="badge-chip">HL / SL 2026</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="linear-hero">
+        <div class="status-pill">
+            <span class="indicator"></span>
+            <span>Sprint 4: IA Criterion C Development Underway</span>
+        </div>
+        <h1>
+            Linear velocity for<br>
+            IB Computer Science.
+        </h1>
+        <p>
+            Streamlined syllabus execution, live project checkpoints, past paper analytics, and algorithmic mastery designed for modern IB scholars.
+        </p>
+
+        <!-- Command Input -->
+        <div class="cmd-bar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" placeholder="Search syllabus topics, algorithms, or IA rubrics...">
+            <span class="kbd-chip">Esc</span>
+        </div>
+    </section>
+
+    <main class="content-wrap">
+        <div class="linear-section-title">
+            <h2>Active Academic Milestones</h2>
+            <span>4 OF 12 REPOSITORIES COMPLETED</span>
+        </div>
+
+        <div class="roadmap-list">
+            <div class="roadmap-item">
+                <div class="item-left">
+                    <span class="item-id">CS-101</span>
+                    <span class="item-title">Theme A: System Architecture & Boolean Minimization</span>
+                </div>
+                <div class="item-right">
+                    <span class="priority-badge p-ready">Complete</span>
+                    <span class="item-date" style="font-size: 0.8rem; color: var(--text-muted);">Paper 1</span>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="item-left">
+                    <span class="item-id">CS-204</span>
+                    <span class="item-title">IA Criterion B: Record of Tasks & Architecture Diagrams</span>
+                </div>
+                <div class="item-right">
+                    <span class="priority-badge p-high">Deadline Nov 1</span>
+                    <span class="item-date" style="font-size: 0.8rem; color: var(--text-muted);">IA Project</span>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="item-left">
+                    <span class="item-id">CS-302</span>
+                    <span class="item-title">Theme B: Relational Normalization & SQL Queries</span>
+                </div>
+                <div class="item-right">
+                    <span class="priority-badge p-medium">In Review</span>
+                    <span class="item-date" style="font-size: 0.8rem; color: var(--text-muted);">Paper 2</span>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="item-left">
+                    <span class="item-id">CS-410</span>
+                    <span class="item-title">HL Paper 3: Neural Agents & Edge Computing Case Study</span>
+                </div>
+                <div class="item-right">
+                    <span class="priority-badge p-medium">Active</span>
+                    <span class="item-date" style="font-size: 0.8rem; color: var(--text-muted);">Higher Level</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3 Feature Columns -->
+        <div class="feature-columns">
+            <div class="feature-box">
+                <div>
+                    <span class="badge-chip">Curriculum</span>
+                    <h3>Syllabus Breakdown</h3>
+                    <p>Granular learning objectives mapped directly to IB assessment criteria for SL and HL candidates.</p>
+                </div>
+                <div class="tag-row">
+                    <span class="kbd-chip">G then S</span>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div>
+                    <span class="badge-chip">Engineering</span>
+                    <h3>The 30/30 IA Engine</h3>
+                    <p>Client interview templates, UML designer guides, test table generators, and exemplar video walkthroughs.</p>
+                </div>
+                <div class="tag-row">
+                    <span class="kbd-chip">G then I</span>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div>
+                    <span class="badge-chip">Practice</span>
+                    <h3>Exemplar Bank</h3>
+                    <p>Annotated past examinations with examiner commentary and step-by-step pseudo-code trace tables.</p>
+                </div>
+                <div class="tag-row">
+                    <span class="kbd-chip">G then P</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer style="text-align: center; padding: 40px 24px; border-top: 1px solid var(--border-subtle); font-size: 0.8rem; color: var(--text-muted);">
+        Highwood CS • Linear Sleek Template 02 • Keyboard Nav Enabled
+    </footer>
+
+    <script src="theme-switcher.js"></script>
+</body>
+</html>

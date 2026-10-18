@@ -27,6 +27,7 @@ function initNavigation() {
                 <li><a href="${pagePrefix}theme-b.html">Theme B</a></li>
                 <li><a href="${pagePrefix}ia.html">IA</a></li>
                 <li><a href="${pagePrefix}case-study.html">Case Study</a></li>
+                <li><a href="${pagePrefix}resources.html">Resources</a></li>
                 <li><a href="${pagePrefix}admin.html" class="admin-link">Admin</a></li>
             </ul>
         </nav>
@@ -58,6 +59,7 @@ function initNavigation() {
                     <a href="${pagePrefix}theme-b.html">Theme B</a>
                     <a href="${pagePrefix}ia.html">IA</a>
                     <a href="${pagePrefix}case-study.html">Case Study</a>
+                    <a href="${pagePrefix}resources.html">Resources</a>
                     <a href="${pagePrefix}admin.html">Admin</a>
                 </div>
                 <p>&copy; 2026 Computer Science Academy.</p>

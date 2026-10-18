@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="monochrome" data-texture="animated">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highwood CS | Curated Finalists Showcase Hub</title>
+    <link rel="stylesheet" href="shared-tokens.css">
+    <style>
+        :root {
+            --font-hub-title: 'Space Grotesk', -apple-system, sans-serif;
+            --font-hub-body: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-hub-body);
+            background: var(--bg-base);
+            color: var(--text-primary);
+            padding: 40px 24px 100px;
+        }
+
+        .hub-container {
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+
+        .hub-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .hub-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 18px;
+            border-radius: 999px;
+            background: var(--tag-bg);
+            border: 1px solid var(--border-subtle);
+            color: var(--tag-text);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 20px;
+        }
+        .hub-header h1 {
+            font-family: var(--font-hub-title);
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            margin-bottom: 18px;
+        }
+        .hub-header p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 720px;
+            margin: 0 auto 36px;
+            line-height: 1.65;
+        }
+
+        /* Control Panel Bar */
+        .hub-control-bar {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 24px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            box-shadow: var(--shadow-card);
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+        .control-group-title {
+            font-size: 0.92rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .palette-swatches {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .swatch-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .swatch-item:hover, .swatch-item.active {
+            border-color: var(--border-accent);
+            box-shadow: 0 0 14px var(--accent-glow);
+        }
+        .swatch-circle {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+        }
+
+        .texture-global-toggle {
+            display: flex;
+            gap: 6px;
+            background: var(--bg-surface);
+            padding: 4px;
+            border-radius: 10px;
+            border: 1px solid var(--border-subtle);
+        }
+        .texture-toggle-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .texture-toggle-btn.active {
+            background: var(--text-primary);
+            color: var(--text-inverse);
+        }
+
+        /* 4 Finalist Cards */
+        .finalist-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .finalist-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s, box-shadow 0.25s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .finalist-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-hover);
+            box-shadow: 0 20px 45px -10px var(--accent-glow);
+        }
+
+        .card-preview-banner {
+            height: 160px;
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+        .card-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+        .card-preview-art {
+            font-size: 2.8rem;
+            margin-top: auto;
+        }
+        .card-texture-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .card-info {
+            padding: 32px 28px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .finalist-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 10px;
+        }
+        .finalist-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            margin-bottom: 24px;
+            flex: 1;
+        }
+        .tags-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 28px;
+        }
+        .style-tag {
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 6px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+        }
+
+        .card-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .btn-launch {
+            text-align: center;
+            background: var(--text-primary);
+            color: var(--text-inverse);
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            transition: opacity 0.15s, transform 0.15s;
+            text-decoration: none;
+        }
+        .btn-launch:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+        .btn-modal {
+            text-align: center;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .btn-modal:hover {
+            background: var(--bg-card-hover);
+        }
+
+        /* Modal Overlay */
+        .preview-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(14px);
+            z-index: 100000;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .preview-modal-overlay.active {
+            display: flex;
+        }
+        .modal-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #111115;
+            color: #fff;
+            padding: 14px 24px;
+            border-radius: 16px 16px 0 0;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-bottom: none;
+        }
+        .viewport-switch {
+            display: flex;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 4px;
+            border-radius: 8px;
+        }
+        .viewport-btn {
+            color: #fff;
+            padding: 5px 12px;
+            font-size: 0.78rem;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .viewport-btn.active {
+            background: #fff;
+            color: #000;
+        }
+        .modal-iframe-wrap {
+            flex: 1;
+            background: #050505;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 0 0 16px 16px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+        }
+        .modal-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            transition: width 0.3s ease;
+        }
+
+        .legacy-footer-banner {
+            margin-top: 60px;
+            text-align: center;
+            padding: 28px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+        }
+
+        @media (max-width: 900px) {
+            .finalist-grid { grid-template-columns: 1fr; }
+            .hub-control-bar { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hub-container">
+        <!-- Header -->
+        <header class="hub-header">
+            <span class="hub-badge">Curated Finalists • IBDP Computer Science</span>
+            <h1>The 4 Chosen Candidates</h1>
+            <p>
+                Refined specifically for 16–18-year-old IB scholars. Stripped of generic "vibecoded" AI neon, rebuilt with authentic typography, 5 grounded palettes, and bespoke kinetic textures.
+            </p>
+            <div style="margin-top: 24px;">
+                <a href="background-lab.html" style="display: inline-flex; align-items: center; gap: 10px; background: var(--text-primary); color: var(--text-inverse); padding: 12px 24px; border-radius: 2px; font-weight: 700; text-decoration: none; font-size: 0.95rem; box-shadow: 0 8px 24px rgba(0,0,0,0.25); transition: transform 0.2s;">
+                    <span>🧪 Launch Dynamic Background Lab</span>
+                    <span style="font-family:'JetBrains Mono', monospace; font-size:0.75rem; background:rgba(0,0,0,0.15); padding:2px 8px; border-radius:2px;">8 Interactive Physics Engines ↗</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Controls Bar -->
+        <section class="hub-control-bar">
+            <div>
+                <div class="control-group-title">🎨 Non-Vibecoded Palettes (5 Options)</div>
+                <div class="palette-swatches">
+                    <button class="swatch-item active" onclick="switchTheme('monochrome', this)">
+                        <span class="swatch-circle" style="background:#ffffff; border:1px solid #000;"></span>
+                        <span>01. Pure Monochrome (B&W)</span>
+                    </button>
+                    <button class="swatch-item" onclick="switchTheme('crimson', this)">
+                        <span class="swatch-circle" style="background:#800000;"></span>
+                        <span>02. Highwood Crimson</span>
+                    </button>
+                    <button class="swatch-item" onclick="switchTheme('matcha', this)">
+                        <span class="swatch-circle" style="background:#385542;"></span>
+                        <span>03. Matcha Sage Pastel</span>
+                    </button>
+                    <button class="swatch-item" onclick="switchTheme('clay', this)">
+                        <span class="swatch-circle" style="background:#944833;"></span>
+                        <span>04. Warm Sand & Clay</span>
+                    </button>
+                    <button class="swatch-item" onclick="switchTheme('lilac', this)">
+                        <span class="swatch-circle" style="background:#c4b5fd;"></span>
+                        <span>05. Soft Slate & Lilac</span>
+                    </button>
+                </div>
+            </div>
+
+            <div>
+                <div class="control-group-title">🌌 Background Texture Mode</div>
+                <div class="texture-global-toggle">
+                    <button class="texture-toggle-btn active" onclick="switchTexture('animated', this)">
+                        ⚡ Subtle Animated
+                    </button>
+                    <button class="texture-toggle-btn" onclick="switchTexture('static', this)">
+                        ⏸ Pure Static
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4 Finalists -->
+        <main class="finalist-grid">
+            <!-- 02: Linear Sleek -->
+            <article class="finalist-card">
+                <div class="card-preview-banner">
+                    <span class="card-num">// CANDIDATE 02</span>
+                    <span class="card-texture-tag">TEXTURE: DOT-GRID</span>
+                    <div class="card-preview-art">⚡</div>
+                </div>
+                <div class="card-info">
+                    <h3>Linear Sleek Edition</h3>
+                    <p>High-density developer velocity, keyboard shortcut chips (`⌘K`), sprint milestones, and an authentic drifting technical dot-matrix background.</p>
+                    <div class="tags-row">
+                        <span class="style-tag">Plus Jakarta Sans</span>
+                        <span class="style-tag">⌘K Command</span>
+                        <span class="style-tag">Drifting Dot Grid</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="t2-linear-sleek.html" class="btn-launch">Open Full Page ↗</a>
+                        <button class="btn-modal" onclick="openModal('t2-linear-sleek.html', 'Candidate 02 • Linear Sleek')">Quick View</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 03: Swiss Monolith -->
+            <article class="finalist-card">
+                <div class="card-preview-banner">
+                    <span class="card-num">// CANDIDATE 03</span>
+                    <span class="card-texture-tag">TEXTURE: HAIRLINE GRID</span>
+                    <div class="card-preview-art">▲</div>
+                </div>
+                <div class="card-info">
+                    <h3>Swiss Monolith (Vercel Style)</h3>
+                    <p>Laser-sharp geometric grid lines, monospace metadata tags, code block card with binary search logic, and kinetic architectural hairline texture.</p>
+                    <div class="tags-row">
+                        <span class="style-tag">Inter / Monospace</span>
+                        <span class="style-tag">Swiss Geometry</span>
+                        <span class="style-tag">Hairline Noise Drift</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="t3-swiss-monolith.html" class="btn-launch">Open Full Page ↗</a>
+                        <button class="btn-modal" onclick="openModal('t3-swiss-monolith.html', 'Candidate 03 • Swiss Monolith')">Quick View</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 06: Terminal IDE -->
+            <article class="finalist-card">
+                <div class="card-preview-banner">
+                    <span class="card-num">// CANDIDATE 06</span>
+                    <span class="card-texture-tag">FULL-SCREEN IDE // CRT SCANLINES</span>
+                    <div class="card-preview-art">⌨️</div>
+                </div>
+                <div class="card-info">
+                    <h3>Developer IDE & Terminal (Full-Screen)</h3>
+                    <p>True 100vw × 100vh full-screen developer workspace with VS Code window chrome, file explorer, code tabs (`ThemeA.java`, `IA_CriterionB.py`), simulated live shell, and CRT phosphor scanlines.</p>
+                    <div class="tags-row">
+                        <span class="style-tag">Full-Screen (100vw/vh)</span>
+                        <span class="style-tag">JetBrains Mono</span>
+                        <span class="style-tag">CRT Scanline Drift</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="t6-terminal-ide.html" class="btn-launch">Launch Full-Screen ↗</a>
+                        <button class="btn-modal" onclick="openModal('t6-terminal-ide.html', 'Candidate 06 • Full-Screen IDE')">Quick View</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 10: Zen Atelier -->
+            <article class="finalist-card">
+                <div class="card-preview-banner">
+                    <span class="card-num">// CANDIDATE 10</span>
+                    <span class="card-texture-tag">CONSTELLATIONS // RAZOR EDGES</span>
+                    <div class="card-preview-art">🌱</div>
+                </div>
+                <div class="card-info">
+                    <h3>Zen Atelier (Interactive Constellations)</h3>
+                    <p>Distraction-free study sanctuary featuring an interactive geometric constellation web that weaves grid dots on hover, diffraction star glints, live starlight bridging, and architectural razor-sharp edges.</p>
+                    <div class="tags-row">
+                        <span class="style-tag">Constellation Web</span>
+                        <span class="style-tag">Diffraction Glints</span>
+                        <span class="style-tag">Particle Bridging</span>
+                        <span class="style-tag">Sharp Edges (2px)</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="t10-zen-atelier.html" class="btn-launch">Open Full Page ↗</a>
+                        <button class="btn-modal" onclick="openModal('t10-zen-atelier.html', 'Candidate 10 • Zen Atelier (Reference BG)')">Quick View</button>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <!-- Preserved Legacy Notice -->
+        <div class="legacy-footer-banner">
+            <h4 style="margin-bottom: 6px;">Looking for the original 10 templates?</h4>
+            <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:14px;">
+                All original 10 concept templates remain safely preserved in the archive.
+            </p>
+            <a href="../legacy-templates/index.html" style="font-weight:700; color:var(--text-primary); text-decoration:underline;">
+                Access Legacy Templates Suite (1–10) →
+            </a>
+        </div>
+    </div>
+
+    <!-- Responsive Viewport Modal -->
+    <div class="preview-modal-overlay" id="preview-modal">
+        <div class="modal-top-bar">
+            <div>
+                <span id="modal-template-title" style="font-weight:700; font-size:0.95rem;">Template Preview</span>
+            </div>
+            <div class="viewport-switch">
+                <button class="viewport-btn active" onclick="setViewport('100%', this)">Desktop (Full)</button>
+                <button class="viewport-btn" onclick="setViewport('820px', this)">Tablet (820px)</button>
+                <button class="viewport-btn" onclick="setViewport('390px', this)">Mobile (390px)</button>
+            </div>
+            <button onclick="closeModal()" style="color:#fff; font-size:1.4rem; cursor:pointer;">&times;</button>
+        </div>
+        <div class="modal-iframe-wrap">
+            <iframe id="modal-iframe" class="modal-iframe" src=""></iframe>
+        </div>
+    </div>
+
+    <script src="theme-switcher.js"></script>
+    <script>
+        function switchTheme(themeId, btn) {
+            document.documentElement.setAttribute('data-theme', themeId);
+            localStorage.setItem('curated_cs_theme', themeId);
+            document.querySelectorAll('.swatch-item').forEach(s => s.classList.remove('active'));
+            btn.classList.add('active');
+
+            const iframe = document.getElementById('modal-iframe');
+            if (iframe && iframe.contentDocument) {
+                iframe.contentDocument.documentElement.setAttribute('data-theme', themeId);
+            }
+        }
+
+        function switchTexture(mode, btn) {
+            document.documentElement.setAttribute('data-texture', mode);
+            localStorage.setItem('curated_cs_texture', mode);
+            document.querySelectorAll('.texture-toggle-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const iframe = document.getElementById('modal-iframe');
+            if (iframe && iframe.contentDocument) {
+                iframe.contentDocument.documentElement.setAttribute('data-texture', mode);
+            }
+        }
+
+        function openModal(url, title) {
+            const modal = document.getElementById('preview-modal');
+            const iframe = document.getElementById('modal-iframe');
+            const titleEl = document.getElementById('modal-template-title');
+            titleEl.textContent = title;
+            iframe.src = url;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('preview-modal');
+            const iframe = document.getElementById('modal-iframe');
+            iframe.src = '';
+            modal.classList.remove('active');
+        }
+
+        function setViewport(width, btn) {
+            const iframe = document.getElementById('modal-iframe');
+            iframe.style.width = width;
+            document.querySelectorAll('.viewport-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>

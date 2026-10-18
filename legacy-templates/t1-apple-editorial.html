@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="stealth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highwood CS | Apple Keynote Edition</title>
+    <link rel="stylesheet" href="shared-tokens.css">
+    <style>
+        :root {
+            --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-display);
+            letter-spacing: -0.015em;
+        }
+
+        /* Apple Frosted Navbar */
+        .apple-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 52px;
+            background: rgba(15, 16, 20, 0.75);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+        [data-theme="crimson"] .apple-nav,
+        [data-theme="paper"] .apple-nav {
+            background: rgba(255, 255, 255, 0.82);
+        }
+        .nav-inner {
+            max-width: 1120px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .apple-logo {
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            transition: color 0.15s;
+        }
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+        .portal-btn {
+            font-size: 0.78rem;
+            padding: 5px 14px;
+            border-radius: 999px;
+            background: var(--text-primary);
+            color: var(--text-inverse);
+            font-weight: 600;
+            transition: opacity 0.15s;
+        }
+        .portal-btn:hover {
+            opacity: 0.88;
+        }
+
+        /* Apple Hero Keynote */
+        .hero {
+            padding: 160px 24px 100px;
+            text-align: center;
+            max-width: 1040px;
+            margin: 0 auto;
+        }
+        .hero-eyebrow {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .hero h1 {
+            font-size: clamp(3.2rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-sub {
+            font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+            color: var(--text-secondary);
+            max-width: 680px;
+            margin: 0 auto 36px;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+        .hero-cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .btn-apple-primary {
+            background: var(--accent-primary);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 13px 26px;
+            border-radius: 999px;
+            box-shadow: 0 4px 18px var(--accent-glow);
+            transition: transform 0.2s, opacity 0.2s;
+        }
+        .btn-apple-primary:hover {
+            transform: scale(1.02);
+            opacity: 0.92;
+        }
+        .btn-apple-secondary {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 13px 24px;
+            border-radius: 999px;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .btn-apple-secondary:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+        }
+
+        /* Spec Feature Grid */
+        .section-wrap {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 60px 24px 120px;
+        }
+        .section-title-wrap {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title-wrap h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+        }
+        .section-title-wrap p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        /* Glass Cards with Apple Bevel */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .apple-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 28px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;
+        }
+        .apple-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+        }
+        .card-span-8 { grid-column: span 8; }
+        .card-span-4 { grid-column: span 4; }
+        .card-span-6 { grid-column: span 6; }
+        .card-span-12 { grid-column: span 12; }
+
+        .apple-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            margin: 14px 0 10px;
+        }
+        .apple-card p {
+            color: var(--text-secondary);
+            font-size: 0.98rem;
+            line-height: 1.55;
+            margin-bottom: 24px;
+        }
+
+        /* Spec Pill Stats */
+        .spec-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 32px 40px;
+            margin-top: 40px;
+        }
+        .stat-item h4 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent-primary);
+            letter-spacing: -0.03em;
+        }
+        .stat-item span {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-subtle);
+            padding: 60px 24px 80px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 900px) {
+            .card-span-8, .card-span-4, .card-span-6 { grid-column: span 12; }
+            .spec-stats { grid-template-columns: repeat(2, 1fr); }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Apple Navigation -->
+    <header class="apple-nav">
+        <div class="nav-inner">
+            <a href="#" class="apple-logo">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                <span>Highwood CS</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#curriculum">Curriculum</a></li>
+                <li><a href="#ia">Internal Assessment</a></li>
+                <li><a href="#paper3">Case Study 2025</a></li>
+                <li><a href="#vault">Resource Vault</a></li>
+                <li><a href="#announcements">Announcements</a></li>
+            </ul>
+            <a href="#portal" class="portal-btn">Student Portal</a>
+        </div>
+    </header>
+
+    <!-- Keynote Hero -->
+    <section class="hero">
+        <div class="hero-eyebrow">IBDP Computer Science SL / HL</div>
+        <h1>
+            Engineered for thinkers.<br>
+            <span class="gradient-text">Built for the Level 7.</span>
+        </h1>
+        <p class="hero-sub">
+            The flagship digital campus for Highwood computer scientists. From discrete algorithmic logic to full-stack computational solutions.
+        </p>
+        <div class="hero-cta-group">
+            <a href="#curriculum" class="btn-apple-primary">Explore Syllabus</a>
+            <a href="#vault" class="btn-apple-secondary">Download Past Papers →</a>
+        </div>
+    </section>
+
+    <!-- Stat Highlights -->
+    <div class="section-wrap" style="padding-top: 0; padding-bottom: 40px;">
+        <div class="spec-stats">
+            <div class="stat-item">
+                <h4>100%</h4>
+                <span>Exam Spec Aligned</span>
+            </div>
+            <div class="stat-item">
+                <h4>Theme A–D</h4>
+                <span>Complete Modules</span>
+            </div>
+            <div class="stat-item">
+                <h4>30 / 30</h4>
+                <span>IA Benchmark Target</span>
+            </div>
+            <div class="stat-item">
+                <h4>2025</h4>
+                <span>Paper 3 Ready</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Apple Feature Cards -->
+    <main class="section-wrap" id="curriculum">
+        <div class="section-title-wrap">
+            <span class="badge-chip pulse">Academic Framework</span>
+            <h2 style="margin-top: 14px;">The IBDP CS Architecture.</h2>
+            <p>Mastering both the theoretical proofs and real-world implementation.</p>
+        </div>
+
+        <div class="showcase-grid">
+            <!-- Card 1: Theme A (Large 8 col) -->
+            <div class="apple-card card-span-8">
+                <span class="badge-chip">Paper 1 Core</span>
+                <h3>Theme A: Systems in Architecture & Logic</h3>
+                <p>Computer organization, machine cycle mechanics, data representation, boolean calculus, and network topologies dissected with precision.</p>
+                <div style="display:flex; gap:12px;">
+                    <a href="#" class="btn-apple-secondary" style="padding:8px 18px; font-size:0.85rem;">View Topic Modules</a>
+                    <a href="#" class="btn-apple-secondary" style="padding:8px 18px; font-size:0.85rem;">Diagrams & Notes ↗</a>
+                </div>
+            </div>
+
+            <!-- Card 2: IA Target (4 col) -->
+            <div class="apple-card card-span-4">
+                <span class="badge-chip" style="color:var(--badge-gold); border-color:var(--badge-gold);">Criterion A to E</span>
+                <h3>The 30-Mark IA Blueprint</h3>
+                <p>Real-client problem formulation, system architecture diagrams, test plans, and video evidence.</p>
+                <a href="#" class="btn-apple-primary" style="padding:8px 18px; font-size:0.85rem; display:inline-block;">IA Submission Guide</a>
+            </div>
+
+            <!-- Card 3: Paper 3 (6 col) -->
+            <div class="apple-card card-span-6">
+                <span class="badge-chip">HL Higher Level Focus</span>
+                <h3>Paper 3 Case Study: Autonomous Systems</h3>
+                <p>Deep dive into machine cognition, ethical parameters, transformer attention layers, and neural reasoning frameworks for the May/Nov session.</p>
+                <a href="#" class="btn-apple-secondary" style="padding:8px 18px; font-size:0.85rem; display:inline-block;">Read Official Booklet</a>
+            </div>
+
+            <!-- Card 4: Revision Vault (6 col) -->
+            <div class="apple-card card-span-6">
+                <span class="badge-chip">Immediate Download</span>
+                <h3>Practice Paper Repository</h3>
+                <p>Over 10 years of categorized IB questions, mark schemes, and student exemplar scripts curated by our faculty team.</p>
+                <a href="#" class="btn-apple-secondary" style="padding:8px 18px; font-size:0.85rem; display:inline-block;">Open Resource Vault</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Highwood Computer Science Academy • International Baccalaureate Diploma Programme</p>
+        <p style="margin-top: 8px; opacity: 0.6;">Template 01 • Apple Keynote Edition</p>
+    </footer>
+
+    <!-- Interactive Studio Switcher -->
+    <script src="theme-switcher.js"></script>
+</body>
+</html>

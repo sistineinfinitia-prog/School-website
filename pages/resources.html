@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources | Highwood CS</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <style>
+        .resources-hero {
+            padding: 160px 0 80px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d0a0a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resources-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 30%, rgba(128, 0, 0, 0.1) 0%, transparent 50%);
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 250px);
+            gap: var(--spacing-lg);
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .bento-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: var(--spacing-lg);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--primary);
+        }
+
+        .bento-card.large {
+            grid-column: span 2;
+        }
+
+        .bento-card.tall {
+            grid-row: span 2;
+        }
+
+        .bento-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing-md);
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 4px 15px rgba(128, 0, 0, 0.3);
+        }
+
+        .bento-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-inverse);
+        }
+
+        .bento-card p {
+            font-size: 0.95rem;
+            opacity: 0.7;
+            color: var(--text-inverse);
+            line-height: 1.5;
+        }
+
+        .download-list {
+            margin-top: var(--spacing-xl);
+        }
+
+        .download-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: #fff;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+
+        .download-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .file-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .file-details h4 {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .file-details span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 992px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+            }
+            .bento-card.large { grid-column: span 2; }
+        }
+
+        @media (max-width: 600px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+            .bento-card.large { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+    <header></header>
+
+    <section class="resources-hero">
+        <div class="section-container" style="text-align: center;">
+            <span class="tag tag-coral">Student Vault</span>
+            <h1 style="color: white; font-size: 4rem; font-weight: 800; letter-spacing: -2px; margin-top: 10px;">Resource Hub</h1>
+            <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 20px auto; font-size: 1.2rem;">
+                A curated collection of practice papers, revision guides, and technical manuals to master the CS syllabus.
+            </p>
+        </div>
+    </section>
+
+    <main class="content-section" style="background: var(--bg-section);">
+        <div class="section-container">
+            <div class="bento-grid">
+                <a href="../resources/Overall Practice Papers" class="bento-card large">
+                    <div>
+                        <div class="bento-icon">📝</div>
+                        <h3>Overall Practice Papers</h3>
+                        <p>Comprehensive set of past papers and mock exams designed to simulate the real IBDP environment.</p>
+                    </div>
+                    <span style="font-weight: 600; color: var(--primary);">Browse Collection →</span>
+                </a>
+
+                <a href="../resources/Revision Folder" class="bento-card tall">
+                    <div>
+                        <div class="bento-icon">⚡</div>
+                        <h3>Revision Kits</h3>
+                        <p>High-intensity summary sheets, flashcards, and concept maps covering Themes A through D.</p>
+                    </div>
+                    <div style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+                        <ul style="list-style: none; padding: 0; font-size: 0.85rem; color: rgba(255,255,255,0.5);">
+                            <li style="margin-bottom: 8px;">• Topic Summaries</li>
+                            <li style="margin-bottom: 8px;">• Keyword Glosssary</li>
+                            <li>• Exam Tips</li>
+                        </ul>
+                    </div>
+                </a>
+
+                <a href="../resources/Curriculum" class="bento-card">
+                    <div>
+                        <div class="bento-icon">📚</div>
+                        <h3>Curriculum Assets</h3>
+                        <p>Primary learning materials and classroom handouts.</p>
+                    </div>
+                </a>
+
+                <a href="../resources/IA" class="bento-card">
+                    <div>
+                        <div class="bento-icon">💻</div>
+                        <h3>IA Support</h3>
+                        <p>Documentation templates and sample solutions.</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="download-list">
+                <div class="section-header" style="text-align: left; margin-bottom: var(--spacing-lg);">
+                    <span class="tag tag-blue">Direct Downloads</span>
+                    <h2 style="margin-top: 10px;">Essential Documents</h2>
+                </div>
+
+                <a href="../resources/Error log - Python Programming.pdf" class="download-item" style="text-decoration: none; color: inherit;">
+                    <div class="file-info">
+                        <div class="file-icon">📄</div>
+                        <div class="file-details">
+                            <h4>Error Log - Python Programming</h4>
+                            <span>PDF Document • 2.8 MB</span>
+                        </div>
+                    </div>
+                    <div class="btn btn-secondary" style="padding: 8px 16px;">Download</div>
+                </a>
+
+                <a href="../resources/Lesson2_GitHub_Deployment.pptx" class="download-item" style="text-decoration: none; color: inherit;">
+                    <div class="file-info">
+                        <div class="file-icon">📊</div>
+                        <div class="file-details">
+                            <h4>GitHub Deployment Guide</h4>
+                            <span>PowerPoint • 253 KB</span>
+                        </div>
+                    </div>
+                    <div class="btn btn-secondary" style="padding: 8px 16px;">Download</div>
+                </a>
+
+                <a href="../resources/SoW IB Computer Science 2027.xlsx" class="download-item" style="text-decoration: none; color: inherit;">
+                    <div class="file-info">
+                        <div class="file-icon">📈</div>
+                        <div class="file-details">
+                            <h4>Scheme of Work 2027</h4>
+                            <span>Excel Spreadsheet • 35 KB</span>
+                        </div>
+                    </div>
+                    <div class="btn btn-secondary" style="padding: 8px 16px;">Download</div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer></footer>
+    <script src="../js/ui.js"></script>
+</body>
+</html>

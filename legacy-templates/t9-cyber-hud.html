@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="stealth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highwood CS | Cyber HUD 2099</title>
+    <link rel="stylesheet" href="shared-tokens.css">
+    <style>
+        :root {
+            --font-hud: 'Space Grotesk', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        body {
+            font-family: var(--font-hud);
+            background: var(--bg-base);
+            color: var(--text-primary);
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Ambient HUD Grid Lines */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(var(--border-subtle) 1px, transparent 1px),
+                              linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+        .hud-wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 24px 80px;
+        }
+
+        /* Top HUD Bar */
+        .hud-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(18, 20, 26, 0.7);
+            backdrop-filter: blur(24px);
+            border: 1px solid var(--border-accent);
+            border-radius: 16px;
+            padding: 16px 28px;
+            margin-bottom: 50px;
+            box-shadow: 0 0 25px -5px var(--accent-glow);
+        }
+        [data-theme="crimson"] .hud-bar,
+        [data-theme="paper"] .hud-bar {
+            background: rgba(255, 255, 255, 0.88);
+        }
+        .hud-logo {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.08em;
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .hud-coords {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .hud-links {
+            display: flex;
+            gap: 24px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-weight: 600;
+        }
+        .hud-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        /* HUD Hero */
+        .hud-hero {
+            background: rgba(18, 20, 26, 0.6);
+            backdrop-filter: blur(28px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 28px;
+            padding: 70px 50px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+        [data-theme="crimson"] .hud-hero,
+        [data-theme="paper"] .hud-hero {
+            background: rgba(255, 255, 255, 0.8);
+        }
+        .hud-corner {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-color: var(--accent-primary);
+            border-style: solid;
+        }
+        .c-tl { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
+        .c-tr { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
+        .c-bl { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; }
+        .c-br { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
+
+        .telemetry-tag {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .hud-hero h1 {
+            font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .hud-hero p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 620px;
+            line-height: 1.6;
+            margin-bottom: 36px;
+        }
+        .hud-btn {
+            background: var(--accent-primary);
+            color: var(--text-inverse);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 14px 32px;
+            border-radius: 8px;
+            box-shadow: 0 0 25px var(--accent-glow);
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+        .hud-btn:hover {
+            transform: scale(1.03);
+        }
+
+        /* 3-Column Glass Panels */
+        .hud-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .hud-panel {
+            background: rgba(18, 20, 26, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 18px;
+            padding: 32px 24px;
+            position: relative;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        [data-theme="crimson"] .hud-panel,
+        [data-theme="paper"] .hud-panel {
+            background: rgba(255, 255, 255, 0.8);
+        }
+        .hud-panel:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-accent);
+        }
+        .panel-header {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .hud-panel h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .hud-panel p {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 850px) {
+            .hud-grid { grid-template-columns: 1fr; }
+            .hud-links { display: none; }
+            .hud-hero { padding: 40px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hud-wrapper">
+        <header class="hud-bar">
+            <div class="hud-logo">
+                <span>⚡</span>
+                <span>SYS_INTERFACE // HIGHWOOD CS</span>
+            </div>
+            <div class="hud-coords">[LOC: 25.2048° N // IBDP-PORTAL]</div>
+            <nav class="hud-links">
+                <a href="#curriculum">Syllabus</a>
+                <a href="#ia">IA Solution</a>
+                <a href="#papers">Vault</a>
+            </nav>
+        </header>
+
+        <section class="hud-hero">
+            <div class="hud-corner c-tl"></div>
+            <div class="hud-corner c-tr"></div>
+            <div class="hud-corner c-bl"></div>
+            <div class="hud-corner c-br"></div>
+
+            <div class="telemetry-tag">
+                <span class="badge-chip pulse" style="font-size:0.7rem;">STATUS: ONLINE</span>
+                <span>NEURAL COMPUTATION // 2026</span>
+            </div>
+
+            <h1>
+                Algorithmic Intelligence.<br>
+                Engineered for HL / SL.
+            </h1>
+            <p>
+                Advanced telemetry, machine architecture blueprints, and rigorous past examinations compiled for next-generation systems engineers.
+            </p>
+
+            <a href="#curriculum" class="hud-btn">Initialize Syllabus ↗</a>
+        </section>
+
+        <main class="hud-grid" id="curriculum">
+            <div class="hud-panel">
+                <div class="panel-header">
+                    <span>SYS_01 // HARDWARE</span>
+                    <span>ACTIVE</span>
+                </div>
+                <h3>Theme A Architecture</h3>
+                <p>Register operations, memory addressing modes, control unit micro-operations, and gate-level proofs.</p>
+                <span style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-primary);">[EXECUTE] View Topics →</span>
+            </div>
+
+            <div class="hud-panel">
+                <div class="panel-header">
+                    <span>SYS_02 // NETWORK</span>
+                    <span>SYNCED</span>
+                </div>
+                <h3>Theme B Distributed Systems</h3>
+                <p>OSI layer transport semantics, packet switching protocols, and cryptographic cipher security.</p>
+                <span style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-primary);">[EXECUTE] View Topics →</span>
+            </div>
+
+            <div class="hud-panel">
+                <div class="panel-header">
+                    <span>SYS_03 // IA PORTAL</span>
+                    <span>30/30 MARKS</span>
+                </div>
+                <h3>Internal Assessment Core</h3>
+                <p>Full-stack client project development, Criterion A to E validation matrices, and video screencast guides.</p>
+                <span style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-primary);">[EXECUTE] Open Dossier →</span>
+            </div>
+        </main>
+    </div>
+
+    <script src="theme-switcher.js"></script>
+</body>
+</html>

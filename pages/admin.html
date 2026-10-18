@@ -7,190 +7,283 @@
     
     <link rel="stylesheet" href="../css/main.css">
     <style>
+        :root {
+            --admin-primary: #800000;
+            --admin-secondary: #2d0a0a;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
         body {
-            background-color: var(--bg-main);
+            background-color: #0f0f0f;
+            color: #fff;
+            min-height: 100vh;
         }
 
-        .admin-container { 
-            max-width: 1000px; 
-            margin: 0 auto; 
+        .admin-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            background: var(--admin-secondary);
+            border-right: 1px solid var(--glass-border);
             padding: var(--spacing-xl) var(--spacing-md);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .section-title {
-            font-size: 2.5rem;
+        .sidebar-logo {
+            font-size: 1.5rem;
             font-weight: 800;
-            letter-spacing: -1.5px;
-            color: var(--text-inverse);
-            margin-bottom: var(--spacing-lg);
+            color: var(--primary);
+            letter-spacing: -1px;
+            margin-bottom: 40px;
             text-align: center;
         }
 
-        .card {
-            background: var(--bg-section);
-            padding: var(--spacing-lg);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-soft);
+        .nav-item {
+            padding: 12px 20px;
+            border-radius: 12px;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(128, 0, 0, 0.1);
+            color: #fff;
+        }
+
+        .nav-item.active {
+            border-left: 4px solid var(--primary);
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            padding: var(--spacing-xl);
+            background: radial-gradient(circle at top right, rgba(128, 0, 0, 0.05), transparent);
+        }
+
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: var(--spacing-xl);
             margin-bottom: var(--spacing-lg);
-            border: 1px solid rgba(0,0,0,0.03);
         }
 
-        .form-group { margin-bottom: var(--spacing-md); }
-        
-        .form-group label { 
-            display: block; 
-            margin-bottom: 8px; 
-            font-weight: 600; 
-            color: var(--text-main);
-            font-size: 0.9rem;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-lg);
+            margin-bottom: 40px;
         }
 
-        .form-group input, 
-        .form-group textarea { 
-            width: 100%; 
-            padding: 12px 16px; 
-            border: 1px solid rgba(0,0,0,0.1); 
-            border-radius: 12px; 
-            font-family: var(--font-main);
-            background: var(--bg-main);
-            transition: var(--transition);
+        .stat-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: var(--spacing-lg);
         }
 
-        .form-group input:focus, 
-        .form-group textarea:focus {
+        .stat-card h4 { font-size: 0.9rem; opacity: 0.5; margin-bottom: 5px; }
+        .stat-card .value { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+
+        /* Form Styling */
+        .admin-input {
+            width: 100%;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 14px 18px;
+            color: #fff;
+            margin-bottom: 20px;
+            font-family: inherit;
+        }
+
+        .admin-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(128, 0, 0, 0.05);
-            background: #fff;
+            background: rgba(255,255,255,0.05);
         }
 
-        .error-message { 
-            background: #ffebee;
-            color: #c62828;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .success-message { 
-            background: #e8f5e9;
-            color: #2e7d32;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .post-list h3 { 
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: var(--spacing-lg);
-            text-align: center;
-        }
-
-        .post-card { 
-            background: #fff;
-            border-radius: 15px;
-            padding: var(--spacing-md);
-            margin-bottom: var(--spacing-md);
-            box-shadow: var(--shadow-soft);
-            transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.02);
-        }
-
-        .delete-btn { 
-            background: #ff4d4d; 
-            color: white; 
-            border: none; 
-            padding: 8px 16px; 
-            border-radius: 8px; 
-            cursor: pointer; 
+        .admin-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
             font-weight: 600;
-            font-size: 0.8rem;
-            transition: var(--transition);
+            opacity: 0.8;
+        }
+
+        /* Post Cards */
+        .post-item {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: var(--spacing-md);
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-btn {
+            background: rgba(244, 67, 54, 0.1);
+            color: #f44336;
+            border: 1px solid rgba(244, 67, 54, 0.2);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .delete-btn:hover {
-            background: #cc0000;
-            transform: scale(1.05);
-        }
-
-        .logout-btn {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            padding: 8px 20px;
-            border-radius: var(--border-radius-pill);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .logout-btn:hover {
-            background: var(--primary);
+            background: #f44336;
             color: white;
+        }
+
+        /* Login Overlay */
+        .login-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #0f0f0f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        @media (max-width: 992px) {
+            .admin-layout { grid-template-columns: 1fr; }
+            .sidebar { display: none; }
         }
     </style>
 </head>
 <body>
-    <header></header>
-
-    <div class="admin-container">
-        <div id="login-section">
-            <h1 class="section-title">Admin Access</h1>
-            <div class="card" style="max-width: 500px; margin: 0 auto;">
+    <!-- Login Section -->
+    <div id="login-section" class="login-overlay">
+        <div class="login-card">
+            <div class="sidebar-logo">CS ADMIN PORTAL</div>
+            <div class="glass-card">
+                <h2 style="margin-bottom: 20px;">Secure Access</h2>
                 <form id="login-form">
-                    <div class="form-group">
-                        <label for="admin-key">Admin Passkey</label>
-                        <input type="password" id="admin-key" placeholder="Enter key..." required>
+                    <div style="text-align: left;">
+                        <label class="admin-label">Admin Passkey</label>
+                        <input type="password" id="admin-key" class="admin-input" placeholder="••••••••" required>
                     </div>
-                    <button type="submit" class="btn" style="width: 100%;">Sign In</button>
-                    <p id="login-error" class="error-message" style="display: none;"></p>
+                    <button type="submit" class="btn" style="width: 100%;">Authorize Access</button>
+                    <p id="login-error" style="color: #f44336; margin-top: 15px; font-size: 0.9rem; display: none;"></p>
                 </form>
-            </div>
-        </div>
-
-        <div id="admin-section" style="display: none;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg);">
-                <h1 style="font-weight: 800; font-size: 2rem; letter-spacing: -1px;">Dashboard</h1>
-                <button id="logout-btn" class="logout-btn">Sign Out</button>
-            </div>
-            
-            <div class="card">
-                <h2 style="margin-bottom: var(--spacing-md); font-weight: 700;">New Announcement</h2>
-                <form id="post-form">
-                    <div class="form-group">
-                        <label for="post-title">Title</label>
-                        <input type="text" id="post-title" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="post-desc">Content</label>
-                        <textarea id="post-desc" rows="4" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="post-link">Drive Link (Optional)</label>
-                        <input type="url" id="post-link" placeholder="https://drive.google.com/...">
-                    </div>
-                    <button type="submit" class="btn" id="submit-btn">Publish Announcement</button>
-                    <p id="post-status"></p>
-                </form>
-            </div>
-
-            <div class="post-list" id="post-list">
-                <h3>Manage Announcements</h3>
-                <div id="posts-container">
-                    <p style="text-align: center;">Loading...</p>
-                </div>
             </div>
         </div>
     </div>
 
-    <footer></footer>
+    <!-- Main Dashboard Section -->
+    <div id="admin-section" class="admin-layout" style="display: none;">
+        <aside class="sidebar">
+            <div class="sidebar-logo">CS ACADEMY</div>
+            <nav style="flex-grow: 1;">
+                <a href="#" class="nav-item active"><span>📊</span> Dashboard</a>
+                <a href="#" class="nav-item"><span>📢</span> Announcements</a>
+                <a href="../resources/Weekly Unit planning" class="nav-item" target="_blank"><span>📅</span> Unit Planning</a>
+                <a href="../index.html" class="nav-item"><span>🌐</span> Live Site</a>
+            </nav>
+            <button id="logout-btn" class="nav-item" style="background: none; border: none; width: 100%; cursor: pointer;">
+                <span>🚪</span> Sign Out
+            </button>
+        </aside>
 
-    <script src="../js/ui.js"></script>
+        <main class="main-content">
+            <div class="header-bar">
+                <div>
+                    <h1 style="font-size: 2rem; font-weight: 800;">Admin Dashboard</h1>
+                    <p style="opacity: 0.5;">Manage your department resources and communications.</p>
+                </div>
+                <div id="current-user" style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 40px; height: 40px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800;">A</div>
+                    <span style="font-weight: 600;">Head of Dept.</span>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>Total Posts</h4>
+                    <div class="value" id="stat-posts">-</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Internal Files</h4>
+                    <div class="value">12</div>
+                </div>
+                <div class="stat-card">
+                    <h4>System Status</h4>
+                    <div class="value" style="color: #4caf50;">Active</div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--spacing-lg);">
+                <!-- Announcement Form -->
+                <div class="glass-card">
+                    <h2 style="margin-bottom: 25px; display: flex; align-items: center; gap: 10px;">
+                        <span style="background: var(--primary); padding: 8px; border-radius: 8px; font-size: 1rem;">✍️</span> Create Announcement
+                    </h2>
+                    <form id="post-form">
+                        <label class="admin-label">Announcement Title</label>
+                        <input type="text" id="post-title" class="admin-input" placeholder="e.g. Mock Exam Schedule" required>
+                        
+                        <label class="admin-label">Description / Body Content</label>
+                        <textarea id="post-desc" class="admin-input" rows="5" placeholder="Details about the announcement..." required></textarea>
+                        
+                        <label class="admin-label">Google Drive Attachment (Optional)</label>
+                        <input type="url" id="post-link" class="admin-input" placeholder="https://drive.google.com/...">
+                        
+                        <button type="submit" class="btn" id="submit-btn" style="width: 100%; margin-top: 10px;">Publish to Academy Feed</button>
+                        <p id="post-status" style="margin-top: 15px; text-align: center;"></p>
+                    </form>
+                </div>
+
+                <!-- Recent Activity / Post List -->
+                <div class="glass-card" style="display: flex; flex-direction: column;">
+                    <h2 style="margin-bottom: 25px;">Management</h2>
+                    <div id="posts-container" style="flex-grow: 1;">
+                        <p style="text-align: center; opacity: 0.4;">Fetching feed...</p>
+                    </div>
+                    
+                    <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--glass-border);">
+                        <h3 style="font-size: 1.1rem; margin-bottom: 15px;">Internal Links</h3>
+                        <a href="../resources/Weekly Unit planning" target="_blank" class="nav-item" style="background: rgba(255,255,255,0.03); margin-bottom: 10px;">
+                            <span>📂</span> Weekly Unit Planning
+                        </a>
+                        <a href="../resources/Scope and sequence - LESSON PLANNING.docx" class="nav-item" style="background: rgba(255,255,255,0.03);">
+                            <span>📑</span> Scope and Sequence
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
     <script type="module">
         import { auth, db, ref } from "../js/config.js";
         import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
@@ -205,14 +298,15 @@
         const postStatus = document.getElementById("post-status");
         const submitBtn = document.getElementById("submit-btn");
         const postsContainer = document.getElementById("posts-container");
+        const statPosts = document.getElementById("stat-posts");
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 loginSection.style.display = "none";
-                adminSection.style.display = "block";
+                adminSection.style.display = "grid";
                 loadPosts();
             } else {
-                loginSection.style.display = "block";
+                loginSection.style.display = "flex";
                 adminSection.style.display = "none";
             }
         });
@@ -222,7 +316,7 @@
             const key = document.getElementById("admin-key").value;
             signInWithEmailAndPassword(auth, "admin@highwood.edu", key)
                 .catch((error) => {
-                    loginError.textContent = "Access Denied: Incorrect Key.";
+                    loginError.textContent = "Access Denied: Invalid Authorization Key.";
                     loginError.style.display = "block";
                 });
         });
@@ -231,7 +325,7 @@
 
         postForm.addEventListener("submit", async (e) => {
             e.preventDefault();
-            submitBtn.textContent = "Publishing...";
+            submitBtn.textContent = "Processing...";
             submitBtn.disabled = true;
 
             try {
@@ -242,14 +336,15 @@
                 const newPostRef = push(dbRef(db, 'posts'));
                 await set(newPostRef, { title, description: desc, date: new Date().toISOString(), driveLink: link });
 
-                postStatus.textContent = "Announcement published!";
-                postStatus.className = "success-message";
+                postStatus.textContent = "Success! Announcement is live.";
+                postStatus.style.color = "#4caf50";
                 postForm.reset();
+                setTimeout(() => postStatus.textContent = "", 3000);
             } catch (error) {
                 postStatus.textContent = "Error: " + error.message;
-                postStatus.className = "error-message";
+                postStatus.style.color = "#f44336";
             } finally {
-                submitBtn.textContent = "Publish Announcement";
+                submitBtn.textContent = "Publish to Academy Feed";
                 submitBtn.disabled = false;
             }
         });
@@ -262,33 +357,31 @@
                     posts.push({ id: childSnapshot.key, ...childSnapshot.val() });
                 });
 
+                statPosts.textContent = posts.length;
                 posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
                 if (posts.length === 0) {
-                    postsContainer.innerHTML = "<p style='text-align: center; opacity: 0.6;'>No announcements found.</p>";
+                    postsContainer.innerHTML = "<p style='text-align: center; opacity: 0.3; margin-top: 40px;'>No active announcements.</p>";
                     return;
                 }
 
                 posts.forEach(post => {
-                    const card = document.createElement("div");
-                    card.className = "post-card";
-                    card.innerHTML = `
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                            <div style="flex: 1;">
-                                <h4 style="font-weight: 700; color: var(--primary); font-size: 1.2rem; margin-bottom: 4px;">${post.title}</h4>
-                                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">${new Date(post.date).toLocaleDateString()}</p>
-                                <p style="color: var(--text-body); font-size: 0.95rem; line-height: 1.6;">${post.description}</p>
-                            </div>
-                            <button class="delete-btn" onclick="window.deletePost('${post.id}')">Delete</button>
+                    const item = document.createElement("div");
+                    item.className = "post-item";
+                    item.innerHTML = `
+                        <div>
+                            <h4 style="margin: 0; font-weight: 700;">${post.title}</h4>
+                            <p style="margin: 0; font-size: 0.75rem; opacity: 0.5;">${new Date(post.date).toLocaleDateString()}</p>
                         </div>
+                        <button class="delete-btn" onclick="window.deletePost('${post.id}')">Remove</button>
                     `;
-                    postsContainer.appendChild(card);
+                    postsContainer.appendChild(item);
                 });
             });
         }
 
         window.deletePost = async (id) => {
-            if (confirm("Delete this announcement?")) {
+            if (confirm("Permanently delete this announcement?")) {
                 await remove(dbRef(db, 'posts/' + id));
             }
         };

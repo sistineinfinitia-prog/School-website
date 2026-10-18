@@ -1,0 +1,217 @@
+/* ==========================================================================
+   HIGHWOOD CS | 10 UI TEMPLATES DESIGN SYSTEM TOKENS
+   Target Audience: 16-18 IBDP Computer Science SL / HL Students
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+/* --- DEFAULT THEME: STEALTH ONYX (Apple Dark / Midnight) --- */
+:root,
+[data-theme="stealth"] {
+    --theme-name: "Stealth Onyx";
+    --bg-base: #070709;
+    --bg-surface: #0f1013;
+    --bg-card: #15161b;
+    --bg-card-hover: #1c1d23;
+    --bg-elevated: #24262f;
+    --text-primary: #f5f5f7;
+    --text-secondary: #a1a1aa;
+    --text-muted: #71717a;
+    --text-inverse: #070709;
+    --accent-primary: #2997ff;
+    --accent-secondary: #85bdfa;
+    --accent-glow: rgba(41, 151, 255, 0.25);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(255, 255, 255, 0.22);
+    --border-accent: rgba(41, 151, 255, 0.4);
+    --tag-bg: rgba(41, 151, 255, 0.12);
+    --tag-text: #58a6ff;
+    --tag-border: rgba(41, 151, 255, 0.25);
+    --badge-gold: #fbbf24;
+    --badge-emerald: #34d399;
+    --badge-ruby: #f87171;
+    --shadow-card: 0 12px 36px -10px rgba(0, 0, 0, 0.7);
+    --shadow-glow: 0 0 35px -5px rgba(41, 151, 255, 0.2);
+    --is-dark: 1;
+}
+
+/* --- THEME 2: HIGHWOOD CRIMSON (Heritage School Maroon) --- */
+[data-theme="crimson"] {
+    --theme-name: "Highwood Crimson";
+    --bg-base: #fcf9f9;
+    --bg-surface: #ffffff;
+    --bg-card: #ffffff;
+    --bg-card-hover: #fdf2f2;
+    --bg-elevated: #fae6e6;
+    --text-primary: #190a0a;
+    --text-secondary: #574444;
+    --text-muted: #8a7777;
+    --text-inverse: #ffffff;
+    --accent-primary: #800000;
+    --accent-secondary: #b31919;
+    --accent-glow: rgba(128, 0, 0, 0.18);
+    --border-subtle: rgba(128, 0, 0, 0.1);
+    --border-hover: rgba(128, 0, 0, 0.3);
+    --border-accent: rgba(128, 0, 0, 0.45);
+    --tag-bg: rgba(128, 0, 0, 0.08);
+    --tag-text: #800000;
+    --tag-border: rgba(128, 0, 0, 0.2);
+    --badge-gold: #b45309;
+    --badge-emerald: #059669;
+    --badge-ruby: #dc2626;
+    --shadow-card: 0 12px 32px -8px rgba(128, 0, 0, 0.08);
+    --shadow-glow: 0 0 35px -5px rgba(128, 0, 0, 0.15);
+    --is-dark: 0;
+}
+
+/* --- THEME 3: CYBER MATRIX (Neon Mint & Terminal Glow) --- */
+[data-theme="cyber"] {
+    --theme-name: "Cyber Matrix";
+    --bg-base: #050807;
+    --bg-surface: #0a110e;
+    --bg-card: #0f1a15;
+    --bg-card-hover: #14241e;
+    --bg-elevated: #1a3028;
+    --text-primary: #e6f9f0;
+    --text-secondary: #90b8a4;
+    --text-muted: #4e7360;
+    --text-inverse: #050807;
+    --accent-primary: #00ff88;
+    --accent-secondary: #00e5ff;
+    --accent-glow: rgba(0, 255, 136, 0.28);
+    --border-subtle: rgba(0, 255, 136, 0.15);
+    --border-hover: rgba(0, 255, 136, 0.4);
+    --border-accent: rgba(0, 255, 136, 0.6);
+    --tag-bg: rgba(0, 255, 136, 0.1);
+    --tag-text: #00ff88;
+    --tag-border: rgba(0, 255, 136, 0.3);
+    --badge-gold: #facc15;
+    --badge-emerald: #00ff88;
+    --badge-ruby: #fb7185;
+    --shadow-card: 0 12px 36px -10px rgba(0, 255, 136, 0.15);
+    --shadow-glow: 0 0 35px -5px rgba(0, 255, 136, 0.25);
+    --is-dark: 1;
+}
+
+/* --- THEME 4: NORDIC SLATE (Deep Titanium & Indigo) --- */
+[data-theme="slate"] {
+    --theme-name: "Nordic Slate";
+    --bg-base: #0b1120;
+    --bg-surface: #111a2e;
+    --bg-card: #17233d;
+    --bg-card-hover: #1f3054;
+    --bg-elevated: #283e6b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --text-inverse: #0b1120;
+    --accent-primary: #38bdf8;
+    --accent-secondary: #818cf8;
+    --accent-glow: rgba(56, 189, 248, 0.25);
+    --border-subtle: rgba(148, 163, 184, 0.14);
+    --border-hover: rgba(56, 189, 248, 0.35);
+    --border-accent: rgba(56, 189, 248, 0.5);
+    --tag-bg: rgba(56, 189, 248, 0.12);
+    --tag-text: #38bdf8;
+    --tag-border: rgba(56, 189, 248, 0.28);
+    --badge-gold: #fbbf24;
+    --badge-emerald: #34d399;
+    --badge-ruby: #f87171;
+    --shadow-card: 0 14px 38px -10px rgba(11, 17, 32, 0.7);
+    --shadow-glow: 0 0 35px -5px rgba(56, 189, 248, 0.22);
+    --is-dark: 1;
+}
+
+/* --- THEME 5: CLEAN PAPER (Apple / Stripe Minimalist Light) --- */
+[data-theme="paper"] {
+    --theme-name: "Clean Paper";
+    --bg-base: #fbfbfd;
+    --bg-surface: #ffffff;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f4f5f8;
+    --bg-elevated: #e8ebf0;
+    --text-primary: #1d1d1f;
+    --text-secondary: #5a5a60;
+    --text-muted: #86868b;
+    --text-inverse: #ffffff;
+    --accent-primary: #0066cc;
+    --accent-secondary: #0077ed;
+    --accent-glow: rgba(0, 102, 204, 0.16);
+    --border-subtle: rgba(0, 0, 0, 0.08);
+    --border-hover: rgba(0, 0, 0, 0.22);
+    --border-accent: rgba(0, 102, 204, 0.4);
+    --tag-bg: rgba(0, 102, 204, 0.08);
+    --tag-text: #0066cc;
+    --tag-border: rgba(0, 102, 204, 0.2);
+    --badge-gold: #b45309;
+    --badge-emerald: #059669;
+    --badge-ruby: #dc2626;
+    --shadow-card: 0 8px 28px -4px rgba(0, 0, 0, 0.07);
+    --shadow-glow: 0 0 35px -5px rgba(0, 102, 204, 0.12);
+    --is-dark: 0;
+}
+
+/* Base Global Reset & Common Classes */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.15s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+/* Reusable Micro-Badges */
+.badge-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    border: 1px solid var(--tag-border);
+}
+
+.badge-chip.pulse::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: currentColor;
+    box-shadow: 0 0 8px currentColor;
+    animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+}
