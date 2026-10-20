@@ -1,59 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="lilac" data-texture="animated">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Study | Highwood CS</title>
+    <title>Case Study | Computer Science</title>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
 </head>
 <body>
     <header></header>
-    <section class="hero" style="padding-top: 120px; flex-direction: column; text-align: center;">
-        <span class="tag tag-purple">IBDP Paper 3</span>
-        <h1 style="font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; margin-top: 10px;">The Perfect Chatbot</h1>
-        <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.9); max-width: 700px; margin: 15px auto;">
-            Case study booklet for the 2024-2025 academic session. Required for Higher Level Computer Science candidates.
+
+    <section class="hero">
+        <div class="zen-badge">
+            <span class="badge-dot"></span>
+            <span>PAPER 3 • HL ONLY (30 MARKS)</span>
+        </div>
+        <h1>Case Study: The Perfect Chatbot</h1>
+        <p>
+            Official case study dossier, key concepts, and exam questions for Higher Level candidates.
         </p>
     </section>
 
-    <div class="wave-divider"></div>
-
     <main class="content-section">
         <div class="section-container">
-            <!-- Metadata Cards -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-xl);">
-                <div class="card" style="text-align: center; border-top: 4px solid var(--primary);">
-                    <h3 style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--primary); margin-bottom: 5px;">Exam Session</h3>
-                    <p style="font-weight: 700; font-size: 1.1rem;">May & Nov 2025</p>
+            <!-- Meta Cards -->
+            <div class="card-grid" style="margin-top: 0; margin-bottom: 28px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                <div class="card">
+                    <span class="zen-pill">EXAM SESSION</span>
+                    <h3 style="font-size: 1.1rem; margin: 8px 0 2px;">May & Nov 2025</h3>
+                    <p style="font-size: 0.82rem; color: var(--text-muted);">Current active dossier.</p>
                 </div>
-                <div class="card" style="text-align: center; border-top: 4px solid var(--accent);">
-                    <h3 style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 5px;">Requirement</h3>
-                    <p style="font-weight: 700; font-size: 1.1rem;">Higher Level Only</p>
+
+                <div class="card">
+                    <span class="zen-pill">REQUIREMENT</span>
+                    <h3 style="font-size: 1.1rem; margin: 8px 0 2px;">HL Only</h3>
+                    <p style="font-size: 0.82rem; color: var(--text-muted);">Paper 3 examination (1 hour).</p>
                 </div>
-                <div class="card" style="text-align: center; border-top: 4px solid var(--success);">
-                    <h3 style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--success); margin-bottom: 5px;">Topic Focus</h3>
-                    <p style="font-weight: 700; font-size: 1.1rem;">Chatbots & AI</p>
+
+                <div class="card">
+                    <span class="zen-pill">TOPIC</span>
+                    <h3 style="font-size: 1.1rem; margin: 8px 0 2px;">AI & Chatbots</h3>
+                    <p style="font-size: 0.82rem; color: var(--text-muted);">LLMs and conversational systems.</p>
+                </div>
+
+                <div class="card">
+                    <span class="zen-pill">2026/2027 TOPIC</span>
+                    <span class="status-badge pending" style="margin-top: 8px; display: inline-block;">PENDING RELEASE</span>
+                    <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 4px;">IB releases new case studies annually.</p>
                 </div>
             </div>
 
-            <!-- PDF Viewer Section -->
-            <div class="card" style="padding: 0; overflow: hidden; height: 800px; position: relative;">
-                <div style="padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.05);">
-                    <h2 style="margin: 0; font-size: 1.2rem;">Official Booklet Preview</h2>
-                    <a href="https://drive.google.com/file/d/1fyQgu6x-KSFOlxhUQIQi9ZigUefAkewb/view" target="_blank" class="btn btn-inverse" style="padding: 8px 16px; font-size: 0.9rem;">
-                        Open Fullscreen <i class="fas fa-external-link-alt"></i>
-                    </a>
+            <!-- PDF Viewer Card -->
+            <div class="card" style="padding: 0; overflow: hidden; position: relative;">
+                <div style="padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <span class="zen-pill">DOSSIER</span>
+                            <span class="status-badge ready">READY</span>
+                        </div>
+                        <h2 style="margin: 6px 0 0; font-size: 1.25rem;">Case Study Booklet Preview</h2>
+                    </div>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <a href="practice.html?topic=ai" class="btn btn-secondary">Practice AI Questions</a>
+                        <a href="https://drive.google.com/file/d/1fyQgu6x-KSFOlxhUQIQi9ZigUefAkewb/view" target="_blank" class="btn">Open Fullscreen →</a>
+                    </div>
                 </div>
-                <iframe src="https://drive.google.com/file/d/1fyQgu6x-KSFOlxhUQIQi9ZigUefAkewb/preview" width="100%" height="100%" allow="autoplay" style="border: none;"></iframe>
+                <div style="height: 720px;">
+                    <iframe src="https://drive.google.com/file/d/1fyQgu6x-KSFOlxhUQIQi9ZigUefAkewb/preview" width="100%" height="100%" allow="autoplay" style="border: none;"></iframe>
+                </div>
             </div>
-            
-            <div style="margin-top: var(--spacing-xl); text-align: center;">
-                <p style="color: var(--text-body); font-style: italic;">Note: If the preview doesn't load, please use the button above to open the file directly in Google Drive.</p>
+
+            <div class="missing-box" style="margin-top: 24px;">
+                <span>Missing: 2026 Case Study topic has not been released yet. The 2025 booklet is the current document in use.</span>
             </div>
         </div>
     </main>
 
     <footer></footer>
+
     <script src="../js/ui.js"></script>
+    <script src="../js/ribbon-waves.js"></script>
 </body>
 </html>

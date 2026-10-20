@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="lilac" data-texture="animated">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Questions | Computer Science</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+    <style>
+        .search-box {
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            padding: 12px 18px;
+            color: var(--text-primary);
+            font-family: var(--font-zen-body);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            outline: none;
+        }
+        .search-box:focus {
+            border-color: var(--accent-primary);
+        }
+        .results-count {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header></header>
+
+    <section class="hero">
+        <div class="zen-badge">
+            <span class="badge-dot"></span>
+            <span>EXAM QUESTION BANK • SL & HL</span>
+        </div>
+        <h1>Exam Question Practice</h1>
+        <p>
+            Filter questions by topic. Write your answer first, then reveal the official marking scheme to self-assess.
+        </p>
+    </section>
+
+    <main class="content-section">
+        <div class="section-container" style="max-width: 900px;">
+            <!-- Search & Filters -->
+            <input type="text" id="question-search" class="search-box" placeholder="Search questions by keyword (e.g. CPU, ROM, Normalization, Array, OOP)...">
+
+            <div class="filter-bar" id="filter-bar">
+                <button class="filter-btn active" data-filter="all">All Topics</button>
+                <button class="filter-btn" data-filter="architecture">Architecture & CPU</button>
+                <button class="filter-btn" data-filter="systems">Memory & OS</button>
+                <button class="filter-btn" data-filter="networks">Networks & Security</button>
+                <button class="filter-btn" data-filter="databases">Databases & SQL</button>
+                <button class="filter-btn" data-filter="algorithms">Computational Thinking</button>
+                <button class="filter-btn" data-filter="oop">OOP & Data Structures</button>
+                <button class="filter-btn" data-filter="ai">Paper 3 / AI</button>
+            </div>
+
+            <div class="results-count" id="results-count">Showing 12 practice questions</div>
+
+            <!-- Questions Container -->
+            <div id="questions-container">
+
+                <!-- Q1 Architecture -->
+                <div class="question-card" data-topic="architecture">
+                    <div class="question-header">
+                        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                            <span class="zen-pill">THEME A.1</span>
+                            <span class="status-badge ready">SL / HL</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-secondary);">Computer Architecture</span>
+                        </div>
+                        <span class="zen-pill" style="color: var(--accent-primary);">2 Marks</span>
+                    </div>
+                    <div class="question-prompt">
+                        State one architectural difference between a central processing unit (CPU) and a graphics processing unit (GPU).
+                    </div>
+                    <button class="btn-reveal" onclick="toggleScheme(this)">
+                        <span>Show Mark Scheme</span>
+                        <span style="font-size: 0.75rem;">▼</span>
+                    </button>
+                    <div class="mark-scheme">
+                        <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-primary); letter-spacing: 0.05em; text-transform: uppercase;">
+                            Official Mark Scheme [Max 2 Marks]
+                        </div>
+                        <ul>
+                            <li><strong>CPU:</strong> Optimized for sequential processing and contains relatively few, powerful, low-latency execution cores. [1 mark]</li>
+                            <li><strong>GPU:</strong> Designed for parallel execution and contains hundreds or thousands of smaller cores to execute repetitive matrix math concurrently. [1 mark]</li>
+                        </ul>
+                        <div class="mark-scheme-tip">
+                            Examiner Tip: Do not accept vague statements like "a GPU is only for video games". The question tests architectural differences (sequential vs parallel cores).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q2 Architecture -->
+                <div class="question-card" data-topic="architecture">
+                    <div class="question-header">
+                        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                            <span class="zen-pill">THEME A.1</span>
+                            <span class="status-badge ready">SL / HL</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-secondary);">Processor Cycle</span>
+                        </div>
+                        <span class="zen-pill" style="color: var(--accent-primary);">4 Marks</span>
+                    </div>
+                    <div class="question-prompt">
+                        Outline the four distinct stages of the machine fetch-decode-execute cycle, referring to the registers involved.
+                    </div>
+                    <button class="btn-reveal" onclick="toggleScheme(this)">
+                        <span>Show Mark Scheme</span>
+                        <span style="font-size: 0.75rem;">▼</span>
+                    </button>
+                    <div class="mark-scheme">
+                        <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-primary); letter-spacing: 0.05em; text-transform: uppercase;">
+                            Official Mark Scheme [Max 4 Marks]
+                        </div>
+                        <ul>
+                            <li><strong>Fetch:</strong> The address in the Program Counter (PC) is passed to the MAR; the instruction is fetched from RAM into the MDR; the PC is incremented. [1 mark]</li>
+                            <li><strong>Copy:</strong> The instruction is copied from MDR to the Current Instruction Register (CIR). [1 mark]</li>
+                            <li><strong>Decode:</strong> The Control Unit (CU) decodes the opcode and determines what ALU operations or memory reads are required. [1 mark]</li>
+                            <li><strong>Execute:</strong> The ALU performs the operation or transfers data to registers/memory; flags are updated. [1 mark]</li>
+                        </ul>
+                        <div class="mark-scheme-tip">
+                            Examiner Tip: Always state that the Program Counter is incremented after fetching.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q3 Systems / Memory -->
+                <div class="question-card" data-topic="systems">
+                    <div class="question-header">
+                        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                            <span class="zen-pill">THEME A.1</span>
+                            <span class="status-badge ready">SL / HL</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-secondary);">Primary Memory</span>
+                        </div>
+                        <span class="zen-pill" style="color: var(--accent-primary);">3 Marks</span>
+                    </div>
+                    <div class="question-prompt">
+                        Distinguish between read-only memory (ROM) and random-access memory (RAM) in terms of volatility, mutability, and purpose.
+                    </div>
+                    <button class="btn-reveal" onclick="toggleScheme(this)">
+                        <span>Show Mark Scheme</span>
+                        <span style="font-size: 0.75rem;">▼</span>
+                    </button>
+                    <div class="mark-scheme">
+                        <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-primary); letter-spacing: 0.05em; text-transform: uppercase;">
+                            Official Mark Scheme [Max 3 Marks]
+                        </div>
+                        <ul>
+                            <li><strong>Volatility:</strong> RAM is volatile (loses contents on power loss); ROM is non-volatile (retains data indefinitely). [1 mark]</li>
+                            <li><strong>Mutability:</strong> RAM is read-write; ROM is typically read-only during standard operations. [1 mark]</li>
+                            <li><strong>Purpose:</strong> RAM holds the currently executing programs and operating system working data; ROM holds the bootstrap/BIOS start-up loader. [1 mark]</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Q4 Systems / OS -->
+                <div class="question-card" data-topic="systems">
+                    <div class="question-header">
+                        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                            <span class="zen-pill">THEME A.1</span>
+                            <span class="status-badge ready">SL / HL</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-secondary);">Operating Systems</span>
+                        </div>
+                        <span class="zen-pill" style="color: var(--accent-primary);">3 Marks</span>
+                    </div>
+                    <div class="question-prompt">
+                        Explain why an operating system uses hardware interrupts rather than polling to detect keyboard input.
+                    </div>
+                    <button class="btn-reveal" onclick="toggleScheme(this)">
+                        <span>Show Mark Scheme</span>
+                        <span style="font-size: 0.75rem;">▼</span>
+                    </button>
+                    <div class="mark-scheme">
+                        <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-primary); letter-spacing: 0.05em; text-transform: uppercase;">
+                            Official Mark Scheme [Max 3 Marks]
+                        </div>
+                        <ul>
+                            <li>Polling forces the processor to repeatedly query the device, consuming clock cycles and power when no key is pressed. [1 mark]</li>
+                            <li>An interrupt sends an electrical signal only when a key event occurs, leaving the CPU free to execute other processes. [1 mark]</li>
+                            <li>The CPU pauses the current process, executes the Interrupt Service Routine (ISR) with minimal latency, and returns to execution. [1 mark]</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Q5 Networks -->
+                <div class="question-card" data-topic="networks">
+                    <div class="question-header">
+                        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                            <span class="zen-pill">THEME A.2</span>
+                            <span class="status-badge ready">SL / HL</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-secondary);">Data Transmission</span>
+                        </div>
+                        <span class="zen-pill" style="color: var(--accent-primary);">3 Marks</span>
+                    </div>
+                    <div class="question-prompt">
+                        Describe the function of packet switching across the Internet, referring to headers, routing, and reassembly.
+                    </div>
+                    <button class="btn-reveal" onclick="toggleScheme(this)">
+                        <span>Show Mark Scheme</span>
+                        <span style="font-size: 0.75rem;">▼</span>
+                    </button>
+                    <div class="mark-scheme">
+                        <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-primary); letter-spacing: 0.05em; text-transform: uppercase;">
+                            Official Mark Scheme [Max 3 Marks]
+                        </div>
+                        <ul>
+                            <li>The data payload is broken down into small, numbered packets, each tagged with destination IP, sender IP, and sequence numbers in the header. [1 mark]</li>
+                            <li>Routers inspect the destination IP and forward each packet independently along the most efficient available route. [1 mark]</li>
+                            <li>The recipient node uses packet sequence numbers to reorder and reassemble the original message, requesting retransmission for missing packets. [1 mark]</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Q6 Networks / Security -->
+                <div class="question-card" data-topic="networks">
+                    <div class="question-header">
+                        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                            <span class="zen-pill">THEME A.2</span>
+                            <span class="status-badge ready">HL ONLY</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-secondary);">Cryptography</span>
+                        </div>
+                        <span class="zen-pill" style="color: var(--accent-primary);">3 Marks</span>
+                    </div>
+                    <div class="question-prompt">
+                        Compare symmetric and asymmetric encryption, explaining why asymmetric keys are preferred for key exchange over insecure channels.
+                    </div>
+                    <button class="btn-reveal" onclick="toggleScheme(this)">
+                        <span>Show Mark Scheme</span>
+                        <span style="font-size: 0.75rem;">▼</span>
+                    </button>
+                    <div class="mark-scheme">
+                        <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-primary); letter-spacing: 0.05em; text-transform: uppercase;">
+                            Official Mark Scheme [Max 3 Marks]
+                        </div>
+                        <ul>
+                            <li>Symmetric encryption uses a single shared secret key for both encryption and decryption. [1 mark]</li>
+                            <li>Asymmetric encryption uses a mathematically linked key pair: a public key for encryption and a private key for decryption. [1 mark]</li>
+                            <li>Asymmetric eliminates the key distribution problem: the private key is never transmitted across the network, preventing interception. [1 mark]</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Q7 Databases -->
+                <div class="question-card" data-topic="databases">
+                    <div class="question-header">
+                        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                            <span class="zen-pill">THEME A.3</span>
+                            <span class="status-badge ready">SL / HL</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-secondary);">Relational Schemas</span>
+                        </div>
+                        <span class="zen-pill" style="color: var(--accent-primary);">3 Marks</span>
+                    </div>
+                    <div class="question-prompt">
+                        Explain the role of primary keys and foreign keys in maintaining referential integrity across relational database tables.
+                    </div>
+                    <button class="btn-reveal" onclick="toggleScheme(this)">
+                        <span>Show Mark Scheme</span>
+                        <span style="font-size: 0.75rem;">▼</span>
+                    </button>
+                    <div class="mark-scheme">
+                        <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-primary); letter-spacing: 0.05em; text-transform: uppercase;">
+                            Official Mark Scheme [Max 3 Marks]
+                        </div>
+                        <ul>
+                            <li>A primary key uniquely identifies each record/tuple within its home table, preventing duplicate entries. [1 mark]</li>
+                            <li>A foreign key is an attribute in one table that references the primary key in another table, establishing a relationship. [1 mark]</li>
+                            <li>Referential integrity ensures a foreign key value cannot exist without a corresponding valid primary key record in the parent table. [1 mark]</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Q8 Computational Thinking -->
+                <div class="question-card" data-topic="algorithms">
+                    <div class="question-header">
+                        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                            <span class="zen-pill">THEME B.1</span>
+                            <span class="status-badge ready">SL / HL</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-secondary);">Algorithmic Design</span>
+                        </div>
+                        <span class="zen-pill" style="color: var(--accent-primary);">4 Marks</span>
+                    </div>
+                    <div class="question-prompt">
+                        Define abstraction and decomposition. Explain how each technique reduces cognitive complexity when developing large software systems.
+                    </div>
+                    <button class="btn-reveal" onclick="toggleScheme(this)">
+                        <span>Show Mark Scheme</span>
+                        <span style="font-size: 0.75rem;">▼</span>
+                    </button>
+                    <div class="mark-scheme">
+                        <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-primary); letter-spacing: 0.05em; text-transform: uppercase;">
+                            Official Mark Scheme [Max 4 Marks]
+                        </div>
+                        <ul>
+                            <li><strong>Decomposition:</strong> Breaking a complex problem into smaller, self-contained sub-problems or functions that can be solved independently. [1 mark]</li>
+                            <li>Benefit: Enables team parallel development, modular testing, and clear subroutine interfaces. [1 mark]</li>
+                            <li><strong>Abstraction:</strong> Filtering out irrelevant implementation details to focus on high-level behaviors and inputs/outputs. [1 mark]</li>
+                            <li>Benefit: Prevents information overload and allows code reuse across different parts of a program. [1 mark]</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Q9 Data Structures -->
+                <div class="question-card" data-topic="oop">
+                    <div class="question-header">
+                        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                            <span class="zen-pill">THEME B.2</span>
+                            <span class="status-badge ready">SL / HL</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-secondary);">Memory Allocation</span>
+                        </div>
+                        <span class="zen-pill" style="color: var(--accent-primary);">4 Marks</span>
+                    </div>
+                    <div class="question-prompt">
+                        Compare static arrays with dynamic linked lists with respect to memory allocation, insertion complexity, and random access speed.
+                    </div>
+                    <button class="btn-reveal" onclick="toggleScheme(this)">
+                        <span>Show Mark Scheme</span>
+                        <span style="font-size: 0.75rem;">▼</span>
+                    </button>
+                    <div class="mark-scheme">
+                        <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-primary); letter-spacing: 0.05em; text-transform: uppercase;">
+                            Official Mark Scheme [Max 4 Marks]
+                        </div>
+                        <ul>
+                            <li><strong>Memory Allocation:</strong> Arrays have a fixed size declared at compile time in contiguous memory; linked lists allocate nodes dynamically anywhere in the heap. [1 mark]</li>
+                            <li><strong>Insertion:</strong> Arrays require shifting subsequent elements O(n); linked lists insert in O(1) time once the pointer reference is found. [1 mark]</li>
+                            <li><strong>Random Access:</strong> Arrays support instant O(1) index access using base address + index calculation; linked lists require O(n) pointer traversal from the head node. [1 mark]</li>
+                            <li><strong>Overhead:</strong> Linked lists require additional memory for pointer addresses with each data node. [1 mark]</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Q10 OOP -->
+                <div class="question-card" data-topic="oop">
+                    <div class="question-header">
+                        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                            <span class="zen-pill">THEME B.3</span>
+                            <span class="status-badge ready">HL ONLY</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-secondary);">Object-Oriented Programming</span>
+                        </div>
+                        <span class="zen-pill" style="color: var(--accent-primary);">3 Marks</span>
+                    </div>
+                    <div class="question-prompt">
+                        Explain the concept of encapsulation in object-oriented programming and outline two advantages it provides to software maintainability.
+                    </div>
+                    <button class="btn-reveal" onclick="toggleScheme(this)">
+                        <span>Show Mark Scheme</span>
+                        <span style="font-size: 0.75rem;">▼</span>
+                    </button>
+                    <div class="mark-scheme">
+                        <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-primary); letter-spacing: 0.05em; text-transform: uppercase;">
+                            Official Mark Scheme [Max 3 Marks]
+                        </div>
+                        <ul>
+                            <li>Encapsulation bundles data (attributes) and methods that operate on that data inside a class, while restricting direct access using private modifiers. [1 mark]</li>
+                            <li><strong>Advantage 1:</strong> Data protection — prevents accidental external modification; state changes must pass through validated getter/setter methods. [1 mark]</li>
+                            <li><strong>Advantage 2:</strong> Maintainability — internal class implementations can be updated or optimized without breaking external client code that calls public methods. [1 mark]</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Q11 AI / Paper 3 -->
+                <div class="question-card" data-topic="ai">
+                    <div class="question-header">
+                        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                            <span class="zen-pill">PAPER 3</span>
+                            <span class="status-badge ready">HL ONLY</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-secondary);">Case Study: Chatbots</span>
+                        </div>
+                        <span class="zen-pill" style="color: var(--accent-primary);">4 Marks</span>
+                    </div>
+                    <div class="question-prompt">
+                        Explain why large language model chatbots are susceptible to "hallucinations", and describe two mitigation strategies used by developers.
+                    </div>
+                    <button class="btn-reveal" onclick="toggleScheme(this)">
+                        <span>Show Mark Scheme</span>
+                        <span style="font-size: 0.75rem;">▼</span>
+                    </button>
+                    <div class="mark-scheme">
+                        <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-primary); letter-spacing: 0.05em; text-transform: uppercase;">
+                            Official Mark Scheme [Max 4 Marks]
+                        </div>
+                        <ul>
+                            <li><strong>Cause:</strong> LLMs generate text based on statistical token probabilities rather than semantic reasoning or grounded fact verification. [2 marks]</li>
+                            <li><strong>Mitigation 1 - RAG:</strong> Retrieval-Augmented Generation retrieves vetted documents from an external vector database to ground the prompt in verified facts. [1 mark]</li>
+                            <li><strong>Mitigation 2 - RLHF:</strong> Reinforcement Learning from Human Feedback trains reward models that penalize fabricated responses and encourage cautious answers. [1 mark]</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Q12 Algorithms -->
+                <div class="question-card" data-topic="algorithms">
+                    <div class="question-header">
+                        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                            <span class="zen-pill">THEME B.1</span>
+                            <span class="status-badge ready">SL / HL</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-secondary);">Algorithm Efficiency</span>
+                        </div>
+                        <span class="zen-pill" style="color: var(--accent-primary);">3 Marks</span>
+                    </div>
+                    <div class="question-prompt">
+                        Compare the worst-case time complexity of linear search and binary search, explaining the precondition required to execute binary search.
+                    </div>
+                    <button class="btn-reveal" onclick="toggleScheme(this)">
+                        <span>Show Mark Scheme</span>
+                        <span style="font-size: 0.75rem;">▼</span>
+                    </button>
+                    <div class="mark-scheme">
+                        <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-primary); letter-spacing: 0.05em; text-transform: uppercase;">
+                            Official Mark Scheme [Max 3 Marks]
+                        </div>
+                        <ul>
+                            <li><strong>Precondition:</strong> The array or list must be strictly sorted prior to running binary search. [1 mark]</li>
+                            <li><strong>Linear Search:</strong> O(n) worst-case time complexity because every element must be inspected if the target is at the end or absent. [1 mark]</li>
+                            <li><strong>Binary Search:</strong> O(log n) worst-case time complexity because the search space is halved after each comparison. [1 mark]</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer></footer>
+
+    <script src="../js/ui.js"></script>
+    <script src="../js/ribbon-waves.js"></script>
+    <script>
+        // Toggle Mark Scheme
+        function toggleScheme(btn) {
+            const scheme = btn.nextElementSibling;
+            const isOpen = scheme.classList.contains('open');
+            if (isOpen) {
+                scheme.classList.remove('open');
+                btn.innerHTML = '<span>Show Mark Scheme</span><span style="font-size:0.75rem;">▼</span>';
+            } else {
+                scheme.classList.add('open');
+                btn.innerHTML = '<span>Hide Mark Scheme</span><span style="font-size:0.75rem;">▲</span>';
+            }
+        }
+
+        // Filter and Search
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const searchInput = document.getElementById('question-search');
+        const cards = document.querySelectorAll('.question-card');
+        const countDisplay = document.getElementById('results-count');
+
+        let activeFilter = 'all';
+
+        // Check URL topic parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const topicParam = urlParams.get('topic');
+        if (topicParam) {
+            const targetBtn = Array.from(filterBtns).find(b => b.getAttribute('data-filter') === topicParam);
+            if (targetBtn) {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                targetBtn.classList.add('active');
+                activeFilter = topicParam;
+            }
+        }
+
+        function updateList() {
+            const query = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const topic = card.getAttribute('data-topic');
+                const text = card.textContent.toLowerCase();
+
+                const matchesFilter = activeFilter === 'all' || topic === activeFilter;
+                const matchesSearch = query === '' || text.includes(query);
+
+                if (matchesFilter && matchesSearch) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            countDisplay.textContent = `Showing ${visibleCount} practice question${visibleCount === 1 ? '' : 's'}`;
+        }
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeFilter = btn.getAttribute('data-filter');
+                updateList();
+            });
+        });
+
+        searchInput.addEventListener('input', updateList);
+        updateList();
+    </script>
+</body>
+</html>

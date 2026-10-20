@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="monochrome" data-texture="animated">
+<html lang="en" data-theme="lilac" data-texture="animated">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Highwood CS | Study Sanctuary & Computational Atelier</title>
+    <title>IB Computer Science | Emirates International School</title>
     <link rel="stylesheet" href="shared-tokens.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,7 +68,10 @@
         }
         .zen-links {
             display: flex;
-            gap: 22px;
+            gap: 12px 20px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            align-items: center;
             list-style: none;
             font-size: 0.88rem;
             color: var(--text-secondary);
@@ -291,296 +294,251 @@
 
     <div class="zen-container">
         <nav class="zen-nav">
-            <div class="zen-brand">
-                <span>🌱</span>
-                <span>Highwood CS Atelier</span>
-            </div>
+            <a href="index.html" class="zen-brand" style="text-decoration:none; color:inherit;">
+                <span class="brand-dot"></span>
+                <span>COMPUTER SCIENCE</span>
+            </a>
             <ul class="zen-links">
-                <li><a href="#curriculum">Syllabus</a></li>
-                <li><a href="pages/ia.html">IA Guide</a></li>
-                <li><a href="pages/resources.html">Past Paper Vault</a></li>
-                <li><a href="curated-preview/background-lab.html">Dynamic Lab</a></li>
+                <li><a href="pages/courses.html">Courses</a></li>
+                <li><a href="pages/practice.html">Practice Questions</a></li>
+                <li><a href="pages/curriculum.html">Curriculum</a></li>
+                <li><a href="pages/theme-a.html">Theme A</a></li>
+                <li><a href="pages/theme-b.html">Theme B</a></li>
+                <li><a href="pages/ia.html">IA</a></li>
+                <li><a href="pages/case-study.html">Case Study</a></li>
+                <li><a href="pages/resources.html">Resources</a></li>
+                <li><a href="pages/about-us.html">About Us</a></li>
             </ul>
         </nav>
 
         <section class="zen-hero">
             <div class="zen-badge">
                 <span class="zen-badge-indicator"></span>
-                <span>IBDP COMPUTER SCIENCE • STUDY SANCTUARY</span>
+                <span>IB COMPUTER SCIENCE • EIS</span>
             </div>
             <h1>
-                A quiet space for deep computational focus.
+                Course notes, syllabus guides, and exam practice.
             </h1>
             <p>
-                Distraction-free learning for IB scholars. Explore computer architecture, master algorithmic proofs, and build your computational solution with clarity.
+                Resources for Standard and Higher Level students at Emirates International School.
             </p>
 
             <div class="notion-callout">
-                <span class="callout-icon">💡</span>
+                <span class="zen-pill">CHECKPOINT</span>
                 <div class="callout-text">
-                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px; flex-wrap:wrap;">
-                        <h4>Internal Assessment Criterion B Checkpoint</h4>
-                        <span class="zen-pill">Criterion B</span>
+                    <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px; flex-wrap:wrap;">
+                        <h4 style="margin:0;">Internal Assessment: Criterion B Due</h4>
+                        <span class="status-badge ready">CRITERION B</span>
                     </div>
-                    <p>Your design specifications must map directly to the measurable success criteria established in Criterion A.</p>
+                    <p>Make sure your design specifications match each success criterion from Criterion A.</p>
+                </div>
+            </div>
+
+            <!-- Content Status Checklist -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 4px; padding: 18px 22px; margin-top: 24px; font-size: 0.88rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+                    <span style="font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-primary);">Website Status & Pending Items</span>
+                    <span style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-muted);">Updated October 2026</span>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; font-family: var(--font-mono); font-size: 0.8rem;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: var(--bg-surface); border-radius: 2px;">
+                        <span>Theme A Materials</span>
+                        <span class="status-badge ready">READY</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: var(--bg-surface); border-radius: 2px;">
+                        <span>Theme B Google Site Text</span>
+                        <span class="status-badge pending">AWAITING EXPORT</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: var(--bg-surface); border-radius: 2px;">
+                        <span>Theme C & D Syllabus Notes</span>
+                        <span class="status-badge missing">NEEDS TEACHER UPLOAD</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: var(--bg-surface); border-radius: 2px;">
+                        <span>Year 2 Sem 2 Unit Plan</span>
+                        <span class="status-badge missing">MISSING FROM FOLDER</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: var(--bg-surface); border-radius: 2px;">
+                        <span>Exam Practice Bank (12 Qs)</span>
+                        <span class="status-badge ready">READY</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: var(--bg-surface); border-radius: 2px;">
+                        <span>Past Exam Papers (2016–2025)</span>
+                        <span class="status-badge missing">NEEDS TEACHER UPLOAD</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: var(--bg-surface); border-radius: 2px;">
+                        <span>IA Video Exemplars</span>
+                        <span class="status-badge pending">AWAITING PERMISSION</span>
+                    </div>
                 </div>
             </div>
         </section>
 
         <main class="syllabus-section" id="curriculum">
-            <h2>Curriculum Modules</h2>
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                <h2 style="margin: 0;">Syllabus Modules</h2>
+                <a href="pages/courses.html" class="zen-pill">All Courses →</a>
+            </div>
 
+            <!-- Theme A Accordion -->
             <div class="accordion-item open">
                 <div class="accordion-header" onclick="this.parentElement.classList.toggle('open')">
                     <div class="accordion-title">
-                        <span>⚡</span>
-                        <span>Theme A: System Fundamentals & Hardware Logic</span>
+                        <span class="zen-pill">THEME A</span>
+                        <span>Systems & Hardware</span>
                     </div>
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <span class="zen-pill">Core • SL/HL</span>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <span class="status-badge ready">READY</span>
                         <span class="accordion-arrow">▼</span>
                     </div>
                 </div>
                 <div class="accordion-content">
-                    Covers machine instruction cycles, register transfer language, Boolean logic circuits, memory hierarchy (SRAM vs DRAM), and processor data cache optimization.
-                    <div style="margin-top: 12px;">
-                        <a href="pages/theme-a.html" class="zen-pill" style="color:var(--text-primary); text-decoration:none;">Open Theme A Notes →</a>
+                    Computer architecture, machine instruction cycle, logic gates, memory hierarchy, and networks.
+                    <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+                        <a href="pages/theme-a.html" class="btn" style="padding: 6px 12px; font-size: 0.82rem;">Open Theme A Notes →</a>
+                        <a href="pages/practice.html?topic=architecture" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.82rem;">Practice Questions</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Theme B Accordion -->
             <div class="accordion-item">
                 <div class="accordion-header" onclick="this.parentElement.classList.toggle('open')">
                     <div class="accordion-title">
-                        <span>🌐</span>
-                        <span>Theme B: Computer Networks & Relational Databases</span>
+                        <span class="zen-pill">THEME B</span>
+                        <span>Computational Thinking, Python & OOP</span>
                     </div>
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <span class="zen-pill">Networks & SQL</span>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <span class="status-badge ready">READY</span>
                         <span class="accordion-arrow">▼</span>
                     </div>
                 </div>
                 <div class="accordion-content">
-                    Covers OSI layers, TCP/IP handshake, network security threats, encryption ciphers, and relational normalization tables up to 3NF.
-                    <div style="margin-top: 12px;">
-                        <a href="pages/theme-b.html" class="zen-pill" style="color:var(--text-primary); text-decoration:none;">Open Theme B Notes →</a>
+                    Problem decomposition, algorithms, arrays, subroutines, and object-oriented programming.
+                    <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+                        <a href="pages/theme-b.html" class="btn" style="padding: 6px 12px; font-size: 0.82rem;">Open Theme B Notes →</a>
+                        <a href="pages/practice.html?topic=algorithms" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.82rem;">Practice Questions</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Theme C & D Accordion with Missing Identification -->
             <div class="accordion-item">
                 <div class="accordion-header" onclick="this.parentElement.classList.toggle('open')">
                     <div class="accordion-title">
-                        <span>🧩</span>
-                        <span>Theme C & D: Abstract Data Structures & OOP</span>
+                        <span class="zen-pill">THEME C & D</span>
+                        <span>Data Structures & Advanced Algorithms</span>
                     </div>
-                    <div style="display:flex; align-items:center; gap:10px;">
-                        <span class="zen-pill">OOP & Trees</span>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <span class="status-badge missing">NEEDS CONTENT</span>
                         <span class="accordion-arrow">▼</span>
                     </div>
                 </div>
                 <div class="accordion-content">
-                    Covers linked lists, binary search trees, recursion proofs, algorithmic complexity analysis, and object-oriented encapsulation models.
+                    Abstract data structures (stacks, queues, linked lists, trees) and recursive algorithm proofs.
+                    <div class="missing-box">
+                        <span>Missing: Detailed notes for Theme C and D have not been uploaded by faculty yet.</span>
+                    </div>
                     <div style="margin-top: 12px;">
-                        <a href="pages/curriculum.html" class="zen-pill" style="color:var(--text-primary); text-decoration:none;">View Full Syllabus Roadmap →</a>
+                        <a href="pages/curriculum.html" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.82rem;">Check Syllabus Roadmap →</a>
                     </div>
                 </div>
             </div>
 
-            <div class="zen-actions-grid">
+            <!-- Interactive Quick Practice Feature on Homepage -->
+            <div style="margin-top: 50px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <span class="zen-pill">FEATURED EXAM PRACTICE</span>
+                        <h2 style="margin: 8px 0 0; font-size: 1.8rem;">Practice an Exam Question</h2>
+                    </div>
+                    <a href="pages/practice.html" class="btn">View All 12 Questions →</a>
+                </div>
+
+                <div class="question-card" style="margin-top: 14px;">
+                    <div class="question-header">
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <span class="zen-pill">THEME A.1</span>
+                            <span class="status-badge ready">SL / HL</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary);">Computer Architecture</span>
+                        </div>
+                        <span class="zen-pill" style="color: var(--accent-primary);">2 Marks</span>
+                    </div>
+                    <div class="question-prompt">
+                        State one architectural difference between a central processing unit (CPU) and a graphics processing unit (GPU).
+                    </div>
+                    <button class="btn-reveal" onclick="toggleScheme(this)">
+                        <span>Show Mark Scheme</span>
+                        <span style="font-size: 0.75rem;">▼</span>
+                    </button>
+                    <div class="mark-scheme">
+                        <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-primary); letter-spacing: 0.05em; text-transform: uppercase;">
+                            Official Mark Scheme [Max 2 Marks]
+                        </div>
+                        <ul>
+                            <li><strong>CPU:</strong> Optimized for sequential processing; has few powerful, low-latency execution cores. [1 mark]</li>
+                            <li><strong>GPU:</strong> Designed for parallel execution; has many smaller cores executing operations concurrently. [1 mark]</li>
+                        </ul>
+                        <div class="mark-scheme-tip">
+                            Tip: Answer must address architecture (cores / parallel vs sequential), not just application ("games").
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Action Cards -->
+            <div class="zen-actions-grid" style="margin-top: 36px;">
                 <a href="pages/ia.html" class="zen-action-card">
                     <div>
                         <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; gap:8px;">
-                            <h3>The 30-Mark IA Roadmap</h3>
-                            <span class="zen-pill">Criterion A–E</span>
+                            <h3 style="font-size: 1.15rem; margin: 0;">Internal Assessment Guide</h3>
+                            <span class="status-badge ready">30 MARKS</span>
                         </div>
-                        <p>A calm, phased walkthrough of the complete software project lifecycle for your client.</p>
+                        <p>Criteria A to E rubric, video tutorials, and project steps.</p>
                     </div>
                 </a>
 
                 <a href="pages/resources.html" class="zen-action-card">
                     <div>
                         <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; gap:8px;">
-                            <h3>Ten-Year Past Paper Vault</h3>
-                            <span class="zen-pill">2016–2025</span>
+                            <h3 style="font-size: 1.15rem; margin: 0;">Resources & Worksheets</h3>
+                            <span class="status-badge ready">7 FILES</span>
                         </div>
-                        <p>Annotated past papers with mark schemes, student exemplars, and official IB syllabus documents.</p>
+                        <p>Worksheets, subject guides, error handbook, and revision materials.</p>
                     </div>
                 </a>
             </div>
         </main>
 
-        <footer class="zen-footer">
-            <span>Highwood Computer Science Department • IB World School</span>
-            <div>
-                <a href="curated-preview/index.html">Curated Hub</a> • 
-                <a href="index.legacy.html">Legacy Archive</a>
+        <footer class="zen-footer" style="display:flex; flex-direction:column; gap:16px; text-align:center;">
+            <div style="display:flex; justify-content:space-between; width:100%; align-items:center; flex-wrap:wrap; gap:12px;">
+                <span>COMPUTER SCIENCE • EIS</span>
+                <div>
+                    <a href="pages/courses.html">Courses</a> • 
+                    <a href="pages/practice.html">Practice</a> • 
+                    <a href="pages/curriculum.html">Curriculum</a> • 
+                    <a href="pages/resources.html">Resources</a> • 
+                    <a href="pages/about-us.html">About Us</a>
+                </div>
+            </div>
+            <div style="font-size:0.8rem; color:var(--text-muted); border-top:1px dashed var(--border-subtle); padding-top:12px; width:100%;">
+                Teacher: <a href="mailto:Siddiquin@eischools.ae" style="color:var(--accent-primary);">Neha Siddiqui (Siddiquin@eischools.ae)</a> • Tech Ambassador: Anish Dongarkar
             </div>
         </footer>
     </div>
 
-    <script src="theme-switcher.js"></script>
+    <script src="js/ribbon-waves.js"></script>
     <script>
-        const canvas = document.getElementById('interactive-canvas');
-        const ctx = canvas.getContext('2d');
-
-        let width = canvas.width = window.innerWidth;
-        let height = canvas.height = window.innerHeight;
-
-        // Smooth cursor interpolation coordinates
-        let targetMouseX = width / 2;
-        let targetMouseY = height / 2;
-        let mouseX = width / 2;
-        let mouseY = height / 2;
-        let ribbonSmoothMouseX = width / 2;
-        let ribbonSmoothMouseY = height / 2;
-        let ribbonMouseActiveAlpha = 0;
-        let isMouseActive = false;
-
-        window.addEventListener('mousemove', (e) => {
-            targetMouseX = e.clientX;
-            targetMouseY = e.clientY;
-            isMouseActive = true;
-        });
-
-        window.addEventListener('mouseleave', () => {
-            isMouseActive = false;
-        });
-
-        window.addEventListener('resize', () => {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        });
-
-        function getThemeColor(isDark, alpha = 1) {
-            if (isDark) return `rgba(255, 255, 255, ${alpha})`;
-            const theme = document.documentElement.getAttribute('data-theme');
-            if (theme === 'crimson') return `rgba(128, 0, 0, ${alpha})`;
-            if (theme === 'matcha') return `rgba(45, 75, 55, ${alpha})`;
-            if (theme === 'clay') return `rgba(130, 60, 45, ${alpha})`;
-            return `rgba(40, 40, 45, ${alpha})`;
-        }
-
-        // ==========================================================================
-        // PERFECTED LUXURY UNDULATING RIBBON WAVES ENGINE
-        // ==========================================================================
-        const RIBBON_COUNT = 16;
-
-        function render() {
-            const isStatic = document.documentElement.getAttribute('data-texture') === 'static';
-            const theme = document.documentElement.getAttribute('data-theme') || 'monochrome';
-            const isDark = theme === 'monochrome' || theme === 'lilac';
-
-            ctx.clearRect(0, 0, width, height);
-
-            // 1. Serene time progression (2x slower than baseline)
-            const slowTime = isStatic ? 100 : performance.now() * 0.00055;
-
-            // 2. Velvety smooth mouse interpolation with laminar inertia
-            mouseX += (targetMouseX - mouseX) * 0.12;
-            mouseY += (targetMouseY - mouseY) * 0.12;
-            const lerpFactor = 0.07;
-            ribbonSmoothMouseX += (mouseX - ribbonSmoothMouseX) * lerpFactor;
-            ribbonSmoothMouseY += (mouseY - ribbonSmoothMouseY) * lerpFactor;
-
-            // Fade mouse presence in and out smoothly
-            ribbonMouseActiveAlpha += (((isMouseActive && !isStatic) ? 1 : 0) - ribbonMouseActiveAlpha) * 0.05;
-
-            const spacing = height / (RIBBON_COUNT + 1);
-
-            for (let i = 1; i <= RIBBON_COUNT; i++) {
-                const baseY = i * spacing;
-                const ribbonProgress = i / RIBBON_COUNT; // Depth factor (0.06 to 1.0)
-
-                // Individual harmonic frequencies & speeds (fluid, natural cadence)
-                const waveFreq1 = 0.0018 + i * 0.00012;
-                const waveFreq2 = 0.0034 + i * 0.00020;
-                const waveSpeed1 = slowTime * (0.65 + i * 0.035);
-                const waveSpeed2 = slowTime * (0.45 + i * 0.025);
-
-                // Amplitude scales smoothly with depth
-                const baseAmp1 = 14 + ribbonProgress * 16;
-                const baseAmp2 = 7 + ribbonProgress * 9;
-
-                const points = [];
-                const step = 14;
-
-                for (let x = 0; x <= width + step; x += step) {
-                    // Natural sinusoidal undulation
-                    let y = baseY +
-                        Math.sin(x * waveFreq1 + waveSpeed1) * baseAmp1 +
-                        Math.cos(x * waveFreq2 - waveSpeed2) * baseAmp2;
-
-                    // Hover Interaction: Smooth aerodynamic laminar stream parting (continuous, zero flutter, zero color change)
-                    if (ribbonMouseActiveAlpha > 0.01) {
-                        const dx = x - ribbonSmoothMouseX;
-                        const dy = baseY - ribbonSmoothMouseY;
-                        // Elliptical streamline influence zone
-                        const rx = 220;
-                        const ry = 140;
-                        const distNorm = Math.hypot(dx / rx, dy / ry);
-
-                        if (distNorm < 1.0) {
-                            // Smooth Hermite cubic ease
-                            const ease = (1 - distNorm) * (1 - distNorm) * (3 - 2 * (1 - distNorm));
-                            // Continuous streamline parting: smooth asymptotic deflection with zero snapping
-                            const pushY = (dy / (Math.abs(dy) + 26)) * ease * 40 * ribbonMouseActiveAlpha;
-                            y += pushY;
-                        }
-                    }
-
-                    points.push({ x, y });
-                }
-
-                if (points.length < 2) continue;
-
-                // --- 3. Draw Volumetric Silk Ribbon Layer (Translucent Gradient Veil) ---
-                const veilHeight = spacing * 1.5;
-                const fillAlpha = 0.016 + ribbonProgress * 0.040;
-
-                ctx.beginPath();
-                ctx.moveTo(points[0].x, points[0].y);
-
-                // Quadratic Bezier curve smoothing across points
-                for (let j = 0; j < points.length - 1; j++) {
-                    const xc = (points[j].x + points[j + 1].x) * 0.5;
-                    const yc = (points[j].y + points[j + 1].y) * 0.5;
-                    ctx.quadraticCurveTo(points[j].x, points[j].y, xc, yc);
-                }
-                ctx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
-
-                // Drape veil downward
-                ctx.lineTo(width, baseY + veilHeight);
-                ctx.lineTo(0, baseY + veilHeight);
-                ctx.closePath();
-
-                const grad = ctx.createLinearGradient(0, baseY - 20, 0, baseY + veilHeight);
-                grad.addColorStop(0, getThemeColor(isDark, fillAlpha * 1.6));
-                grad.addColorStop(0.5, getThemeColor(isDark, fillAlpha * 0.5));
-                grad.addColorStop(1, getThemeColor(isDark, 0));
-                ctx.fillStyle = grad;
-                ctx.fill();
-
-                // --- 4. Draw Crisp Crest Hairline Stroke (Uniform color, no highlights) ---
-                ctx.beginPath();
-                ctx.moveTo(points[0].x, points[0].y);
-                for (let j = 0; j < points.length - 1; j++) {
-                    const xc = (points[j].x + points[j + 1].x) * 0.5;
-                    const yc = (points[j].y + points[j + 1].y) * 0.5;
-                    ctx.quadraticCurveTo(points[j].x, points[j].y, xc, yc);
-                }
-                ctx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
-
-                const baseStrokeAlpha = 0.08 + ribbonProgress * 0.20;
-                ctx.strokeStyle = getThemeColor(isDark, baseStrokeAlpha);
-                ctx.lineWidth = 0.8 + ribbonProgress * 0.45;
-                ctx.stroke();
+        function toggleScheme(btn) {
+            const scheme = btn.nextElementSibling;
+            const isOpen = scheme.classList.contains('open');
+            if (isOpen) {
+                scheme.classList.remove('open');
+                btn.innerHTML = '<span>Show Mark Scheme</span><span style="font-size:0.75rem;">▼</span>';
+            } else {
+                scheme.classList.add('open');
+                btn.innerHTML = '<span>Hide Mark Scheme</span><span style="font-size:0.75rem;">▲</span>';
             }
-
-            requestAnimationFrame(render);
         }
-
-        render();
     </script>
 </body>
 </html>

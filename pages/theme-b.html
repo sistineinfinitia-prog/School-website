@@ -1,32 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="lilac" data-texture="animated">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theme B | Highwood CS</title>
+    <title>Theme B: Computational Thinking | Computer Science</title>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
 </head>
 <body>
     <header></header>
-    <section class="hero" style="padding-top: 120px; flex-direction: column; text-align: center;">
-        <span class="tag tag-purple">Core Concept</span>
-        <h1 style="font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; margin-top: 10px;">Theme B</h1>
-        <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Exploring the intersection of data, ethics, and modern technology.</p>
+
+    <section class="hero">
+        <div class="zen-badge">
+            <span class="badge-dot"></span>
+            <span>THEME B • ALGORITHMS & PROGRAMMING</span>
+        </div>
+        <h1>Computational Thinking & OOP</h1>
+        <p>
+            Problem solving, algorithms, Python programming, and object-oriented design.
+        </p>
     </section>
-    <div class="wave-divider"></div>
+
     <main class="content-section">
         <div class="section-container">
-            <div class="card-grid">
-                <a href="../resources/Theme B" class="card" style="text-decoration: none; color: inherit; grid-column: span 2;">
-                    <div style="font-size: 3rem; margin-bottom: 20px;">📂</div>
-                    <h2>Theme B Resources</h2>
-                    <p>Comprehensive repository of all worksheets, reading materials, and project briefs for Theme B.</p>
-                    <span class="btn" style="margin-top: 20px;">Open Resource Folder</span>
-                </a>
+            <div class="card-grid" style="margin-top: 0;">
+                <!-- B1 Computational Thinking -->
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span class="zen-pill">MODULE B.1</span>
+                        <span class="status-badge ready">READY</span>
+                    </div>
+                    <h2>Computational Thinking</h2>
+                    <p style="margin-top: 6px;">Decomposition, abstraction, flowcharts, pseudocode, and trace tables.</p>
+                    <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
+                        <a href="../resources/Theme B/B1  _ Computational Thinking" class="btn">Resource Folder →</a>
+                        <a href="practice.html?topic=algorithms" class="btn btn-secondary">Practice Qs</a>
+                    </div>
+                </div>
+
+                <!-- B2 Programming -->
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span class="zen-pill">MODULE B.2</span>
+                        <span class="status-badge ready">READY</span>
+                    </div>
+                    <h2>Programming Constructs</h2>
+                    <p style="margin-top: 6px;">Variables, selection, iteration, arrays, matrices, subroutines, and parameters.</p>
+                    <div style="margin-top: 20px;">
+                        <a href="../resources/Theme B/B2- Programming" class="btn">Resource Folder →</a>
+                    </div>
+                </div>
+
+                <!-- B3 OOP -->
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span class="zen-pill">MODULE B.3</span>
+                        <span class="status-badge ready">READY</span>
+                    </div>
+                    <h2>Object-Oriented Programming</h2>
+                    <p style="margin-top: 6px;">Classes, encapsulation, inheritance, polymorphism, and object modeling.</p>
+                    <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
+                        <a href="../resources/Theme B/B3 oops" class="btn">Resource Folder →</a>
+                        <a href="practice.html?topic=oop" class="btn btn-secondary">Practice Qs</a>
+                    </div>
+                </div>
+
+                <!-- Python Basics -->
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span class="zen-pill">LABS</span>
+                        <span class="status-badge ready">READY</span>
+                    </div>
+                    <h2>Python Basics</h2>
+                    <p style="margin-top: 6px;">Hands-on coding exercises, string operations, and file handling drills.</p>
+                    <div style="margin-top: 20px;">
+                        <a href="../resources/Theme B/Python Basics" class="btn">Python Drills →</a>
+                    </div>
+                </div>
+
+                <!-- IB Python 2026 Manual -->
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span class="zen-pill">MANUAL</span>
+                        <span class="status-badge ready">READY</span>
+                    </div>
+                    <h2>IB Python 2026 Guide</h2>
+                    <p style="margin-top: 6px;">Guide for language syntax, built-in functions, and exam pseudo-code conventions.</p>
+                    <div style="margin-top: 20px;">
+                        <a href="../resources/Theme B/IB Python 2026.docx" class="btn">Download Manual (DOCX) →</a>
+                    </div>
+                </div>
+
+                <!-- Simple Calculator Project -->
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span class="zen-pill">PROJECT</span>
+                        <span class="status-badge ready">READY</span>
+                    </div>
+                    <h2>Calculator Project</h2>
+                    <p style="margin-top: 6px;">Project presentation slides building an interactive calculator application.</p>
+                    <div style="margin-top: 20px;">
+                        <a href="../resources/Theme B/Simple Calculator -Project.pptx" class="btn">Download Deck (PPTX) →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notice for Google Site Subpage Export -->
+            <div class="missing-box" style="margin-top: 36px;">
+                <span>Pending Site Export: If you want the specific text from the Google Site's "Theme B" subpage added here, drop its HTML export into <a href="../google-site-export/">google-site-export/</a>.</span>
             </div>
         </div>
     </main>
+
     <footer></footer>
+
     <script src="../js/ui.js"></script>
+    <script src="../js/ribbon-waves.js"></script>
 </body>
 </html>

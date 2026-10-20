@@ -1,39 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="lilac" data-texture="animated">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theme A | Highwood CS</title>
+    <title>Theme A: System Fundamentals | Computer Science</title>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
 </head>
 <body>
     <header></header>
-    <section class="hero" style="padding-top: 120px; flex-direction: column; text-align: center;">
-        <span class="tag tag-coral">Core Concept</span>
-        <h1 style="font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; margin-top: 10px;">Theme A</h1>
-        <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Deep dive into architectural patterns and foundational theories.</p>
+
+    <section class="hero">
+        <div class="zen-badge">
+            <span class="badge-dot"></span>
+            <span>THEME A • HARDWARE & NETWORKS</span>
+        </div>
+        <h1>System Fundamentals</h1>
+        <p>
+            Processor architecture, instruction cycles, Boolean circuits, and network structures.
+        </p>
     </section>
-    <div class="wave-divider"></div>
+
     <main class="content-section">
         <div class="section-container">
-            <div class="card-grid">
-                <a href="../resources/Theme A" class="card" style="text-decoration: none; color: inherit;">
-                    <div style="font-size: 3rem; margin-bottom: 20px;">📂</div>
-                    <h2>Theme A Resources</h2>
-                    <p>Access all module content, presentations, and worksheets for this theme.</p>
-                    <span class="btn" style="margin-top: 20px;">Open Folder</span>
-                </a>
+            <div class="card-grid" style="margin-top: 0;">
+                <!-- A1 Computer Fundamentals -->
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span class="zen-pill">MODULE A.1</span>
+                        <span class="status-badge ready">READY</span>
+                    </div>
+                    <h2>Computer Fundamentals</h2>
+                    <p style="margin-top: 6px;">CPU registers, machine cycle (fetch-decode-execute), logic gates, and memory hierarchy.</p>
+                    <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
+                        <a href="../resources/Theme A/A1 _Computer Fundamentals" class="btn">Resource Folder →</a>
+                        <a href="practice.html?topic=architecture" class="btn btn-secondary">Practice Qs</a>
+                    </div>
+                </div>
 
-                <a href="../resources/Lesson2_GitHub_Deployment.pptx" class="card" style="text-decoration: none; color: inherit; border-top: 5px solid var(--primary);">
-                    <div style="font-size: 3rem; margin-bottom: 20px;">🚀</div>
-                    <h2>GitHub Deployment</h2>
-                    <p>Master the art of deploying your CS projects to the web using GitHub Pages.</p>
-                    <span class="btn btn-secondary" style="margin-top: 20px;">Download Presentation</span>
-                </a>
+                <!-- A2 Networks -->
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span class="zen-pill">MODULE A.2</span>
+                        <span class="status-badge ready">READY</span>
+                    </div>
+                    <h2>Networks</h2>
+                    <p style="margin-top: 6px;">Packet switching, protocols, OSI layers, topologies, and basic network security.</p>
+                    <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
+                        <a href="../resources/Theme A/A2 _ Networks" class="btn">Resource Folder →</a>
+                        <a href="practice.html?topic=networks" class="btn btn-secondary">Practice Qs</a>
+                    </div>
+                </div>
+
+                <!-- A3 Database -->
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span class="zen-pill">MODULE A.3</span>
+                        <span class="status-badge ready">READY</span>
+                    </div>
+                    <h2>Databases & SQL</h2>
+                    <p style="margin-top: 6px;">Relational schemas, primary/foreign keys, normalization (1NF–3NF), and SQL queries.</p>
+                    <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
+                        <a href="../resources/Theme A/A3 _ Database" class="btn">Resource Folder →</a>
+                        <a href="practice.html?topic=databases" class="btn btn-secondary">Practice Qs</a>
+                    </div>
+                </div>
+
+                <!-- Theory Questions & Mark Schemes -->
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span class="zen-pill">EXAM PRACTICE</span>
+                        <span class="status-badge ready">READY</span>
+                    </div>
+                    <h2>Theory Questions & Answers</h2>
+                    <p style="margin-top: 6px;">Paper 1 practice questions and official teacher marking scheme files.</p>
+                    <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
+                        <a href="../resources/Theme A/Theory Questions -B1,B2.docx" class="btn">Questions (DOCX)</a>
+                        <a href="../resources/Theme A/answers_.docx" class="btn btn-secondary">Mark Scheme (DOCX)</a>
+                    </div>
+                </div>
+
+                <!-- Mini Project -->
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span class="zen-pill">LAB</span>
+                        <span class="status-badge ready">READY</span>
+                    </div>
+                    <h2>Theme A Mini Project</h2>
+                    <p style="margin-top: 6px;">Hands-on simulation exercises connecting architecture theory to practical problem solving.</p>
+                    <div style="margin-top: 20px;">
+                        <a href="../resources/Theme A/Mini Project" class="btn">Project Folder →</a>
+                    </div>
+                </div>
+
+                <!-- GitHub Presentation -->
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span class="zen-pill">SLIDES</span>
+                        <span class="status-badge ready">READY</span>
+                    </div>
+                    <h2>GitHub & Web Deployment</h2>
+                    <p style="margin-top: 6px;">Guide for version control and deploying coursework to GitHub Pages.</p>
+                    <div style="margin-top: 20px;">
+                        <a href="../resources/Lesson2_GitHub_Deployment.pptx" class="btn">Download Slides (PPTX) →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notice for Google Site Subpage Export -->
+            <div class="missing-box" style="margin-top: 36px;">
+                <span>Pending Site Export: If you want the specific text from the Google Site's "Theme A" subpage added here, drop its HTML export into <a href="../google-site-export/">google-site-export/</a>.</span>
             </div>
         </div>
     </main>
+
     <footer></footer>
+
     <script src="../js/ui.js"></script>
+    <script src="../js/ribbon-waves.js"></script>
 </body>
 </html>

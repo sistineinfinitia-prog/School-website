@@ -1,71 +1,165 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="lilac" data-texture="animated">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curriculum | Highwood CS</title>
+    <title>Curriculum Syllabus | Computer Science</title>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
 </head>
 <body>
     <header></header>
-    <section class="hero" style="padding-top: 120px; flex-direction: column; text-align: center;">
-        <span class="tag tag-blue">Academic Roadmap</span>
-        <h1 style="font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; margin-top: 10px;">Curriculum Syllabus</h1>
-        <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Our roadmap designed to challenge and inspire the next generation of engineers.</p>
+
+    <section class="hero">
+        <div class="zen-badge">
+            <span class="badge-dot"></span>
+            <span>SYLLABUS & PACING • 2025–2027</span>
+        </div>
+        <h1>Curriculum & Planning</h1>
+        <p>
+            Official timelines, unit planners, and student milestone trackers for SL and HL.
+        </p>
     </section>
-    <div class="wave-divider"></div>
+
     <main class="content-section">
         <div class="section-container">
-            <div class="card-grid">
+            <!-- Year 1 & Year 2 Cards -->
+            <div class="card-grid" style="margin-top: 0;">
                 <div class="card">
-                    <span class="tag tag-blue">Year 1</span>
-                    <h2>Foundations</h2>
-                    <p>Core algorithmic thinking, data structures, and the building blocks of computation.</p>
-                    <div style="display: flex; gap: 10px; margin-top: 20px;">
-                        <a href="../resources/Curriculum" class="btn" style="flex: 1;">Course Materials</a>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span class="zen-pill">YEAR 1</span>
+                        <span class="status-badge ready">READY</span>
+                    </div>
+                    <h2>Year 1: Foundations</h2>
+                    <p style="margin-top: 6px;">Computer architecture, Boolean logic, data representation, and Python programming.</p>
+                    <div style="margin-top: 20px;">
+                        <a href="../resources/Curriculum" class="btn">Course Materials →</a>
                     </div>
                 </div>
+
                 <div class="card">
-                    <span class="tag tag-purple">Year 2</span>
-                    <h2>Advanced CS</h2>
-                    <p>Machine learning, systems architecture, and specialized project-based learning.</p>
-                    <a href="#" class="btn">View Syllabus</a>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span class="zen-pill">YEAR 2</span>
+                        <span class="status-badge pending">PARTIAL CONTENT</span>
+                    </div>
+                    <h2>Year 2: Advanced Topics & IA</h2>
+                    <p style="margin-top: 6px;">Networks, databases, abstract data structures, and IA finalization.</p>
+                    <div class="missing-box">
+                        <span>Notice: Semester 2 unit pacing document still needed from faculty.</span>
+                    </div>
+                    <div style="margin-top: 14px;">
+                        <a href="ia.html" class="btn btn-secondary">IA Roadmap →</a>
+                    </div>
                 </div>
             </div>
 
-            <div style="margin-top: var(--spacing-xl);">
-                <div class="section-header" style="text-align: left; margin-bottom: var(--spacing-lg);">
-                    <span class="tag tag-coral">Faculty & Student Standards</span>
-                    <h2 style="margin-top: 10px;">Planning & Progress</h2>
+            <!-- Documents Section -->
+            <div style="margin-top: 50px;">
+                <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <span class="zen-pill">OFFICIAL BENCHMARKS</span>
+                        <h2 style="margin: 8px 0 0; font-size: 1.8rem;">Pacing Documents & Trackers</h2>
+                    </div>
+                    <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted);">Status verified</span>
                 </div>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-md);">
-                    <a href="../resources/SoW IB Computer Science 2027.xlsx" class="card" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 15px; padding: var(--spacing-md);">
-                        <div style="font-size: 2rem;">📊</div>
-                        <div>
-                            <h3 style="margin: 0; font-size: 1.1rem;">Scheme of Work 2027</h3>
-                            <p style="margin: 0; font-size: 0.85rem; opacity: 0.7;">Official timeline and benchmarks.</p>
+
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <!-- SOW 2027 -->
+                    <a href="../resources/SoW IB Computer Science 2027.xlsx" class="download-item">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <span class="zen-pill">XLSX</span>
+                            <div>
+                                <h3 style="font-size: 1rem; margin: 0; font-family: var(--font-zen-title);">Scheme of Work 2027</h3>
+                                <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Full two-year course schedule and benchmark deadlines.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span class="status-badge ready">READY</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-primary);">Download</span>
                         </div>
                     </a>
-                    <a href="../resources/Scope and sequence - LESSON PLANNING.docx" class="card" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 15px; padding: var(--spacing-md);">
-                        <div style="font-size: 2rem;">📝</div>
-                        <div>
-                            <h3 style="margin: 0; font-size: 1.1rem;">Lesson Planning S&S</h3>
-                            <p style="margin: 0; font-size: 0.85rem; opacity: 0.7;">Scope and sequence overview.</p>
+
+                    <!-- Syllabus Tracker -->
+                    <a href="../resources/Weekly Unit planning/2025 Syllabus tracker for HL_sl students.xlsx" class="download-item">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <span class="zen-pill">XLSX</span>
+                            <div>
+                                <h3 style="font-size: 1rem; margin: 0; font-family: var(--font-zen-title);">Syllabus Tracker (HL & SL)</h3>
+                                <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Self-assessment checklist for all topics.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span class="status-badge ready">READY</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-primary);">Download</span>
                         </div>
                     </a>
-                    <a href="../resources/Copy of 26-27 Year 1 Sem 1 unit planner.docx" class="card" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 15px; padding: var(--spacing-md);">
-                        <div style="font-size: 2rem;">📅</div>
-                        <div>
-                            <h3 style="margin: 0; font-size: 1.1rem;">Year 1 Unit Planner</h3>
-                            <p style="margin: 0; font-size: 0.85rem; opacity: 0.7;">Detailed Semester 1 breakdown.</p>
+
+                    <!-- Scope and Sequence -->
+                    <a href="../resources/Scope and sequence - LESSON PLANNING.docx" class="download-item">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <span class="zen-pill">DOCX</span>
+                            <div>
+                                <h3 style="font-size: 1rem; margin: 0; font-family: var(--font-zen-title);">Scope and Sequence Planning</h3>
+                                <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Weekly topic order and lesson hours breakdown.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span class="status-badge ready">READY</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-primary);">Download</span>
+                        </div>
+                    </a>
+
+                    <!-- Year 1 Unit Planner -->
+                    <a href="../resources/Copy of 26-27 Year 1 Sem 1 unit planner.docx" class="download-item">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <span class="zen-pill">DOCX</span>
+                            <div>
+                                <h3 style="font-size: 1rem; margin: 0; font-family: var(--font-zen-title);">Year 1 Unit Planner (Semester 1)</h3>
+                                <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Inquiry questions, concepts, and assessment criteria.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span class="status-badge ready">READY</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-primary);">Download</span>
+                        </div>
+                    </a>
+
+                    <!-- Missing Year 2 Semester 2 Planner (Identified) -->
+                    <div class="download-item" style="opacity: 0.75; border-style: dashed;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <span class="zen-pill" style="opacity: 0.6;">DOCX</span>
+                            <div>
+                                <h3 style="font-size: 1rem; margin: 0; font-family: var(--font-zen-title);">Year 2 Unit Planner (Semester 2)</h3>
+                                <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Not in folder — awaiting upload from faculty.</p>
+                            </div>
+                        </div>
+                        <span class="status-badge missing">MISSING FILE</span>
+                    </div>
+
+                    <!-- IB CS Guide PDF -->
+                    <a href="../resources/Curriculum/ib-compsci-guide-en-2025.pdf" target="_blank" class="download-item">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <span class="zen-pill">PDF</span>
+                            <div>
+                                <h3 style="font-size: 1rem; margin: 0; font-family: var(--font-zen-title);">IB DP Computer Science Guide (2025)</h3>
+                                <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Subject guide with exam outlines and command terms.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span class="status-badge ready">READY</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-primary);">Open PDF</span>
                         </div>
                     </a>
                 </div>
             </div>
         </div>
     </main>
+
     <footer></footer>
+
     <script src="../js/ui.js"></script>
+    <script src="../js/ribbon-waves.js"></script>
 </body>
 </html>
