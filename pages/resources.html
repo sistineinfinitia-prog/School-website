@@ -1,237 +1,245 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="lilac" data-texture="animated">
+<html lang="en" data-theme="lilac" data-texture="animated" data-base="../">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resources & Past Papers | Computer Science</title>
-    <link rel="stylesheet" href="../css/main.css">
+    <title>Resources &amp; Past Papers | IB Computer Science &mdash; EIS</title>
+    <meta name="description" content="Searchable archive of all 131 student resources, worksheets, Python guides, IB subject guides, and interactive practice questions at Emirates International School.">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('eis_cs_theme');
+                var x = localStorage.getItem('eis_cs_texture');
+                if (t) document.documentElement.setAttribute('data-theme', t);
+                if (x) document.documentElement.setAttribute('data-texture', x);
+                var m = localStorage.getItem('eis_cs_mode');
+                if (m !== 'light' && m !== 'dark') {
+                    m = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                }
+                document.documentElement.setAttribute('data-mode', m);
+            } catch (e) {
+                document.documentElement.setAttribute('data-mode', window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+            }
+        })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/site.css">
 </head>
 <body>
-    <header></header>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <canvas class="ribbons" id="interactive-canvas" aria-hidden="true"></canvas>
 
-    <section class="hero">
-        <div class="zen-badge">
-            <span class="badge-dot"></span>
-            <span>COURSE DOCUMENTS & PRACTICE</span>
+    <header class="site-header">
+        <div class="wrap">
+            <a href="../index.html" class="brand">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-name">Computer Science</span>
+                <span class="brand-sub">Emirates International School</span>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+                <span>Menu</span>
+                <span class="nav-toggle-icon" aria-hidden="true"></span>
+            </button>
+
+            <nav class="site-nav" id="site-nav" aria-label="Primary">
+                <ul class="nav-list">
+                    <li><a href="../index.html">Homepage</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="practice.html">Practice</a></li>
+                    <li><a href="curriculum.html">Curriculum</a></li>
+                    <li><a href="theme-a.html">Theme A</a></li>
+                    <li><a href="theme-b.html">Theme B</a></li>
+                    <li><a href="ia.html">IA</a></li>
+                    <li><a href="case-study.html">Case Study</a></li>
+                    <li><a href="resources.html" aria-current="page">Resources</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                </ul>
+            </nav>
         </div>
-        <h1>Resources & Past Papers</h1>
-        <p>
-            Past examination papers, official subject guides, revision decks, and worksheets.
-        </p>
-    </section>
+    </header>
 
-    <main class="content-section">
-        <div class="section-container">
+    <main id="main" class="wrap">
+        <section class="hero">
+            <div class="eyebrow">
+                <span>Course Documents &amp; Practice &bull; 131 Student Files</span>
+            </div>
+            <h1 class="display">
+                Resources &amp; Past Papers
+            </h1>
+            <p class="lead">
+                Search and download every slide deck, worksheet, Python handbook, IA exemplar, and official IB subject guide in the Emirates International School repository.
+            </p>
 
-            <!-- Interactive Practice Callout -->
-            <div style="background: var(--bg-card); border: 1px solid var(--accent-primary); border-radius: 6px; padding: 24px; margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.25);">
+            <aside class="callout" aria-label="Interactive Practice Question Bank">
+                <span class="pill">Exam Revision Tool</span>
                 <div>
-                    <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
-                        <span class="zen-pill" style="color:var(--accent-primary); border-color:var(--accent-primary);">EXAM REVISION TOOL</span>
-                        <span class="status-badge ready">12 QUESTIONS READY</span>
+                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:4px;">
+                        <h2 class="callout-title" style="margin:0;">Interactive Practice Question Bank</h2>
+                        <span class="status-badge ready">12 Questions Ready</span>
                     </div>
-                    <h2 style="font-size: 1.4rem; margin: 0 0 6px;">Interactive Practice Question Bank</h2>
-                    <p style="margin: 0; font-size: 0.92rem; color: var(--text-secondary);">Filter questions by topic (Architecture, Networks, Databases, Algorithms, OOP) and click to reveal mark schemes.</p>
+                    <p>
+                        Filter questions by topic (Architecture, Memory, Networks, Databases, Algorithms, OOP, Paper 3 AI) and click to reveal official mark schemes. <a href="practice.html">Open Question Bank &rarr;</a>
+                    </p>
                 </div>
-                <a href="practice.html" class="btn" style="white-space:nowrap;">Open Question Bank →</a>
+            </aside>
+        </section>
+
+        <!-- Section 01: Essential Reference Packs -->
+        <section class="section" aria-labelledby="sec-featured-files">
+            <div class="section-label">
+                <span>01</span>Core Packs
             </div>
-
-            <!-- Resource Categories Grid -->
-            <div class="card-grid" style="margin-top: 0; margin-bottom: 48px;">
-                <!-- Practice Question Bank -->
-                <a href="practice.html" class="card" style="text-decoration: none; color: inherit;">
+            <div class="section-body">
+                <div class="section-head">
                     <div>
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span class="zen-pill">PRACTICE</span>
-                            <span class="status-badge ready">READY</span>
-                        </div>
-                        <h2 style="margin-top: 14px;">Question Bank</h2>
-                        <p style="margin-top: 8px;">12 authentic IB DP questions with topic filtering and click-to-reveal official mark schemes.</p>
+                        <h2 class="h1" id="sec-featured-files">Essential Reference Downloads</h2>
+                        <p class="sub">
+                            Most frequently used revision worksheets, official syllabus guides, and coursework handbooks.
+                        </p>
                     </div>
-                    <div style="margin-top: 24px; padding-top: 14px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-family: var(--font-mono); color: var(--accent-primary);">
-                        <span>12 Questions</span>
-                        <span>Practice Now →</span>
-                    </div>
-                </a>
-
-                <!-- Practice Papers -->
-                <a href="../resources/Overall Practice Papers/IB Computer Science Worksheet.docx" class="card" style="text-decoration: none; color: inherit;">
-                    <div>
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span class="zen-pill">EXAM PAPERS</span>
-                            <span class="status-badge missing">PDFs PENDING</span>
-                        </div>
-                        <h2 style="margin-top: 14px;">Overall Practice Papers</h2>
-                        <p style="margin-top: 8px;">Contains IB CS Worksheet collection. Full 2016–2025 past exam paper PDFs have not yet been uploaded.</p>
-                    </div>
-                    <div style="margin-top: 24px; padding-top: 14px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-family: var(--font-mono); color: var(--accent-primary);">
-                        <span>1 Worksheet DOCX</span>
-                        <span>Download DOCX →</span>
-                    </div>
-                </a>
-
-                <!-- Revision Kits -->
-                <a href="../resources/Revision Folder/Theme A/A1 -Database/RelationalVsNonRelational_Lesson.pptx" class="card" style="text-decoration: none; color: inherit;">
-                    <div>
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span class="zen-pill">REVISION</span>
-                            <span class="status-badge pending">THEME A ONLY</span>
-                        </div>
-                        <h2 style="margin-top: 14px;">Revision Summaries</h2>
-                        <p style="margin-top: 8px;">Theme A (Database & Architecture) slides. Theme B, C, and D revision summary files are pending upload.</p>
-                    </div>
-                    <div style="margin-top: 24px; padding-top: 14px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-family: var(--font-mono); color: var(--accent-primary);">
-                        <span>Theme A Slides</span>
-                        <span>Download Slides →</span>
-                    </div>
-                </a>
-
-                <!-- Curriculum Guides -->
-                <a href="../resources/Curriculum/ib-compsci-guide-en-2025.pdf" target="_blank" class="card" style="text-decoration: none; color: inherit;">
-                    <div>
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span class="zen-pill">CURRICULUM</span>
-                            <span class="status-badge ready">3 FILES READY</span>
-                        </div>
-                        <h2 style="margin-top: 14px;">Subject Guides</h2>
-                        <p style="margin-top: 8px;">Official IB Computer Science subject guide (2025), curriculum map, and syllabus posters.</p>
-                    </div>
-                    <div style="margin-top: 24px; padding-top: 14px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-family: var(--font-mono); color: var(--accent-primary);">
-                        <span>2025 Guide (PDF)</span>
-                        <span>Open PDF →</span>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Downloadable Resource Files List -->
-            <div>
-                <div style="margin-bottom: 24px;">
-                    <span class="zen-pill">AVAILABLE DOWNLOADS</span>
-                    <h2 style="margin-top: 12px; font-size: 2rem;">Worksheets & Reference Files</h2>
-                    <p style="margin-top: 6px;">Direct links to all existing documents stored in the school repository.</p>
                 </div>
 
-                <div style="display: flex; flex-direction: column; gap: 12px;">
-                    <a href="../resources/Overall Practice Papers/IB Computer Science Worksheet.docx" class="download-item">
-                        <div style="display: flex; align-items: center; gap: 16px;">
-                            <span class="zen-pill">DOCX</span>
-                            <div>
-                                <div style="display:flex; align-items:center; gap:8px;">
-                                    <h3 style="font-size: 1.05rem; margin: 0; font-family: var(--font-zen-title);">IB Computer Science Worksheet Collection</h3>
-                                    <span class="status-badge ready">READY</span>
-                                </div>
-                                <p style="margin: 0; font-size: 0.84rem; color: var(--text-muted);">Short-answer problem sets and exam-style questions.</p>
-                            </div>
+                <div class="hub-grid">
+                    <a class="hub-card" href="practice.html">
+                        <div class="hub-top">
+                            <span class="pill">Practice</span>
+                            <span class="status-badge ready">12 Questions</span>
                         </div>
-                        <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-primary);">Download</span>
+                        <div>
+                            <h3>Interactive Question Bank</h3>
+                            <p>12 authentic IB DP questions with topic filtering and click-to-reveal official mark schemes.</p>
+                        </div>
+                        <div class="hub-foot">
+                            <span>SL &amp; HL</span>
+                            <span>Practice Now &rarr;</span>
+                        </div>
                     </a>
 
-                    <a href="../resources/Error log - Python Programming.pdf" target="_blank" class="download-item">
-                        <div style="display: flex; align-items: center; gap: 16px;">
-                            <span class="zen-pill">PDF</span>
-                            <div>
-                                <div style="display:flex; align-items:center; gap:8px;">
-                                    <h3 style="font-size: 1.05rem; margin: 0; font-family: var(--font-zen-title);">Python Error Log & Troubleshooting Handbook</h3>
-                                    <span class="status-badge ready">READY</span>
-                                </div>
-                                <p style="margin: 0; font-size: 0.84rem; color: var(--text-muted);">Common syntax errors, exceptions, and debugging fixes.</p>
-                            </div>
+                    <a class="hub-card" href="../resources/Overall%20Practice%20Papers/IB%20Computer%20Science%20Worksheet.docx" download>
+                        <div class="hub-top">
+                            <span class="pill">DOCX</span>
+                            <span class="status-badge ready">Ready</span>
                         </div>
-                        <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-primary);">Open PDF</span>
+                        <div>
+                            <h3>Overall Practice Worksheet</h3>
+                            <p>Comprehensive problem set covering computer fundamentals, networks, and Python trace tables.</p>
+                        </div>
+                        <div class="hub-foot">
+                            <span>Worksheet Collection</span>
+                            <span>Download DOCX &rarr;</span>
+                        </div>
                     </a>
 
-                    <a href="../resources/Curriculum/ib-compsci-guide-en-2025.pdf" target="_blank" class="download-item">
-                        <div style="display: flex; align-items: center; gap: 16px;">
-                            <span class="zen-pill">PDF</span>
-                            <div>
-                                <div style="display:flex; align-items:center; gap:8px;">
-                                    <h3 style="font-size: 1.05rem; margin: 0; font-family: var(--font-zen-title);">IBDP Computer Science Subject Guide (2025)</h3>
-                                    <span class="status-badge ready">READY</span>
-                                </div>
-                                <p style="margin: 0; font-size: 0.84rem; color: var(--text-muted);">Official syllabus specification and exam structure.</p>
-                            </div>
+                    <a class="hub-card" href="../resources/Curriculum/ib-compsci-guide-en-2025.pdf" target="_blank" rel="noopener">
+                        <div class="hub-top">
+                            <span class="pill">PDF</span>
+                            <span class="status-badge ready">Ready</span>
                         </div>
-                        <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-primary);">Open PDF</span>
+                        <div>
+                            <h3>Official IB Subject Guide</h3>
+                            <p>Complete IB DP Computer Science syllabus specification, assessment outline, and command terms.</p>
+                        </div>
+                        <div class="hub-foot">
+                            <span>1.2 MB PDF</span>
+                            <span>Open PDF &rarr;</span>
+                        </div>
                     </a>
 
-                    <a href="../resources/IA/Computer Science Assessed Student Work 2027 (1).pdf" target="_blank" class="download-item">
-                        <div style="display: flex; align-items: center; gap: 16px;">
-                            <span class="zen-pill">PDF</span>
-                            <div>
-                                <div style="display:flex; align-items:center; gap:8px;">
-                                    <h3 style="font-size: 1.05rem; margin: 0; font-family: var(--font-zen-title);">Assessed Student IA Exemplar (2027 Spec)</h3>
-                                    <span class="status-badge ready">READY</span>
-                                </div>
-                                <p style="margin: 0; font-size: 0.84rem; color: var(--text-muted);">Moderated high-scoring student write-up with examiner marks.</p>
-                            </div>
+                    <a class="hub-card" href="../resources/Error%20log%20-%20Python%20Programming.pdf" target="_blank" rel="noopener">
+                        <div class="hub-top">
+                            <span class="pill">PDF</span>
+                            <span class="status-badge ready">Ready</span>
                         </div>
-                        <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-primary);">Open PDF</span>
-                    </a>
-
-                    <a href="../resources/Lesson2_GitHub_Deployment.pptx" class="download-item">
-                        <div style="display: flex; align-items: center; gap: 16px;">
-                            <span class="zen-pill">PPTX</span>
-                            <div>
-                                <div style="display:flex; align-items:center; gap:8px;">
-                                    <h3 style="font-size: 1.05rem; margin: 0; font-family: var(--font-zen-title);">GitHub Deployment Presentation</h3>
-                                    <span class="status-badge ready">READY</span>
-                                </div>
-                                <p style="margin: 0; font-size: 0.84rem; color: var(--text-muted);">Slide deck covering Git commands and static website hosting.</p>
-                            </div>
+                        <div>
+                            <h3>Python Error Log Handbook</h3>
+                            <p>Diagnostic guide to common syntax errors, runtime exceptions, and Criterion C debugging documentation.</p>
                         </div>
-                        <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-primary);">Download</span>
-                    </a>
-
-                    <a href="../resources/Scope and sequence - LESSON PLANNING.docx" class="download-item">
-                        <div style="display: flex; align-items: center; gap: 16px;">
-                            <span class="zen-pill">DOCX</span>
-                            <div>
-                                <div style="display:flex; align-items:center; gap:8px;">
-                                    <h3 style="font-size: 1.05rem; margin: 0; font-family: var(--font-zen-title);">Scope & Sequence Lesson Plan</h3>
-                                    <span class="status-badge ready">READY</span>
-                                </div>
-                                <p style="margin: 0; font-size: 0.84rem; color: var(--text-muted);">Lesson schedule and learning outcomes.</p>
-                            </div>
+                        <div class="hub-foot">
+                            <span>IA &amp; Paper 2</span>
+                            <span>Open PDF &rarr;</span>
                         </div>
-                        <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-primary);">Download</span>
                     </a>
-
-                    <a href="../resources/Curriculum/DP CS Curriculum (2025-26).xlsx" class="download-item">
-                        <div style="display: flex; align-items: center; gap: 16px;">
-                            <span class="zen-pill">XLSX</span>
-                            <div>
-                                <div style="display:flex; align-items:center; gap:8px;">
-                                    <h3 style="font-size: 1.05rem; margin: 0; font-family: var(--font-zen-title);">DP CS Curriculum Spreadsheet (2025–2026)</h3>
-                                    <span class="status-badge ready">READY</span>
-                                </div>
-                                <p style="margin: 0; font-size: 0.84rem; color: var(--text-muted);">Unit breakdown and weekly pacing timetable.</p>
-                            </div>
-                        </div>
-                        <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-primary);">Download</span>
-                    </a>
-                </div>
-
-                <!-- Missing Content Notice -->
-                <div class="missing-box" style="margin-top: 36px; padding: 22px;">
-                    <div style="font-weight: 600; font-family: var(--font-mono); font-size: 0.82rem; margin-bottom: 10px; color: #f87171;">
-                        MISSING / PENDING UPLOADS (ACTION REQUIRED BY FACULTY):
-                    </div>
-                    <ul style="margin: 0; padding-left: 20px; font-size: 0.88rem; line-height: 1.8;">
-                        <li><strong>Past Exam Papers (2016–2025):</strong> Paper 1 and Paper 2 PDF question papers and mark schemes are not yet uploaded in <code>resources/Overall Practice Papers/</code>.</li>
-                        <li><strong>Revision Summaries for Themes B, C, & D:</strong> <code>resources/Revision Folder/</code> currently only contains Theme A (Database). Summary notes for other themes are needed.</li>
-                        <li><strong>Year 2 Semester 2 Unit Plan:</strong> Missing from curriculum files (only Semester 1 is available).</li>
-                    </ul>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Section 02: Full Searchable 131-File Vault -->
+        <section class="section" aria-labelledby="sec-vault">
+            <div class="section-label">
+                <span>02</span>Full Index
+            </div>
+            <div class="section-body">
+                <div class="section-head">
+                    <div>
+                        <h2 class="h1" id="sec-vault">Search All 131 Student Files</h2>
+                        <p class="sub">
+                            Filter instantaneously by keyword or file type across Theme A (70 files), Theme B (48 files), Curriculum &amp; Scheme of Work, IA, Revision Folder, and Practice Papers.
+                        </p>
+                    </div>
+                </div>
+
+                <div data-library="full">
+                    <p class="sub">Loading department resource index&hellip;</p>
+                </div>
+
+                <div class="missing-box" style="margin-top: 32px;">
+                    <div>
+                        <strong>Pending Faculty Uploads:</strong> Past Exam Papers (2016&ndash;2025 PDFs), Theme B/C/D Revision Folder summaries, and the Year 2 Semester 2 Unit Plan are awaiting teacher upload. All 131 currently uploaded department files are indexed above.
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer></footer>
+    <footer class="site-footer">
+        <div class="wrap">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-title">Computer Science &bull; EIS</div>
+                    <p>
+                        IB Diploma Programme Computer Science (SL &amp; HL) at Emirates International School. Speaking requests &amp; inquiries: <a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui (Siddiquin@eischools.ae)</a>.
+                    </p>
+                </div>
+                <div>
+                    <div class="footer-title">Navigation</div>
+                    <ul>
+                        <li><a href="courses.html">Courses Overview</a></li>
+                        <li><a href="practice.html">Practice Question Bank</a></li>
+                        <li><a href="curriculum.html">Curriculum &amp; Pacing</a></li>
+                        <li><a href="theme-a.html">Theme A: Systems &amp; Hardware</a></li>
+                        <li><a href="theme-b.html">Theme B: Computational Thinking</a></li>
+                        <li><a href="ia.html">Internal Assessment (IA)</a></li>
+                        <li><a href="case-study.html">Paper 3 Case Study</a></li>
+                        <li><a href="resources.html">Resources &amp; Worksheets</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-title">Department Team &amp; Appearance</div>
+                    <ul>
+                        <li><a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui &mdash; Head of CS</a></li>
+                        <li><a href="mailto:anishdongarkar@gmail.com">Anish Dongarkar &mdash; Tech Ambassador</a></li>
+                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaren &mdash; AI Ambassador</a></li>
+                        <li><a href="about-us.html">About the Department</a></li>
+                        <li><a href="admin.html">Faculty Administration Portal</a></li>
+                    </ul>
+                    <div style="margin-top: 18px;">
+                        <div class="footer-title">Appearance</div>
+                        <div class="appearance" data-appearance></div>
+                    </div>
+                </div>
+            </div>
 
-    <script src="../js/ui.js"></script>
-    <script src="../js/ribbon-waves.js"></script>
+            <div class="footer-base">
+                <span>&copy; 2026 Computer Science Department &bull; Emirates International School (IB DP World School)</span>
+                <span>Theme A &bull; Theme B &bull; IA &bull; Paper 3</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/site.js" defer></script>
+    <script src="../assets/js/library.js" defer></script>
 </body>
 </html>

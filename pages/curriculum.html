@@ -1,165 +1,336 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="lilac" data-texture="animated">
+<html lang="en" data-theme="lilac" data-texture="animated" data-base="../">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curriculum Syllabus | Computer Science</title>
-    <link rel="stylesheet" href="../css/main.css">
+    <title>Curriculum &amp; Planning | IB Computer Science &mdash; Emirates International School</title>
+    <meta name="description" content="Official IB DP Computer Science timelines, unit planners, student milestone trackers, and SL/HL assessment weightings at Emirates International School.">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('eis_cs_theme');
+                var x = localStorage.getItem('eis_cs_texture');
+                if (t) document.documentElement.setAttribute('data-theme', t);
+                if (x) document.documentElement.setAttribute('data-texture', x);
+                var m = localStorage.getItem('eis_cs_mode');
+                if (m !== 'light' && m !== 'dark') {
+                    m = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                }
+                document.documentElement.setAttribute('data-mode', m);
+            } catch (e) {
+                document.documentElement.setAttribute('data-mode', window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+            }
+        })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/site.css">
 </head>
 <body>
-    <header></header>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <canvas class="ribbons" id="interactive-canvas" aria-hidden="true"></canvas>
 
-    <section class="hero">
-        <div class="zen-badge">
-            <span class="badge-dot"></span>
-            <span>SYLLABUS & PACING • 2025–2027</span>
+    <header class="site-header">
+        <div class="wrap">
+            <a href="../index.html" class="brand">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-name">Computer Science</span>
+                <span class="brand-sub">Emirates International School</span>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+                <span>Menu</span>
+                <span class="nav-toggle-icon" aria-hidden="true"></span>
+            </button>
+
+            <nav class="site-nav" id="site-nav" aria-label="Primary">
+                <ul class="nav-list">
+                    <li><a href="../index.html">Homepage</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="practice.html">Practice</a></li>
+                    <li><a href="curriculum.html" aria-current="page">Curriculum</a></li>
+                    <li><a href="theme-a.html">Theme A</a></li>
+                    <li><a href="theme-b.html">Theme B</a></li>
+                    <li><a href="ia.html">IA</a></li>
+                    <li><a href="case-study.html">Case Study</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                </ul>
+            </nav>
         </div>
-        <h1>Curriculum & Planning</h1>
-        <p>
-            Official timelines, unit planners, and student milestone trackers for SL and HL.
-        </p>
-    </section>
+    </header>
 
-    <main class="content-section">
-        <div class="section-container">
-            <!-- Year 1 & Year 2 Cards -->
-            <div class="card-grid" style="margin-top: 0;">
-                <div class="card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                        <span class="zen-pill">YEAR 1</span>
-                        <span class="status-badge ready">READY</span>
-                    </div>
-                    <h2>Year 1: Foundations</h2>
-                    <p style="margin-top: 6px;">Computer architecture, Boolean logic, data representation, and Python programming.</p>
-                    <div style="margin-top: 20px;">
-                        <a href="../resources/Curriculum" class="btn">Course Materials →</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                        <span class="zen-pill">YEAR 2</span>
-                        <span class="status-badge pending">PARTIAL CONTENT</span>
-                    </div>
-                    <h2>Year 2: Advanced Topics & IA</h2>
-                    <p style="margin-top: 6px;">Networks, databases, abstract data structures, and IA finalization.</p>
-                    <div class="missing-box">
-                        <span>Notice: Semester 2 unit pacing document still needed from faculty.</span>
-                    </div>
-                    <div style="margin-top: 14px;">
-                        <a href="ia.html" class="btn btn-secondary">IA Roadmap →</a>
-                    </div>
-                </div>
+    <main id="main" class="wrap">
+        <section class="hero">
+            <div class="eyebrow">
+                <span>Syllabus &amp; Pacing &bull; 2025&ndash;2027</span>
             </div>
+            <h1 class="display">
+                Curriculum &amp; Planning
+            </h1>
+            <p class="lead">
+                Official timelines, unit planners, assessment weightings, and student milestone trackers for Standard Level (SL) and Higher Level (HL) at Emirates International School.
+            </p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="../resources/Curriculum/ib-compsci-guide-en-2025.pdf" target="_blank" rel="noopener">
+                    <span>Open Official IB Subject Guide (PDF)</span>
+                    <span class="arrow" aria-hidden="true">&rarr;</span>
+                </a>
+                <a class="btn" href="../resources/SoW%20IB%20Computer%20Science%202027.xlsx" download>
+                    <span>Download Scheme of Work 2027 (XLSX)</span>
+                </a>
+                <a class="btn" href="../resources/Weekly%20Unit%20planning/2025%20Syllabus%20tracker%20for%20HL_sl%20students.xlsx" download>
+                    <span>Student Syllabus Tracker (XLSX)</span>
+                </a>
+            </div>
+        </section>
 
-            <!-- Documents Section -->
-            <div style="margin-top: 50px;">
-                <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 10px;">
+        <!-- Section 01: Year 1 & Year 2 Pacing Overview -->
+        <section class="section" aria-labelledby="sec-years">
+            <div class="section-label">
+                <span>01</span>Two-Year Pacing
+            </div>
+            <div class="section-body">
+                <div class="section-head">
                     <div>
-                        <span class="zen-pill">OFFICIAL BENCHMARKS</span>
-                        <h2 style="margin: 8px 0 0; font-size: 1.8rem;">Pacing Documents & Trackers</h2>
+                        <h2 class="h1" id="sec-years">Year 1 &amp; Year 2 Roadmap</h2>
+                        <p class="sub">
+                            Progression across foundational computer science concepts, programming constructs, and the 30-mark Internal Assessment.
+                        </p>
                     </div>
-                    <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted);">Status verified</span>
                 </div>
 
-                <div style="display: flex; flex-direction: column; gap: 12px;">
-                    <!-- SOW 2027 -->
-                    <a href="../resources/SoW IB Computer Science 2027.xlsx" class="download-item">
-                        <div style="display: flex; align-items: center; gap: 16px;">
-                            <span class="zen-pill">XLSX</span>
-                            <div>
-                                <h3 style="font-size: 1rem; margin: 0; font-family: var(--font-zen-title);">Scheme of Work 2027</h3>
-                                <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Full two-year course schedule and benchmark deadlines.</p>
-                            </div>
+                <div class="hub-grid">
+                    <div class="hub-card">
+                        <div class="hub-top">
+                            <span class="pill">Year 1</span>
+                            <span class="status-badge ready">Ready</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <span class="status-badge ready">READY</span>
-                            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-primary);">Download</span>
+                        <div>
+                            <h3>Year 1: Foundations &amp; Core Programming</h3>
+                            <p>Computer architecture (A1), Boolean logic, data representation, Python programming constructs (B1 &amp; B2), Object-Oriented Programming (B3), and IA Criterion A &amp; B launch.</p>
                         </div>
-                    </a>
-
-                    <!-- Syllabus Tracker -->
-                    <a href="../resources/Weekly Unit planning/2025 Syllabus tracker for HL_sl students.xlsx" class="download-item">
-                        <div style="display: flex; align-items: center; gap: 16px;">
-                            <span class="zen-pill">XLSX</span>
-                            <div>
-                                <h3 style="font-size: 1rem; margin: 0; font-family: var(--font-zen-title);">Syllabus Tracker (HL & SL)</h3>
-                                <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Self-assessment checklist for all topics.</p>
-                            </div>
+                        <div class="hub-foot">
+                            <a href="../resources/Copy%20of%2026-27%20Year%201%20Sem%201%20unit%20planner.docx" download style="text-decoration:none; color:var(--accent);">Download Year 1 Unit Planner &rarr;</a>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <span class="status-badge ready">READY</span>
-                            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-primary);">Download</span>
-                        </div>
-                    </a>
-
-                    <!-- Scope and Sequence -->
-                    <a href="../resources/Scope and sequence - LESSON PLANNING.docx" class="download-item">
-                        <div style="display: flex; align-items: center; gap: 16px;">
-                            <span class="zen-pill">DOCX</span>
-                            <div>
-                                <h3 style="font-size: 1rem; margin: 0; font-family: var(--font-zen-title);">Scope and Sequence Planning</h3>
-                                <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Weekly topic order and lesson hours breakdown.</p>
-                            </div>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <span class="status-badge ready">READY</span>
-                            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-primary);">Download</span>
-                        </div>
-                    </a>
-
-                    <!-- Year 1 Unit Planner -->
-                    <a href="../resources/Copy of 26-27 Year 1 Sem 1 unit planner.docx" class="download-item">
-                        <div style="display: flex; align-items: center; gap: 16px;">
-                            <span class="zen-pill">DOCX</span>
-                            <div>
-                                <h3 style="font-size: 1rem; margin: 0; font-family: var(--font-zen-title);">Year 1 Unit Planner (Semester 1)</h3>
-                                <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Inquiry questions, concepts, and assessment criteria.</p>
-                            </div>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <span class="status-badge ready">READY</span>
-                            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-primary);">Download</span>
-                        </div>
-                    </a>
-
-                    <!-- Missing Year 2 Semester 2 Planner (Identified) -->
-                    <div class="download-item" style="opacity: 0.75; border-style: dashed;">
-                        <div style="display: flex; align-items: center; gap: 16px;">
-                            <span class="zen-pill" style="opacity: 0.6;">DOCX</span>
-                            <div>
-                                <h3 style="font-size: 1rem; margin: 0; font-family: var(--font-zen-title);">Year 2 Unit Planner (Semester 2)</h3>
-                                <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Not in folder — awaiting upload from faculty.</p>
-                            </div>
-                        </div>
-                        <span class="status-badge missing">MISSING FILE</span>
                     </div>
 
-                    <!-- IB CS Guide PDF -->
-                    <a href="../resources/Curriculum/ib-compsci-guide-en-2025.pdf" target="_blank" class="download-item">
-                        <div style="display: flex; align-items: center; gap: 16px;">
-                            <span class="zen-pill">PDF</span>
-                            <div>
-                                <h3 style="font-size: 1rem; margin: 0; font-family: var(--font-zen-title);">IB DP Computer Science Guide (2025)</h3>
-                                <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">Subject guide with exam outlines and command terms.</p>
+                    <div class="hub-card">
+                        <div class="hub-top">
+                            <span class="pill">Year 2</span>
+                            <span class="status-badge pending">Partial Content</span>
+                        </div>
+                        <div>
+                            <h3>Year 2: Networks, Databases, ML &amp; IA</h3>
+                            <p>Networks (A2), relational SQL databases (A3), Machine Learning (A4), HL Abstract Data Types (B4), Paper 3 Case Study, and IA Criterion C&ndash;E completion.</p>
+                            <div class="missing-box">
+                                Notice: Year 2 Semester 2 unit pacing document is pending faculty upload.
                             </div>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <span class="status-badge ready">READY</span>
-                            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-primary);">Open PDF</span>
+                        <div class="hub-foot">
+                            <a href="ia.html" style="text-decoration:none; color:var(--accent);">Open IA Roadmap &rarr;</a>
                         </div>
-                    </a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Section 02: Official Benchmarks & Pacing Documents -->
+        <section class="section" aria-labelledby="sec-docs">
+            <div class="section-label">
+                <span>02</span>Benchmarks
+            </div>
+            <div class="section-body">
+                <div class="section-head">
+                    <div>
+                        <span class="pill" style="margin-bottom:8px;">Official Benchmarks</span>
+                        <h2 class="h1" id="sec-docs">Pacing Documents &amp; Trackers</h2>
+                        <p class="sub">
+                            Download official IB guides, the two-year Scheme of Work, Scope and Sequence plans, and student self-assessment checklists.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="files" style="margin-bottom: 24px;">
+                    <div class="file">
+                        <div class="file-main">
+                            <span class="file-ext">XLSX</span>
+                            <div>
+                                <div class="file-name">Scheme of Work 2027 (SoW IB Computer Science 2027)</div>
+                                <span class="file-path">Full two-year course schedule and benchmark deadlines</span>
+                            </div>
+                        </div>
+                        <div class="file-actions">
+                            <span class="status-badge ready">Ready</span>
+                            <a class="btn btn-primary btn-sm" href="../resources/SoW%20IB%20Computer%20Science%202027.xlsx" download>Download</a>
+                        </div>
+                    </div>
+
+                    <div class="file">
+                        <div class="file-main">
+                            <span class="file-ext">XLSX</span>
+                            <div>
+                                <div class="file-name">Syllabus Tracker for HL &amp; SL Students (2025)</div>
+                                <span class="file-path">Self-assessment checklist covering all SL and HL subtopics</span>
+                            </div>
+                        </div>
+                        <div class="file-actions">
+                            <span class="status-badge ready">Ready</span>
+                            <a class="btn btn-primary btn-sm" href="../resources/Weekly%20Unit%20planning/2025%20Syllabus%20tracker%20for%20HL_sl%20students.xlsx" download>Download</a>
+                        </div>
+                    </div>
+
+                    <div class="file">
+                        <div class="file-main">
+                            <span class="file-ext">DOCX</span>
+                            <div>
+                                <div class="file-name">Scope and Sequence &mdash; Lesson Planning</div>
+                                <span class="file-path">Weekly topic order and teaching hours breakdown</span>
+                            </div>
+                        </div>
+                        <div class="file-actions">
+                            <span class="status-badge ready">Ready</span>
+                            <a class="btn btn-primary btn-sm" href="../resources/Scope%20and%20sequence%20-%20LESSON%20PLANNING.docx" download>Download</a>
+                        </div>
+                    </div>
+
+                    <div class="file">
+                        <div class="file-main">
+                            <span class="file-ext">DOCX</span>
+                            <div>
+                                <div class="file-name">Year 1 Unit Planner (Semester 1, 2026&ndash;2027)</div>
+                                <span class="file-path">Inquiry questions, concepts, and assessment criteria</span>
+                            </div>
+                        </div>
+                        <div class="file-actions">
+                            <span class="status-badge ready">Ready</span>
+                            <a class="btn btn-primary btn-sm" href="../resources/Copy%20of%2026-27%20Year%201%20Sem%201%20unit%20planner.docx" download>Download</a>
+                        </div>
+                    </div>
+
+                    <div class="file">
+                        <div class="file-main">
+                            <span class="file-ext">DOCX</span>
+                            <div>
+                                <div class="file-name">Year 2 Unit Planner (Semester 2)</div>
+                                <span class="file-path">Not in folder &mdash; awaiting upload from faculty</span>
+                            </div>
+                        </div>
+                        <div class="file-actions">
+                            <span class="status-badge missing">Missing File</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-library="scope" data-scope="resources/Curriculum" data-search="false"></div>
+            </div>
+        </section>
+
+        <!-- Section 03: Assessment Weightings -->
+        <section class="section" aria-labelledby="sec-assessment">
+            <div class="section-label">
+                <span>03</span>Assessment
+            </div>
+            <div class="section-body">
+                <div class="section-head">
+                    <div>
+                        <h2 class="h1" id="sec-assessment">SL &amp; HL Assessment Architecture</h2>
+                        <p class="sub">
+                            Written examination papers test Theme A and Theme B separately, complemented by the 30-mark individual computational solution.
+                        </p>
+                    </div>
+                </div>
+
+                <table class="criteria">
+                    <thead>
+                        <tr>
+                            <th scope="col">Component</th>
+                            <th scope="col">Focus &amp; Syllabus Scope</th>
+                            <th scope="col">SL Weight</th>
+                            <th scope="col">HL Weight</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="criteria-id">Paper 1</td>
+                            <td>
+                                <strong>Concepts of Computer Science (Theme A)</strong>
+                                <p>Assesses A1 Computer Fundamentals, A2 Networks, A3 Databases, and A4 Machine Learning, plus the pre-released Case Study.</p>
+                            </td>
+                            <td class="criteria-marks">35%<span class="weight-bar" aria-hidden="true"><span style="width: 35%"></span></span></td>
+                            <td class="criteria-marks">40%<span class="weight-bar" aria-hidden="true"><span style="width: 40%"></span></span></td>
+                        </tr>
+                        <tr>
+                            <td class="criteria-id">Paper 2</td>
+                            <td>
+                                <strong>Computational Thinking &amp; Problem-Solving (Theme B)</strong>
+                                <p>Assesses B1 Computational Thinking, B2 Programming, B3 Object-Oriented Programming, and B4 Abstract Data Types (HL only) using Python.</p>
+                            </td>
+                            <td class="criteria-marks">35%<span class="weight-bar" aria-hidden="true"><span style="width: 35%"></span></span></td>
+                            <td class="criteria-marks">40%<span class="weight-bar" aria-hidden="true"><span style="width: 40%"></span></span></td>
+                        </tr>
+                        <tr>
+                            <td class="criteria-id">IA</td>
+                            <td>
+                                <strong>Internal Assessment: Computational Solution (30 Marks)</strong>
+                                <p>Individual software project assessed across Criterion A (Planning), B (Design), C (Development), D (Functionality Video), and E (Evaluation).</p>
+                            </td>
+                            <td class="criteria-marks">30%<span class="weight-bar" aria-hidden="true"><span style="width: 30%"></span></span></td>
+                            <td class="criteria-marks">20%<span class="weight-bar" aria-hidden="true"><span style="width: 20%"></span></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </main>
 
-    <footer></footer>
+    <footer class="site-footer">
+        <div class="wrap">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-title">Computer Science &bull; EIS</div>
+                    <p>
+                        IB Diploma Programme Computer Science (SL &amp; HL) at Emirates International School. Speaking requests &amp; inquiries: <a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui (Siddiquin@eischools.ae)</a>.
+                    </p>
+                </div>
+                <div>
+                    <div class="footer-title">Navigation</div>
+                    <ul>
+                        <li><a href="courses.html">Courses Overview</a></li>
+                        <li><a href="practice.html">Practice Question Bank</a></li>
+                        <li><a href="curriculum.html">Curriculum &amp; Pacing</a></li>
+                        <li><a href="theme-a.html">Theme A: Systems &amp; Hardware</a></li>
+                        <li><a href="theme-b.html">Theme B: Computational Thinking</a></li>
+                        <li><a href="ia.html">Internal Assessment (IA)</a></li>
+                        <li><a href="case-study.html">Paper 3 Case Study</a></li>
+                        <li><a href="resources.html">Resources &amp; Worksheets</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-title">Department Team &amp; Appearance</div>
+                    <ul>
+                        <li><a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui &mdash; Head of CS</a></li>
+                        <li><a href="mailto:anishdongarkar@gmail.com">Anish Dongarkar &mdash; Tech Ambassador</a></li>
+                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaren &mdash; AI Ambassador</a></li>
+                        <li><a href="about-us.html">About the Department</a></li>
+                        <li><a href="admin.html">Faculty Administration Portal</a></li>
+                    </ul>
+                    <div style="margin-top: 18px;">
+                        <div class="footer-title">Appearance</div>
+                        <div class="appearance" data-appearance></div>
+                    </div>
+                </div>
+            </div>
 
-    <script src="../js/ui.js"></script>
-    <script src="../js/ribbon-waves.js"></script>
+            <div class="footer-base">
+                <span>&copy; 2026 Computer Science Department &bull; Emirates International School (IB DP World School)</span>
+                <span>Theme A &bull; Theme B &bull; IA &bull; Paper 3</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/site.js" defer></script>
+    <script src="../assets/js/library.js" defer></script>
 </body>
 </html>

@@ -1,544 +1,509 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="lilac" data-texture="animated">
+<html lang="en" data-theme="lilac" data-texture="animated" data-base="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IB Computer Science | Emirates International School</title>
-    <link rel="stylesheet" href="shared-tokens.css">
+    <meta name="description" content="Course notes, syllabus guides, interactive exam practice questions, and 151 classroom resources for Standard and Higher Level IB DP Computer Science students at Emirates International School.">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('eis_cs_theme');
+                var x = localStorage.getItem('eis_cs_texture');
+                if (t) document.documentElement.setAttribute('data-theme', t);
+                if (x) document.documentElement.setAttribute('data-texture', x);
+                var m = localStorage.getItem('eis_cs_mode');
+                if (m !== 'light' && m !== 'dark') {
+                    m = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                }
+                document.documentElement.setAttribute('data-mode', m);
+            } catch (e) {
+                document.documentElement.setAttribute('data-mode', window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+            }
+        })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --font-zen-title: 'Newsreader', serif;
-            --font-zen-body: 'Inter', -apple-system, sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: var(--font-zen-body);
-            background: var(--bg-base);
-            color: var(--text-primary);
-            line-height: 1.7;
-            position: relative;
-            min-height: 100vh;
-            overflow-x: hidden;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        #interactive-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .zen-container {
-            position: relative;
-            z-index: 1;
-            max-width: 860px;
-            margin: 0 auto;
-            padding: 72px 24px 140px;
-        }
-
-        .zen-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 72px;
-            padding-bottom: 24px;
-            border-bottom: 1px solid var(--border-subtle);
-        }
-        .zen-brand {
-            font-size: 1rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            letter-spacing: -0.01em;
-        }
-        .zen-links {
-            display: flex;
-            gap: 12px 20px;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-            align-items: center;
-            list-style: none;
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-        }
-        .zen-links a {
-            color: inherit;
-            text-decoration: none;
-            transition: color 0.15s;
-        }
-        .zen-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .zen-hero {
-            margin-bottom: 70px;
-        }
-        .zen-badge {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            font-family: var(--font-mono);
-            margin-bottom: 24px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            letter-spacing: 0.04em;
-            background: var(--bg-base);
-            border: 1px solid var(--border-subtle);
-            border-radius: 2px;
-            padding: 6px 14px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-        }
-        .zen-badge-indicator {
-            width: 5px;
-            height: 5px;
-            border-radius: 1px;
-            background: var(--text-primary);
-            opacity: 0.8;
-        }
-
-        .zen-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 3px 9px;
-            border-radius: 2px;
-            background: var(--bg-base);
-            border: 1px solid var(--border-subtle);
-            font-size: 0.74rem;
-            font-family: var(--font-mono);
-            color: var(--text-muted);
-            letter-spacing: 0.02em;
-            white-space: nowrap;
-        }
-
-        .zen-hero h1 {
-            font-family: var(--font-zen-title);
-            font-size: clamp(2.8rem, 5vw, 4.2rem);
-            font-weight: 400;
-            line-height: 1.15;
-            letter-spacing: -0.02em;
-            margin-bottom: 24px;
-        }
-        .zen-hero p {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            max-width: 680px;
-            line-height: 1.7;
-        }
-
-        .notion-callout {
-            background: var(--bg-base);
-            border: 1px solid var(--border-subtle);
-            border-radius: 2px;
-            padding: 22px 26px;
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
-            margin: 40px 0 60px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-        }
-        .callout-icon {
-            font-size: 1.4rem;
-            line-height: 1.2;
-        }
-        .callout-text h4 {
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-        .callout-text p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin: 0;
-            line-height: 1.6;
-        }
-
-        .syllabus-section h2 {
-            font-family: var(--font-zen-title);
-            font-size: 2.1rem;
-            font-weight: 400;
-            margin-bottom: 28px;
-        }
-        .accordion-item {
-            border: 1px solid var(--border-subtle);
-            border-radius: 2px;
-            margin-bottom: 14px;
-            background: var(--bg-base);
-            overflow: hidden;
-            transition: border-color 0.15s, box-shadow 0.15s;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-        }
-        .accordion-item:hover {
-            border-color: var(--border-hover);
-            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.16);
-        }
-        .accordion-header {
-            padding: 18px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            user-select: none;
-            gap: 12px;
-        }
-        .accordion-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 600;
-            font-size: 1rem;
-        }
-        .accordion-arrow {
-            color: var(--text-muted);
-            transition: transform 0.2s;
-            font-size: 0.8rem;
-        }
-        .accordion-item.open .accordion-arrow {
-            transform: rotate(180deg);
-        }
-        .accordion-content {
-            display: none;
-            padding: 0 24px 20px;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            border-top: 1px solid var(--border-subtle);
-            padding-top: 16px;
-            line-height: 1.6;
-        }
-        .accordion-item.open .accordion-content {
-            display: block;
-        }
-
-        .zen-actions-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 50px;
-        }
-        .zen-action-card {
-            background: var(--bg-base);
-            border: 1px solid var(--border-subtle);
-            border-radius: 2px;
-            padding: 28px;
-            transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
-        }
-        .zen-action-card:hover {
-            transform: translateY(-2px);
-            border-color: var(--border-hover);
-            box-shadow: 0 10px 32px rgba(0, 0, 0, 0.22);
-        }
-        .zen-action-card h3 {
-            font-size: 1.15rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .zen-action-card p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin: 0;
-            line-height: 1.6;
-        }
-
-        .zen-footer {
-            margin-top: 100px;
-            padding-top: 24px;
-            border-top: 1px solid var(--border-subtle);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.84rem;
-            color: var(--text-muted);
-            font-family: var(--font-mono);
-        }
-        .zen-footer a {
-            color: inherit;
-            text-decoration: none;
-            transition: color 0.15s;
-        }
-        .zen-footer a:hover {
-            color: var(--text-primary);
-        }
-
-        @media (max-width: 650px) {
-            .zen-actions-grid { grid-template-columns: 1fr; }
-            .zen-links { display: none; }
-            .zen-footer { flex-direction: column; gap: 12px; text-align: center; }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <canvas class="ribbons" id="interactive-canvas" aria-hidden="true"></canvas>
 
-    <!-- Interactive Background Canvas: Ribbon Waves Engine -->
-    <canvas id="interactive-canvas"></canvas>
-
-    <div class="zen-container">
-        <nav class="zen-nav">
-            <a href="index.html" class="zen-brand" style="text-decoration:none; color:inherit;">
-                <span class="brand-dot"></span>
-                <span>COMPUTER SCIENCE</span>
+    <header class="site-header">
+        <div class="wrap">
+            <a href="index.html" class="brand">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-name">Computer Science</span>
+                <span class="brand-sub">Emirates International School</span>
             </a>
-            <ul class="zen-links">
-                <li><a href="pages/courses.html">Courses</a></li>
-                <li><a href="pages/practice.html">Practice Questions</a></li>
-                <li><a href="pages/curriculum.html">Curriculum</a></li>
-                <li><a href="pages/theme-a.html">Theme A</a></li>
-                <li><a href="pages/theme-b.html">Theme B</a></li>
-                <li><a href="pages/ia.html">IA</a></li>
-                <li><a href="pages/case-study.html">Case Study</a></li>
-                <li><a href="pages/resources.html">Resources</a></li>
-                <li><a href="pages/about-us.html">About Us</a></li>
-            </ul>
-        </nav>
 
-        <section class="zen-hero">
-            <div class="zen-badge">
-                <span class="zen-badge-indicator"></span>
-                <span>IB COMPUTER SCIENCE • EIS</span>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+                <span>Menu</span>
+                <span class="nav-toggle-icon" aria-hidden="true"></span>
+            </button>
+
+            <nav class="site-nav" id="site-nav" aria-label="Primary">
+                <ul class="nav-list">
+                    <li><a href="index.html" aria-current="page">Homepage</a></li>
+                    <li><a href="pages/courses.html">Courses</a></li>
+                    <li><a href="pages/practice.html">Practice</a></li>
+                    <li><a href="pages/curriculum.html">Curriculum</a></li>
+                    <li><a href="pages/theme-a.html">Theme A</a></li>
+                    <li><a href="pages/theme-b.html">Theme B</a></li>
+                    <li><a href="pages/ia.html">IA</a></li>
+                    <li><a href="pages/case-study.html">Case Study</a></li>
+                    <li><a href="pages/resources.html">Resources</a></li>
+                    <li><a href="pages/about-us.html">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" class="wrap">
+        <section class="hero">
+            <div class="eyebrow">
+                <span>IB Computer Science &bull; EIS</span>
             </div>
-            <h1>
+            <h1 class="display">
                 Course notes, syllabus guides, and exam practice.
             </h1>
-            <p>
+            <p class="lead">
                 Resources for Standard and Higher Level students at Emirates International School.
             </p>
-
-            <div class="notion-callout">
-                <span class="zen-pill">CHECKPOINT</span>
-                <div class="callout-text">
-                    <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px; flex-wrap:wrap;">
-                        <h4 style="margin:0;">Internal Assessment: Criterion B Due</h4>
-                        <span class="status-badge ready">CRITERION B</span>
-                    </div>
-                    <p>Make sure your design specifications match each success criterion from Criterion A.</p>
-                </div>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="pages/practice.html">
+                    <span>Open Exam Practice Bank (12 Qs)</span>
+                    <span class="arrow" aria-hidden="true">&rarr;</span>
+                </a>
+                <a class="btn" href="pages/resources.html">
+                    <span>Browse All 131 Student Files</span>
+                </a>
+                <a class="btn" href="pages/courses.html">
+                    <span>Course Modules</span>
+                </a>
             </div>
 
-            <!-- Content Status Checklist -->
-            <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 4px; padding: 18px 22px; margin-top: 24px; font-size: 0.88rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
-                    <span style="font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-primary);">Website Status & Pending Items</span>
-                    <span style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-muted);">Updated October 2026</span>
+            <aside class="callout" aria-label="Coursework milestone notice">
+                <span class="pill">Checkpoint</span>
+                <div>
+                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:4px;">
+                        <h2 class="callout-title" style="margin:0;">Internal Assessment: Criterion B Due</h2>
+                        <span class="status-badge ready">Criterion B</span>
+                    </div>
+                    <p>
+                        Make sure your design specifications, system flowcharts, and test plan table match each measurable success criterion from Criterion A. Review the <a href="pages/ia.html">30-Mark IA Guide</a> and <a href="resources/Error%20log%20-%20Python%20Programming.pdf" target="_blank" rel="noopener">Python Error Log</a>.
+                    </p>
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; font-family: var(--font-mono); font-size: 0.8rem;">
-                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: var(--bg-surface); border-radius: 2px;">
-                        <span>Theme A Materials</span>
-                        <span class="status-badge ready">READY</span>
+            </aside>
+        </section>
+
+        <!-- Section 01: Syllabus Modules -->
+        <section class="section" id="curriculum" aria-labelledby="sec-syllabus">
+            <div class="section-label">
+                <span>01</span>Syllabus Modules
+            </div>
+            <div class="section-body">
+                <div class="section-head">
+                    <div>
+                        <h2 class="h1" id="sec-syllabus">Core Syllabus Themes</h2>
+                        <p class="sub">
+                            Expand each module to review subtopics, open classroom slide decks and worksheets, or jump straight to topic-filtered exam questions.
+                        </p>
                     </div>
-                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: var(--bg-surface); border-radius: 2px;">
-                        <span>Theme B Google Site Text</span>
-                        <span class="status-badge pending">AWAITING EXPORT</span>
-                    </div>
-                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: var(--bg-surface); border-radius: 2px;">
-                        <span>Theme C & D Syllabus Notes</span>
-                        <span class="status-badge missing">NEEDS TEACHER UPLOAD</span>
-                    </div>
-                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: var(--bg-surface); border-radius: 2px;">
-                        <span>Year 2 Sem 2 Unit Plan</span>
-                        <span class="status-badge missing">MISSING FROM FOLDER</span>
-                    </div>
-                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: var(--bg-surface); border-radius: 2px;">
-                        <span>Exam Practice Bank (12 Qs)</span>
-                        <span class="status-badge ready">READY</span>
-                    </div>
-                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: var(--bg-surface); border-radius: 2px;">
-                        <span>Past Exam Papers (2016–2025)</span>
-                        <span class="status-badge missing">NEEDS TEACHER UPLOAD</span>
-                    </div>
-                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: var(--bg-surface); border-radius: 2px;">
-                        <span>IA Video Exemplars</span>
-                        <span class="status-badge pending">AWAITING PERMISSION</span>
-                    </div>
+                    <a class="btn btn-sm" href="pages/courses.html">
+                        <span>All Courses</span>
+                        <span class="arrow" aria-hidden="true">&rarr;</span>
+                    </a>
+                </div>
+
+                <div class="units">
+                    <!-- Theme A -->
+                    <details class="unit" open>
+                        <summary>
+                            <div class="unit-head">
+                                <span class="pill">Theme A</span>
+                                <span class="unit-title">Systems, Networks, Databases &amp; Machine Learning</span>
+                            </div>
+                            <span class="unit-meta">
+                                <span class="status-badge ready">Ready &bull; 70 Files</span>
+                                <span class="chev" aria-hidden="true"></span>
+                            </span>
+                        </summary>
+                        <div class="unit-body">
+                            <p>
+                                Computer architecture, machine instruction cycle (Fetch-Decode-Execute), logic gates, memory hierarchy, packet-switched networks, relational databases (1NF to 3NF &amp; SQL), and machine learning fundamentals.
+                            </p>
+                            <ul class="subtopics">
+                                <li>
+                                    <span class="subtopic-code">A1</span>
+                                    <div>
+                                        <span class="subtopic-name">Computer Fundamentals</span>
+                                        <span class="subtopic-detail">CPU architecture (ALU, CU, registers, buses), primary/secondary memory, fetch-decode-execute cycle, truth tables, OS scheduling, and translators.</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="subtopic-code">A2</span>
+                                    <div>
+                                        <span class="subtopic-name">Networks</span>
+                                        <span class="subtopic-detail">TCP/IP &amp; OSI models, packet switching, routing, DNS, firewalls, encryption, and the interactive 85-minute networking studio.</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="subtopic-code">A3</span>
+                                    <div>
+                                        <span class="subtopic-name">Databases &amp; SQL</span>
+                                        <span class="subtopic-detail">Entity-relationship diagrams, primary/foreign keys, normalization (1NF, 2NF, 3NF), SQL DDL/DML queries, and ACID transactions.</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="subtopic-code">A4</span>
+                                    <div>
+                                        <span class="subtopic-name">Machine Learning</span>
+                                        <span class="subtopic-detail">Supervised, unsupervised, and reinforcement learning, linear regression, classification, neural networks, and algorithmic ethics.</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="unit-foot">
+                                <a class="btn btn-primary btn-sm" href="pages/theme-a.html">
+                                    <span>Open Theme A Notes &amp; 70 Files</span>
+                                    <span class="arrow" aria-hidden="true">&rarr;</span>
+                                </a>
+                                <a class="btn btn-sm" href="pages/practice.html?topic=architecture">
+                                    <span>Practice Theme A Questions</span>
+                                </a>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- Theme B -->
+                    <details class="unit">
+                        <summary>
+                            <div class="unit-head">
+                                <span class="pill">Theme B</span>
+                                <span class="unit-title">Computational Thinking, Python &amp; OOP</span>
+                            </div>
+                            <span class="unit-meta">
+                                <span class="status-badge ready">Ready &bull; 48 Files</span>
+                                <span class="chev" aria-hidden="true"></span>
+                            </span>
+                        </summary>
+                        <div class="unit-body">
+                            <p>
+                                Problem decomposition, algorithmic trace tables, searching and sorting algorithms, Python programming constructs, and Object-Oriented Programming (encapsulation, inheritance, polymorphism).
+                            </p>
+                            <ul class="subtopics">
+                                <li>
+                                    <span class="subtopic-code">B1</span>
+                                    <div>
+                                        <span class="subtopic-name">Computational Thinking</span>
+                                        <span class="subtopic-detail">Problem specification, abstraction, decomposition, flowcharts, pseudocode conventions, and trace tables.</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="subtopic-code">B2</span>
+                                    <div>
+                                        <span class="subtopic-name">Programming Constructs</span>
+                                        <span class="subtopic-detail">Variables, strings, 1D/2D arrays, file I/O, modular subroutines, Big-O complexity, linear/binary search, and bubble/selection sort.</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="subtopic-code">B3</span>
+                                    <div>
+                                        <span class="subtopic-name">Object-Oriented Programming</span>
+                                        <span class="subtopic-detail">Classes, constructors, encapsulation, inheritance, polymorphism, aggregation, and UML class diagrams in Python.</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="unit-foot">
+                                <a class="btn btn-primary btn-sm" href="pages/theme-b.html">
+                                    <span>Open Theme B Notes &amp; 48 Files</span>
+                                    <span class="arrow" aria-hidden="true">&rarr;</span>
+                                </a>
+                                <a class="btn btn-sm" href="pages/practice.html?topic=algorithms">
+                                    <span>Practice Theme B Questions</span>
+                                </a>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- Theme C & D / HL Abstract Data Structures -->
+                    <details class="unit">
+                        <summary>
+                            <div class="unit-head">
+                                <span class="pill">HL Modules</span>
+                                <span class="unit-title">Abstract Data Structures &amp; Advanced Algorithms</span>
+                            </div>
+                            <span class="unit-meta">
+                                <span class="status-badge pending">HL Focus</span>
+                                <span class="chev" aria-hidden="true"></span>
+                            </span>
+                        </summary>
+                        <div class="unit-body">
+                            <p>
+                                Dynamic linked lists (singly, doubly, circular), stacks, queues, binary search trees, recursion, quicksort, mergesort, hash tables, and graph traversal algorithms (BFS &amp; DFS).
+                            </p>
+                            <div class="missing-box">
+                                Note: Additional HL lecture notes for Theme C &amp; D are pending faculty upload. In the meantime, use the B4 Abstract Data Types slides and the OOP &amp; Data Structures practice bank.
+                            </div>
+                            <div class="unit-foot">
+                                <a class="btn btn-primary btn-sm" href="pages/practice.html?topic=oop">
+                                    <span>Practice Data Structures &amp; OOP Questions</span>
+                                    <span class="arrow" aria-hidden="true">&rarr;</span>
+                                </a>
+                                <a class="btn btn-sm" href="pages/curriculum.html">
+                                    <span>Check Syllabus Roadmap</span>
+                                </a>
+                            </div>
+                        </div>
+                    </details>
                 </div>
             </div>
         </section>
 
-        <main class="syllabus-section" id="curriculum">
-            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
-                <h2 style="margin: 0;">Syllabus Modules</h2>
-                <a href="pages/courses.html" class="zen-pill">All Courses →</a>
+        <!-- Section 02: Featured Exam Practice Question -->
+        <section class="section" aria-labelledby="sec-featured-q">
+            <div class="section-label">
+                <span>02</span>Exam Practice
             </div>
-
-            <!-- Theme A Accordion -->
-            <div class="accordion-item open">
-                <div class="accordion-header" onclick="this.parentElement.classList.toggle('open')">
-                    <div class="accordion-title">
-                        <span class="zen-pill">THEME A</span>
-                        <span>Systems & Hardware</span>
-                    </div>
-                    <div style="display:flex; align-items:center; gap:8px;">
-                        <span class="status-badge ready">READY</span>
-                        <span class="accordion-arrow">▼</span>
-                    </div>
-                </div>
-                <div class="accordion-content">
-                    Computer architecture, machine instruction cycle, logic gates, memory hierarchy, and networks.
-                    <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
-                        <a href="pages/theme-a.html" class="btn" style="padding: 6px 12px; font-size: 0.82rem;">Open Theme A Notes →</a>
-                        <a href="pages/practice.html?topic=architecture" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.82rem;">Practice Questions</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Theme B Accordion -->
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="this.parentElement.classList.toggle('open')">
-                    <div class="accordion-title">
-                        <span class="zen-pill">THEME B</span>
-                        <span>Computational Thinking, Python & OOP</span>
-                    </div>
-                    <div style="display:flex; align-items:center; gap:8px;">
-                        <span class="status-badge ready">READY</span>
-                        <span class="accordion-arrow">▼</span>
-                    </div>
-                </div>
-                <div class="accordion-content">
-                    Problem decomposition, algorithms, arrays, subroutines, and object-oriented programming.
-                    <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
-                        <a href="pages/theme-b.html" class="btn" style="padding: 6px 12px; font-size: 0.82rem;">Open Theme B Notes →</a>
-                        <a href="pages/practice.html?topic=algorithms" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.82rem;">Practice Questions</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Theme C & D Accordion with Missing Identification -->
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="this.parentElement.classList.toggle('open')">
-                    <div class="accordion-title">
-                        <span class="zen-pill">THEME C & D</span>
-                        <span>Data Structures & Advanced Algorithms</span>
-                    </div>
-                    <div style="display:flex; align-items:center; gap:8px;">
-                        <span class="status-badge missing">NEEDS CONTENT</span>
-                        <span class="accordion-arrow">▼</span>
-                    </div>
-                </div>
-                <div class="accordion-content">
-                    Abstract data structures (stacks, queues, linked lists, trees) and recursive algorithm proofs.
-                    <div class="missing-box">
-                        <span>Missing: Detailed notes for Theme C and D have not been uploaded by faculty yet.</span>
-                    </div>
-                    <div style="margin-top: 12px;">
-                        <a href="pages/curriculum.html" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.82rem;">Check Syllabus Roadmap →</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Interactive Quick Practice Feature on Homepage -->
-            <div style="margin-top: 50px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+            <div class="section-body">
+                <div class="section-head">
                     <div>
-                        <span class="zen-pill">FEATURED EXAM PRACTICE</span>
-                        <h2 style="margin: 8px 0 0; font-size: 1.8rem;">Practice an Exam Question</h2>
+                        <span class="pill" style="margin-bottom:8px;">Featured Exam Question</span>
+                        <h2 class="h1" id="sec-featured-q">Practice an Exam Question</h2>
+                        <p class="sub">
+                            Test your recall before revealing the official IB marking points.
+                        </p>
                     </div>
-                    <a href="pages/practice.html" class="btn">View All 12 Questions →</a>
+                    <a class="btn btn-primary btn-sm" href="pages/practice.html">
+                        <span>View All 12 Questions</span>
+                        <span class="arrow" aria-hidden="true">&rarr;</span>
+                    </a>
                 </div>
 
-                <div class="question-card" style="margin-top: 14px;">
+                <article class="question-card">
                     <div class="question-header">
-                        <div style="display: flex; gap: 8px; align-items: center;">
-                            <span class="zen-pill">THEME A.1</span>
+                        <div class="question-tags">
+                            <span class="pill">Theme A.1</span>
                             <span class="status-badge ready">SL / HL</span>
-                            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary);">Computer Architecture</span>
+                            <span class="question-topic">Computer Architecture</span>
                         </div>
-                        <span class="zen-pill" style="color: var(--accent-primary);">2 Marks</span>
+                        <span class="pill pill-accent">2 Marks</span>
                     </div>
-                    <div class="question-prompt">
+                    <p class="question-prompt">
                         State one architectural difference between a central processing unit (CPU) and a graphics processing unit (GPU).
-                    </div>
-                    <button class="btn-reveal" onclick="toggleScheme(this)">
+                    </p>
+                    <button type="button" class="btn-reveal" aria-expanded="false" onclick="toggleScheme(this)">
                         <span>Show Mark Scheme</span>
-                        <span style="font-size: 0.75rem;">▼</span>
+                        <span aria-hidden="true">&#9660;</span>
                     </button>
                     <div class="mark-scheme">
-                        <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-primary); letter-spacing: 0.05em; text-transform: uppercase;">
-                            Official Mark Scheme [Max 2 Marks]
-                        </div>
+                        <div class="mark-scheme-title">Official Mark Scheme [Max 2 Marks]</div>
                         <ul>
-                            <li><strong>CPU:</strong> Optimized for sequential processing; has few powerful, low-latency execution cores. [1 mark]</li>
-                            <li><strong>GPU:</strong> Designed for parallel execution; has many smaller cores executing operations concurrently. [1 mark]</li>
+                            <li><strong>CPU:</strong> Optimized for sequential processing; contains relatively few powerful, low-latency execution cores. [1 mark]</li>
+                            <li><strong>GPU:</strong> Designed for parallel execution; contains hundreds or thousands of smaller cores executing operations concurrently. [1 mark]</li>
                         </ul>
                         <div class="mark-scheme-tip">
-                            Tip: Answer must address architecture (cores / parallel vs sequential), not just application ("games").
+                            Examiner Tip: Answer must address processor architecture (cores / parallel vs sequential execution), not just end-user application ("video games").
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Section 03: Quick Action Hubs -->
+        <section class="section" aria-labelledby="sec-hubs">
+            <div class="section-label">
+                <span>03</span>Study Hubs
+            </div>
+            <div class="section-body">
+                <div class="section-head">
+                    <div>
+                        <h2 class="h1" id="sec-hubs">Coursework, Case Study &amp; Archive</h2>
+                        <p class="sub">
+                            Direct access to the 30-mark Internal Assessment guide, Paper 3 HL Case Study, and the 131-file student resource vault.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="hub-grid">
+                    <a class="hub-card" href="pages/ia.html">
+                        <div class="hub-top">
+                            <span class="pill">Coursework</span>
+                            <span class="status-badge ready">30 Marks</span>
+                        </div>
+                        <div>
+                            <h3>Internal Assessment Guide</h3>
+                            <p>Criteria A to E rubric, 7-video tutorial masterclass, assessed student work exemplar PDF, and Python Error Log.</p>
+                        </div>
+                        <div class="hub-foot">
+                            <span>Criteria A&ndash;E + Exemplar</span>
+                            <span>Open IA Guide &rarr;</span>
+                        </div>
+                    </a>
+
+                    <a class="hub-card" href="pages/case-study.html">
+                        <div class="hub-top">
+                            <span class="pill">Paper 3 &bull; HL</span>
+                            <span class="status-badge ready">Ready</span>
+                        </div>
+                        <div>
+                            <h3>Case Study: The Perfect Chatbot</h3>
+                            <p>Official booklet preview, RAKT Insurance scenario breakdown, NLP/NLU pipeline notes, and HL AI practice questions.</p>
+                        </div>
+                        <div class="hub-foot">
+                            <span>Dossier + AI Questions</span>
+                            <span>Read Case Study &rarr;</span>
+                        </div>
+                    </a>
+
+                    <a class="hub-card" href="pages/resources.html">
+                        <div class="hub-top">
+                            <span class="pill">Archive</span>
+                            <span class="status-badge ready">131 Files</span>
+                        </div>
+                        <div>
+                            <h3>Resources &amp; Worksheets</h3>
+                            <p>Searchable repository of all Theme A &amp; B slide decks, worksheets, subject guides, error handbook, and revision materials.</p>
+                        </div>
+                        <div class="hub-foot">
+                            <span>Instant Search &amp; Download</span>
+                            <span>Open Resource Vault &rarr;</span>
+                        </div>
+                    </a>
+
+                    <a class="hub-card" href="pages/practice.html">
+                        <div class="hub-top">
+                            <span class="pill">Revision</span>
+                            <span class="status-badge ready">12 Questions</span>
+                        </div>
+                        <div>
+                            <h3>Interactive Exam Question Bank</h3>
+                            <p>Filter SL and HL questions by topic (Architecture, Memory, Networks, Databases, Algorithms, OOP, AI) and self-assess with official mark schemes.</p>
+                        </div>
+                        <div class="hub-foot">
+                            <span>7 Syllabus Topics</span>
+                            <span>Start Practicing &rarr;</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 04: Department Notices & Status Checklist -->
+        <section class="section" aria-labelledby="sec-notices">
+            <div class="section-label">
+                <span>04</span>Department Status
+            </div>
+            <div class="section-body">
+                <div class="section-head">
+                    <div>
+                        <h2 class="h1" id="sec-notices">Department Notices &amp; Content Status</h2>
+                        <p class="sub">
+                            Official announcements from the EIS Computer Science faculty alongside current repository readiness.
+                        </p>
+                    </div>
+                    <a class="btn btn-sm" href="pages/admin.html">
+                        <span>Faculty Portal</span>
+                        <span class="arrow" aria-hidden="true">&rarr;</span>
+                    </a>
+                </div>
+
+                <div class="notices" data-notices>
+                    <article class="notice">
+                        <div class="notice-meta">
+                            <span>Criterion B Checkpoint</span>
+                            <span>Current Term</span>
+                        </div>
+                        <h3>IA Criterion B Solution Overview &amp; Record of Tasks</h3>
+                        <p>Ensure your system architecture diagrams, UI wireframes, flowcharts, and test plan map directly to your Criterion A success criteria.</p>
+                    </article>
+                </div>
+
+                <!-- Website Content Status Checklist -->
+                <div style="margin-top: 32px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                        <span class="pill">Website Content Status &amp; Pending Items</span>
+                        <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-3);">Emirates International School &bull; 2026</span>
+                    </div>
+                    <div class="status-checklist">
+                        <div class="status-row">
+                            <span>Theme A Materials (70 Files)</span>
+                            <span class="status-badge ready">Ready</span>
+                        </div>
+                        <div class="status-row">
+                            <span>Theme B Materials (48 Files)</span>
+                            <span class="status-badge ready">Ready</span>
+                        </div>
+                        <div class="status-row">
+                            <span>Exam Practice Bank (12 Qs)</span>
+                            <span class="status-badge ready">Ready</span>
+                        </div>
+                        <div class="status-row">
+                            <span>IA Guide &amp; Student Exemplar</span>
+                            <span class="status-badge ready">Ready</span>
+                        </div>
+                        <div class="status-row">
+                            <span>Year 2 Sem 2 Unit Plan</span>
+                            <span class="status-badge missing">Missing From Folder</span>
+                        </div>
+                        <div class="status-row">
+                            <span>Past Exam Papers (2016&ndash;2025)</span>
+                            <span class="status-badge missing">Needs Teacher Upload</span>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
+    </main>
 
-            <!-- Quick Action Cards -->
-            <div class="zen-actions-grid" style="margin-top: 36px;">
-                <a href="pages/ia.html" class="zen-action-card">
-                    <div>
-                        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; gap:8px;">
-                            <h3 style="font-size: 1.15rem; margin: 0;">Internal Assessment Guide</h3>
-                            <span class="status-badge ready">30 MARKS</span>
-                        </div>
-                        <p>Criteria A to E rubric, video tutorials, and project steps.</p>
-                    </div>
-                </a>
-
-                <a href="pages/resources.html" class="zen-action-card">
-                    <div>
-                        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; gap:8px;">
-                            <h3 style="font-size: 1.15rem; margin: 0;">Resources & Worksheets</h3>
-                            <span class="status-badge ready">7 FILES</span>
-                        </div>
-                        <p>Worksheets, subject guides, error handbook, and revision materials.</p>
-                    </div>
-                </a>
-            </div>
-        </main>
-
-        <footer class="zen-footer" style="display:flex; flex-direction:column; gap:16px; text-align:center;">
-            <div style="display:flex; justify-content:space-between; width:100%; align-items:center; flex-wrap:wrap; gap:12px;">
-                <span>COMPUTER SCIENCE • EIS</span>
+    <footer class="site-footer">
+        <div class="wrap">
+            <div class="footer-grid">
                 <div>
-                    <a href="pages/courses.html">Courses</a> • 
-                    <a href="pages/practice.html">Practice</a> • 
-                    <a href="pages/curriculum.html">Curriculum</a> • 
-                    <a href="pages/resources.html">Resources</a> • 
-                    <a href="pages/about-us.html">About Us</a>
+                    <div class="footer-title">Computer Science &bull; EIS</div>
+                    <p>
+                        IB Diploma Programme Computer Science (SL &amp; HL) at Emirates International School. Speaking requests &amp; inquiries: <a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui (Siddiquin@eischools.ae)</a>.
+                    </p>
+                </div>
+                <div>
+                    <div class="footer-title">Navigation</div>
+                    <ul>
+                        <li><a href="pages/courses.html">Courses Overview</a></li>
+                        <li><a href="pages/practice.html">Practice Question Bank</a></li>
+                        <li><a href="pages/curriculum.html">Curriculum &amp; Pacing</a></li>
+                        <li><a href="pages/theme-a.html">Theme A: Systems &amp; Hardware</a></li>
+                        <li><a href="pages/theme-b.html">Theme B: Computational Thinking</a></li>
+                        <li><a href="pages/ia.html">Internal Assessment (IA)</a></li>
+                        <li><a href="pages/case-study.html">Paper 3 Case Study</a></li>
+                        <li><a href="pages/resources.html">Resources &amp; Worksheets</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-title">Department Team &amp; Appearance</div>
+                    <ul>
+                        <li><a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui &mdash; Head of CS</a></li>
+                        <li><a href="mailto:anishdongarkar@gmail.com">Anish Dongarkar &mdash; Tech Ambassador</a></li>
+                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaren &mdash; AI Ambassador</a></li>
+                        <li><a href="pages/about-us.html">About the Department</a></li>
+                        <li><a href="pages/admin.html">Faculty Administration Portal</a></li>
+                    </ul>
+                    <div style="margin-top: 18px;">
+                        <div class="footer-title">Appearance</div>
+                        <div class="appearance" data-appearance></div>
+                    </div>
                 </div>
             </div>
-            <div style="font-size:0.8rem; color:var(--text-muted); border-top:1px dashed var(--border-subtle); padding-top:12px; width:100%;">
-                Teacher: <a href="mailto:Siddiquin@eischools.ae" style="color:var(--accent-primary);">Neha Siddiqui (Siddiquin@eischools.ae)</a> • Tech Ambassador: Anish Dongarkar
-            </div>
-        </footer>
-    </div>
 
-    <script src="js/ribbon-waves.js"></script>
-    <script>
-        function toggleScheme(btn) {
-            const scheme = btn.nextElementSibling;
-            const isOpen = scheme.classList.contains('open');
-            if (isOpen) {
-                scheme.classList.remove('open');
-                btn.innerHTML = '<span>Show Mark Scheme</span><span style="font-size:0.75rem;">▼</span>';
-            } else {
-                scheme.classList.add('open');
-                btn.innerHTML = '<span>Hide Mark Scheme</span><span style="font-size:0.75rem;">▲</span>';
-            }
-        }
-    </script>
+            <div class="footer-base">
+                <span>&copy; 2026 Computer Science Department &bull; Emirates International School (IB DP World School)</span>
+                <span>Theme A &bull; Theme B &bull; IA &bull; Paper 3</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/site.js" defer></script>
+    <script type="module" src="assets/js/notices.js"></script>
 </body>
 </html>

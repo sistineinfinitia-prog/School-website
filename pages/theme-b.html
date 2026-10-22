@@ -1,122 +1,270 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="lilac" data-texture="animated">
+<html lang="en" data-theme="lilac" data-texture="animated" data-base="../">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theme B: Computational Thinking | Computer Science</title>
-    <link rel="stylesheet" href="../css/main.css">
+    <title>Theme B: Computational Thinking &amp; OOP | IB Computer Science &mdash; EIS</title>
+    <meta name="description" content="Theme B study hub for IB Computer Science at Emirates International School: B1 Computational Thinking, B2 Programming Constructs, B3 OOP, B4 Abstract Data Types, and all 48 classroom files.">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('eis_cs_theme');
+                var x = localStorage.getItem('eis_cs_texture');
+                if (t) document.documentElement.setAttribute('data-theme', t);
+                if (x) document.documentElement.setAttribute('data-texture', x);
+                var m = localStorage.getItem('eis_cs_mode');
+                if (m !== 'light' && m !== 'dark') {
+                    m = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                }
+                document.documentElement.setAttribute('data-mode', m);
+            } catch (e) {
+                document.documentElement.setAttribute('data-mode', window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+            }
+        })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/site.css">
 </head>
 <body>
-    <header></header>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <canvas class="ribbons" id="interactive-canvas" aria-hidden="true"></canvas>
 
-    <section class="hero">
-        <div class="zen-badge">
-            <span class="badge-dot"></span>
-            <span>THEME B • ALGORITHMS & PROGRAMMING</span>
+    <header class="site-header">
+        <div class="wrap">
+            <a href="../index.html" class="brand">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-name">Computer Science</span>
+                <span class="brand-sub">Emirates International School</span>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+                <span>Menu</span>
+                <span class="nav-toggle-icon" aria-hidden="true"></span>
+            </button>
+
+            <nav class="site-nav" id="site-nav" aria-label="Primary">
+                <ul class="nav-list">
+                    <li><a href="../index.html">Homepage</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="practice.html">Practice</a></li>
+                    <li><a href="curriculum.html">Curriculum</a></li>
+                    <li><a href="theme-a.html">Theme A</a></li>
+                    <li><a href="theme-b.html" aria-current="page">Theme B</a></li>
+                    <li><a href="ia.html">IA</a></li>
+                    <li><a href="case-study.html">Case Study</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                </ul>
+            </nav>
         </div>
-        <h1>Computational Thinking & OOP</h1>
-        <p>
-            Problem solving, algorithms, Python programming, and object-oriented design.
-        </p>
-    </section>
+    </header>
 
-    <main class="content-section">
-        <div class="section-container">
-            <div class="card-grid" style="margin-top: 0;">
-                <!-- B1 Computational Thinking -->
-                <div class="card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                        <span class="zen-pill">MODULE B.1</span>
-                        <span class="status-badge ready">READY</span>
-                    </div>
-                    <h2>Computational Thinking</h2>
-                    <p style="margin-top: 6px;">Decomposition, abstraction, flowcharts, pseudocode, and trace tables.</p>
-                    <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
-                        <a href="../resources/Theme B/B1  _ Computational Thinking" class="btn">Resource Folder →</a>
-                        <a href="practice.html?topic=algorithms" class="btn btn-secondary">Practice Qs</a>
+    <main id="main" class="wrap">
+        <section class="hero">
+            <div class="eyebrow">
+                <span>Theme B &bull; Algorithms &amp; Programming</span>
+            </div>
+            <h1 class="display">
+                Computational Thinking &amp; OOP
+            </h1>
+            <p class="lead">
+                Problem solving, algorithmic trace tables, Python programming constructs, Object-Oriented Programming, and HL abstract data structures.
+            </p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="#theme-b-files">
+                    <span>Browse All 48 Theme B Files</span>
+                    <span class="arrow" aria-hidden="true">&rarr;</span>
+                </a>
+                <a class="btn" href="practice.html?topic=algorithms">
+                    <span>Practice Algorithms &amp; OOP Questions</span>
+                </a>
+                <a class="btn" href="../resources/Theme%20B/IB%20Python%202026.docx" download>
+                    <span>Download IB Python 2026 Guide (DOCX)</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Section 01: Theme B Module Cards -->
+        <section class="section" aria-labelledby="sec-b-units">
+            <div class="section-label">
+                <span>01</span>Modules
+            </div>
+            <div class="section-body">
+                <div class="section-head">
+                    <div>
+                        <h2 class="h1" id="sec-b-units">Theme B Modules &amp; Exam Practice</h2>
+                        <p class="sub">
+                            Select a module to jump to topic-filtered practice questions, download guides, or search all 48 classroom files below.
+                        </p>
                     </div>
                 </div>
 
-                <!-- B2 Programming -->
-                <div class="card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                        <span class="zen-pill">MODULE B.2</span>
-                        <span class="status-badge ready">READY</span>
+                <div class="hub-grid">
+                    <!-- B1 Computational Thinking -->
+                    <div class="hub-card">
+                        <div class="hub-top">
+                            <span class="pill">Module B.1</span>
+                            <span class="status-badge ready">Ready &bull; 9 Files</span>
+                        </div>
+                        <div>
+                            <h3>Computational Thinking</h3>
+                            <p>Decomposition, abstraction, pattern recognition, flowcharts, IB pseudocode conventions, and trace tables.</p>
+                        </div>
+                        <div class="hub-foot">
+                            <a href="#theme-b-files" style="text-decoration:none;">View B1 Slides &rarr;</a>
+                            <a href="practice.html?topic=algorithms" style="text-decoration:none; color:var(--accent);">Practice Qs &rarr;</a>
+                        </div>
                     </div>
-                    <h2>Programming Constructs</h2>
-                    <p style="margin-top: 6px;">Variables, selection, iteration, arrays, matrices, subroutines, and parameters.</p>
-                    <div style="margin-top: 20px;">
-                        <a href="../resources/Theme B/B2- Programming" class="btn">Resource Folder →</a>
-                    </div>
-                </div>
 
-                <!-- B3 OOP -->
-                <div class="card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                        <span class="zen-pill">MODULE B.3</span>
-                        <span class="status-badge ready">READY</span>
+                    <!-- B2 Programming Constructs -->
+                    <div class="hub-card">
+                        <div class="hub-top">
+                            <span class="pill">Module B.2</span>
+                            <span class="status-badge ready">Ready &bull; 12 Files</span>
+                        </div>
+                        <div>
+                            <h3>Programming Constructs</h3>
+                            <p>Variables, selection, iteration, 1D/2D arrays, file handling, subroutines, Big-O notation, and searching/sorting algorithms.</p>
+                        </div>
+                        <div class="hub-foot">
+                            <a href="#theme-b-files" style="text-decoration:none;">View B2 Slides &rarr;</a>
+                            <a href="practice.html?topic=algorithms" style="text-decoration:none; color:var(--accent);">Practice Qs &rarr;</a>
+                        </div>
                     </div>
-                    <h2>Object-Oriented Programming</h2>
-                    <p style="margin-top: 6px;">Classes, encapsulation, inheritance, polymorphism, and object modeling.</p>
-                    <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
-                        <a href="../resources/Theme B/B3 oops" class="btn">Resource Folder →</a>
-                        <a href="practice.html?topic=oop" class="btn btn-secondary">Practice Qs</a>
-                    </div>
-                </div>
 
-                <!-- Python Basics -->
-                <div class="card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                        <span class="zen-pill">LABS</span>
-                        <span class="status-badge ready">READY</span>
+                    <!-- B3 OOP -->
+                    <div class="hub-card">
+                        <div class="hub-top">
+                            <span class="pill">Module B.3</span>
+                            <span class="status-badge ready">Ready &bull; 12 Files</span>
+                        </div>
+                        <div>
+                            <h3>Object-Oriented Programming</h3>
+                            <p>Classes, constructors, encapsulation, inheritance, polymorphism, aggregation, and UML class diagrams in Python.</p>
+                        </div>
+                        <div class="hub-foot">
+                            <a href="#theme-b-files" style="text-decoration:none;">View B3 Slides &rarr;</a>
+                            <a href="practice.html?topic=oop" style="text-decoration:none; color:var(--accent);">Practice Qs &rarr;</a>
+                        </div>
                     </div>
-                    <h2>Python Basics</h2>
-                    <p style="margin-top: 6px;">Hands-on coding exercises, string operations, and file handling drills.</p>
-                    <div style="margin-top: 20px;">
-                        <a href="../resources/Theme B/Python Basics" class="btn">Python Drills →</a>
-                    </div>
-                </div>
 
-                <!-- IB Python 2026 Manual -->
-                <div class="card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                        <span class="zen-pill">MANUAL</span>
-                        <span class="status-badge ready">READY</span>
+                    <!-- Python Basics Labs -->
+                    <div class="hub-card">
+                        <div class="hub-top">
+                            <span class="pill">Labs</span>
+                            <span class="status-badge ready">Ready &bull; 13 Files</span>
+                        </div>
+                        <div>
+                            <h3>Python Basics &amp; B4 ADTs</h3>
+                            <p>Hands-on coding exercises, string operations, file handling drills, plus HL linked lists, stacks, queues, trees, and hash tables.</p>
+                        </div>
+                        <div class="hub-foot">
+                            <a href="#theme-b-files" style="text-decoration:none;">View Python Labs &rarr;</a>
+                            <a href="practice.html?topic=oop" style="text-decoration:none; color:var(--accent);">Practice ADT Qs &rarr;</a>
+                        </div>
                     </div>
-                    <h2>IB Python 2026 Guide</h2>
-                    <p style="margin-top: 6px;">Guide for language syntax, built-in functions, and exam pseudo-code conventions.</p>
-                    <div style="margin-top: 20px;">
-                        <a href="../resources/Theme B/IB Python 2026.docx" class="btn">Download Manual (DOCX) →</a>
-                    </div>
-                </div>
 
-                <!-- Simple Calculator Project -->
-                <div class="card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                        <span class="zen-pill">PROJECT</span>
-                        <span class="status-badge ready">READY</span>
+                    <!-- IB Python 2026 Manual -->
+                    <div class="hub-card">
+                        <div class="hub-top">
+                            <span class="pill">Manual</span>
+                            <span class="status-badge ready">Ready</span>
+                        </div>
+                        <div>
+                            <h3>IB Python 2026 Guide</h3>
+                            <p>Reference manual for Python syntax, built-in functions, and IB exam pseudocode conventions.</p>
+                        </div>
+                        <div class="hub-foot">
+                            <a href="../resources/Theme%20B/IB%20Python%202026.docx" download style="text-decoration:none; color:var(--accent);">Download Manual (DOCX) &rarr;</a>
+                        </div>
                     </div>
-                    <h2>Calculator Project</h2>
-                    <p style="margin-top: 6px;">Project presentation slides building an interactive calculator application.</p>
-                    <div style="margin-top: 20px;">
-                        <a href="../resources/Theme B/Simple Calculator -Project.pptx" class="btn">Download Deck (PPTX) →</a>
+
+                    <!-- Simple Calculator Project -->
+                    <div class="hub-card">
+                        <div class="hub-top">
+                            <span class="pill">Project</span>
+                            <span class="status-badge ready">Ready</span>
+                        </div>
+                        <div>
+                            <h3>Calculator Project</h3>
+                            <p>Project presentation deck walking through building an interactive Python calculator application.</p>
+                        </div>
+                        <div class="hub-foot">
+                            <a href="../resources/Theme%20B/Simple%20Calculator%20-Project.pptx" download style="text-decoration:none; color:var(--accent);">Download Deck (PPTX) &rarr;</a>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Notice for Google Site Subpage Export -->
-            <div class="missing-box" style="margin-top: 36px;">
-                <span>Pending Site Export: If you want the specific text from the Google Site's "Theme B" subpage added here, drop its HTML export into <a href="../google-site-export/">google-site-export/</a>.</span>
+        <!-- Section 02: All 48 Theme B Classroom Files -->
+        <section class="section" id="theme-b-files" aria-labelledby="sec-b-files">
+            <div class="section-label">
+                <span>02</span>Classroom Archive
             </div>
-        </div>
+            <div class="section-body">
+                <div class="section-head">
+                    <div>
+                        <h2 class="h1" id="sec-b-files">Theme B Slide Decks, Python Guides &amp; Worksheets</h2>
+                        <p class="sub">
+                            Every presentation, OOP guide, worksheet, and Python project from the Theme B department folder. Filter by keyword (e.g. <code>OOP</code>, <code>Linked List</code>, <code>Search</code>, <code>Sorting</code>, <code>Recursion</code>).
+                        </p>
+                    </div>
+                </div>
+
+                <div data-library="scope" data-scope="resources/Theme B" data-search="true"></div>
+            </div>
+        </section>
     </main>
 
-    <footer></footer>
+    <footer class="site-footer">
+        <div class="wrap">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-title">Computer Science &bull; EIS</div>
+                    <p>
+                        IB Diploma Programme Computer Science (SL &amp; HL) at Emirates International School. Speaking requests &amp; inquiries: <a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui (Siddiquin@eischools.ae)</a>.
+                    </p>
+                </div>
+                <div>
+                    <div class="footer-title">Navigation</div>
+                    <ul>
+                        <li><a href="courses.html">Courses Overview</a></li>
+                        <li><a href="practice.html">Practice Question Bank</a></li>
+                        <li><a href="curriculum.html">Curriculum &amp; Pacing</a></li>
+                        <li><a href="theme-a.html">Theme A: Systems &amp; Hardware</a></li>
+                        <li><a href="theme-b.html">Theme B: Computational Thinking</a></li>
+                        <li><a href="ia.html">Internal Assessment (IA)</a></li>
+                        <li><a href="case-study.html">Paper 3 Case Study</a></li>
+                        <li><a href="resources.html">Resources &amp; Worksheets</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-title">Department Team &amp; Appearance</div>
+                    <ul>
+                        <li><a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui &mdash; Head of CS</a></li>
+                        <li><a href="mailto:anishdongarkar@gmail.com">Anish Dongarkar &mdash; Tech Ambassador</a></li>
+                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaren &mdash; AI Ambassador</a></li>
+                        <li><a href="about-us.html">About the Department</a></li>
+                        <li><a href="admin.html">Faculty Administration Portal</a></li>
+                    </ul>
+                    <div style="margin-top: 18px;">
+                        <div class="footer-title">Appearance</div>
+                        <div class="appearance" data-appearance></div>
+                    </div>
+                </div>
+            </div>
 
-    <script src="../js/ui.js"></script>
-    <script src="../js/ribbon-waves.js"></script>
+            <div class="footer-base">
+                <span>&copy; 2026 Computer Science Department &bull; Emirates International School (IB DP World School)</span>
+                <span>Theme A &bull; Theme B &bull; IA &bull; Paper 3</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/site.js" defer></script>
+    <script src="../assets/js/library.js" defer></script>
 </body>
 </html>

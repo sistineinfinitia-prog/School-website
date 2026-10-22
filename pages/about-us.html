@@ -1,124 +1,244 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="lilac" data-texture="animated">
+<html lang="en" data-theme="lilac" data-texture="animated" data-base="../">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Computer Science</title>
-    <link rel="stylesheet" href="../css/main.css">
+    <title>About Us | IB Computer Science &mdash; Emirates International School</title>
+    <meta name="description" content="Teachers and student representatives for IB Diploma Programme Computer Science at Emirates International School.">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('eis_cs_theme');
+                var x = localStorage.getItem('eis_cs_texture');
+                if (t) document.documentElement.setAttribute('data-theme', t);
+                if (x) document.documentElement.setAttribute('data-texture', x);
+                var m = localStorage.getItem('eis_cs_mode');
+                if (m !== 'light' && m !== 'dark') {
+                    m = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                }
+                document.documentElement.setAttribute('data-mode', m);
+            } catch (e) {
+                document.documentElement.setAttribute('data-mode', window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+            }
+        })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/site.css">
 </head>
 <body>
-    <header></header>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <canvas class="ribbons" id="interactive-canvas" aria-hidden="true"></canvas>
 
-    <section class="hero">
-        <div class="zen-badge">
-            <span class="badge-dot"></span>
-            <span>FACULTY & AMBASSADORS</span>
+    <header class="site-header">
+        <div class="wrap">
+            <a href="../index.html" class="brand">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-name">Computer Science</span>
+                <span class="brand-sub">Emirates International School</span>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+                <span>Menu</span>
+                <span class="nav-toggle-icon" aria-hidden="true"></span>
+            </button>
+
+            <nav class="site-nav" id="site-nav" aria-label="Primary">
+                <ul class="nav-list">
+                    <li><a href="../index.html">Homepage</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="practice.html">Practice</a></li>
+                    <li><a href="curriculum.html">Curriculum</a></li>
+                    <li><a href="theme-a.html">Theme A</a></li>
+                    <li><a href="theme-b.html">Theme B</a></li>
+                    <li><a href="ia.html">IA</a></li>
+                    <li><a href="case-study.html">Case Study</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="about-us.html" aria-current="page">About Us</a></li>
+                </ul>
+            </nav>
         </div>
-        <h1>Computer Science Department</h1>
-        <p>
-            Teachers and student representatives for IB Computer Science at Emirates International School.
-        </p>
-    </section>
+    </header>
 
-    <main class="content-section">
-        <div class="section-container" style="max-width: 900px;">
-            <!-- Mission Section -->
-            <div class="card" style="margin-bottom: 36px;">
-                <span class="zen-pill">OVERVIEW</span>
-                <h2 style="margin: 14px 0 10px; font-size: 1.5rem;">IB DP Computer Science</h2>
-                <p style="margin-bottom: 8px;">
-                    We teach Standard Level (SL) and Higher Level (HL) Computer Science. The course covers computational thinking, system architecture, object-oriented programming in Python/Java, and the individual programming project (Internal Assessment).
-                </p>
+    <main id="main" class="wrap">
+        <section class="hero">
+            <div class="eyebrow">
+                <span>Faculty &amp; Ambassadors &bull; EIS</span>
             </div>
+            <h1 class="display">
+                Computer Science Department
+            </h1>
+            <p class="lead">
+                Teachers and student representatives for IB Diploma Programme Computer Science at Emirates International School.
+            </p>
+        </section>
 
-            <!-- Leadership Team Grid -->
-            <div>
-                <div style="text-align: center; margin-bottom: 24px;">
-                    <span class="zen-pill">CONTACT DETAILS</span>
-                    <h2 style="margin-top: 10px; font-size: 1.8rem;">Faculty & Student Team</h2>
-                </div>
-
-                <div class="missing-box" style="margin-bottom: 24px; text-align: center; font-size: 0.84rem;">
-                    Note: Photos below are temporary placeholder avatars. Profile portraits need to be uploaded.
-                </div>
-
-                <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
-                    <!-- Neha Siddiqui -->
-                    <div class="card" style="text-align: center; padding: 32px 20px;">
-                        <img 
-                            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" 
-                            alt="Neha Siddiqui"
-                            style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-primary); margin: 0 auto 16px; display: block;"
-                        >
-                        <div style="display: flex; justify-content: center; gap: 6px; margin-bottom: 8px;">
-                            <span class="zen-pill">DEPARTMENT HEAD</span>
-                            <span class="status-badge ready">FACULTY</span>
-                        </div>
-                        <h3 style="font-size: 1.25rem; margin: 8px 0 4px;">Neha Siddiqui</h3>
-                        <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 12px;">Computer Science Teacher</p>
-                        <a href="mailto:Siddiquin@eischools.ae" style="color: var(--accent-primary); font-size: 0.82rem; font-family: var(--font-mono); text-decoration: none;">
-                            Siddiquin@eischools.ae
-                        </a>
+        <!-- Section 01: Department Overview -->
+        <section class="section" aria-labelledby="sec-overview">
+            <div class="section-label">
+                <span>01</span>Overview
+            </div>
+            <div class="section-body">
+                <div class="section-head">
+                    <div>
+                        <h2 class="h1" id="sec-overview">IB DP Computer Science at EIS</h2>
+                        <p class="sub">
+                            We teach Standard Level (SL) and Higher Level (HL) Computer Science. The course covers computational thinking, system architecture, relational databases, networks, object-oriented programming in Python, machine learning, and the 30-mark individual programming project (Internal Assessment).
+                        </p>
                     </div>
+                </div>
+
+                <div class="meta-grid">
+                    <div class="meta-cell">
+                        <span class="meta-key">School</span>
+                        <span class="meta-val">EIS</span>
+                        <span class="meta-note">Emirates International School</span>
+                    </div>
+                    <div class="meta-cell">
+                        <span class="meta-key">Programme</span>
+                        <span class="meta-val">IB DP (SL &amp; HL)</span>
+                        <span class="meta-note">IB World School</span>
+                    </div>
+                    <div class="meta-cell">
+                        <span class="meta-key">Primary Language</span>
+                        <span class="meta-val">Python &amp; SQL</span>
+                        <span class="meta-note">Paper 1, Paper 2 &amp; IA</span>
+                    </div>
+                    <div class="meta-cell">
+                        <span class="meta-key">Repository</span>
+                        <span class="meta-val">131 Files + 12 Qs</span>
+                        <span class="meta-note">Open student archive</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 02: Faculty & Student Team -->
+        <section class="section" aria-labelledby="sec-team">
+            <div class="section-label">
+                <span>02</span>Contact Details
+            </div>
+            <div class="section-body">
+                <div class="section-head">
+                    <div>
+                        <h2 class="h1" id="sec-team">Faculty &amp; Student Team</h2>
+                        <p class="sub">
+                            For speaking requests, curriculum inquiries, or peer mentoring on Python and the Internal Assessment, reach out directly below.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="people">
+                    <!-- Neha Siddiqui -->
+                    <article class="person">
+                        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+                            <span class="person-monogram" aria-hidden="true">NS</span>
+                            <span class="status-badge ready">Faculty</span>
+                        </div>
+                        <div>
+                            <div class="person-role">Department Head &bull; Computer Science Teacher</div>
+                            <h3>Neha Siddiqui</h3>
+                            <p style="margin-top: 6px;">
+                                Leads IB DP Computer Science (SL &amp; HL) instruction, Internal Assessment supervision, and speaking inquiries at Emirates International School.
+                            </p>
+                        </div>
+                        <a class="person-mail" href="mailto:Siddiquin@eischools.ae">Siddiquin@eischools.ae</a>
+                    </article>
 
                     <!-- Anish Dongarkar -->
-                    <div class="card" style="text-align: center; padding: 32px 20px;">
-                        <img 
-                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" 
-                            alt="Anish Dongarkar"
-                            style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-primary); margin: 0 auto 16px; display: block;"
-                        >
-                        <div style="display: flex; justify-content: center; gap: 6px; margin-bottom: 8px;">
-                            <span class="zen-pill">STUDENT REP</span>
-                            <span class="status-badge ready">STUDENT</span>
+                    <article class="person">
+                        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+                            <span class="person-monogram" aria-hidden="true">AD</span>
+                            <span class="status-badge ready">Student Rep</span>
                         </div>
-                        <h3 style="font-size: 1.25rem; margin: 8px 0 4px;">Anish Dongarkar</h3>
-                        <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 12px;">Technology Ambassador</p>
-                        <a href="mailto:anishdongarkar@gmail.com" style="color: var(--accent-primary); font-size: 0.82rem; font-family: var(--font-mono); text-decoration: none;">
-                            anishdongarkar@gmail.com
-                        </a>
-                    </div>
+                        <div>
+                            <div class="person-role">Technology Ambassador</div>
+                            <h3>Anish Dongarkar</h3>
+                            <p style="margin-top: 6px;">
+                                Coordinates department web engineering, interactive exam practice tooling, GitHub Pages deployment, and peer programming support.
+                            </p>
+                        </div>
+                        <a class="person-mail" href="mailto:anishdongarkar@gmail.com">anishdongarkar@gmail.com</a>
+                    </article>
 
                     <!-- Rudolph Babaren -->
-                    <div class="card" style="text-align: center; padding: 32px 20px;">
-                        <img 
-                            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80" 
-                            alt="Rudolph Babaren"
-                            style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-primary); margin: 0 auto 16px; display: block;"
-                        >
-                        <div style="display: flex; justify-content: center; gap: 6px; margin-bottom: 8px;">
-                            <span class="zen-pill">STUDENT REP</span>
-                            <span class="status-badge ready">STUDENT</span>
+                    <article class="person">
+                        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+                            <span class="person-monogram" aria-hidden="true">RB</span>
+                            <span class="status-badge ready">Student Rep</span>
                         </div>
-                        <h3 style="font-size: 1.25rem; margin: 8px 0 4px;">Rudolph Babaren</h3>
-                        <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 12px;">AI Ambassador</p>
-                        <a href="mailto:rudolphmacrinebabaran@gmail.com" style="color: var(--accent-primary); font-size: 0.82rem; font-family: var(--font-mono); text-decoration: none;">
-                            rudolphmacrinebabaran@gmail.com
-                        </a>
-                    </div>
+                        <div>
+                            <div class="person-role">AI Ambassador</div>
+                            <h3>Rudolph Babaren</h3>
+                            <p style="margin-top: 6px;">
+                                Leads student exploration of Theme A4 Machine Learning, the Paper 3 Chatbot Case Study, and applied AI ethics workshops.
+                            </p>
+                        </div>
+                        <a class="person-mail" href="mailto:rudolphmacrinebabaran@gmail.com">rudolphmacrinebabaran@gmail.com</a>
+                    </article>
                 </div>
 
-                <!-- Missing Department Logistics -->
-                <div class="card" style="margin-top: 36px; padding: 22px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
-                        <span class="zen-pill">DEPARTMENT LOGISTICS</span>
-                        <span class="status-badge missing">SCHEDULE TO BE CONFIRMED</span>
+                <!-- Department Logistics -->
+                <div class="surface" style="margin-top: 28px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+                        <span class="pill">Department Logistics</span>
+                        <span class="status-badge pending">Schedule To Be Confirmed</span>
                     </div>
-                    <ul style="margin: 0; padding-left: 20px; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.8;">
-                        <li><strong>Classroom Location:</strong> Lab assignment pending school timetable publication.</li>
-                        <li><strong>Help Clinic / Office Hours:</strong> Timings to be announced for after-school coursework help.</li>
+                    <ul style="margin:0; padding-left:20px; color:var(--text-2); font-size:0.92rem; line-height:1.8;">
+                        <li><strong>Classroom Location:</strong> Computer Science Lab assignment per school timetable.</li>
+                        <li><strong>Help Clinic / Office Hours:</strong> After-school IA and Python clinic timings announced via the homepage Department Notices feed.</li>
                     </ul>
                 </div>
             </div>
-        </div>
+        </section>
     </main>
 
-    <footer></footer>
+    <footer class="site-footer">
+        <div class="wrap">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-title">Computer Science &bull; EIS</div>
+                    <p>
+                        IB Diploma Programme Computer Science (SL &amp; HL) at Emirates International School. Speaking requests &amp; inquiries: <a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui (Siddiquin@eischools.ae)</a>.
+                    </p>
+                </div>
+                <div>
+                    <div class="footer-title">Navigation</div>
+                    <ul>
+                        <li><a href="courses.html">Courses Overview</a></li>
+                        <li><a href="practice.html">Practice Question Bank</a></li>
+                        <li><a href="curriculum.html">Curriculum &amp; Pacing</a></li>
+                        <li><a href="theme-a.html">Theme A: Systems &amp; Hardware</a></li>
+                        <li><a href="theme-b.html">Theme B: Computational Thinking</a></li>
+                        <li><a href="ia.html">Internal Assessment (IA)</a></li>
+                        <li><a href="case-study.html">Paper 3 Case Study</a></li>
+                        <li><a href="resources.html">Resources &amp; Worksheets</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-title">Department Team &amp; Appearance</div>
+                    <ul>
+                        <li><a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui &mdash; Head of CS</a></li>
+                        <li><a href="mailto:anishdongarkar@gmail.com">Anish Dongarkar &mdash; Tech Ambassador</a></li>
+                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaren &mdash; AI Ambassador</a></li>
+                        <li><a href="about-us.html">About the Department</a></li>
+                        <li><a href="admin.html">Faculty Administration Portal</a></li>
+                    </ul>
+                    <div style="margin-top: 18px;">
+                        <div class="footer-title">Appearance</div>
+                        <div class="appearance" data-appearance></div>
+                    </div>
+                </div>
+            </div>
 
-    <script src="../js/ui.js"></script>
-    <script src="../js/ribbon-waves.js"></script>
+            <div class="footer-base">
+                <span>&copy; 2026 Computer Science Department &bull; Emirates International School (IB DP World School)</span>
+                <span>Theme A &bull; Theme B &bull; IA &bull; Paper 3</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/site.js" defer></script>
 </body>
 </html>

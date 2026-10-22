@@ -1,139 +1,246 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="lilac" data-texture="animated">
+<html lang="en" data-theme="lilac" data-texture="animated" data-base="../">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Courses | Computer Science</title>
-    <link rel="stylesheet" href="../css/main.css">
+    <title>Courses | IB Computer Science &mdash; Emirates International School</title>
+    <meta name="description" content="Course modules, study notes, syllabus materials, and coursework guides for SL and HL IB Computer Science students at Emirates International School.">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('eis_cs_theme');
+                var x = localStorage.getItem('eis_cs_texture');
+                if (t) document.documentElement.setAttribute('data-theme', t);
+                if (x) document.documentElement.setAttribute('data-texture', x);
+                var m = localStorage.getItem('eis_cs_mode');
+                if (m !== 'light' && m !== 'dark') {
+                    m = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                }
+                document.documentElement.setAttribute('data-mode', m);
+            } catch (e) {
+                document.documentElement.setAttribute('data-mode', window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+            }
+        })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/site.css">
 </head>
 <body>
-    <header></header>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <canvas class="ribbons" id="interactive-canvas" aria-hidden="true"></canvas>
 
-    <section class="hero">
-        <div class="zen-badge">
-            <span class="badge-dot"></span>
-            <span>COURSES • IB COMPUTER SCIENCE</span>
+    <header class="site-header">
+        <div class="wrap">
+            <a href="../index.html" class="brand">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-name">Computer Science</span>
+                <span class="brand-sub">Emirates International School</span>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+                <span>Menu</span>
+                <span class="nav-toggle-icon" aria-hidden="true"></span>
+            </button>
+
+            <nav class="site-nav" id="site-nav" aria-label="Primary">
+                <ul class="nav-list">
+                    <li><a href="../index.html">Homepage</a></li>
+                    <li><a href="courses.html" aria-current="page">Courses</a></li>
+                    <li><a href="practice.html">Practice</a></li>
+                    <li><a href="curriculum.html">Curriculum</a></li>
+                    <li><a href="theme-a.html">Theme A</a></li>
+                    <li><a href="theme-b.html">Theme B</a></li>
+                    <li><a href="ia.html">IA</a></li>
+                    <li><a href="case-study.html">Case Study</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                </ul>
+            </nav>
         </div>
-        <h1>Course Modules</h1>
-        <p>
-            Study notes, syllabus materials, and coursework guides for SL and HL students.
-        </p>
-    </section>
+    </header>
 
-    <main class="content-section">
-        <div class="section-container">
-            <div class="card-grid" style="margin-top: 0;">
-                <!-- Theme A -->
-                <a href="theme-a.html" class="card" style="text-decoration: none; color: inherit;">
-                    <div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                            <span class="zen-pill">THEME A</span>
-                            <span class="status-badge ready">READY</span>
-                        </div>
-                        <h2>Systems & Hardware</h2>
-                        <p style="margin-top: 6px;">Machine cycles, registers, Boolean logic, memory, and networking basics.</p>
-                    </div>
-                    <div style="margin-top: 20px; padding-top: 12px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; font-size: 0.82rem; font-family: var(--font-mono); color: var(--accent-primary);">
-                        <span>3 Modules Available</span>
-                        <span>Open Notes →</span>
-                    </div>
-                </a>
-
-                <!-- Theme B -->
-                <a href="theme-b.html" class="card" style="text-decoration: none; color: inherit;">
-                    <div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                            <span class="zen-pill">THEME B</span>
-                            <span class="status-badge pending">AWAITING SITE TEXT</span>
-                        </div>
-                        <h2>Computational Thinking & OOP</h2>
-                        <p style="margin-top: 6px;">Algorithms, Python basics, and object-oriented programming concepts.</p>
-                    </div>
-                    <div style="margin-top: 20px; padding-top: 12px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; font-size: 0.82rem; font-family: var(--font-mono); color: var(--accent-primary);">
-                        <span>Files Linked</span>
-                        <span>Open Notes →</span>
-                    </div>
-                </a>
-
-                <!-- Theme C (Identified as Missing) -->
-                <div class="card">
-                    <div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                            <span class="zen-pill">THEME C</span>
-                            <span class="status-badge missing">NEEDS TEACHER UPLOAD</span>
-                        </div>
-                        <h2>Abstract Data Structures</h2>
-                        <p style="margin-top: 6px;">Linked lists, stacks, queues, and binary search trees (HL focus).</p>
-                        <div class="missing-box">
-                            <span>Pending: Topic notes and worksheets have not been provided yet.</span>
-                        </div>
-                    </div>
-                    <div style="margin-top: 20px; padding-top: 12px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; font-size: 0.82rem; font-family: var(--font-mono); color: var(--text-muted);">
-                        <span>HL Module</span>
-                        <a href="practice.html?topic=oop" style="color: var(--accent-primary); text-decoration: none;">Practice Questions →</a>
-                    </div>
-                </div>
-
-                <!-- Theme D (Identified as Missing) -->
-                <div class="card">
-                    <div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                            <span class="zen-pill">THEME D</span>
-                            <span class="status-badge missing">NEEDS TEACHER UPLOAD</span>
-                        </div>
-                        <h2>Advanced OOP & Systems</h2>
-                        <p style="margin-top: 6px;">Polymorphism, inheritance hierarchies, and software design patterns.</p>
-                        <div class="missing-box">
-                            <span>Pending: Code examples and lecture slides awaiting department upload.</span>
-                        </div>
-                    </div>
-                    <div style="margin-top: 20px; padding-top: 12px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; font-size: 0.82rem; font-family: var(--font-mono); color: var(--text-muted);">
-                        <span>HL Module</span>
-                        <a href="practice.html?topic=oop" style="color: var(--accent-primary); text-decoration: none;">Practice Questions →</a>
-                    </div>
-                </div>
-
-                <!-- IA -->
-                <a href="ia.html" class="card" style="text-decoration: none; color: inherit;">
-                    <div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                            <span class="zen-pill">COURSEWORK</span>
-                            <span class="status-badge ready">READY</span>
-                        </div>
-                        <h2>Internal Assessment (IA)</h2>
-                        <p style="margin-top: 6px;">Criteria A to E rubric, video tutorials, and documentation requirements.</p>
-                    </div>
-                    <div style="margin-top: 20px; padding-top: 12px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; font-size: 0.82rem; font-family: var(--font-mono); color: var(--accent-primary);">
-                        <span>30 Marks</span>
-                        <span>Open IA Guide →</span>
-                    </div>
-                </a>
-
-                <!-- Case Study -->
-                <a href="case-study.html" class="card" style="text-decoration: none; color: inherit;">
-                    <div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                            <span class="zen-pill">PAPER 3</span>
-                            <span class="status-badge ready">READY</span>
-                        </div>
-                        <h2>Case Study: The Perfect Chatbot</h2>
-                        <p style="margin-top: 6px;">Official booklet preview and research notes for the 2025 examination.</p>
-                    </div>
-                    <div style="margin-top: 20px; padding-top: 12px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; font-size: 0.82rem; font-family: var(--font-mono); color: var(--accent-primary);">
-                        <span>HL Only</span>
-                        <span>Read Case Study →</span>
-                    </div>
-                </a>
+    <main id="main" class="wrap">
+        <section class="hero">
+            <div class="eyebrow">
+                <span>Courses &bull; IB Computer Science</span>
             </div>
-        </div>
+            <h1 class="display">
+                Course Modules
+            </h1>
+            <p class="lead">
+                Study notes, syllabus materials, and coursework guides for Standard Level (SL) and Higher Level (HL) students at Emirates International School.
+            </p>
+        </section>
+
+        <!-- Section 01: Core & HL Modules -->
+        <section class="section" aria-labelledby="sec-modules">
+            <div class="section-label">
+                <span>01</span>Modules
+            </div>
+            <div class="section-body">
+                <div class="section-head">
+                    <div>
+                        <h2 class="h1" id="sec-modules">Syllabus &amp; Assessment Modules</h2>
+                        <p class="sub">
+                            Select any module to open classroom slides, worksheets, or topic-filtered practice questions.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="hub-grid">
+                    <!-- Theme A -->
+                    <a class="hub-card" href="theme-a.html">
+                        <div class="hub-top">
+                            <span class="pill">Theme A</span>
+                            <span class="status-badge ready">Ready &bull; 70 Files</span>
+                        </div>
+                        <div>
+                            <h3>Systems &amp; Hardware</h3>
+                            <p>Machine cycles, CPU registers, Boolean logic, memory hierarchy, packet-switched networking, relational SQL databases, and machine learning.</p>
+                        </div>
+                        <div class="hub-foot">
+                            <span>4 Modules Available</span>
+                            <span>Open Notes &rarr;</span>
+                        </div>
+                    </a>
+
+                    <!-- Theme B -->
+                    <a class="hub-card" href="theme-b.html">
+                        <div class="hub-top">
+                            <span class="pill">Theme B</span>
+                            <span class="status-badge ready">Ready &bull; 48 Files</span>
+                        </div>
+                        <div>
+                            <h3>Computational Thinking &amp; OOP</h3>
+                            <p>Problem decomposition, flowcharts, pseudocode, Python constructs, searching/sorting algorithms, and Object-Oriented Programming.</p>
+                        </div>
+                        <div class="hub-foot">
+                            <span>48 Files Linked</span>
+                            <span>Open Notes &rarr;</span>
+                        </div>
+                    </a>
+
+                    <!-- Abstract Data Structures (HL) -->
+                    <div class="hub-card">
+                        <div class="hub-top">
+                            <span class="pill">Theme C / B4</span>
+                            <span class="status-badge pending">HL Module</span>
+                        </div>
+                        <div>
+                            <h3>Abstract Data Structures</h3>
+                            <p>Linked lists (singly, doubly, circular), stacks, queues, binary search trees, recursion, and graph algorithms.</p>
+                            <div class="missing-box">
+                                Note: Additional HL teacher notes pending upload. B4 Abstract Data Types slides and practice questions are ready now.
+                            </div>
+                        </div>
+                        <div class="hub-foot">
+                            <a href="theme-b.html" style="text-decoration:none;">B4 Slides &rarr;</a>
+                            <a href="practice.html?topic=oop" style="text-decoration:none; color:var(--accent);">Practice Questions &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Advanced OOP & Systems (HL) -->
+                    <div class="hub-card">
+                        <div class="hub-top">
+                            <span class="pill">Theme D / B3</span>
+                            <span class="status-badge pending">HL Module</span>
+                        </div>
+                        <div>
+                            <h3>Advanced OOP &amp; Systems</h3>
+                            <p>Polymorphism, inheritance hierarchies, encapsulation, UML class relationships, and software design patterns.</p>
+                            <div class="missing-box">
+                                Note: Extended HL code exemplars awaiting department upload. B3 OOP Python decks and practice questions are available.
+                            </div>
+                        </div>
+                        <div class="hub-foot">
+                            <a href="theme-b.html" style="text-decoration:none;">B3 OOP Slides &rarr;</a>
+                            <a href="practice.html?topic=oop" style="text-decoration:none; color:var(--accent);">Practice Questions &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Internal Assessment -->
+                    <a class="hub-card" href="ia.html">
+                        <div class="hub-top">
+                            <span class="pill">Coursework</span>
+                            <span class="status-badge ready">Ready</span>
+                        </div>
+                        <div>
+                            <h3>Internal Assessment (IA)</h3>
+                            <p>Criteria A to E rubric, 7-video tutorial playlist, assessed student exemplar PDF, and documentation requirements.</p>
+                        </div>
+                        <div class="hub-foot">
+                            <span>30 Marks</span>
+                            <span>Open IA Guide &rarr;</span>
+                        </div>
+                    </a>
+
+                    <!-- Paper 3 Case Study -->
+                    <a class="hub-card" href="case-study.html">
+                        <div class="hub-top">
+                            <span class="pill">Paper 3</span>
+                            <span class="status-badge ready">Ready</span>
+                        </div>
+                        <div>
+                            <h3>Case Study: The Perfect Chatbot</h3>
+                            <p>Official booklet preview, RAKT Insurance scenario architecture, and research notes for Higher Level candidates.</p>
+                        </div>
+                        <div class="hub-foot">
+                            <span>HL Only</span>
+                            <span>Read Case Study &rarr;</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer></footer>
+    <footer class="site-footer">
+        <div class="wrap">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-title">Computer Science &bull; EIS</div>
+                    <p>
+                        IB Diploma Programme Computer Science (SL &amp; HL) at Emirates International School. Speaking requests &amp; inquiries: <a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui (Siddiquin@eischools.ae)</a>.
+                    </p>
+                </div>
+                <div>
+                    <div class="footer-title">Navigation</div>
+                    <ul>
+                        <li><a href="courses.html">Courses Overview</a></li>
+                        <li><a href="practice.html">Practice Question Bank</a></li>
+                        <li><a href="curriculum.html">Curriculum &amp; Pacing</a></li>
+                        <li><a href="theme-a.html">Theme A: Systems &amp; Hardware</a></li>
+                        <li><a href="theme-b.html">Theme B: Computational Thinking</a></li>
+                        <li><a href="ia.html">Internal Assessment (IA)</a></li>
+                        <li><a href="case-study.html">Paper 3 Case Study</a></li>
+                        <li><a href="resources.html">Resources &amp; Worksheets</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-title">Department Team &amp; Appearance</div>
+                    <ul>
+                        <li><a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui &mdash; Head of CS</a></li>
+                        <li><a href="mailto:anishdongarkar@gmail.com">Anish Dongarkar &mdash; Tech Ambassador</a></li>
+                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaren &mdash; AI Ambassador</a></li>
+                        <li><a href="about-us.html">About the Department</a></li>
+                        <li><a href="admin.html">Faculty Administration Portal</a></li>
+                    </ul>
+                    <div style="margin-top: 18px;">
+                        <div class="footer-title">Appearance</div>
+                        <div class="appearance" data-appearance></div>
+                    </div>
+                </div>
+            </div>
 
-    <script src="../js/ui.js"></script>
-    <script src="../js/ribbon-waves.js"></script>
+            <div class="footer-base">
+                <span>&copy; 2026 Computer Science Department &bull; Emirates International School (IB DP World School)</span>
+                <span>Theme A &bull; Theme B &bull; IA &bull; Paper 3</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/site.js" defer></script>
 </body>
 </html>

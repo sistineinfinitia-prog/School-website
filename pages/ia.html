@@ -1,173 +1,319 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="lilac" data-texture="animated">
+<html lang="en" data-theme="lilac" data-texture="animated" data-base="../">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internal Assessment (IA) | Computer Science</title>
-    <link rel="stylesheet" href="../css/main.css">
+    <title>Internal Assessment (IA) | IB Computer Science &mdash; EIS</title>
+    <meta name="description" content="30-Mark Internal Assessment guide for IB DP Computer Science at Emirates International School: Criteria A–E rubric, video tutorials, and assessed student exemplar.">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('eis_cs_theme');
+                var x = localStorage.getItem('eis_cs_texture');
+                if (t) document.documentElement.setAttribute('data-theme', t);
+                if (x) document.documentElement.setAttribute('data-texture', x);
+                var m = localStorage.getItem('eis_cs_mode');
+                if (m !== 'light' && m !== 'dark') {
+                    m = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                }
+                document.documentElement.setAttribute('data-mode', m);
+            } catch (e) {
+                document.documentElement.setAttribute('data-mode', window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+            }
+        })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/site.css">
 </head>
 <body>
-    <header></header>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <canvas class="ribbons" id="interactive-canvas" aria-hidden="true"></canvas>
 
-    <section class="hero">
-        <div class="zen-badge">
-            <span class="badge-dot"></span>
-            <span>COURSEWORK • 30 MARKS</span>
+    <header class="site-header">
+        <div class="wrap">
+            <a href="../index.html" class="brand">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-name">Computer Science</span>
+                <span class="brand-sub">Emirates International School</span>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+                <span>Menu</span>
+                <span class="nav-toggle-icon" aria-hidden="true"></span>
+            </button>
+
+            <nav class="site-nav" id="site-nav" aria-label="Primary">
+                <ul class="nav-list">
+                    <li><a href="../index.html">Homepage</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="practice.html">Practice</a></li>
+                    <li><a href="curriculum.html">Curriculum</a></li>
+                    <li><a href="theme-a.html">Theme A</a></li>
+                    <li><a href="theme-b.html">Theme B</a></li>
+                    <li><a href="ia.html" aria-current="page">IA</a></li>
+                    <li><a href="case-study.html">Case Study</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                </ul>
+            </nav>
         </div>
-        <h1>Internal Assessment (IA)</h1>
-        <p>
-            Rubrics, video walkthroughs, and guidelines for Criteria A through E.
-        </p>
-    </section>
+    </header>
 
-    <main class="content-section">
-        <div class="section-container">
-            <!-- Video Masterclass -->
-            <div class="card" style="padding: 0; overflow: hidden; margin-bottom: 28px;">
-                <div style="padding: 20px 24px; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+    <main id="main" class="wrap">
+        <section class="hero">
+            <div class="eyebrow">
+                <span>Coursework &bull; 30 Marks (30% SL / 20% HL)</span>
+            </div>
+            <h1 class="display">
+                Internal Assessment (IA)
+            </h1>
+            <p class="lead">
+                Rubrics, video walkthroughs, assessed student coursework exemplar, and guidelines for Criteria A through E.
+            </p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="../resources/IA/Computer%20Science%20Assessed%20Student%20Work%202027%20(1).pdf" target="_blank" rel="noopener">
+                    <span>Open Assessed Student Work Exemplar (PDF)</span>
+                    <span class="arrow" aria-hidden="true">&rarr;</span>
+                </a>
+                <a class="btn" href="../resources/Error%20log%20-%20Python%20Programming.pdf" target="_blank" rel="noopener">
+                    <span>Open Python Error Log (PDF)</span>
+                </a>
+                <a class="btn" href="https://drive.google.com/file/d/10UpqjN-yrhiJL5oOSiYBInVLxT0dWZVW/view" target="_blank" rel="noopener">
+                    <span>Official IA Rubric (Google Drive)</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Section 01: Criteria Breakdown -->
+        <section class="section" aria-labelledby="sec-criteria">
+            <div class="section-label">
+                <span>01</span>Mark Breakdown
+            </div>
+            <div class="section-body">
+                <div class="section-head">
                     <div>
-                        <span class="zen-pill">VIDEO GUIDE</span>
-                        <h2 style="margin: 6px 0 0; font-size: 1.3rem;">IA Tutorial Playlist</h2>
+                        <span class="pill" style="margin-bottom:8px;">Criteria Checklist</span>
+                        <h2 class="h1" id="sec-criteria">Criteria A&ndash;E Assessment Rubric</h2>
+                        <p class="sub">
+                            Every Criterion A success criterion must be testable in Criterion B, implemented in Criterion C, demonstrated on video in Criterion D, and evaluated with client feedback in Criterion E.
+                        </p>
                     </div>
-                    <span class="status-badge ready">READY • 7 VIDEOS</span>
                 </div>
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-                    <iframe 
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" 
-                        src="https://www.youtube.com/embed/videoseries?list=PLZbVESc4rBHkMp5sywd89W07IACJ8oWIm" 
-                        title="YouTube video player" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
+
+                <table class="criteria">
+                    <thead>
+                        <tr>
+                            <th scope="col">Criterion</th>
+                            <th scope="col">Deliverables &amp; Examiner Expectations</th>
+                            <th scope="col">Marks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="criteria-id">Criterion A</td>
+                            <td>
+                                <strong>Planning &amp; Problem Specification</strong>
+                                <p>Identify a real client or advisor, document evidence of consultation, justify why a computational solution is needed, and define measurable, testable success criteria.</p>
+                            </td>
+                            <td class="criteria-marks">6 Marks<span class="weight-bar" aria-hidden="true"><span style="width: 50%"></span></span></td>
+                        </tr>
+                        <tr>
+                            <td class="criteria-id">Criterion B</td>
+                            <td>
+                                <strong>Solution Overview &amp; Record of Tasks</strong>
+                                <p>Maintain a chronological Record of Tasks and provide system architecture diagrams, data structure specifications, UI wireframes, flowcharts/pseudocode, and a comprehensive test plan table.</p>
+                            </td>
+                            <td class="criteria-marks">6 Marks<span class="weight-bar" aria-hidden="true"><span style="width: 50%"></span></span></td>
+                        </tr>
+                        <tr>
+                            <td class="criteria-id">Criterion C</td>
+                            <td>
+                                <strong>Development &amp; Algorithmic Complexity</strong>
+                                <p>Present annotated screenshots of key algorithms, data structures, OOP/modular organization, input validation, and database/file persistence, explaining how each technique works and citing external libraries.</p>
+                            </td>
+                            <td class="criteria-marks">12 Marks<span class="weight-bar" aria-hidden="true"><span style="width: 100%"></span></span></td>
+                        </tr>
+                        <tr>
+                            <td class="criteria-id">Criterion D</td>
+                            <td>
+                                <strong>Functionality &amp; Extensibility (Video)</strong>
+                                <p>Submit a 2&ndash;7 minute screen-cast video demonstrating every success criterion working live, including edge-case handling, data persistence, and code extensibility.</p>
+                            </td>
+                            <td class="criteria-marks">4 Marks<span class="weight-bar" aria-hidden="true"><span style="width: 34%"></span></span></td>
+                        </tr>
+                        <tr>
+                            <td class="criteria-id">Criterion E</td>
+                            <td>
+                                <strong>Evaluation &amp; Future Recommendations</strong>
+                                <p>Evaluate each success criterion against the Criterion B test plan, include documented client feedback, and propose realistic technical improvements for future iterations.</p>
+                            </td>
+                            <td class="criteria-marks">6 Marks<span class="weight-bar" aria-hidden="true"><span style="width: 50%"></span></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 02: IA Files & Exemplars -->
+        <section class="section" aria-labelledby="sec-ia-files">
+            <div class="section-label">
+                <span>02</span>Exemplars
+            </div>
+            <div class="section-body">
+                <div class="section-head">
+                    <div>
+                        <h2 class="h1" id="sec-ia-files">Student Exemplars &amp; Templates</h2>
+                        <p class="sub">
+                            Review moderated IB student work and the Python debugging log before finalizing your Criterion B and C documentation.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="files">
+                    <div class="file">
+                        <div class="file-main">
+                            <span class="file-ext">PDF</span>
+                            <div>
+                                <div class="file-name">Computer Science Assessed Student Work (2027 Spec)</div>
+                                <span class="file-path">Annotated exemplar with official examiner marks and commentary</span>
+                            </div>
+                        </div>
+                        <div class="file-actions">
+                            <span class="status-badge ready">Ready</span>
+                            <a class="btn btn-sm" href="../resources/IA/Computer%20Science%20Assessed%20Student%20Work%202027%20(1).pdf" target="_blank" rel="noopener">Preview</a>
+                            <a class="btn btn-primary btn-sm" href="../resources/IA/Computer%20Science%20Assessed%20Student%20Work%202027%20(1).pdf" download>Download</a>
+                        </div>
+                    </div>
+
+                    <div class="file">
+                        <div class="file-main">
+                            <span class="file-ext">PDF</span>
+                            <div>
+                                <div class="file-name">Python Error Log &amp; Troubleshooting Template</div>
+                                <span class="file-path">Reference log for documenting bugs and debugging steps in Criterion C</span>
+                            </div>
+                        </div>
+                        <div class="file-actions">
+                            <span class="status-badge ready">Ready</span>
+                            <a class="btn btn-sm" href="../resources/Error%20log%20-%20Python%20Programming.pdf" target="_blank" rel="noopener">Preview</a>
+                            <a class="btn btn-primary btn-sm" href="../resources/Error%20log%20-%20Python%20Programming.pdf" download>Download</a>
+                        </div>
+                    </div>
+
+                    <div class="file">
+                        <div class="file-main">
+                            <span class="file-ext">MP4</span>
+                            <div>
+                                <div class="file-name">Criterion D Student Video Exemplar</div>
+                                <span class="file-path">Awaiting student permission before posting online</span>
+                            </div>
+                        </div>
+                        <div class="file-actions">
+                            <span class="status-badge pending">Pending Permission</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Two Column: PDF and Criteria -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px;">
-                <!-- PDF Rubrics Preview -->
-                <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-                    <div style="padding: 20px 24px; border-bottom: 1px solid var(--border-subtle);">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                            <span class="zen-pill">ASSESSMENT RUBRIC</span>
-                            <span class="status-badge ready">READY</span>
-                        </div>
-                        <h2 style="margin: 0; font-size: 1.25rem;">Official IA Guide</h2>
+        <!-- Section 03: Video Masterclass & Official Guide Embed -->
+        <section class="section" aria-labelledby="sec-ia-media">
+            <div class="section-label">
+                <span>03</span>Walkthroughs
+            </div>
+            <div class="section-body">
+                <div class="section-head">
+                    <div>
+                        <h2 class="h1" id="sec-ia-media">IA Video Playlist &amp; Official Rubric</h2>
+                        <p class="sub">
+                            Watch the 7-part video tutorial series covering Criteria A through E, or inspect the official IA assessment guide directly below.
+                        </p>
                     </div>
-                    <div style="flex-grow: 1; min-height: 480px;">
-                        <iframe 
-                            src="https://drive.google.com/file/d/10UpqjN-yrhiJL5oOSiYBInVLxT0dWZVW/preview" 
-                            width="100%" 
-                            height="100%" 
-                            style="border: none; min-height: 480px;">
+                </div>
+
+                <div class="stack">
+                    <div class="embed">
+                        <div class="embed-bar">
+                            <span class="embed-title">Video Guide &bull; IA Tutorial Playlist (7 Videos)</span>
+                            <span class="status-badge ready">Ready</span>
+                        </div>
+                        <iframe
+                            class="embed-frame video"
+                            src="https://www.youtube.com/embed/videoseries?list=PLZbVESc4rBHkMp5sywd89W07IACJ8oWIm"
+                            title="IB Computer Science Internal Assessment Masterclass Playlist"
+                            loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
                         </iframe>
                     </div>
-                    <div style="padding: 14px 24px; border-top: 1px solid var(--border-subtle); background: var(--bg-surface); text-align: right;">
-                        <a href="https://drive.google.com/file/d/10UpqjN-yrhiJL5oOSiYBInVLxT0dWZVW/view" target="_blank" class="btn">
-                            Open PDF Fullscreen →
-                        </a>
-                    </div>
-                </div>
 
-                <!-- Right Column: Criteria Summary & Links -->
-                <div style="display: flex; flex-direction: column; gap: 18px;">
-                    <div class="card">
-                        <span class="zen-pill">CRITERIA CHECKLIST</span>
-                        <h2 style="margin: 10px 0 14px; font-size: 1.25rem;">Mark Breakdown</h2>
-                        
-                        <div style="display: flex; flex-direction: column; gap: 12px;">
-                            <div style="border-left: 2px solid var(--accent-primary); padding-left: 12px;">
-                                <div style="display: flex; justify-content: space-between; font-size: 0.88rem;">
-                                    <strong>Criterion A: Planning</strong>
-                                    <span style="font-family: var(--font-mono); color: var(--accent-primary);">6 marks</span>
-                                </div>
-                                <p style="font-size: 0.82rem; margin: 2px 0 0;">Problem definition, client interview, and testable success criteria.</p>
-                            </div>
-
-                            <div style="border-left: 2px solid var(--accent-primary); padding-left: 12px;">
-                                <div style="display: flex; justify-content: space-between; font-size: 0.88rem;">
-                                    <strong>Criterion B: Solution Overview</strong>
-                                    <span style="font-family: var(--font-mono); color: var(--accent-primary);">6 marks</span>
-                                </div>
-                                <p style="font-size: 0.82rem; margin: 2px 0 0;">System record, design flowcharts, wireframes, and test plan table.</p>
-                            </div>
-
-                            <div style="border-left: 2px solid var(--accent-primary); padding-left: 12px;">
-                                <div style="display: flex; justify-content: space-between; font-size: 0.88rem;">
-                                    <strong>Criterion C: Development</strong>
-                                    <span style="font-family: var(--font-mono); color: var(--accent-primary);">12 marks</span>
-                                </div>
-                                <p style="font-size: 0.82rem; margin: 2px 0 0;">Complex techniques, coding logic, and citations for non-original code.</p>
-                            </div>
-
-                            <div style="border-left: 2px solid var(--accent-primary); padding-left: 12px;">
-                                <div style="display: flex; justify-content: space-between; font-size: 0.88rem;">
-                                    <strong>Criterion D: Functionality</strong>
-                                    <span style="font-family: var(--font-mono); color: var(--accent-primary);">4 marks</span>
-                                </div>
-                                <p style="font-size: 0.82rem; margin: 2px 0 0;">Screen-recorded video (2–7 minutes) demonstrating all success criteria.</p>
-                            </div>
-
-                            <div style="border-left: 2px solid var(--accent-primary); padding-left: 12px;">
-                                <div style="display: flex; justify-content: space-between; font-size: 0.88rem;">
-                                    <strong>Criterion E: Evaluation</strong>
-                                    <span style="font-family: var(--font-mono); color: var(--accent-primary);">6 marks</span>
-                                </div>
-                                <p style="font-size: 0.82rem; margin: 2px 0 0;">Client feedback interview and future development recommendations.</p>
-                            </div>
+                    <div class="embed">
+                        <div class="embed-bar">
+                            <span class="embed-title">Official IB Computer Science IA Assessment Guide</span>
+                            <a class="btn btn-sm" href="https://drive.google.com/file/d/10UpqjN-yrhiJL5oOSiYBInVLxT0dWZVW/view" target="_blank" rel="noopener">
+                                <span>Open PDF Fullscreen</span>
+                                <span class="arrow" aria-hidden="true">&rarr;</span>
+                            </a>
                         </div>
-                    </div>
-
-                    <!-- Downloads -->
-                    <a href="../resources/IA/Computer Science Assessed Student Work 2027 (1).pdf" target="_blank" class="download-item">
-                        <div style="display: flex; align-items: center; gap: 14px;">
-                            <span class="zen-pill">PDF</span>
-                            <div>
-                                <h3 style="font-size: 0.95rem; margin: 0; font-family: var(--font-zen-title);">Assessed Student Work (2027)</h3>
-                                <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Annotated exemplar with examiner marks.</p>
-                            </div>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 8px;">
-                            <span class="status-badge ready">READY</span>
-                            <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-primary);">View</span>
-                        </div>
-                    </a>
-
-                    <a href="../resources/Error log - Python Programming.pdf" target="_blank" class="download-item">
-                        <div style="display: flex; align-items: center; gap: 14px;">
-                            <span class="zen-pill">PDF</span>
-                            <div>
-                                <h3 style="font-size: 0.95rem; margin: 0; font-family: var(--font-zen-title);">Python Error Log Template</h3>
-                                <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Documenting bugs and debugging steps for Criterion C.</p>
-                            </div>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 8px;">
-                            <span class="status-badge ready">READY</span>
-                            <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-primary);">View</span>
-                        </div>
-                    </a>
-
-                    <!-- Missing Item: Video Exemplar (Identified) -->
-                    <div class="download-item" style="border-style: dashed; opacity: 0.8;">
-                        <div style="display: flex; align-items: center; gap: 14px;">
-                            <span class="zen-pill" style="opacity: 0.6;">MP4</span>
-                            <div>
-                                <h3 style="font-size: 0.95rem; margin: 0; font-family: var(--font-zen-title);">Criterion D Video Exemplar</h3>
-                                <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Awaiting student permission before posting online.</p>
-                            </div>
-                        </div>
-                        <span class="status-badge pending">PENDING PERMISSION</span>
+                        <iframe
+                            class="embed-frame"
+                            src="https://drive.google.com/file/d/10UpqjN-yrhiJL5oOSiYBInVLxT0dWZVW/preview"
+                            title="Official IB Computer Science Internal Assessment Guide PDF"
+                            loading="lazy">
+                        </iframe>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </main>
 
-    <footer></footer>
+    <footer class="site-footer">
+        <div class="wrap">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-title">Computer Science &bull; EIS</div>
+                    <p>
+                        IB Diploma Programme Computer Science (SL &amp; HL) at Emirates International School. Speaking requests &amp; inquiries: <a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui (Siddiquin@eischools.ae)</a>.
+                    </p>
+                </div>
+                <div>
+                    <div class="footer-title">Navigation</div>
+                    <ul>
+                        <li><a href="courses.html">Courses Overview</a></li>
+                        <li><a href="practice.html">Practice Question Bank</a></li>
+                        <li><a href="curriculum.html">Curriculum &amp; Pacing</a></li>
+                        <li><a href="theme-a.html">Theme A: Systems &amp; Hardware</a></li>
+                        <li><a href="theme-b.html">Theme B: Computational Thinking</a></li>
+                        <li><a href="ia.html">Internal Assessment (IA)</a></li>
+                        <li><a href="case-study.html">Paper 3 Case Study</a></li>
+                        <li><a href="resources.html">Resources &amp; Worksheets</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-title">Department Team &amp; Appearance</div>
+                    <ul>
+                        <li><a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui &mdash; Head of CS</a></li>
+                        <li><a href="mailto:anishdongarkar@gmail.com">Anish Dongarkar &mdash; Tech Ambassador</a></li>
+                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaren &mdash; AI Ambassador</a></li>
+                        <li><a href="about-us.html">About the Department</a></li>
+                        <li><a href="admin.html">Faculty Administration Portal</a></li>
+                    </ul>
+                    <div style="margin-top: 18px;">
+                        <div class="footer-title">Appearance</div>
+                        <div class="appearance" data-appearance></div>
+                    </div>
+                </div>
+            </div>
 
-    <script src="../js/ui.js"></script>
-    <script src="../js/ribbon-waves.js"></script>
+            <div class="footer-base">
+                <span>&copy; 2026 Computer Science Department &bull; Emirates International School (IB DP World School)</span>
+                <span>Theme A &bull; Theme B &bull; IA &bull; Paper 3</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/site.js" defer></script>
 </body>
 </html>

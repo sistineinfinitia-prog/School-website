@@ -1,0 +1,26 @@
+[
+  {
+    "id": "ia-criterion-b-c",
+    "date": "2026-10-18",
+    "title": "Internal Assessment Criterion B & C Checkpoint",
+    "description": "Submit your problem decomposition, system architecture diagram, and initial algorithm flowcharts before the end of week. Every design specification must trace directly to a measurable success criterion in Criterion A.",
+    "category": "IA",
+    "driveLink": "pages/ia.html"
+  },
+  {
+    "id": "syllabus-2027-resources",
+    "date": "2026-10-12",
+    "title": "Theme A & Theme B Resource Vault Updated",
+    "description": "All 151 department slide decks, Python worksheets, SQL normalization labs, and past paper mark schemes are now indexed and searchable directly from the Resource Vault.",
+    "category": "Curriculum",
+    "driveLink": "pages/resources.html"
+  },
+  {
+    "id": "paper-3-case-study",
+    "date": "2026-10-04",
+    "title": "HL Case Study Seminar: The Perfect Chatbot",
+    "description": "Higher Level candidates should annotate the RAKT Insurance case study booklet ahead of our seminar on natural language processing pipelines, transformer latency, and dataset bias.",
+    "category": "HL Seminar",
+    "driveLink": "pages/case-study.html"
+  }
+]
