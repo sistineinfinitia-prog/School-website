@@ -548,22 +548,44 @@ main {
     position: relative;
 }
 
-/* --- Reusable Spring Popover Animation ------------------------------------ */
-.popover-spring-in {
-    animation: popoverSpring 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* --- Reusable Origin-Aware Dropdown Expansion Animation ----------------------- */
+.dropdown-animating-in {
+    animation: dropdownBloomIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    pointer-events: auto;
     will-change: transform, opacity, filter;
 }
 
-@keyframes popoverSpring {
+.dropdown-animating-out {
+    animation: dropdownBloomOut 0.14s cubic-bezier(0.4, 0, 1, 1) forwards;
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+@keyframes dropdownBloomIn {
     0% {
         opacity: 0;
-        transform: scale(0.88);
+        transform: scale(0.68) translateY(-4px);
         filter: blur(4px);
+    }
+    60% {
+        opacity: 1;
+        filter: blur(0);
     }
     100% {
         opacity: 1;
-        transform: scale(1);
+        transform: scale(1) translateY(0);
         filter: blur(0);
+    }
+}
+
+@keyframes dropdownBloomOut {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.75) translateY(-4px);
     }
 }
 
@@ -572,6 +594,7 @@ main {
     position: relative;
 }
 
+/* Snappy, responsive trigger buttons - NO squishing, NO rotation */
 .config-trigger {
     display: inline-grid;
     place-items: center;
@@ -583,7 +606,7 @@ main {
     border-radius: 50%;
     color: var(--text-2);
     cursor: pointer;
-    transition: color 0.15s ease, background-color 0.15s ease, transform 0.2s ease;
+    transition: color 0.1s ease, background-color 0.1s ease;
 }
 
 .config-trigger:hover,
@@ -593,17 +616,12 @@ main {
 }
 
 .config-trigger:active {
-    transform: scale(0.92);
+    background: var(--surface-3);
 }
 
 .config-trigger svg {
     width: 17px;
     height: 17px;
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.config-trigger:hover svg {
-    transform: rotate(15deg);
 }
 
 .config-trigger .icon-sun,
@@ -856,13 +874,17 @@ html[data-density="comfortable"] .question-prompt {
     border-radius: 50%;
     color: var(--text-2);
     cursor: pointer;
-    transition: color 0.15s ease, background-color 0.15s ease;
+    transition: color 0.1s ease, background-color 0.1s ease;
 }
 
 .menu-trigger:hover,
 .menu-trigger[aria-expanded="true"] {
     color: var(--text);
     background: var(--surface-2);
+}
+
+.menu-trigger:active {
+    background: var(--surface-3);
 }
 
 .menu-icon-lines {

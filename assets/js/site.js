@@ -52,24 +52,25 @@
     root.setAttribute('data-density', initialDensity);
 
     /* ------------------------------------------------------------------
-       1. Reusable Origin-Aware Popover Animation System
+       1. Reusable Origin-Aware Dropdown Animation Engine
        Computes the exact center of the trigger button relative to the popover
-       and applies spring physics scaling outward from that point.
+       and blooms the dropdown out from the button's exact coordinates.
        ------------------------------------------------------------------ */
-    function openPopoverFromTrigger(triggerEl, popoverEl) {
+    function openDropdownFromTrigger(triggerEl, popoverEl) {
         if (!triggerEl || !popoverEl) return;
 
-        // Close any other open popovers
+        // Immediately close any other open dropdowns without exit lag
         document.querySelectorAll('.menu-popover, .config-popover').forEach(function (p) {
             if (p !== popoverEl && !p.hidden) {
                 var otherTrigger = document.querySelector('[aria-controls="' + p.id + '"]');
-                closePopover(otherTrigger, p);
+                closeDropdownFromTrigger(otherTrigger, p, true);
             }
         });
 
         popoverEl.hidden = false;
+        popoverEl.classList.remove('dropdown-animating-out');
 
-        // Compute origin offset
+        // Measure geometry
         var tRect = triggerEl.getBoundingClientRect();
         var pRect = popoverEl.getBoundingClientRect();
 
@@ -77,24 +78,48 @@
         var originY = (tRect.top + tRect.height / 2) - pRect.top;
 
         popoverEl.style.transformOrigin = originX + 'px ' + originY + 'px';
-        popoverEl.classList.remove('popover-spring-in');
+
+        // Trigger bloom-in animation
+        popoverEl.classList.remove('dropdown-animating-in');
         void popoverEl.offsetWidth; // Force reflow
-        popoverEl.classList.add('popover-spring-in');
+        popoverEl.classList.add('dropdown-animating-in');
 
         triggerEl.setAttribute('aria-expanded', 'true');
     }
 
-    function closePopover(triggerEl, popoverEl) {
+    function closeDropdownFromTrigger(triggerEl, popoverEl, instant) {
         if (!popoverEl || popoverEl.hidden) return;
-        popoverEl.hidden = true;
-        popoverEl.classList.remove('popover-spring-in');
+
         var trigger = triggerEl || document.querySelector('[aria-controls="' + popoverEl.id + '"]');
         if (trigger) trigger.setAttribute('aria-expanded', 'false');
+
+        if (instant) {
+            popoverEl.hidden = true;
+            popoverEl.classList.remove('dropdown-animating-in', 'dropdown-animating-out');
+            return;
+        }
+
+        popoverEl.classList.remove('dropdown-animating-in');
+        popoverEl.classList.add('dropdown-animating-out');
+
+        var closed = false;
+        function done() {
+            if (closed) return;
+            closed = true;
+            popoverEl.hidden = true;
+            popoverEl.classList.remove('dropdown-animating-out');
+            popoverEl.removeEventListener('animationend', done);
+        }
+
+        popoverEl.addEventListener('animationend', done, { once: true });
+        setTimeout(done, 150); // Fallback
     }
 
-    // Expose globally so future modals & dropdowns can reuse this exact animation
-    window.openPopoverFromTrigger = openPopoverFromTrigger;
-    window.closePopover = closePopover;
+    window.openDropdownFromTrigger = openDropdownFromTrigger;
+    window.closeDropdownFromTrigger = closeDropdownFromTrigger;
+    // Backward compatibility aliases
+    window.openPopoverFromTrigger = openDropdownFromTrigger;
+    window.closePopover = closeDropdownFromTrigger;
 
     /* ------------------------------------------------------------------
        2. Header System: Website Config Dropdown & Navigation Popover
@@ -294,9 +319,9 @@
         configBtn.addEventListener('click', function (e) {
             e.stopPropagation();
             if (configPopover.hidden) {
-                openPopoverFromTrigger(configBtn, configPopover);
+                openDropdownFromTrigger(configBtn, configPopover);
             } else {
-                closePopover(configBtn, configPopover);
+                closeDropdownFromTrigger(configBtn, configPopover);
             }
         });
 
@@ -359,9 +384,9 @@
         menuBtn.addEventListener('click', function (e) {
             e.stopPropagation();
             if (menuPopover.hidden) {
-                openPopoverFromTrigger(menuBtn, menuPopover);
+                openDropdownFromTrigger(menuBtn, menuPopover);
             } else {
-                closePopover(menuBtn, menuPopover);
+                closeDropdownFromTrigger(menuBtn, menuPopover);
             }
         });
 
@@ -373,25 +398,25 @@
            C. Universal Keyboard & Outside Click Listeners
            ------------------------------------------------------------- */
         document.addEventListener('click', function (e) {
-            if (!configWrap.contains(e.target)) closePopover(configBtn, configPopover);
-            if (!menuWrap.contains(e.target)) closePopover(menuBtn, menuPopover);
+            if (!configWrap.contains(e.target)) closeDropdownFromTrigger(configBtn, configPopover);
+            if (!menuWrap.contains(e.target)) closeDropdownFromTrigger(menuBtn, menuPopover);
         });
 
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 if (!configPopover.hidden) {
-                    closePopover(configBtn, configPopover);
+                    closeDropdownFromTrigger(configBtn, configPopover);
                     configBtn.focus();
                 }
                 if (!menuPopover.hidden) {
-                    closePopover(menuBtn, menuPopover);
+                    closeDropdownFromTrigger(menuBtn, menuPopover);
                     menuBtn.focus();
                 }
             }
         });
 
         menuPopover.addEventListener('click', function (e) {
-            if (e.target.closest('a')) closePopover(menuBtn, menuPopover);
+            if (e.target.closest('a')) closeDropdownFromTrigger(menuBtn, menuPopover);
         });
     }
 
