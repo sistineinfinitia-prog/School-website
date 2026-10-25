@@ -10,10 +10,16 @@
             try {
                 var t = localStorage.getItem('eis_cs_theme');
                 var x = localStorage.getItem('eis_cs_texture');
+                var um = localStorage.getItem('eis_cs_user_mode') || 'system';
+                var f = localStorage.getItem('eis_cs_focus');
+                var d = localStorage.getItem('eis_cs_density');
                 if (t) document.documentElement.setAttribute('data-theme', t);
                 if (x) document.documentElement.setAttribute('data-texture', x);
+                if (f) document.documentElement.setAttribute('data-focus', f);
+                if (d) document.documentElement.setAttribute('data-density', d);
+                document.documentElement.setAttribute('data-user-mode', um);
                 var m = localStorage.getItem('eis_cs_mode');
-                if (m !== 'light' && m !== 'dark') {
+                if (um === 'system' || (m !== 'light' && m !== 'dark')) {
                     m = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
                 }
                 document.documentElement.setAttribute('data-mode', m);
@@ -252,10 +258,6 @@
                         <li><a href="about-us.html">About the Department</a></li>
                         <li><a href="admin.html">Faculty Administration Portal</a></li>
                     </ul>
-                    <div style="margin-top: 18px;">
-                        <div class="footer-title">Appearance</div>
-                        <div class="appearance" data-appearance></div>
-                    </div>
                 </div>
             </div>
 

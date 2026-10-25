@@ -14,6 +14,9 @@
     var THEME_KEY = 'eis_cs_theme';
     var TEXTURE_KEY = 'eis_cs_texture';
     var MODE_KEY = 'eis_cs_mode';
+    var USER_MODE_KEY = 'eis_cs_user_mode';
+    var FOCUS_KEY = 'eis_cs_focus';
+    var DENSITY_KEY = 'eis_cs_density';
 
     var THEMES = [
         { id: 'lilac', name: 'Soft Slate & Lilac', bg: '#111218', accent: '#c4b5fd' },
@@ -34,13 +37,67 @@
     if (!root.getAttribute('data-texture')) {
         root.setAttribute('data-texture', 'animated');
     }
-    if (!root.getAttribute('data-mode')) {
-        var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-        root.setAttribute('data-mode', prefersLight ? 'light' : 'dark');
+    var initialUserMode = localStorage.getItem(USER_MODE_KEY) || 'system';
+    root.setAttribute('data-user-mode', initialUserMode);
+    var resolvedInitialMode = initialUserMode;
+    if (initialUserMode === 'system') {
+        resolvedInitialMode = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
     }
+    root.setAttribute('data-mode', resolvedInitialMode);
+
+    var initialFocus = localStorage.getItem(FOCUS_KEY) || 'false';
+    root.setAttribute('data-focus', initialFocus);
+
+    var initialDensity = localStorage.getItem(DENSITY_KEY) || 'standard';
+    root.setAttribute('data-density', initialDensity);
 
     /* ------------------------------------------------------------------
-       1. Header System: Navigation, Floating Popover & Theme Mode Toggle
+       1. Reusable Origin-Aware Popover Animation System
+       Computes the exact center of the trigger button relative to the popover
+       and applies spring physics scaling outward from that point.
+       ------------------------------------------------------------------ */
+    function openPopoverFromTrigger(triggerEl, popoverEl) {
+        if (!triggerEl || !popoverEl) return;
+
+        // Close any other open popovers
+        document.querySelectorAll('.menu-popover, .config-popover').forEach(function (p) {
+            if (p !== popoverEl && !p.hidden) {
+                var otherTrigger = document.querySelector('[aria-controls="' + p.id + '"]');
+                closePopover(otherTrigger, p);
+            }
+        });
+
+        popoverEl.hidden = false;
+
+        // Compute origin offset
+        var tRect = triggerEl.getBoundingClientRect();
+        var pRect = popoverEl.getBoundingClientRect();
+
+        var originX = (tRect.left + tRect.width / 2) - pRect.left;
+        var originY = (tRect.top + tRect.height / 2) - pRect.top;
+
+        popoverEl.style.transformOrigin = originX + 'px ' + originY + 'px';
+        popoverEl.classList.remove('popover-spring-in');
+        void popoverEl.offsetWidth; // Force reflow
+        popoverEl.classList.add('popover-spring-in');
+
+        triggerEl.setAttribute('aria-expanded', 'true');
+    }
+
+    function closePopover(triggerEl, popoverEl) {
+        if (!popoverEl || popoverEl.hidden) return;
+        popoverEl.hidden = true;
+        popoverEl.classList.remove('popover-spring-in');
+        var trigger = triggerEl || document.querySelector('[aria-controls="' + popoverEl.id + '"]');
+        if (trigger) trigger.setAttribute('aria-expanded', 'false');
+    }
+
+    // Expose globally so future modals & dropdowns can reuse this exact animation
+    window.openPopoverFromTrigger = openPopoverFromTrigger;
+    window.closePopover = closePopover;
+
+    /* ------------------------------------------------------------------
+       2. Header System: Website Config Dropdown & Navigation Popover
        ------------------------------------------------------------------ */
     function initHeader(ribbons) {
         var header = document.querySelector('.site-header');
@@ -70,52 +127,207 @@
         }
         tools.innerHTML = '';
 
-        // 1. Minimalist Borderless Dark / Light mode toggle
-        var modeBtn = document.createElement('button');
-        modeBtn.type = 'button';
-        modeBtn.className = 'theme-toggle';
-        modeBtn.innerHTML =
-            '<svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>' +
+        /* -------------------------------------------------------------
+           A. Website Config Dropdown (Image 1 reference)
+           ------------------------------------------------------------- */
+        var configWrap = document.createElement('div');
+        configWrap.className = 'config-dropdown';
+
+        var configBtn = document.createElement('button');
+        configBtn.type = 'button';
+        configBtn.className = 'config-trigger';
+        configBtn.id = 'config-trigger-btn';
+        configBtn.setAttribute('aria-expanded', 'false');
+        configBtn.setAttribute('aria-haspopup', 'true');
+        configBtn.setAttribute('aria-controls', 'header-config-popover');
+        configBtn.setAttribute('aria-label', 'Website display settings');
+        configBtn.setAttribute('title', 'Website display settings');
+        configBtn.innerHTML =
+            '<svg class="icon-system" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>' +
+            '<svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>' +
             '<svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg>';
 
-        function syncMode() {
-            var light = root.getAttribute('data-mode') === 'light';
-            var label = light ? 'Switch to dark mode' : 'Switch to light mode';
-            modeBtn.setAttribute('aria-label', label);
-            modeBtn.setAttribute('title', label);
+        var configPopover = document.createElement('div');
+        configPopover.className = 'config-popover';
+        configPopover.id = 'header-config-popover';
+        configPopover.setAttribute('role', 'dialog');
+        configPopover.setAttribute('aria-label', 'Website configuration');
+        configPopover.hidden = true;
+
+        var userMode = localStorage.getItem(USER_MODE_KEY) || 'system';
+
+        function applyMode(mode) {
+            userMode = mode;
+            store(USER_MODE_KEY, mode);
+            root.setAttribute('data-user-mode', mode);
+
+            var resolvedMode = mode;
+            if (mode === 'system') {
+                resolvedMode = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+            }
+            root.setAttribute('data-mode', resolvedMode);
+            store(MODE_KEY, resolvedMode);
+            if (ribbons) ribbons.refresh();
+
+            configPopover.querySelectorAll('.theme-segment-btn').forEach(function (b) {
+                var isActive = b.getAttribute('data-set-mode') === mode;
+                b.classList.toggle('active', isActive);
+                b.setAttribute('aria-pressed', String(isActive));
+            });
         }
 
-        modeBtn.addEventListener('click', function () {
-            var next = root.getAttribute('data-mode') === 'light' ? 'dark' : 'light';
-            root.setAttribute('data-mode', next);
-            store(MODE_KEY, next);
-            syncMode();
+        window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function () {
+            if (userMode === 'system') applyMode('system');
+        });
+
+        configPopover.innerHTML =
+            '<div class="config-section">' +
+                '<span class="config-label">Theme Mode</span>' +
+                '<div class="theme-segment" role="group" aria-label="Theme selection">' +
+                    '<button type="button" class="theme-segment-btn' + (userMode === 'system' ? ' active' : '') + '" data-set-mode="system">' +
+                        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>' +
+                        '<span>System</span>' +
+                    '</button>' +
+                    '<button type="button" class="theme-segment-btn' + (userMode === 'light' ? ' active' : '') + '" data-set-mode="light">' +
+                        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>' +
+                        '<span>Light</span>' +
+                    '</button>' +
+                    '<button type="button" class="theme-segment-btn' + (userMode === 'dark' ? ' active' : '') + '" data-set-mode="dark">' +
+                        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg>' +
+                        '<span>Dark</span>' +
+                    '</button>' +
+                '</div>' +
+            '</div>' +
+            '<div class="config-section">' +
+                '<span class="config-label">Accent Palette</span>' +
+                '<div class="palette-grid" role="radiogroup" aria-label="Accent palette"></div>' +
+            '</div>' +
+            '<div class="config-section">' +
+                '<span class="config-label">Background &amp; Motion</span>' +
+                '<div class="config-toggle-row">' +
+                    '<div class="config-toggle-info">' +
+                        '<span class="config-toggle-title">Ribbon waves flow</span>' +
+                        '<span class="config-toggle-sub">Animated canvas inertia</span>' +
+                    '</div>' +
+                    '<label class="switch-control">' +
+                        '<input type="checkbox" id="cfg-waves-toggle"' + (root.getAttribute('data-texture') !== 'static' ? ' checked' : '') + '>' +
+                        '<span class="switch-slider"></span>' +
+                    '</label>' +
+                '</div>' +
+                '<div class="config-toggle-row">' +
+                    '<div class="config-toggle-info">' +
+                        '<span class="config-toggle-title">Focus / Exam mode</span>' +
+                        '<span class="config-toggle-sub">Max contrast &amp; zero distractions</span>' +
+                    '</div>' +
+                    '<label class="switch-control">' +
+                        '<input type="checkbox" id="cfg-focus-toggle"' + (root.getAttribute('data-focus') === 'true' ? ' checked' : '') + '>' +
+                        '<span class="switch-slider"></span>' +
+                    '</label>' +
+                '</div>' +
+            '</div>' +
+            '<div class="config-section">' +
+                '<span class="config-label">Typography &amp; Layout</span>' +
+                '<div class="config-toggle-row">' +
+                    '<div class="config-toggle-info">' +
+                        '<span class="config-toggle-title">Comfortable reading</span>' +
+                        '<span class="config-toggle-sub">Larger text &amp; relaxed line height</span>' +
+                    '</div>' +
+                    '<label class="switch-control">' +
+                        '<input type="checkbox" id="cfg-density-toggle"' + (root.getAttribute('data-density') === 'comfortable' ? ' checked' : '') + '>' +
+                        '<span class="switch-slider"></span>' +
+                    '</label>' +
+                '</div>' +
+            '</div>';
+
+        configPopover.querySelectorAll('.theme-segment-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                applyMode(btn.getAttribute('data-set-mode'));
+            });
+        });
+
+        var paletteGrid = configPopover.querySelector('.palette-grid');
+        var currentTheme = root.getAttribute('data-theme') || 'lilac';
+        THEMES.forEach(function (theme) {
+            var sBtn = document.createElement('button');
+            sBtn.type = 'button';
+            sBtn.className = 'palette-swatch-btn' + (theme.id === currentTheme ? ' active' : '');
+            sBtn.setAttribute('data-palette-id', theme.id);
+            sBtn.setAttribute('title', theme.name);
+            sBtn.setAttribute('aria-label', theme.name);
+            sBtn.innerHTML = '<span class="palette-swatch-inner" style="background:' + theme.accent + ';"></span>';
+
+            sBtn.addEventListener('click', function () {
+                root.setAttribute('data-theme', theme.id);
+                store(THEME_KEY, theme.id);
+                paletteGrid.querySelectorAll('.palette-swatch-btn').forEach(function (el) {
+                    el.classList.toggle('active', el === sBtn);
+                });
+                if (ribbons) ribbons.refresh();
+            });
+
+            paletteGrid.appendChild(sBtn);
+        });
+
+        var wavesInput = configPopover.querySelector('#cfg-waves-toggle');
+        wavesInput.addEventListener('change', function () {
+            var val = wavesInput.checked ? 'animated' : 'static';
+            root.setAttribute('data-texture', val);
+            store(TEXTURE_KEY, val);
             if (ribbons) ribbons.refresh();
         });
 
-        syncMode();
-        tools.appendChild(modeBtn);
+        var focusInput = configPopover.querySelector('#cfg-focus-toggle');
+        focusInput.addEventListener('change', function () {
+            var val = focusInput.checked ? 'true' : 'false';
+            root.setAttribute('data-focus', val);
+            store(FOCUS_KEY, val);
+            if (ribbons) ribbons.refresh();
+        });
 
-        // 2. '=' Dropdown Trigger and Floating Popover
-        var dropdownWrap = document.createElement('div');
-        dropdownWrap.className = 'menu-dropdown';
+        var densityInput = configPopover.querySelector('#cfg-density-toggle');
+        densityInput.addEventListener('change', function () {
+            var val = densityInput.checked ? 'comfortable' : 'standard';
+            root.setAttribute('data-density', val);
+            store(DENSITY_KEY, val);
+        });
+
+        configBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            if (configPopover.hidden) {
+                openPopoverFromTrigger(configBtn, configPopover);
+            } else {
+                closePopover(configBtn, configPopover);
+            }
+        });
+
+        configWrap.appendChild(configBtn);
+        configWrap.appendChild(configPopover);
+        tools.appendChild(configWrap);
+
+        /* -------------------------------------------------------------
+           B. '=' Navigation Popover
+           ------------------------------------------------------------- */
+        var menuWrap = document.createElement('div');
+        menuWrap.className = 'menu-dropdown';
 
         var menuBtn = document.createElement('button');
         menuBtn.type = 'button';
         menuBtn.className = 'menu-trigger';
+        menuBtn.id = 'menu-trigger-btn';
         menuBtn.setAttribute('aria-expanded', 'false');
         menuBtn.setAttribute('aria-haspopup', 'true');
+        menuBtn.setAttribute('aria-controls', 'header-menu-popover');
         menuBtn.setAttribute('aria-label', 'Explore more pages');
         menuBtn.setAttribute('title', 'More pages');
         menuBtn.innerHTML = '<span class="menu-icon-lines" aria-hidden="true"></span>';
 
-        var popover = document.createElement('div');
-        popover.className = 'menu-popover';
-        popover.id = 'header-menu-popover';
-        popover.setAttribute('role', 'menu');
-        popover.hidden = true;
+        var menuPopover = document.createElement('div');
+        menuPopover.className = 'menu-popover';
+        menuPopover.id = 'header-menu-popover';
+        menuPopover.setAttribute('role', 'menu');
+        menuPopover.hidden = true;
 
-        popover.innerHTML =
+        menuPopover.innerHTML =
             '<div class="popover-group popover-group-core">' +
                 '<div class="popover-heading">Core Navigation</div>' +
                 '<a href="' + base + 'index.html" class="popover-link" data-page="index.html"><span>Homepage</span></a>' +
@@ -137,48 +349,50 @@
                 '<a href="' + base + 'pages/admin.html" class="popover-link" data-page="admin.html"><span>Faculty Portal</span></a>' +
             '</div>';
 
-        // Mark active item in popover
-        var popoverLinks = popover.querySelectorAll('.popover-link');
-        popoverLinks.forEach(function (link) {
+        menuPopover.querySelectorAll('.popover-link').forEach(function (link) {
             var pageTarget = link.getAttribute('data-page');
             if (currentPath.endsWith(pageTarget) || (pageTarget === 'index.html' && (currentPath.endsWith('/') || currentPath.endsWith('/index.html')))) {
                 link.setAttribute('aria-current', 'page');
             }
         });
 
-        function setMenuOpen(open) {
-            menuBtn.setAttribute('aria-expanded', String(open));
-            popover.hidden = !open;
-        }
-
         menuBtn.addEventListener('click', function (e) {
             e.stopPropagation();
-            var isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
-            setMenuOpen(!isOpen);
+            if (menuPopover.hidden) {
+                openPopoverFromTrigger(menuBtn, menuPopover);
+            } else {
+                closePopover(menuBtn, menuPopover);
+            }
         });
 
+        menuWrap.appendChild(menuBtn);
+        menuWrap.appendChild(menuPopover);
+        tools.appendChild(menuWrap);
+
+        /* -------------------------------------------------------------
+           C. Universal Keyboard & Outside Click Listeners
+           ------------------------------------------------------------- */
         document.addEventListener('click', function (e) {
-            if (!dropdownWrap.contains(e.target)) {
-                setMenuOpen(false);
-            }
+            if (!configWrap.contains(e.target)) closePopover(configBtn, configPopover);
+            if (!menuWrap.contains(e.target)) closePopover(menuBtn, menuPopover);
         });
 
         document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape' && menuBtn.getAttribute('aria-expanded') === 'true') {
-                setMenuOpen(false);
-                menuBtn.focus();
+            if (e.key === 'Escape') {
+                if (!configPopover.hidden) {
+                    closePopover(configBtn, configPopover);
+                    configBtn.focus();
+                }
+                if (!menuPopover.hidden) {
+                    closePopover(menuBtn, menuPopover);
+                    menuBtn.focus();
+                }
             }
         });
 
-        popover.addEventListener('click', function (e) {
-            if (e.target.closest('a')) {
-                setMenuOpen(false);
-            }
+        menuPopover.addEventListener('click', function (e) {
+            if (e.target.closest('a')) closePopover(menuBtn, menuPopover);
         });
-
-        dropdownWrap.appendChild(menuBtn);
-        dropdownWrap.appendChild(popover);
-        tools.appendChild(dropdownWrap);
     }
 
     /* ------------------------------------------------------------------
@@ -398,87 +612,7 @@
     }
 
     /* ------------------------------------------------------------------
-       3. Appearance controls
-       ------------------------------------------------------------------ */
-    function initAppearance(ribbons) {
-        var slot = document.querySelector('[data-appearance]');
-        if (!slot) return;
-
-        var current = root.getAttribute('data-theme') || 'lilac';
-        if (!THEMES.some(function (t) { return t.id === current; })) current = 'lilac';
-
-        var group = document.createElement('div');
-        group.className = 'swatches';
-        group.setAttribute('role', 'radiogroup');
-        group.setAttribute('aria-label', 'Colour palette');
-
-        THEMES.forEach(function (theme) {
-            var b = document.createElement('button');
-            b.type = 'button';
-            b.className = 'swatch';
-            b.setAttribute('role', 'radio');
-            b.setAttribute('aria-label', theme.name);
-            b.setAttribute('title', theme.name);
-            b.setAttribute('aria-checked', String(theme.id === current));
-            b.tabIndex = theme.id === current ? 0 : -1;
-            b.dataset.theme = theme.id;
-            b.style.setProperty('--swatch-bg', theme.bg);
-            b.style.setProperty('--swatch-accent', theme.accent);
-            group.appendChild(b);
-        });
-
-        function select(button, focus) {
-            var id = button.dataset.theme;
-            root.setAttribute('data-theme', id);
-            store(THEME_KEY, id);
-            Array.prototype.forEach.call(group.children, function (el) {
-                var on = el === button;
-                el.setAttribute('aria-checked', String(on));
-                el.tabIndex = on ? 0 : -1;
-            });
-            if (focus) button.focus();
-            if (ribbons) ribbons.refresh();
-        }
-
-        group.addEventListener('click', function (e) {
-            var b = e.target.closest('.swatch');
-            if (b) select(b, false);
-        });
-
-        group.addEventListener('keydown', function (e) {
-            var keys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
-            if (!(e.key in keys)) return;
-            e.preventDefault();
-            var items = Array.prototype.slice.call(group.children);
-            var index = items.indexOf(document.activeElement);
-            var next = items[(index + keys[e.key] + items.length) % items.length];
-            select(next, true);
-        });
-
-        var motion = document.createElement('button');
-        motion.type = 'button';
-        motion.className = 'motion-toggle';
-        motion.innerHTML = '<span class="dot" aria-hidden="true"></span><span>Background flow</span>';
-
-        function syncMotion() {
-            motion.setAttribute('aria-pressed', String(root.getAttribute('data-texture') !== 'static'));
-        }
-
-        motion.addEventListener('click', function () {
-            var next = root.getAttribute('data-texture') === 'static' ? 'animated' : 'static';
-            root.setAttribute('data-texture', next);
-            store(TEXTURE_KEY, next);
-            syncMotion();
-            if (ribbons) ribbons.refresh();
-        });
-
-        syncMotion();
-        slot.appendChild(group);
-        slot.appendChild(motion);
-    }
-
-    /* ------------------------------------------------------------------
-       4. Mark Scheme Reveal Toggle (Practice Questions)
+       3. Mark Scheme Reveal Toggle (Practice Questions)
        ------------------------------------------------------------------ */
     window.toggleScheme = function (btn) {
         if (!btn) return;
@@ -491,10 +625,8 @@
             : '<span>Show Mark Scheme</span><span aria-hidden="true">&#9660;</span>';
     };
 
-
     function init() {
         var ribbons = initRibbons();
-        initAppearance(ribbons);
         initHeader(ribbons);
     }
 
