@@ -54,65 +54,91 @@
     /* ------------------------------------------------------------------
        1. Reusable Origin-Aware Dropdown Animation Engine
        Computes the exact center of the trigger button relative to the popover
-       and blooms the dropdown out from the button's exact coordinates.
+       and blooms the dropdown out smoothly from the button's exact coordinates.
        ------------------------------------------------------------------ */
     function openDropdownFromTrigger(triggerEl, popoverEl) {
         if (!triggerEl || !popoverEl) return;
 
-        // Immediately close any other open dropdowns without exit lag
+        // Immediately close any other open dropdowns without delay
         document.querySelectorAll('.menu-popover, .config-popover').forEach(function (p) {
-            if (p !== popoverEl && !p.hidden) {
+            if (p !== popoverEl && p.classList.contains('is-open')) {
                 var otherTrigger = document.querySelector('[aria-controls="' + p.id + '"]');
                 closeDropdownFromTrigger(otherTrigger, p, true);
             }
         });
 
-        popoverEl.hidden = false;
-        popoverEl.classList.remove('dropdown-animating-out');
+        // Cancel any pending close animation
+        if (popoverEl._anim) {
+            popoverEl._anim.cancel();
+            popoverEl._anim = null;
+        }
 
-        // Measure geometry
+        // Measure geometry while in clean layout
         var tRect = triggerEl.getBoundingClientRect();
         var pRect = popoverEl.getBoundingClientRect();
 
         var originX = (tRect.left + tRect.width / 2) - pRect.left;
         var originY = (tRect.top + tRect.height / 2) - pRect.top;
 
-        popoverEl.style.transformOrigin = originX + 'px ' + originY + 'px';
+        popoverEl.style.transformOrigin = Math.round(originX) + 'px ' + Math.round(originY) + 'px';
 
-        // Trigger bloom-in animation
-        popoverEl.classList.remove('dropdown-animating-in');
-        void popoverEl.offsetWidth; // Force reflow
-        popoverEl.classList.add('dropdown-animating-in');
-
+        // Unhide and mark open state
+        popoverEl.removeAttribute('hidden');
+        popoverEl.classList.add('is-open');
         triggerEl.setAttribute('aria-expanded', 'true');
+        popoverEl.style.visibility = 'visible';
+        popoverEl.style.pointerEvents = 'auto';
+
+        // Animate blooming outwards from the trigger button
+        if (typeof popoverEl.animate === 'function') {
+            popoverEl._anim = popoverEl.animate([
+                { opacity: 0, transform: 'scale(0.72) translateY(-6px)', filter: 'blur(5px)' },
+                { opacity: 1, transform: 'scale(1) translateY(0)', filter: 'blur(0px)' }
+            ], {
+                duration: 240,
+                easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+                fill: 'both'
+            });
+        }
     }
 
     function closeDropdownFromTrigger(triggerEl, popoverEl, instant) {
-        if (!popoverEl || popoverEl.hidden) return;
+        if (!popoverEl || !popoverEl.classList.contains('is-open')) return;
 
         var trigger = triggerEl || document.querySelector('[aria-controls="' + popoverEl.id + '"]');
         if (trigger) trigger.setAttribute('aria-expanded', 'false');
 
-        if (instant) {
-            popoverEl.hidden = true;
-            popoverEl.classList.remove('dropdown-animating-in', 'dropdown-animating-out');
+        popoverEl.classList.remove('is-open');
+        popoverEl.style.pointerEvents = 'none';
+
+        if (popoverEl._anim) {
+            popoverEl._anim.cancel();
+            popoverEl._anim = null;
+        }
+
+        if (instant || typeof popoverEl.animate !== 'function') {
+            popoverEl.style.visibility = 'hidden';
+            popoverEl.setAttribute('hidden', '');
             return;
         }
 
-        popoverEl.classList.remove('dropdown-animating-in');
-        popoverEl.classList.add('dropdown-animating-out');
+        var anim = popoverEl.animate([
+            { opacity: 1, transform: 'scale(1) translateY(0)', filter: 'blur(0px)' },
+            { opacity: 0, transform: 'scale(0.8) translateY(-4px)', filter: 'blur(2px)' }
+        ], {
+            duration: 150,
+            easing: 'cubic-bezier(0.4, 0, 1, 1)',
+            fill: 'both'
+        });
 
-        var closed = false;
-        function done() {
-            if (closed) return;
-            closed = true;
-            popoverEl.hidden = true;
-            popoverEl.classList.remove('dropdown-animating-out');
-            popoverEl.removeEventListener('animationend', done);
-        }
-
-        popoverEl.addEventListener('animationend', done, { once: true });
-        setTimeout(done, 150); // Fallback
+        popoverEl._anim = anim;
+        anim.onfinish = function () {
+            if (!popoverEl.classList.contains('is-open')) {
+                popoverEl.style.visibility = 'hidden';
+                popoverEl.setAttribute('hidden', '');
+                popoverEl._anim = null;
+            }
+        };
     }
 
     window.openDropdownFromTrigger = openDropdownFromTrigger;
@@ -318,10 +344,10 @@
 
         configBtn.addEventListener('click', function (e) {
             e.stopPropagation();
-            if (configPopover.hidden) {
-                openDropdownFromTrigger(configBtn, configPopover);
-            } else {
+            if (configPopover.classList.contains('is-open')) {
                 closeDropdownFromTrigger(configBtn, configPopover);
+            } else {
+                openDropdownFromTrigger(configBtn, configPopover);
             }
         });
 
@@ -383,10 +409,10 @@
 
         menuBtn.addEventListener('click', function (e) {
             e.stopPropagation();
-            if (menuPopover.hidden) {
-                openDropdownFromTrigger(menuBtn, menuPopover);
-            } else {
+            if (menuPopover.classList.contains('is-open')) {
                 closeDropdownFromTrigger(menuBtn, menuPopover);
+            } else {
+                openDropdownFromTrigger(menuBtn, menuPopover);
             }
         });
 
@@ -404,11 +430,11 @@
 
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
-                if (!configPopover.hidden) {
+                if (configPopover.classList.contains('is-open')) {
                     closeDropdownFromTrigger(configBtn, configPopover);
                     configBtn.focus();
                 }
-                if (!menuPopover.hidden) {
+                if (menuPopover.classList.contains('is-open')) {
                     closeDropdownFromTrigger(menuBtn, menuPopover);
                     menuBtn.focus();
                 }

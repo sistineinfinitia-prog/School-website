@@ -548,46 +548,7 @@ main {
     position: relative;
 }
 
-/* --- Reusable Origin-Aware Dropdown Expansion Animation ----------------------- */
-.dropdown-animating-in {
-    animation: dropdownBloomIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    pointer-events: auto;
-    will-change: transform, opacity, filter;
-}
-
-.dropdown-animating-out {
-    animation: dropdownBloomOut 0.14s cubic-bezier(0.4, 0, 1, 1) forwards;
-    pointer-events: none;
-    will-change: transform, opacity;
-}
-
-@keyframes dropdownBloomIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.68) translateY(-4px);
-        filter: blur(4px);
-    }
-    60% {
-        opacity: 1;
-        filter: blur(0);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-        filter: blur(0);
-    }
-}
-
-@keyframes dropdownBloomOut {
-    0% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0.75) translateY(-4px);
-    }
-}
+/* Dropdown containers */
 
 /* Config Dropdown & Trigger (Dynamic Sun / Moon / System Icon) */
 .config-dropdown {
@@ -659,6 +620,27 @@ main {
     border-radius: 12px;
     box-shadow: 0 20px 48px rgba(0, 0, 0, 0.22), 0 4px 14px rgba(0, 0, 0, 0.08);
     z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(0.72) translateY(-6px);
+    filter: blur(4px);
+    will-change: transform, opacity, filter;
+}
+
+.config-popover[hidden] {
+    display: block !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.config-popover.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
 }
 
 .config-section {
@@ -903,7 +885,8 @@ html[data-density="comfortable"] .question-prompt {
     height: 1.5px;
     background: currentColor;
     border-radius: 1px;
-    transition: transform 0.22s var(--ease-out), top 0.22s var(--ease-out);
+    /* Snapping transition between = and x */
+    transition: none !important;
 }
 
 .menu-icon-lines::before { top: 1px; }
@@ -935,6 +918,27 @@ html[data-density="comfortable"] .question-prompt {
     border-radius: 8px;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.08);
     z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(0.72) translateY(-6px);
+    filter: blur(4px);
+    will-change: transform, opacity, filter;
+}
+
+.menu-popover[hidden] {
+    display: block !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.menu-popover.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
 }
 
 .popover-group {
@@ -3323,7 +3327,7 @@ iframe.embed-frame.video {
 /* --- Motion preferences -------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
-    *,
+    *:not(.menu-popover):not(.config-popover):not(.menu-popover *):not(.config-popover *),
     *::before,
     *::after {
         transition-duration: 0.01ms !important;
