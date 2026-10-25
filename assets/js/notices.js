@@ -3,7 +3,7 @@
  * Combines live announcements from Firebase Realtime Database ('posts')
  * with the repository's curated data/announcements.json fallback.
  */
-import { db, ref } from '../../js/config.js';
+import { db, ref } from './config.js';
 import { onValue } from 'https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js';
 
 const listEl = document.querySelector('[data-notices-list]');
