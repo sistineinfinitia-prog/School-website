@@ -40,36 +40,145 @@
     }
 
     /* ------------------------------------------------------------------
-       1. Navigation
+       1. Header System: Navigation, Floating Popover & Theme Mode Toggle
        ------------------------------------------------------------------ */
-    function initNav() {
-        var toggle = document.querySelector('.nav-toggle');
-        var nav = document.getElementById('site-nav');
-        if (!toggle || !nav) return;
+    function initHeader(ribbons) {
+        var header = document.querySelector('.site-header');
+        if (!header) return;
+        var bar = header.querySelector('.wrap');
+        if (!bar) return;
 
-        function setOpen(open) {
-            toggle.setAttribute('aria-expanded', String(open));
-            nav.classList.toggle('is-open', open);
+        var base = document.documentElement.getAttribute('data-base') || './';
+        var currentPath = window.location.pathname.replace(/\/$/, '') || '/index.html';
+
+        // Ensure header-right container exists
+        var rightGroup = bar.querySelector('.header-right');
+        if (!rightGroup) {
+            rightGroup = document.createElement('div');
+            rightGroup.className = 'header-right';
+            var nav = bar.querySelector('.site-nav');
+            if (nav) rightGroup.appendChild(nav);
+            bar.appendChild(rightGroup);
         }
 
-        toggle.addEventListener('click', function () {
-            setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+        // Find or create header-tools
+        var tools = bar.querySelector('.header-tools');
+        if (!tools) {
+            tools = document.createElement('div');
+            tools.className = 'header-tools';
+            rightGroup.appendChild(tools);
+        }
+        tools.innerHTML = '';
+
+        // 1. Minimalist Borderless Dark / Light mode toggle
+        var modeBtn = document.createElement('button');
+        modeBtn.type = 'button';
+        modeBtn.className = 'theme-toggle';
+        modeBtn.innerHTML =
+            '<svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>' +
+            '<svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg>';
+
+        function syncMode() {
+            var light = root.getAttribute('data-mode') === 'light';
+            var label = light ? 'Switch to dark mode' : 'Switch to light mode';
+            modeBtn.setAttribute('aria-label', label);
+            modeBtn.setAttribute('title', label);
+        }
+
+        modeBtn.addEventListener('click', function () {
+            var next = root.getAttribute('data-mode') === 'light' ? 'dark' : 'light';
+            root.setAttribute('data-mode', next);
+            store(MODE_KEY, next);
+            syncMode();
+            if (ribbons) ribbons.refresh();
         });
 
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
-                setOpen(false);
-                toggle.focus();
+        syncMode();
+        tools.appendChild(modeBtn);
+
+        // 2. '=' Dropdown Trigger and Floating Popover
+        var dropdownWrap = document.createElement('div');
+        dropdownWrap.className = 'menu-dropdown';
+
+        var menuBtn = document.createElement('button');
+        menuBtn.type = 'button';
+        menuBtn.className = 'menu-trigger';
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.setAttribute('aria-haspopup', 'true');
+        menuBtn.setAttribute('aria-label', 'Explore more pages');
+        menuBtn.setAttribute('title', 'More pages');
+        menuBtn.innerHTML = '<span class="menu-icon-lines" aria-hidden="true"></span>';
+
+        var popover = document.createElement('div');
+        popover.className = 'menu-popover';
+        popover.id = 'header-menu-popover';
+        popover.setAttribute('role', 'menu');
+        popover.hidden = true;
+
+        popover.innerHTML =
+            '<div class="popover-group popover-group-core">' +
+                '<div class="popover-heading">Core Navigation</div>' +
+                '<a href="' + base + 'index.html" class="popover-link" data-page="index.html"><span>Homepage</span></a>' +
+                '<a href="' + base + 'pages/practice.html" class="popover-link" data-page="practice.html"><span>Practice Bank</span><span class="popover-tag">12 Qs</span></a>' +
+                '<a href="' + base + 'pages/courses.html" class="popover-link" data-page="courses.html"><span>Courses Overview</span></a>' +
+                '<a href="' + base + 'pages/resources.html" class="popover-link" data-page="resources.html"><span>Resources Vault</span><span class="popover-tag">151 Files</span></a>' +
+            '</div>' +
+            '<div class="popover-group">' +
+                '<div class="popover-heading">Syllabus & Specializations</div>' +
+                '<a href="' + base + 'pages/curriculum.html" class="popover-link" data-page="curriculum.html"><span>Curriculum & Pacing</span></a>' +
+                '<a href="' + base + 'pages/theme-a.html" class="popover-link" data-page="theme-a.html"><span>Theme A: Systems & Hardware</span></a>' +
+                '<a href="' + base + 'pages/theme-b.html" class="popover-link" data-page="theme-b.html"><span>Theme B: Thinking & Python</span></a>' +
+                '<a href="' + base + 'pages/ia.html" class="popover-link" data-page="ia.html"><span>Internal Assessment (IA)</span><span class="popover-tag">30 Marks</span></a>' +
+                '<a href="' + base + 'pages/case-study.html" class="popover-link" data-page="case-study.html"><span>Paper 3 Case Study</span><span class="popover-tag">HL</span></a>' +
+                '<a href="' + base + 'pages/about-us.html" class="popover-link" data-page="about-us.html"><span>About the Faculty</span></a>' +
+            '</div>' +
+            '<div class="popover-group">' +
+                '<div class="popover-heading">Administration</div>' +
+                '<a href="' + base + 'pages/admin.html" class="popover-link" data-page="admin.html"><span>Faculty Portal</span></a>' +
+            '</div>';
+
+        // Mark active item in popover
+        var popoverLinks = popover.querySelectorAll('.popover-link');
+        popoverLinks.forEach(function (link) {
+            var pageTarget = link.getAttribute('data-page');
+            if (currentPath.endsWith(pageTarget) || (pageTarget === 'index.html' && (currentPath.endsWith('/') || currentPath.endsWith('/index.html')))) {
+                link.setAttribute('aria-current', 'page');
             }
         });
 
-        nav.addEventListener('click', function (e) {
-            if (e.target.closest('a')) setOpen(false);
+        function setMenuOpen(open) {
+            menuBtn.setAttribute('aria-expanded', String(open));
+            popover.hidden = !open;
+        }
+
+        menuBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
+            setMenuOpen(!isOpen);
         });
 
-        window.matchMedia('(min-width: 1161px)').addEventListener('change', function (mq) {
-            if (mq.matches) setOpen(false);
+        document.addEventListener('click', function (e) {
+            if (!dropdownWrap.contains(e.target)) {
+                setMenuOpen(false);
+            }
         });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && menuBtn.getAttribute('aria-expanded') === 'true') {
+                setMenuOpen(false);
+                menuBtn.focus();
+            }
+        });
+
+        popover.addEventListener('click', function (e) {
+            if (e.target.closest('a')) {
+                setMenuOpen(false);
+            }
+        });
+
+        dropdownWrap.appendChild(menuBtn);
+        dropdownWrap.appendChild(popover);
+        tools.appendChild(dropdownWrap);
     }
 
     /* ------------------------------------------------------------------
@@ -383,48 +492,10 @@
     };
 
 
-    /* ------------------------------------------------------------------
-       3b. Light / dark mode toggle (sits beside the menu button)
-       ------------------------------------------------------------------ */
-    function initModeToggle(ribbons) {
-        var bar = document.querySelector('.site-header .wrap');
-        if (!bar || bar.querySelector('.theme-toggle')) return;
-
-        var tools = document.createElement('div');
-        tools.className = 'header-tools';
-
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'theme-toggle';
-        btn.innerHTML =
-            '<svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>' +
-            '<svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg>';
-
-        function sync() {
-            var light = root.getAttribute('data-mode') === 'light';
-            var label = light ? 'Switch to dark mode' : 'Switch to light mode';
-            btn.setAttribute('aria-label', label);
-            btn.setAttribute('title', label);
-        }
-
-        btn.addEventListener('click', function () {
-            var next = root.getAttribute('data-mode') === 'light' ? 'dark' : 'light';
-            root.setAttribute('data-mode', next);
-            store(MODE_KEY, next);
-            sync();
-            if (ribbons) ribbons.refresh();
-        });
-
-        sync();
-        tools.appendChild(btn);
-        bar.appendChild(tools);
-    }
-
     function init() {
-        initNav();
         var ribbons = initRibbons();
         initAppearance(ribbons);
-        initModeToggle(ribbons);
+        initHeader(ribbons);
     }
 
     if (document.readyState === 'loading') {
