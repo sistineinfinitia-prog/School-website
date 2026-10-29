@@ -1,0 +1,172 @@
+[
+  {
+    "id": "fc-1",
+    "unit": "A1",
+    "unitName": "Computer Fundamentals",
+    "theme": "A",
+    "term": "Von Neumann Bottleneck",
+    "definition": "The throughput limitation caused by the shared single physical bus connecting the CPU to memory, which forces instructions and data to be transferred sequentially.",
+    "level": "SL/HL",
+    "example": "Modern architectures mitigate this using multi-level cache hierarchies (L1, L2, L3) and separate instruction/data caches."
+  },
+  {
+    "id": "fc-2",
+    "unit": "A1",
+    "unitName": "Computer Fundamentals",
+    "theme": "A",
+    "term": "Interrupt Service Routine (ISR)",
+    "definition": "A dedicated software routine executed by the operating system when a hardware or software interrupt occurs, handling the trigger before resuming previous execution.",
+    "level": "SL/HL",
+    "example": "When a key is pressed, the keyboard controller triggers an interrupt line and the OS dispatches the keyboard ISR."
+  },
+  {
+    "id": "fc-3",
+    "unit": "A1",
+    "unitName": "Computer Fundamentals",
+    "theme": "A",
+    "term": "GPU (Graphics Processing Unit)",
+    "definition": "A specialized electronic circuit composed of thousands of parallel execution cores optimized for performing simultaneous repetitive floating-point matrix calculations.",
+    "level": "SL/HL",
+    "example": "Used for accelerating matrix multiplications in deep learning and 3D graphic rendering pipelines."
+  },
+  {
+    "id": "fc-4",
+    "unit": "A2",
+    "unitName": "Networks",
+    "theme": "A",
+    "term": "Packet Switching",
+    "definition": "A transmission paradigm where data streams are split into independent packets routed dynamically across intermediary nodes based on optimal routing metrics.",
+    "level": "SL/HL",
+    "example": "Contrasted with circuit switching where a dedicated physical communication path is occupied for the entire call."
+  },
+  {
+    "id": "fc-5",
+    "unit": "A2",
+    "unitName": "Networks",
+    "theme": "A",
+    "term": "Transport Layer Security (TLS)",
+    "definition": "A cryptographic protocol that provides end-to-end communications security over a computer network using asymmetric public key cryptography for handshakes and symmetric encryption for session payloads.",
+    "level": "SL/HL",
+    "example": "Provides encryption, integrity checks, and authentication for HTTPS web traffic."
+  },
+  {
+    "id": "fc-6",
+    "unit": "A3",
+    "unitName": "Databases",
+    "theme": "A",
+    "term": "Third Normal Form (3NF)",
+    "definition": "A database schema design standard where all relations are in 2NF and no non-prime attribute is transitively dependent on any candidate key.",
+    "level": "SL/HL",
+    "example": "'Every non-key attribute must depend on the key, the whole key, and nothing but the key, so help me Codd.'"
+  },
+  {
+    "id": "fc-7",
+    "unit": "A3",
+    "unitName": "Databases",
+    "theme": "A",
+    "term": "Referential Integrity",
+    "definition": "A relational constraint requiring that every foreign key value in a child table must match an existing primary key value in the referenced parent table or be NULL.",
+    "level": "SL/HL",
+    "example": "Enforced with 'ON DELETE CASCADE' or 'ON DELETE RESTRICT' constraints in SQL."
+  },
+  {
+    "id": "fc-8",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "theme": "A",
+    "term": "Overfitting",
+    "definition": "An error scenario where an ML model learns the random noise and idiosyncrasies of its training set rather than the underlying pattern, degrading performance on unseen test data.",
+    "level": "SL/HL",
+    "example": "Mitigated by regularization, dropout layers, early stopping, and data augmentation."
+  },
+  {
+    "id": "fc-9",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "theme": "A",
+    "term": "Algorithmic Bias",
+    "definition": "Systematic and repeatable errors in a computer system that generate unfair outcomes, often stemming from skewed or unrepresentative training data or flawed modeling assumptions.",
+    "level": "SL/HL",
+    "example": "Facial recognition models performing with higher error rates on underrepresented demographic groups."
+  },
+  {
+    "id": "fc-10",
+    "unit": "B1",
+    "unitName": "Computational Thinking",
+    "theme": "B",
+    "term": "Decomposition",
+    "definition": "The breakdown of a complex problem, system, or algorithm into smaller, self-contained, and more manageable constituent components.",
+    "level": "SL/HL",
+    "example": "Decomposing an e-commerce platform into catalog, shopping cart, authentication, and payment gateway modules."
+  },
+  {
+    "id": "fc-11",
+    "unit": "B2",
+    "unitName": "Programming",
+    "theme": "B",
+    "term": "Binary Search",
+    "definition": "An efficient search algorithm that finds the position of a target value within a sorted list by repeatedly dividing the search interval in half with O(log n) time complexity.",
+    "level": "SL/HL",
+    "example": "Searching a sorted list of 1,000,000 items takes at most 20 comparisons."
+  },
+  {
+    "id": "fc-12",
+    "unit": "B2",
+    "unitName": "Programming",
+    "theme": "B",
+    "term": "Time Complexity (Big-O)",
+    "definition": "A mathematical notation that describes the limiting behavior of an algorithm's execution time as the input size n grows towards infinity.",
+    "level": "SL/HL",
+    "example": "Linear search is O(n), Bubble Sort is O(n²), and Merge Sort is O(n log n)."
+  },
+  {
+    "id": "fc-13",
+    "unit": "B3",
+    "unitName": "Object-Oriented Programming",
+    "theme": "B",
+    "term": "Encapsulation",
+    "definition": "The bundling of data attributes and the methods that operate on that data into a single unit (class), while restricting direct access to internal components.",
+    "level": "SL/HL",
+    "example": "Using private attributes (`__balance`) with public accessor methods (`deposit`, `withdraw`)."
+  },
+  {
+    "id": "fc-14",
+    "unit": "B3",
+    "unitName": "Object-Oriented Programming",
+    "theme": "B",
+    "term": "Polymorphism",
+    "definition": "The ability of different object classes to respond to the same method call in distinct, class-specific ways through method overriding.",
+    "level": "SL/HL",
+    "example": "A base class `Shape` defines `draw()`; subclasses `Circle` and `Square` implement custom `draw()` routines."
+  },
+  {
+    "id": "fc-15",
+    "unit": "B4",
+    "unitName": "Abstract Data Types (ADTs)",
+    "theme": "B",
+    "term": "Queue (FIFO)",
+    "definition": "A linear data structure operating under the First-In-First-Out rule, where new elements are enqueued at the rear and elements are dequeued from the front.",
+    "level": "SL/HL",
+    "example": "Printer spool queues and OS process ready queues."
+  },
+  {
+    "id": "fc-16",
+    "unit": "B4",
+    "unitName": "Abstract Data Types (ADTs)",
+    "theme": "B",
+    "term": "Stack (LIFO)",
+    "definition": "A linear collection of elements with two principal operations: push (adds to top) and pop (removes from top), following the Last-In-First-Out discipline.",
+    "level": "SL/HL",
+    "example": "Used in the call stack for managing function execution and recursion frames."
+  },
+  {
+    "id": "fc-17",
+    "unit": "CS",
+    "unitName": "HL Case Study",
+    "theme": "CaseStudy",
+    "term": "Edge Computing",
+    "definition": "A distributed computing paradigm that brings computation and data storage closer to the location where it is needed (e.g. onboard vehicles), minimizing bandwidth use and latency.",
+    "level": "HL",
+    "example": "Processing autonomous LiDAR obstacle telemetry locally on a car rather than round-tripping to cloud servers."
+  }
+]

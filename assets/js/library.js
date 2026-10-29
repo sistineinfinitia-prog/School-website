@@ -448,26 +448,43 @@
     var counters = Array.prototype.slice.call(document.querySelectorAll('[data-library-count]'));
     if (!hosts.length && !counters.length) return;
 
-    fetch(BASE + 'data/resources.json', { cache: 'no-cache' })
-        .then(function (r) {
-            if (!r.ok) throw new Error('HTTP ' + r.status);
-            return r.json();
-        })
-        .then(function (manifest) {
-            counters.forEach(function (node) {
-                var path = node.getAttribute('data-library-count');
-                var folder = path === '*'
-                    ? { count: manifest.tree.count - STAFF_ONLY.reduce(function (n, p) {
-                        var f = findFolder(manifest.tree, p);
-                        return n + (f ? f.count : 0);
-                    }, 0) }
-                    : findFolder(manifest.tree, path);
-                if (folder) node.textContent = plural(folder.count, 'file');
+    var manifestCache = null;
+
+    function renderManifest(manifest) {
+        if (!manifest || !manifest.tree) return;
+        counters.forEach(function (node) {
+            var path = node.getAttribute('data-library-count');
+            var folder = path === '*'
+                ? { count: manifest.tree.count - STAFF_ONLY.reduce(function (n, p) {
+                    var f = findFolder(manifest.tree, p);
+                    return n + (f ? f.count : 0);
+                }, 0) }
+                : findFolder(manifest.tree, path);
+            if (folder) node.textContent = plural(folder.count, 'file');
+        });
+        hosts.forEach(function (host) {
+            if (host.getAttribute('data-library') === 'full') renderFull(host, manifest);
+            else renderScope(host, manifest);
+        });
+    }
+
+    function loadManifest() {
+        if (manifestCache) return Promise.resolve(manifestCache);
+        return fetch(BASE + 'data/resources.json')
+            .then(function (r) {
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                return r.json();
+            })
+            .then(function (manifest) {
+                manifestCache = manifest;
+                return manifest;
             });
-            hosts.forEach(function (host) {
-                if (host.getAttribute('data-library') === 'full') renderFull(host, manifest);
-                else renderScope(host, manifest);
-            });
-        })
-        .catch(function () { fail(hosts); });
+    }
+
+    loadManifest()
+        .then(renderManifest)
+        .catch(function (err) {
+            console.warn('[Library] Failed to load resources manifest:', err);
+            fail(hosts);
+        });
 })();

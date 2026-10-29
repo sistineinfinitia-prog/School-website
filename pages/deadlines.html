@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="lilac" data-texture="animated" data-base="../">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deadlines &amp; Announcements | IB Computer Science &mdash; Emirates International School</title>
+    <meta name="description" content="Official academic calendar, assessment deadlines, internal assessment checkpoints, and faculty announcements for IB Computer Science (SL/HL) at Emirates International School.">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('eis_cs_theme');
+                var x = localStorage.getItem('eis_cs_texture');
+                var um = localStorage.getItem('eis_cs_user_mode') || 'system';
+                var f = localStorage.getItem('eis_cs_focus');
+                var d = localStorage.getItem('eis_cs_density');
+                if (t) document.documentElement.setAttribute('data-theme', t);
+                if (x) document.documentElement.setAttribute('data-texture', x);
+                if (f) document.documentElement.setAttribute('data-focus', f);
+                if (d) document.documentElement.setAttribute('data-density', d);
+                document.documentElement.setAttribute('data-user-mode', um);
+                var m = localStorage.getItem('eis_cs_mode');
+                if (um === 'system' || (m !== 'light' && m !== 'dark')) {
+                    m = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                }
+                document.documentElement.setAttribute('data-mode', m);
+            } catch (e) {
+                document.documentElement.setAttribute('data-mode', window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+            }
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/site.css">
+    <link rel="stylesheet" href="../assets/css/deadlines.css">
+    <link rel="canonical" href="https://rudolph-r3.github.io/website/pages/deadlines.html">
+</head>
+<body class="page-deadlines">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <canvas class="ribbons" id="interactive-canvas" aria-hidden="true"></canvas>
+
+    <!-- Standard Header with brand and header-right -->
+        <header class="site-header">
+        <div class="wrap">
+            <a href="../index.html" class="brand">
+                <span class="brand-name">
+                    <span class="brand-full">COMPUTER SCIENCE</span>
+                    <span class="brand-short">CS</span>
+                </span>
+                <span class="brand-sep" aria-hidden="true">|</span>
+                <span class="brand-sub">
+                    <span class="brand-full">EMIRATES INTERNATIONAL SCHOOL MEADOWS</span>
+                    <span class="brand-short">EIS MEADOWS</span>
+                </span>
+            </a>
+
+            <div class="header-right">
+                <nav class="site-nav" id="site-nav" aria-label="Primary">
+                    <ul class="nav-list">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="curriculum.html">Syllabus</a></li>
+                        <li><a href="practice.html">Practice</a></li>
+                        <li><a href="deadlines.html" aria-current="page">Deadlines</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-tools" id="header-tools"></div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main" class="wrap wrap-wide">
+        <!-- Practice / Revision Village Inspired Header -->
+        <header class="rv-header-wrap">
+            <div class="rv-breadcrumbs">
+                <a href="../index.html">Home</a>
+                <span class="sep">/</span>
+                <span>Deadlines &amp; Announcements</span>
+            </div>
+            <div class="rv-header-main">
+                <h1 class="rv-subject-title">Deadlines &amp; Faculty Announcements</h1>
+                <div class="rv-header-actions">
+                    <button type="button" class="btn btn-sm btn-primary" id="export-ical-btn" title="Export all deadlines to .ics calendar format">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                            <path d="M12 14v4m0 0l-2-2m2 2l2-2"></path>
+                        </svg>
+                        <span>Export iCal (.ics)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 3 Primary Tabs Navigation (Practice Style) -->
+            <nav class="rv-tabs-nav" role="tablist" aria-label="Deadlines and announcements view tabs">
+                <button type="button" class="rv-tab-btn active" data-tab="all" role="tab" aria-selected="true" id="view-all-btn">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    <span>All Updates</span>
+                    <span class="rv-tab-badge" id="badge-all-count">0</span>
+                </button>
+                <button type="button" class="rv-tab-btn" data-tab="deadlines" role="tab" aria-selected="false" id="view-deadlines-btn">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <span>Deadlines</span>
+                    <span class="rv-tab-badge" id="badge-deadlines-count">0</span>
+                </button>
+                <button type="button" class="rv-tab-btn" data-tab="announcements" role="tab" aria-selected="false" id="view-announcements-btn">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    <span>Announcements</span>
+                    <span class="rv-tab-badge" id="badge-announcements-count">0</span>
+                </button>
+            </nav>
+        </header>
+
+        <!-- Command Center Split Layout -->
+        <div class="deadlines-split">
+            <!-- Left Pane: Interactive Monthly Calendar & Filters -->
+            <aside class="calendar-card" aria-label="Interactive Calendar">
+                <div class="calendar-head">
+                    <h2 class="calendar-title" id="calendar-month-label">November 2026</h2>
+                    <div class="calendar-nav-btns">
+                        <!-- Vector SVGs for Previous, Month Selector, Next -->
+                        <button type="button" class="calendar-btn" id="cal-prev" aria-label="Previous month" title="Previous month">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <button type="button" class="calendar-btn" id="cal-toggle-months" aria-label="Select month" title="Select month">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </button>
+                        <button type="button" class="calendar-btn" id="cal-next" aria-label="Next month" title="Next month">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Calendar View Container -->
+                <div id="calendar-days-container">
+                    <div class="calendar-grid">
+                        <div class="calendar-weekday">Mo</div>
+                        <div class="calendar-weekday">Tu</div>
+                        <div class="calendar-weekday">We</div>
+                        <div class="calendar-weekday">Th</div>
+                        <div class="calendar-weekday">Fr</div>
+                        <div class="calendar-weekday">Sa</div>
+                        <div class="calendar-weekday">Su</div>
+                    </div>
+                    <div class="calendar-grid" id="calendar-days-grid">
+                        <!-- Populated dynamically via JS with squircle 8px styles -->
+                    </div>
+                </div>
+
+                <!-- Month Picker Grid Container (hidden by default) -->
+                <div id="calendar-months-container" class="calendar-month-picker" hidden>
+                    <!-- Populated dynamically with Jan..Dec buttons -->
+                </div>
+
+                <!-- Square Legend (Renamed Projects to Others) -->
+                <div class="calendar-legend">
+                    <div class="legend-item"><span class="legend-square sq-exam"></span><span>Tests</span></div>
+                    <div class="legend-item"><span class="legend-square sq-ia"></span><span>IA</span></div>
+                    <div class="legend-item"><span class="legend-square sq-other"></span><span>Others</span></div>
+                    <div class="legend-item"><span class="legend-square sq-announcement"></span><span>Announcements</span></div>
+                </div>
+
+                <!-- Cohort / Year Group Filter -->
+                <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line);">
+                    <span class="filter-section-title">COHORT FILTER</span>
+                    <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                        <button type="button" class="filter-btn active" data-cohort="all">Both</button>
+                        <button type="button" class="filter-btn" data-cohort="Year 1">Y12</button>
+                        <button type="button" class="filter-btn" data-cohort="Year 2">Y13</button>
+                    </div>
+                </div>
+
+                <!-- Category Filter (Renamed Projects to Others) -->
+                <div style="margin-top: 16px;">
+                    <span class="filter-section-title">CATEGORY</span>
+                    <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                        <button type="button" class="filter-btn active" data-type="all">All</button>
+                        <button type="button" class="filter-btn" data-type="exam">Tests</button>
+                        <button type="button" class="filter-btn" data-type="ia">IA</button>
+                        <button type="button" class="filter-btn" data-type="other">Others</button>
+                        <button type="button" class="filter-btn" data-type="announcement">Announcements</button>
+                    </div>
+                </div>
+
+                <!-- Reset Filters Button Cleanly Integrated at Bottom of Sidebar -->
+                <button type="button" id="reset-filters-btn" class="btn-reset-filters">
+                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+                    <span>Reset All Filters</span>
+                </button>
+            </aside>
+
+            <!-- Right Pane: Agenda & Announcements -->
+            <section class="deadlines-agenda" aria-labelledby="agenda-heading">
+                <!-- Practice-styled Search Bar -->
+                <div class="rv-search-bar-wrap">
+                    <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <circle cx="8.5" cy="8.5" r="5.5"></circle>
+                        <path d="M13 13l4 4" stroke-linecap="round"></path>
+                    </svg>
+                    <label class="visually-hidden" for="content-search">Search deadlines or announcements</label>
+                    <input type="search" id="content-search" class="rv-search-input" placeholder="Search all deadlines and announcements">
+                </div>
+
+                <!-- Status row with month indicator and toggle view all -->
+                <div class="deadlines-meta-bar">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <span id="results-count" class="results-counter-pill" role="status" aria-live="polite">Showing items</span>
+                        <span id="active-date-indicator" class="pill-cohort-tag" style="display:none; font-size:0.75rem;"></span>
+                    </div>
+                    <button type="button" id="toggle-all-months-btn" class="btn-toggle-months">
+                        <span>View All Months</span>
+                    </button>
+                </div>
+
+                <!-- View 1: Unified All Feed -->
+                <div id="all-container">
+                    <!-- Cards populated via JS -->
+                </div>
+
+                <!-- View 2: Deadlines Only Feed -->
+                <div id="deadlines-container" hidden>
+                    <!-- Cards populated via JS -->
+                </div>
+
+                <!-- View 3: Announcements Only Feed -->
+                <div id="announcements-container" hidden>
+                    <!-- Announcements populated via JS -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Center Modal Dialog for "More Information" -->
+    <div class="modal-overlay" id="details-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+        <div class="modal-dialog">
+            <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close details">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
+                <span id="modal-type-badge" class="badge-exam">Unit Test</span>
+                <span id="modal-cohort-badge" class="pill">Y12</span>
+                <span id="modal-countdown-pill" class="deadline-countdown-pill">Due in 11 days</span>
+            </div>
+
+            <h2 class="h1" id="modal-title" style="margin-bottom: 6px; font-size:1.45rem;">Title</h2>
+            
+            <p id="modal-meta-row" style="font-size:0.85rem; color:var(--text-3); margin-bottom:16px; font-family:var(--font-mono);">
+                <!-- Date, time, weight -->
+            </p>
+
+            <div style="margin-bottom: 20px;">
+                <p id="modal-description" style="color:var(--text-2); line-height:1.55; font-size:0.92rem;"></p>
+            </div>
+
+            <!-- Syllabus Topics Section -->
+            <div id="modal-topics-section" style="margin-bottom: 22px;">
+                <h3 style="font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase; color:var(--text-3); margin-bottom:10px; letter-spacing:0.05em;">
+                    Syllabus Topics Covered
+                </h3>
+                <div id="modal-topics-grid" style="display:flex; flex-wrap:wrap; gap:6px;">
+                    <!-- Topic chips injected here -->
+                </div>
+            </div>
+
+            <!-- Instructions & Deliverables -->
+            <div id="modal-deliverables-box" class="panel" style="padding:14px 16px; margin-bottom: 20px; font-size:0.86rem; background:var(--surface-2);">
+                <strong style="color:var(--text); display:block; margin-bottom:4px; font-size:0.78rem; text-transform:uppercase; font-family:var(--font-mono);">Instructions &amp; Requirements</strong>
+                <span id="modal-deliverables-text" style="color:var(--text-2);"></span>
+            </div>
+
+            <!-- Study Links / Attachments -->
+            <div id="modal-resources-section">
+                <h3 style="font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase; color:var(--text-3); margin-bottom:10px; letter-spacing:0.05em;">
+                    Study Materials &amp; Downloads
+                </h3>
+                <div id="modal-resources-list" style="display:flex; flex-wrap:wrap; gap:10px;">
+                    <!-- Links injected here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <footer class="site-footer">
+        <div class="wrap">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-title">Computer Science &bull; EIS</div>
+                    <p>
+                        IB Diploma Programme Computer Science (SL &amp; HL) at Emirates International School Meadows. Department lead &amp; inquiries: <a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui (Siddiquin@eischools.ae)</a>.
+                    </p>
+                </div>
+                <div>
+                    <div class="footer-title">Navigation</div>
+                    <ul>
+                        <li><a href="deadlines.html">Deadlines &amp; Announcements</a></li>
+                        <li><a href="practice.html">Practice Question Bank</a></li>
+                        <li><a href="curriculum.html">Syllabus</a></li>
+                        <li><a href="ia.html">Internal Assessment (IA)</a></li>
+                        <li><a href="case-study.html">Case Study (Paper 1 Section B)</a></li>
+                        <li><a href="resources.html">Resources &amp; Worksheets</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-title">Department Team &amp; Ambassadors</div>
+                    <ul>
+                        <li><a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui &mdash; Head of CS</a></li>
+                        <li><a href="mailto:anishdongarkar@gmail.com">Anish Dongarkar &mdash; Tech Ambassador</a></li>
+                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaran &mdash; AI Ambassador</a></li>
+                        <li><a href="about-us.html">About the Department</a></li>
+                        <li><a href="admin.html">Faculty Administration Portal</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-base">
+                <span>&copy; 2026 Computer Science Department &bull; Emirates International School (IB DP World School)</span>
+                <span>Theme A &bull; Theme B &bull; IA &bull; Paper 1 Section B</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/site.js" defer></script>
+    <script src="../assets/js/deadlines.js" defer></script>
+</body>
+</html>

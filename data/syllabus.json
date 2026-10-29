@@ -1,0 +1,1018 @@
+[
+  {
+    "id": "a1",
+    "code": "A1",
+    "name": "Computer Fundamentals",
+    "theme": "Theme A: Concepts of Computer Science",
+    "paper": "Paper 1",
+    "cohort": "DP2 (Year 2)",
+    "hoursSL": 11,
+    "hoursHL": 18,
+    "isHLOnly": false,
+    "hub": "resources.html?topic=Theme A&search=A1",
+    "description": "Hardware architecture, Von Neumann CPU cycle, GPU functions, primary and secondary storage, logic gates, truth tables, operating systems, scheduling, interrupt handling, and compilation/interpretation translation.",
+    "subtopics": [
+      {
+        "code": "A1.1",
+        "title": "Computer hardware and operation",
+        "fullName": "A1.1 Computer hardware and operation",
+        "isHLOnly": false,
+        "statements": [
+          {
+            "code": "A1.1.1",
+            "statement": "Describe the functions and interactions of the main CPU components.",
+            "full": "A1.1.1 Describe the functions and interactions of the main CPU components.",
+            "level": "SL"
+          },
+          {
+            "code": "A1.1.2",
+            "statement": "Describe the role of a GPU.",
+            "full": "A1.1.2 Describe the role of a GPU.",
+            "level": "SL"
+          },
+          {
+            "code": "A1.1.3",
+            "statement": "Explain the differences between the CPU and the GPU. (HL only)",
+            "full": "A1.1.3 Explain the differences between the CPU and the GPU. (HL only)",
+            "level": "HL"
+          },
+          {
+            "code": "A1.1.4",
+            "statement": "Explain the purposes of different types of primary memory.",
+            "full": "A1.1.4 Explain the purposes of different types of primary memory.",
+            "level": "SL"
+          },
+          {
+            "code": "A1.1.5",
+            "statement": "Describe the fetch, decode and execute cycle.",
+            "full": "A1.1.5 Describe the fetch, decode and execute cycle.",
+            "level": "SL"
+          },
+          {
+            "code": "A1.1.6",
+            "statement": "Describe the process of pipelining in multi-core architectures. (HL only)",
+            "full": "A1.1.6 Describe the process of pipelining in multi-core architectures. (HL only)",
+            "level": "HL"
+          },
+          {
+            "code": "A1.1.7",
+            "statement": "Describe internal and external types of secondary memory storage.",
+            "full": "A1.1.7 Describe internal and external types of secondary memory storage.",
+            "level": "SL"
+          },
+          {
+            "code": "A1.1.8",
+            "statement": "Describe the concept of compression.",
+            "full": "A1.1.8 Describe the concept of compression.",
+            "level": "SL"
+          },
+          {
+            "code": "A1.1.9",
+            "statement": "Describe the different types of services in cloud computing.",
+            "full": "A1.1.9 Describe the different types of services in cloud computing.",
+            "level": "SL"
+          }
+        ]
+      },
+      {
+        "code": "A1.2",
+        "title": "Data representation and computer logic",
+        "fullName": "A1.2 Data representation and computer logic",
+        "isHLOnly": false,
+        "statements": [
+          {
+            "code": "A1.2.1",
+            "statement": "Describe the principal methods of representing data.",
+            "full": "A1.2.1 Describe the principal methods of representing data.",
+            "level": "SL"
+          },
+          {
+            "code": "A1.2.2",
+            "statement": "Explain how binary is used to store data.",
+            "full": "A1.2.2 Explain how binary is used to store data.",
+            "level": "SL"
+          },
+          {
+            "code": "A1.2.3",
+            "statement": "Describe the purpose and use of logic gates.",
+            "full": "A1.2.3 Describe the purpose and use of logic gates.",
+            "level": "SL"
+          },
+          {
+            "code": "A1.2.4",
+            "statement": "Construct and analyse truth tables.",
+            "full": "A1.2.4 Construct and analyse truth tables.",
+            "level": "SL"
+          },
+          {
+            "code": "A.1.2.5",
+            "statement": "Construct logic diagrams.",
+            "full": "A.1.2.5 Construct logic diagrams.",
+            "level": "SL"
+          }
+        ]
+      },
+      {
+        "code": "A1.3",
+        "title": "Operating systems and control systems",
+        "fullName": "A1.3 Operating systems and control systems",
+        "isHLOnly": false,
+        "statements": [
+          {
+            "code": "A1.3.1",
+            "statement": "Describe the role of operating systems.",
+            "full": "A1.3.1 Describe the role of operating systems.",
+            "level": "SL"
+          },
+          {
+            "code": "A1.3.2",
+            "statement": "Describe the functions of an operating system.",
+            "full": "A1.3.2 Describe the functions of an operating system.",
+            "level": "SL"
+          },
+          {
+            "code": "A1.3.3",
+            "statement": "Compare different approaches to scheduling.",
+            "full": "A1.3.3 Compare different approaches to scheduling.",
+            "level": "SL"
+          },
+          {
+            "code": "A1.3.4",
+            "statement": "Evaluate the use of polling and interrupt handling",
+            "full": "A1.3.4 Evaluate the use of polling and interrupt handling",
+            "level": "SL"
+          },
+          {
+            "code": "A1.3.5",
+            "statement": "Explain the role of the operating system in managing multitasking and resource allocation. (HL only)",
+            "full": "A1.3.5 Explain the role of the operating system in managing multitasking and resource allocation. (HL only)",
+            "level": "HL"
+          },
+          {
+            "code": "A1.3.6",
+            "statement": "Describe the use of the control system components.  (HL only)",
+            "full": "A1.3.6 Describe the use of the control system components.  (HL only)",
+            "level": "HL"
+          },
+          {
+            "code": "A1.3.7",
+            "statement": "Explain the use of control systems in a range of real-world applications.  (HL only)",
+            "full": "A1.3.7 Explain the use of control systems in a range of real-world applications.  (HL only)",
+            "level": "HL"
+          }
+        ]
+      },
+      {
+        "code": "A1.4",
+        "title": "Translation (HL only)",
+        "fullName": "A1.4 Translation (HL only)",
+        "isHLOnly": true,
+        "statements": [
+          {
+            "code": "A1.4.1",
+            "statement": "Evaluate the translation processes of interpreters and compilers.  (HL only)",
+            "full": "A1.4.1 Evaluate the translation processes of interpreters and compilers.  (HL only)",
+            "level": "HL"
+          }
+        ]
+      }
+    ],
+    "totalStatements": 22,
+    "slStatements": 16,
+    "hlStatements": 6
+  },
+  {
+    "id": "a2",
+    "code": "A2",
+    "name": "Networks",
+    "theme": "Theme A: Concepts of Computer Science",
+    "paper": "Paper 1",
+    "cohort": "DP2 (Year 2)",
+    "hoursSL": 11,
+    "hoursHL": 18,
+    "isHLOnly": false,
+    "hub": "resources.html?topic=Theme A&search=A2",
+    "description": "Network fundamentals, digital infrastructures, devices and protocols, TCP/IP architecture, topologies, client-server models, segmentation, packet switching, IP addressing, static/dynamic routing, and network security countermeasures.",
+    "subtopics": [
+      {
+        "code": "A2.1",
+        "title": "Network fundamentals",
+        "fullName": "A2.1 Network fundamentals",
+        "isHLOnly": false,
+        "statements": [
+          {
+            "code": "A2.1.1",
+            "statement": "Describe the purpose and characteristics of networks.",
+            "full": "A2.1.1 Describe the purpose and characteristics of networks.",
+            "level": "SL"
+          },
+          {
+            "code": "A2.1.2",
+            "statement": "Describe the purpose, benefits and limitations of modern digital infrastructures.",
+            "full": "A2.1.2 Describe the purpose, benefits and limitations of modern digital infrastructures.",
+            "level": "SL"
+          },
+          {
+            "code": "A2.1.3",
+            "statement": "Describe the function of network devices.",
+            "full": "A2.1.3 Describe the function of network devices.",
+            "level": "SL"
+          },
+          {
+            "code": "A2.1.4",
+            "statement": "Describe the network protocols used for transport and application.",
+            "full": "A2.1.4 Describe the network protocols used for transport and application.",
+            "level": "SL"
+          },
+          {
+            "code": "A2.1.5",
+            "statement": "Describe the function of the TCP/IP model. (HL only)",
+            "full": "A2.1.5 Describe the function of the TCP/IP model. (HL only)",
+            "level": "HL"
+          }
+        ]
+      },
+      {
+        "code": "A2.2",
+        "title": "Network architecture",
+        "fullName": "A2.2 Network architecture",
+        "isHLOnly": false,
+        "statements": [
+          {
+            "code": "A2.2.1",
+            "statement": "Describe the functions and practical applications of network topologies.",
+            "full": "A2.2.1 Describe the functions and practical applications of network topologies.",
+            "level": "SL"
+          },
+          {
+            "code": "A2.2.2",
+            "statement": "Describe the function of servers. (HL only)",
+            "full": "A2.2.2 Describe the function of servers. (HL only)",
+            "level": "HL"
+          },
+          {
+            "code": "A2.2.3",
+            "statement": "Compare and contrast networking models.",
+            "full": "A2.2.3 Compare and contrast networking models.",
+            "level": "SL"
+          },
+          {
+            "code": "A2.2.4",
+            "statement": "Explain the concepts and applications of network segmentation.",
+            "full": "A2.2.4 Explain the concepts and applications of network segmentation.",
+            "level": "SL"
+          }
+        ]
+      },
+      {
+        "code": "A2.3",
+        "title": "Data transmissions",
+        "fullName": "A2.3 Data transmissions",
+        "isHLOnly": false,
+        "statements": [
+          {
+            "code": "A2.3.1",
+            "statement": "Describe different types of IP addressing.",
+            "full": "A2.3.1 Describe different types of IP addressing.",
+            "level": "SL"
+          },
+          {
+            "code": "A2.3.2",
+            "statement": "Compare types of media for data transmission.",
+            "full": "A2.3.2 Compare types of media for data transmission.",
+            "level": "SL"
+          },
+          {
+            "code": "A2.3.3",
+            "statement": "Explain how packet switching is used to send data across a network.",
+            "full": "A2.3.3 Explain how packet switching is used to send data across a network.",
+            "level": "SL"
+          },
+          {
+            "code": "A2.3.4",
+            "statement": "Explain how static routing and dynamic routing move data across local area networks. (HL only)",
+            "full": "A2.3.4 Explain how static routing and dynamic routing move data across local area networks. (HL only)",
+            "level": "HL"
+          }
+        ]
+      },
+      {
+        "code": "A2.4",
+        "title": "Network security",
+        "fullName": "A2.4 Network security",
+        "isHLOnly": false,
+        "statements": [
+          {
+            "code": "A2.4.1",
+            "statement": "Discuss the effectiveness of firewalls at protecting a network.",
+            "full": "A2.4.1 Discuss the effectiveness of firewalls at protecting a network.",
+            "level": "SL"
+          },
+          {
+            "code": "A2.4.2",
+            "statement": "Describe common network vulnerabilities. (HL only)",
+            "full": "A2.4.2 Describe common network vulnerabilities. (HL only)",
+            "level": "HL"
+          },
+          {
+            "code": "A2.4.3",
+            "statement": "Describe common network countermeasures. (HL only)",
+            "full": "A2.4.3 Describe common network countermeasures. (HL only)",
+            "level": "HL"
+          },
+          {
+            "code": "A2.4.4",
+            "statement": "Describe the process of encryption and digital certificates.",
+            "full": "A2.4.4 Describe the process of encryption and digital certificates.",
+            "level": "SL"
+          }
+        ]
+      }
+    ],
+    "totalStatements": 17,
+    "slStatements": 12,
+    "hlStatements": 5
+  },
+  {
+    "id": "a3",
+    "code": "A3",
+    "name": "Databases",
+    "theme": "Theme A: Concepts of Computer Science",
+    "paper": "Paper 1",
+    "cohort": "DP1 (Year 1)",
+    "hoursSL": 11,
+    "hoursHL": 18,
+    "isHLOnly": false,
+    "hub": "resources.html?topic=Theme A&search=A3",
+    "description": "Relational database systems, schema modeling, Entity-Relationship Diagrams (ERDs), normalization (1NF to 3NF), denormalization, SQL queries and data updates, aggregate functions, transactions, and distributed data warehouses.",
+    "subtopics": [
+      {
+        "code": "A3.1",
+        "title": "Database fundamentals",
+        "fullName": "A3.1 Database fundamentals",
+        "isHLOnly": false,
+        "statements": [
+          {
+            "code": "A3.1.1",
+            "statement": "Explain the features, benefits and limitations of a relational database.",
+            "full": "A3.1.1 Explain the features, benefits and limitations of a relational database.",
+            "level": "SL"
+          }
+        ]
+      },
+      {
+        "code": "A3.2",
+        "title": "Database design",
+        "fullName": "A3.2 Database design",
+        "isHLOnly": false,
+        "statements": [
+          {
+            "code": "A3.2.1",
+            "statement": "Describe database schemas.",
+            "full": "A3.2.1 Describe database schemas.",
+            "level": "SL"
+          },
+          {
+            "code": "A3.2.2",
+            "statement": "Construct ERDs.",
+            "full": "A3.2.2 Construct ERDs.",
+            "level": "SL"
+          },
+          {
+            "code": "A3.2.3",
+            "statement": "Outline the different data types used in relational databases.",
+            "full": "A3.2.3 Outline the different data types used in relational databases.",
+            "level": "SL"
+          },
+          {
+            "code": "A3.2.4",
+            "statement": "Construct tables for relational databases.",
+            "full": "A3.2.4 Construct tables for relational databases.",
+            "level": "SL"
+          },
+          {
+            "code": "A3.2.5",
+            "statement": "Explain the difference between normal forms.",
+            "full": "A3.2.5 Explain the difference between normal forms.",
+            "level": "SL"
+          },
+          {
+            "code": "A3.2.6",
+            "statement": "Construct a database normalized to 3NF for a range of real-world scenarios.",
+            "full": "A3.2.6 Construct a database normalized to 3NF for a range of real-world scenarios.",
+            "level": "SL"
+          },
+          {
+            "code": "A3.2.7",
+            "statement": "Evaluate the need for denormalizing databases.",
+            "full": "A3.2.7 Evaluate the need for denormalizing databases.",
+            "level": "SL"
+          }
+        ]
+      },
+      {
+        "code": "A3.3",
+        "title": "Database programming",
+        "fullName": "A3.3 Database programming",
+        "isHLOnly": false,
+        "statements": [
+          {
+            "code": "A3.3.1",
+            "statement": "Outline the differences between data language types within SQL.",
+            "full": "A3.3.1 Outline the differences between data language types within SQL.",
+            "level": "SL"
+          },
+          {
+            "code": "A3.3.2",
+            "statement": "Construct queries between two tables in SQL.",
+            "full": "A3.3.2 Construct queries between two tables in SQL.",
+            "level": "SL"
+          },
+          {
+            "code": "A3.3.3",
+            "statement": "Explain how SQL can be used to update data in a database.",
+            "full": "A3.3.3 Explain how SQL can be used to update data in a database.",
+            "level": "SL"
+          },
+          {
+            "code": "A3.3.4",
+            "statement": "Construct calculations within a database using SQL’s aggregate functions. (HL only)",
+            "full": "A3.3.4 Construct calculations within a database using SQL’s aggregate functions. (HL only)",
+            "level": "HL"
+          },
+          {
+            "code": "A3.3.5",
+            "statement": "Describe different database views. (HL only)",
+            "full": "A3.3.5 Describe different database views. (HL only)",
+            "level": "HL"
+          },
+          {
+            "code": "A3.3.6",
+            "statement": "Describe how transactions maintain data integrity in a database. (HL only)",
+            "full": "A3.3.6 Describe how transactions maintain data integrity in a database. (HL only)",
+            "level": "HL"
+          }
+        ]
+      },
+      {
+        "code": "A3.4",
+        "title": "Alternative databases and data warehouses (HL only)",
+        "fullName": "A3.4 Alternative databases and data warehouses (HL only)",
+        "isHLOnly": true,
+        "statements": [
+          {
+            "code": "A3.4.1",
+            "statement": "Outline the different types of databases as approaches to storing data.",
+            "full": "A3.4.1 Outline the different types of databases as approaches to storing data.",
+            "level": "HL"
+          },
+          {
+            "code": "A3.4.2",
+            "statement": "Explain the primary objectives of data warehouses in data management and business intelligence.",
+            "full": "A3.4.2 Explain the primary objectives of data warehouses in data management and business intelligence.",
+            "level": "HL"
+          },
+          {
+            "code": "A3.4.3",
+            "statement": "Explain the role of online analytical processing (OLAP) and data mining for business intelligence.",
+            "full": "A3.4.3 Explain the role of online analytical processing (OLAP) and data mining for business intelligence.",
+            "level": "HL"
+          },
+          {
+            "code": "A3.4.4",
+            "statement": "Describe the features of distributed databases.",
+            "full": "A3.4.4 Describe the features of distributed databases.",
+            "level": "HL"
+          }
+        ]
+      }
+    ],
+    "totalStatements": 18,
+    "slStatements": 11,
+    "hlStatements": 7
+  },
+  {
+    "id": "a4",
+    "code": "A4",
+    "name": "Machine Learning",
+    "theme": "Theme A: Concepts of Computer Science",
+    "paper": "Paper 1",
+    "cohort": "DP2 (Year 2)",
+    "hoursSL": 5,
+    "hoursHL": 18,
+    "isHLOnly": false,
+    "hub": "resources.html?topic=Theme A&search=A4",
+    "description": "Supervised, unsupervised, and reinforcement learning paradigms, hardware accelerators, data cleaning, dimensionality reduction, regression, classification, clustering, ANNs, CNNs, genetic algorithms, and societal ethics.",
+    "subtopics": [
+      {
+        "code": "A4.1",
+        "title": "Machine learning fundamentals",
+        "fullName": "A4.1 Machine learning fundamentals",
+        "isHLOnly": false,
+        "statements": [
+          {
+            "code": "A4.1.1",
+            "statement": "Describe the types of machine learning and their applications in the real world.",
+            "full": "A4.1.1 Describe the types of machine learning and their applications in the real world.",
+            "level": "SL"
+          },
+          {
+            "code": "A4.1.2",
+            "statement": "Describe the hardware requirements for various scenarios where machine learning is deployed.",
+            "full": "A4.1.2 Describe the hardware requirements for various scenarios where machine learning is deployed.",
+            "level": "SL"
+          }
+        ]
+      },
+      {
+        "code": "A4.2",
+        "title": "Data preprocessing (HL only)",
+        "fullName": "A4.2 Data preprocessing (HL only)",
+        "isHLOnly": true,
+        "statements": [
+          {
+            "code": "A4.2.1",
+            "statement": "Describe the significance of data cleaning.",
+            "full": "A4.2.1 Describe the significance of data cleaning.",
+            "level": "HL"
+          },
+          {
+            "code": "A4.2.2",
+            "statement": "Describe the role of feature selection.",
+            "full": "A4.2.2 Describe the role of feature selection.",
+            "level": "HL"
+          },
+          {
+            "code": "A4.2.3",
+            "statement": "Describe the importance of dimensionality reduction.",
+            "full": "A4.2.3 Describe the importance of dimensionality reduction.",
+            "level": "HL"
+          }
+        ]
+      },
+      {
+        "code": "A4.3",
+        "title": "Machine learning approaches (HL only)",
+        "fullName": "A4.3 Machine learning approaches (HL only)",
+        "isHLOnly": true,
+        "statements": [
+          {
+            "code": "A4.3.1",
+            "statement": "Explain how linear regression is used to predict continuous outcomes.",
+            "full": "A4.3.1 Explain how linear regression is used to predict continuous outcomes.",
+            "level": "HL"
+          },
+          {
+            "code": "A4.3.2",
+            "statement": "Explain how classifications techniques in supervised learning are used to predict discrete categorical outcomes.",
+            "full": "A4.3.2 Explain how classifications techniques in supervised learning are used to predict discrete categorical outcomes.",
+            "level": "HL"
+          },
+          {
+            "code": "A4.3.3",
+            "statement": "Explain the role of hyperparameter tuning when evaluating supervised learning algorithms.",
+            "full": "A4.3.3 Explain the role of hyperparameter tuning when evaluating supervised learning algorithms.",
+            "level": "HL"
+          },
+          {
+            "code": "A4.3.4",
+            "statement": "Describe how clustering techniques in unsupervised learning are used to group data based on similarities in features.",
+            "full": "A4.3.4 Describe how clustering techniques in unsupervised learning are used to group data based on similarities in features.",
+            "level": "HL"
+          },
+          {
+            "code": "A4.3.5",
+            "statement": "Describe how learning techniques using the association rule are used to uncover relations between different attributes in large data sets.",
+            "full": "A4.3.5 Describe how learning techniques using the association rule are used to uncover relations between different attributes in large data sets.",
+            "level": "HL"
+          },
+          {
+            "code": "A4.3.6",
+            "statement": "Describe how an agent learns to make decisions by interacting with its environment in reinforcement learning.",
+            "full": "A4.3.6 Describe how an agent learns to make decisions by interacting with its environment in reinforcement learning.",
+            "level": "HL"
+          },
+          {
+            "code": "A4.3.7",
+            "statement": "Describe the application of genetic algorithms in various real-world situations.",
+            "full": "A4.3.7 Describe the application of genetic algorithms in various real-world situations.",
+            "level": "HL"
+          },
+          {
+            "code": "A4.3.8",
+            "statement": "Outline the structure and function of ANNs and how multi-layer networks are used to model complex patterns in data sets.",
+            "full": "A4.3.8 Outline the structure and function of ANNs and how multi-layer networks are used to model complex patterns in data sets.",
+            "level": "HL"
+          },
+          {
+            "code": "A4.3.9",
+            "statement": "Describe how CNNs are designed to adaptively learn spatial hierarchies of features in images.",
+            "full": "A4.3.9 Describe how CNNs are designed to adaptively learn spatial hierarchies of features in images.",
+            "level": "HL"
+          },
+          {
+            "code": "A4.3.10",
+            "statement": "Explain the importance of model selection and comparison in machine learning.",
+            "full": "A4.3.10 Explain the importance of model selection and comparison in machine learning.",
+            "level": "HL"
+          }
+        ]
+      },
+      {
+        "code": "A4.4",
+        "title": "Ethical considerations",
+        "fullName": "A4.4 Ethical considerations",
+        "isHLOnly": false,
+        "statements": [
+          {
+            "code": "A4.4.1",
+            "statement": "Discuss the ethical implications of machine learning in real-world scenarios.",
+            "full": "A4.4.1 Discuss the ethical implications of machine learning in real-world scenarios.",
+            "level": "SL"
+          },
+          {
+            "code": "A4.4.2",
+            "statement": "Discuss ethical aspects of the increasing integration of computer technologies into daily life.",
+            "full": "A4.4.2 Discuss ethical aspects of the increasing integration of computer technologies into daily life.",
+            "level": "SL"
+          }
+        ]
+      }
+    ],
+    "totalStatements": 17,
+    "slStatements": 4,
+    "hlStatements": 13
+  },
+  {
+    "id": "b1",
+    "code": "B1",
+    "name": "Computational Thinking",
+    "theme": "Theme B: Computational Thinking & Problem-Solving",
+    "paper": "Paper 2",
+    "cohort": "DP1 (Year 1)",
+    "hoursSL": 5,
+    "hoursHL": 5,
+    "isHLOnly": false,
+    "hub": "resources.html?topic=Theme B&search=B1",
+    "description": "Problem decomposition, abstraction, pattern recognition, algorithmic specification, flowchart construction and tracing, and systematic computational problem-solving.",
+    "subtopics": [
+      {
+        "code": "B1.1",
+        "title": "Approaches to computational thinking",
+        "fullName": "B1.1 Approaches to computational thinking",
+        "isHLOnly": false,
+        "statements": [
+          {
+            "code": "B1.1.1",
+            "statement": "Construct a problem specification.",
+            "full": "B1.1.1 Construct a problem specification.",
+            "level": "SL"
+          },
+          {
+            "code": "B1.1.2",
+            "statement": "Describe the fundamental concepts of computational thinking.",
+            "full": "B1.1.2 Describe the fundamental concepts of computational thinking.",
+            "level": "SL"
+          },
+          {
+            "code": "B1.1.3",
+            "statement": "Explain how applying computational thinking to fundamental concepts is used to approach and solve problems in computer science.",
+            "full": "B1.1.3 Explain how applying computational thinking to fundamental concepts is used to approach and solve problems in computer science.",
+            "level": "SL"
+          },
+          {
+            "code": "B1.1.4",
+            "statement": "Trace flowcharts for a range of programming algorithms.",
+            "full": "B1.1.4 Trace flowcharts for a range of programming algorithms.",
+            "level": "SL"
+          }
+        ]
+      }
+    ],
+    "totalStatements": 4,
+    "slStatements": 4,
+    "hlStatements": 0
+  },
+  {
+    "id": "b2",
+    "code": "B2",
+    "name": "Programming",
+    "theme": "Theme B: Computational Thinking & Problem-Solving",
+    "paper": "Paper 2",
+    "cohort": "DP1 (Year 1)",
+    "hoursSL": 40,
+    "hoursHL": 42,
+    "isHLOnly": false,
+    "hub": "resources.html?topic=Theme B&search=B2",
+    "description": "Core programming fundamentals in Python: variable types, substring operations, exception handling, arrays, dynamic lists, stacks, queues, sequence, selection, loops, functions, Big O analysis, linear/binary search, bubble/selection sorts, recursive algorithms, and file I/O.",
+    "subtopics": [
+      {
+        "code": "B2.1",
+        "title": "Programming fundamentals",
+        "fullName": "B2.1 Programming fundamentals",
+        "isHLOnly": false,
+        "statements": [
+          {
+            "code": "B2.1.1",
+            "statement": "Construct and trace programs using a range of global and local variables of various data types.",
+            "full": "B2.1.1 Construct and trace programs using a range of global and local variables of various data types.",
+            "level": "SL"
+          },
+          {
+            "code": "B2.1.2",
+            "statement": "Construct programs that can extract and manipulate substrings.",
+            "full": "B2.1.2 Construct programs that can extract and manipulate substrings.",
+            "level": "SL"
+          },
+          {
+            "code": "B2.1.3",
+            "statement": "Describe how programs use common exception handling techniques.",
+            "full": "B2.1.3 Describe how programs use common exception handling techniques.",
+            "level": "SL"
+          },
+          {
+            "code": "B2.1.4",
+            "statement": "Construct and use common debugging techniques.",
+            "full": "B2.1.4 Construct and use common debugging techniques.",
+            "level": "SL"
+          }
+        ]
+      },
+      {
+        "code": "B2.2",
+        "title": "Data structures",
+        "fullName": "B2.2 Data structures",
+        "isHLOnly": false,
+        "statements": [
+          {
+            "code": "B2.2.1",
+            "statement": "Compare static and dynamic data structures.",
+            "full": "B2.2.1 Compare static and dynamic data structures.",
+            "level": "SL"
+          },
+          {
+            "code": "B2.2.2",
+            "statement": "Construct programs that apply arrays and Lists.",
+            "full": "B2.2.2 Construct programs that apply arrays and Lists.",
+            "level": "SL"
+          },
+          {
+            "code": "B2.2.3",
+            "statement": "Explain the concept of a stack as a “last in, first out” (LIFO) data structure.",
+            "full": "B2.2.3 Explain the concept of a stack as a “last in, first out” (LIFO) data structure.",
+            "level": "SL"
+          },
+          {
+            "code": "B2.2.4",
+            "statement": "Explain the concept of a queue as a “first in, first out” (FIFO) data structure.",
+            "full": "B2.2.4 Explain the concept of a queue as a “first in, first out” (FIFO) data structure.",
+            "level": "SL"
+          }
+        ]
+      },
+      {
+        "code": "B2.3",
+        "title": "Programming constructs",
+        "fullName": "B2.3 Programming constructs",
+        "isHLOnly": false,
+        "statements": [
+          {
+            "code": "B2.3.1",
+            "statement": "Construct programs that implement the correct sequence of code instructions to meet program objectives.",
+            "full": "B2.3.1 Construct programs that implement the correct sequence of code instructions to meet program objectives.",
+            "level": "SL"
+          },
+          {
+            "code": "B2.3.2",
+            "statement": "Construct programs utilizing appropriate selection structures.",
+            "full": "B2.3.2 Construct programs utilizing appropriate selection structures.",
+            "level": "SL"
+          },
+          {
+            "code": "B2.3.3",
+            "statement": "Construct programs that utilize looping structures to perform repeated actions.",
+            "full": "B2.3.3 Construct programs that utilize looping structures to perform repeated actions.",
+            "level": "SL"
+          },
+          {
+            "code": "B2.3.4",
+            "statement": "Construct functions and modularization.",
+            "full": "B2.3.4 Construct functions and modularization.",
+            "level": "SL"
+          }
+        ]
+      },
+      {
+        "code": "B2.4",
+        "title": "Programming algorithms",
+        "fullName": "B2.4 Programming algorithms",
+        "isHLOnly": false,
+        "statements": [
+          {
+            "code": "B2.4.1",
+            "statement": "Describe the efficiency of specific algorithms by calculating their Big O notation to analyse their scalability.",
+            "full": "B2.4.1 Describe the efficiency of specific algorithms by calculating their Big O notation to analyse their scalability.",
+            "level": "SL"
+          },
+          {
+            "code": "B2.4.2",
+            "statement": "Construct and trace algorithms to implement a linear search and a binary search for data retrieval.",
+            "full": "B2.4.2 Construct and trace algorithms to implement a linear search and a binary search for data retrieval.",
+            "level": "SL"
+          },
+          {
+            "code": "B2.4.3",
+            "statement": "Construct and trace algorithms to implement bubble sort and selection sort, evaluating their time and space complexities.",
+            "full": "B2.4.3 Construct and trace algorithms to implement bubble sort and selection sort, evaluating their time and space complexities.",
+            "level": "SL"
+          },
+          {
+            "code": "B2.4.4",
+            "statement": "Explain the fundamental concept of recursion and its applications in programming. (HL only)",
+            "full": "B2.4.4 Explain the fundamental concept of recursion and its applications in programming. (HL only)",
+            "level": "HL"
+          },
+          {
+            "code": "B2.4.5",
+            "statement": "Construct and trace recursive algorithms in a programming language. (HL only)",
+            "full": "B2.4.5 Construct and trace recursive algorithms in a programming language. (HL only)",
+            "level": "HL"
+          }
+        ]
+      },
+      {
+        "code": "B2.5",
+        "title": "File processing",
+        "fullName": "B2.5 File processing",
+        "isHLOnly": false,
+        "statements": [
+          {
+            "code": "B2.5.1",
+            "statement": "Construct code to perform file-processing operations.",
+            "full": "B2.5.1 Construct code to perform file-processing operations.",
+            "level": "SL"
+          }
+        ]
+      }
+    ],
+    "totalStatements": 18,
+    "slStatements": 16,
+    "hlStatements": 2
+  },
+  {
+    "id": "b3",
+    "code": "B3",
+    "name": "Object-Oriented Programming",
+    "theme": "Theme B: Computational Thinking & Problem-Solving",
+    "paper": "Paper 2",
+    "cohort": "DP1 (Year 1)",
+    "hoursSL": 7,
+    "hoursHL": 23,
+    "isHLOnly": false,
+    "hub": "resources.html?topic=Theme B&search=B3",
+    "description": "OOP single class architecture: class definition, instantiation, static vs instance scope, encapsulation, and information hiding; extended in HL to multiple classes: inheritance, polymorphism, method overriding, abstraction, aggregation, and design patterns.",
+    "subtopics": [
+      {
+        "code": "B3.1",
+        "title": "Fundamentals of OOP for a single class",
+        "fullName": "B3.1 Fundamentals of OOP for a single class",
+        "isHLOnly": false,
+        "statements": [
+          {
+            "code": "B3.1.1",
+            "statement": "Evaluate the fundamentals of OOP.",
+            "full": "B3.1.1 Evaluate the fundamentals of OOP.",
+            "level": "SL"
+          },
+          {
+            "code": "B3.1.2",
+            "statement": "Construct a design of classes, their methods and behaviour.",
+            "full": "B3.1.2 Construct a design of classes, their methods and behaviour.",
+            "level": "SL"
+          },
+          {
+            "code": "B3.1.3",
+            "statement": "Distinguish between static and non-static variables and methods.",
+            "full": "B3.1.3 Distinguish between static and non-static variables and methods.",
+            "level": "SL"
+          },
+          {
+            "code": "B3.1.4",
+            "statement": "Construct code to define classes and instantiate objects.",
+            "full": "B3.1.4 Construct code to define classes and instantiate objects.",
+            "level": "SL"
+          },
+          {
+            "code": "B3.1.5",
+            "statement": "Explain and apply the concepts of encapsulation and information hiding in OOP.",
+            "full": "B3.1.5 Explain and apply the concepts of encapsulation and information hiding in OOP.",
+            "level": "SL"
+          }
+        ]
+      },
+      {
+        "code": "B3.2",
+        "title": "Fundamentals of OOP for multiple classes (HL only)",
+        "fullName": "B3.2 Fundamentals of OOP for multiple classes (HL only)",
+        "isHLOnly": true,
+        "statements": [
+          {
+            "code": "B3.2.1",
+            "statement": "Explain and apply the concept of inheritance in OOP to promote code reusability.",
+            "full": "B3.2.1 Explain and apply the concept of inheritance in OOP to promote code reusability.",
+            "level": "HL"
+          },
+          {
+            "code": "B3.2.2",
+            "statement": "Construct code to model polymorphism and its various forms, such as method overriding.",
+            "full": "B3.2.2 Construct code to model polymorphism and its various forms, such as method overriding.",
+            "level": "HL"
+          },
+          {
+            "code": "B3.2.3",
+            "statement": "Explain the concept of abstraction in OOP.",
+            "full": "B3.2.3 Explain the concept of abstraction in OOP.",
+            "level": "HL"
+          },
+          {
+            "code": "B3.2.4",
+            "statement": "Explain the role of composition and aggregation in class relationships.",
+            "full": "B3.2.4 Explain the role of composition and aggregation in class relationships.",
+            "level": "HL"
+          },
+          {
+            "code": "B3.2.5",
+            "statement": "Explain commonly used design patterns in OOP.",
+            "full": "B3.2.5 Explain commonly used design patterns in OOP.",
+            "level": "HL"
+          }
+        ]
+      }
+    ],
+    "totalStatements": 10,
+    "slStatements": 5,
+    "hlStatements": 5
+  },
+  {
+    "id": "b4",
+    "code": "B4",
+    "name": "Abstract Data Types (ADTs)",
+    "theme": "Theme B: Computational Thinking & Problem-Solving",
+    "paper": "Paper 2",
+    "cohort": "DP1 (Year 1)",
+    "hoursSL": 0,
+    "hoursHL": 23,
+    "isHLOnly": true,
+    "hub": "resources.html?topic=Theme B&search=B4",
+    "description": "Higher Level only: core principles and properties of ADTs, singly, doubly, and circular linked lists, binary search trees (BST properties and operations), and sets.",
+    "subtopics": [
+      {
+        "code": "B4.1",
+        "title": "Fundamentals of ADTs",
+        "fullName": "B4.1 Fundamentals of ADTs",
+        "isHLOnly": true,
+        "statements": [
+          {
+            "code": "B4.1.1",
+            "statement": "Explain the properties and purpose of ADTs in programming.",
+            "full": "B4.1.1 Explain the properties and purpose of ADTs in programming.",
+            "level": "HL"
+          },
+          {
+            "code": "B4.1.2",
+            "statement": "Evaluate linked lists.",
+            "full": "B4.1.2 Evaluate linked lists.",
+            "level": "HL"
+          },
+          {
+            "code": "B4.1.3",
+            "statement": "Construct and apply linked lists: singly, doubly and circular.",
+            "full": "B4.1.3 Construct and apply linked lists: singly, doubly and circular.",
+            "level": "HL"
+          },
+          {
+            "code": "B4.1.4",
+            "statement": "Explain the structures and properties of BSTs.",
+            "full": "B4.1.4 Explain the structures and properties of BSTs.",
+            "level": "HL"
+          },
+          {
+            "code": "B4.1.5",
+            "statement": "Construct and apply sets as an ADT.",
+            "full": "B4.1.5 Construct and apply sets as an ADT.",
+            "level": "HL"
+          },
+          {
+            "code": "B4.1.6",
+            "statement": "Explain the core principles of ADTs.",
+            "full": "B4.1.6 Explain the core principles of ADTs.",
+            "level": "HL"
+          }
+        ]
+      }
+    ],
+    "totalStatements": 6,
+    "slStatements": 0,
+    "hlStatements": 6
+  }
+]

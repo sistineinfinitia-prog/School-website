@@ -1,11 +1,35 @@
 [
   {
+    "id": "mock-exam-seating-2026",
+    "date": "2026-12-01",
+    "title": "Paper 2 Mock Exam Seating Plan & Formula Reference",
+    "description": "The seating arrangement for the December 10 mock examination in the Main Hall is now finalized. Please review your designated desk number and ensure your approved calculator is reset.",
+    "category": "Mock Exam",
+    "driveLink": "practice.html"
+  },
+  {
+    "id": "crit-b-peer-review",
+    "date": "2026-11-16",
+    "title": "Internal Assessment Criterion B Peer Review Sessions",
+    "description": "Criterion B architecture submissions will undergo paired peer reviews during laboratory sessions this Thursday. Bring your printed test plan matrices with boundary cases.",
+    "category": "IA Checkpoint",
+    "driveLink": "ia.html"
+  },
+  {
+    "id": "midterm-schedule-clinics",
+    "date": "2026-11-02",
+    "title": "Term 1 Mid-Term Assessment Schedule & Revision Clinics",
+    "description": "Revision clinics for Paper 1 Unit Tests will be held during lunch hours in Room 214. Drop in for targeted walkthroughs on CPU bus architecture and Boolean Karnaugh maps.",
+    "category": "Revision Clinic",
+    "driveLink": "curriculum.html"
+  },
+  {
     "id": "ia-criterion-b-c",
     "date": "2026-10-18",
     "title": "Internal Assessment Criterion B & C Checkpoint",
     "description": "Submit your problem decomposition, system architecture diagram, and initial algorithm flowcharts before the end of week. Every design specification must trace directly to a measurable success criterion in Criterion A.",
-    "category": "IA",
-    "driveLink": "pages/ia.html"
+    "category": "IA Checkpoint",
+    "driveLink": "ia.html"
   },
   {
     "id": "syllabus-2027-resources",
@@ -13,7 +37,7 @@
     "title": "Theme A & Theme B Resource Vault Updated",
     "description": "All 151 department slide decks, Python worksheets, SQL normalization labs, and past paper mark schemes are now indexed and searchable directly from the Resource Vault.",
     "category": "Curriculum",
-    "driveLink": "pages/resources.html"
+    "driveLink": "resources.html"
   },
   {
     "id": "paper-3-case-study",
@@ -21,6 +45,6 @@
     "title": "HL Case Study Seminar: The Perfect Chatbot",
     "description": "Higher Level candidates should annotate the RAKT Insurance case study booklet ahead of our seminar on natural language processing pipelines, transformer latency, and dataset bias.",
     "category": "HL Seminar",
-    "driveLink": "pages/case-study.html"
+    "driveLink": "case-study.html"
   }
 ]

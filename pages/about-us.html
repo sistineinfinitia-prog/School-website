@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | IB Computer Science &mdash; Emirates International School</title>
-    <meta name="description" content="Teachers and student representatives for IB Diploma Programme Computer Science at Emirates International School.">
+    <title>About Us | IB Computer Science &mdash; Emirates International School Meadows</title>
+    <meta name="description" content="Discover the IB DP Computer Science department at Emirates International School Meadows. Faculty leadership, academic mentors, curriculum pillars, and learning facilities.">
     <script>
         (function () {
             try {
@@ -30,10 +30,11 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/site.css">
+    <link rel="stylesheet" href="../assets/css/about.css">
 </head>
-<body>
+<body class="page-about">
     <a class="skip-link" href="#main">Skip to main content</a>
     <canvas class="ribbons" id="interactive-canvas" aria-hidden="true"></canvas>
 
@@ -54,9 +55,10 @@
             <div class="header-right">
                 <nav class="site-nav" id="site-nav" aria-label="Primary">
                     <ul class="nav-list">
-                        <li><a href="../index.html">Homepage</a></li>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="curriculum.html">Syllabus</a></li>
                         <li><a href="practice.html">Practice</a></li>
-                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="deadlines.html">Deadlines</a></li>
                         <li><a href="resources.html">Resources</a></li>
                     </ul>
                 </nav>
@@ -66,167 +68,424 @@
         </div>
     </header>
 
-    <main id="main" class="wrap">
-        <section class="hero">
-            <div class="eyebrow">
-                <span>Faculty &amp; Ambassadors &bull; EIS</span>
+    <main id="main" class="wrap wrap-wide about-page">
+        <!-- Revision Village Inspired Breadcrumbs & Page Header -->
+        <header class="rv-header-wrap">
+            <div class="rv-breadcrumbs">
+                <a href="../index.html">Home</a>
+                <span class="sep">/</span>
+                <span>About Us</span>
             </div>
-            <h1 class="display">
-                Computer Science Department
-            </h1>
-            <p class="lead">
-                Teachers and student representatives for IB Diploma Programme Computer Science at Emirates International School.
-            </p>
+            <div class="rv-header-main">
+                <h1 class="rv-subject-title">Computer Science Department</h1>
+            </div>
+
+            <!-- Primary Tabs Navigation (Matching Practice / Deadlines / Resources) -->
+            <nav class="rv-tabs-nav" role="tablist" aria-label="About Us Sections">
+                <button type="button" class="rv-tab-btn active" data-tab="overview" role="tab" aria-selected="true" id="tab-btn-overview">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                    <span>Overview &amp; Vision</span>
+                </button>
+                <button type="button" class="rv-tab-btn" data-tab="team" role="tab" aria-selected="false" id="tab-btn-team">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <span>Department Team</span>
+                </button>
+                <button type="button" class="rv-tab-btn" data-tab="curriculum" role="tab" aria-selected="false" id="tab-btn-curriculum">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    <span>Curriculum Architecture</span>
+                </button>
+                <button type="button" class="rv-tab-btn" data-tab="logistics" role="tab" aria-selected="false" id="tab-btn-logistics">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <span>Facilities &amp; Support</span>
+                </button>
+            </nav>
+        </header>
+
+        <!-- Tab Pane 1: Overview & Vision -->
+        <section class="about-tab-pane active" id="pane-overview" role="tabpanel" aria-labelledby="tab-btn-overview">
+            <div class="about-hero-card">
+                <h2 class="about-hero-title">Shaping Analytical Thinkers &amp; Ethical Software Engineers</h2>
+                <p class="about-hero-lead">
+                    The Computer Science Department at Emirates International School Meadows delivers an intensive, inquiry-driven curriculum designed for both Standard Level (SL) and Higher Level (HL) candidates. We emphasize foundational computer architecture, algorithmic efficiency in Python, real-world software engineering for authentic clients, and rigorous evaluation of emerging technologies.
+                </p>
+            </div>
+
+            <!-- Key Metrics Grid -->
+            <div class="about-meta-grid">
+                <div class="about-meta-cell">
+                    <span class="about-meta-key">Campus</span>
+                    <span class="about-meta-val">EIS Meadows</span>
+                    <span class="about-meta-note">Emirates International School Dubai</span>
+                </div>
+                <div class="about-meta-cell">
+                    <span class="about-meta-key">Programme</span>
+                    <span class="about-meta-val">IB DP SL &amp; HL</span>
+                    <span class="about-meta-note">150h SL &bull; 240h HL</span>
+                </div>
+                <div class="about-meta-cell">
+                    <span class="about-meta-key">Stack &amp; Languages</span>
+                    <span class="about-meta-val">Python &amp; SQL</span>
+                    <span class="about-meta-note">Paper 2 &amp; Internal Assessment</span>
+                </div>
+                <div class="about-meta-cell">
+                    <span class="about-meta-key">Student Portal</span>
+                    <span class="about-meta-val">151+ Assets</span>
+                    <span class="about-meta-note">Interactive question bank &amp; materials</span>
+                </div>
+            </div>
+
+            <!-- Department Academic Pillars -->
+            <div class="about-section-head">
+                <h2>Core Educational Pillars</h2>
+                <p>Four interconnected disciplines form our instructional foundation.</p>
+            </div>
+
+            <div class="about-pillars-grid">
+                <div class="about-pillar-card">
+                    <div class="about-pillar-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    </div>
+                    <h3 class="about-pillar-title">Computational Thinking &amp; Python</h3>
+                    <p class="about-pillar-desc">
+                        Deep algorithmic training focusing on decomposition, pattern recognition, and Big O complexity analysis using Python. Students master data structures, recursive paradigms, and object-oriented architectures.
+                    </p>
+                </div>
+
+                <div class="about-pillar-card">
+                    <div class="about-pillar-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    </div>
+                    <h3 class="about-pillar-title">Systems &amp; Network Architecture</h3>
+                    <p class="about-pillar-desc">
+                        Rigorous investigation into CPU machine cycles, binary representation, packet-switched routing protocols, relational database normalization, and distributed client-server systems.
+                    </p>
+                </div>
+
+                <div class="about-pillar-card">
+                    <div class="about-pillar-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+                    </div>
+                    <h3 class="about-pillar-title">Real-World Client Engineering</h3>
+                    <p class="about-pillar-desc">
+                        The 30-mark Internal Assessment tasks students with engineering a bespoke computational software solution for a verified client, following professional software development lifecycles and user testing.
+                    </p>
+                </div>
+            </div>
         </section>
 
-        <!-- Section 01: Department Overview -->
-        <section class="section" aria-labelledby="sec-overview">
-            <div class="section-label">
-                <span>01</span>Overview
+        <!-- Tab Pane 2: Department Team -->
+        <section class="about-tab-pane" id="pane-team" role="tabpanel" aria-labelledby="tab-btn-team">
+            <div class="about-section-head">
+                <h2>Faculty Leadership &amp; Academic Mentors</h2>
+                <p>Get in touch for curriculum guidance, Internal Assessment supervision, or peer programming clinics.</p>
             </div>
-            <div class="section-body">
-                <div class="section-head">
+
+            <div class="about-team-grid">
+                <!-- Neha Siddiqui -->
+                <article class="about-team-card">
                     <div>
-                        <h2 class="h1" id="sec-overview">IB DP Computer Science at EIS</h2>
-                        <p class="sub">
-                            We teach Standard Level (SL) and Higher Level (HL) Computer Science. The course covers computational thinking, system architecture, relational databases, networks, object-oriented programming in Python, machine learning, and the 30-mark individual programming project (Internal Assessment).
-                        </p>
-                    </div>
-                </div>
-
-                <div class="meta-grid">
-                    <div class="meta-cell">
-                        <span class="meta-key">School</span>
-                        <span class="meta-val">EIS</span>
-                        <span class="meta-note">Emirates International School</span>
-                    </div>
-                    <div class="meta-cell">
-                        <span class="meta-key">Programme</span>
-                        <span class="meta-val">IB DP (SL &amp; HL)</span>
-                        <span class="meta-note">IB World School</span>
-                    </div>
-                    <div class="meta-cell">
-                        <span class="meta-key">Primary Language</span>
-                        <span class="meta-val">Python &amp; SQL</span>
-                        <span class="meta-note">Paper 1, Paper 2 &amp; IA</span>
-                    </div>
-                    <div class="meta-cell">
-                        <span class="meta-key">Repository</span>
-                        <span class="meta-val">131 Files + 12 Qs</span>
-                        <span class="meta-note">Open student archive</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 02: Faculty & Student Team -->
-        <section class="section" aria-labelledby="sec-team">
-            <div class="section-label">
-                <span>02</span>Contact Details
-            </div>
-            <div class="section-body">
-                <div class="section-head">
-                    <div>
-                        <h2 class="h1" id="sec-team">Faculty &amp; Student Team</h2>
-                        <p class="sub">
-                            For speaking requests, curriculum inquiries, or peer mentoring on Python and the Internal Assessment, reach out directly below.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="people">
-                    <!-- Neha Siddiqui -->
-                    <article class="person">
-                        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
-                            <span class="person-monogram" aria-hidden="true">NS</span>
+                        <div class="about-team-card-top">
+                            <div class="about-avatar-monogram" aria-hidden="true">NS</div>
                             <span class="status-badge ready">Faculty</span>
                         </div>
-                        <div>
-                            <div class="person-role">Department Head &bull; Computer Science Teacher</div>
-                            <h3>Neha Siddiqui</h3>
-                            <p style="margin-top: 6px;">
-                                Leads IB DP Computer Science (SL &amp; HL) instruction, Internal Assessment supervision, and speaking inquiries at Emirates International School.
-                            </p>
+                        <div class="about-team-role-tag">Department Head &bull; DP CS Teacher</div>
+                        <h3 class="about-team-name">Neha Siddiqui</h3>
+                        <p class="about-team-bio">
+                            Directs the IB Diploma Computer Science program at Emirates International School Meadows. Oversees curriculum delivery across Standard and Higher Levels, Internal Assessment moderation, and examination strategy.
+                        </p>
+                        <div class="about-team-tags">
+                            <span class="about-tag-chip">DP Instruction</span>
+                            <span class="about-tag-chip">IA Supervision</span>
+                            <span class="about-tag-chip">Curriculum Lead</span>
                         </div>
-                        <a class="person-mail" href="mailto:Siddiquin@eischools.ae">Siddiquin@eischools.ae</a>
-                    </article>
+                    </div>
+                    <a class="about-team-mail-btn" href="mailto:Siddiquin@eischools.ae">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                        <span>Siddiquin@eischools.ae</span>
+                    </a>
+                </article>
 
-                    <!-- Anish Dongarkar -->
-                    <article class="person">
-                        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
-                            <span class="person-monogram" aria-hidden="true">AD</span>
+                <!-- Anish Dongarkar -->
+                <article class="about-team-card">
+                    <div>
+                        <div class="about-team-card-top">
+                            <div class="about-avatar-monogram" aria-hidden="true">AD</div>
                             <span class="status-badge ready">Student Rep</span>
                         </div>
-                        <div>
-                            <div class="person-role">Technology Ambassador</div>
-                            <h3>Anish Dongarkar</h3>
-                            <p style="margin-top: 6px;">
-                                Coordinates department web engineering, interactive exam practice tooling, GitHub Pages deployment, and peer programming support.
-                            </p>
+                        <div class="about-team-role-tag">Technology Ambassador</div>
+                        <h3 class="about-team-name">Anish Dongarkar</h3>
+                        <p class="about-team-bio">
+                            Coordinates department web engineering, interactive question bank tooling, UI state architecture, and peer programming support across Python data structures and algorithms.
+                        </p>
+                        <div class="about-team-tags">
+                            <span class="about-tag-chip">Web Engineering</span>
+                            <span class="about-tag-chip">Practice Suite</span>
+                            <span class="about-tag-chip">Peer Mentoring</span>
                         </div>
-                        <a class="person-mail" href="mailto:anishdongarkar@gmail.com">anishdongarkar@gmail.com</a>
-                    </article>
+                    </div>
+                    <a class="about-team-mail-btn" href="mailto:anishdongarkar@gmail.com">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                        <span>anishdongarkar@gmail.com</span>
+                    </a>
+                </article>
 
-                    <!-- Rudolph Babaren -->
-                    <article class="person">
-                        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
-                            <span class="person-monogram" aria-hidden="true">RB</span>
+                <!-- Rudolph Babaran -->
+                <article class="about-team-card">
+                    <div>
+                        <div class="about-team-card-top">
+                            <div class="about-avatar-monogram" aria-hidden="true">RB</div>
                             <span class="status-badge ready">Student Rep</span>
                         </div>
-                        <div>
-                            <div class="person-role">AI Ambassador</div>
-                            <h3>Rudolph Babaren</h3>
-                            <p style="margin-top: 6px;">
-                                Leads student exploration of Theme A4 Machine Learning, the Paper 3 Chatbot Case Study, and applied AI ethics workshops.
-                            </p>
+                        <div class="about-team-role-tag">AI Ambassador</div>
+                        <h3 class="about-team-name">Rudolph Babaran</h3>
+                        <p class="about-team-bio">
+                            Leads student exploration of Theme A4 Machine Learning, the Paper 1 Section B Chatbot Case Study extended responses, vector embeddings, and applied AI ethics workshops.
+                        </p>
+                        <div class="about-team-tags">
+                            <span class="about-tag-chip">Machine Learning</span>
+                            <span class="about-tag-chip">Paper 1 Section B</span>
+                            <span class="about-tag-chip">AI Ethics</span>
                         </div>
-                        <a class="person-mail" href="mailto:rudolphmacrinebabaran@gmail.com">rudolphmacrinebabaran@gmail.com</a>
-                    </article>
+                    </div>
+                    <a class="about-team-mail-btn" href="mailto:rudolphmacrinebabaran@gmail.com">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                        <span>rudolphmacrinebabaran@gmail.com</span>
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Tab Pane 3: Curriculum Architecture -->
+        <section class="about-tab-pane" id="pane-curriculum" role="tabpanel" aria-labelledby="tab-btn-curriculum">
+            <div class="about-section-head">
+                <h2>Assessment Architecture &amp; Pacing Breakdown</h2>
+                <p>Components assessed externally and internally in accordance with the official IB Computer Science Subject Guide.</p>
+            </div>
+
+            <div class="about-curr-grid">
+                <!-- Paper 1 -->
+                <div class="about-curr-card">
+                    <div>
+                        <div class="about-curr-head">
+                            <span class="about-curr-code">Paper 1</span>
+                            <span class="pill pill-accent">SL 35% &bull; HL 40%</span>
+                        </div>
+                        <h3 class="about-curr-title">Concepts of Computer Science</h3>
+                        <div class="about-curr-meta">SL: 1h 15m (50m) &bull; HL: 2h 00m (80m)</div>
+                        <p class="about-curr-desc">
+                            Assesses theoretical foundations across Theme A, combined with the pre-seen scenario stimulus.
+                        </p>
+                        <ul class="about-curr-points">
+                            <li>
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span><strong>Section A:</strong> Compulsory extended-response questions on Themes A1&ndash;A4.</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span><strong>Section B:</strong> In-depth Case Study extended-response questions on pre-seen stimulus.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: 14px;">
+                        <a href="case-study.html" class="home-more" style="width:100%; justify-content:center;">
+                            <span>Explore Case Study Dossier</span>
+                            <span aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Department Logistics -->
-                <div class="surface" style="margin-top: 28px;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
-                        <span class="pill">Department Logistics</span>
-                        <span class="status-badge pending">Schedule To Be Confirmed</span>
+                <!-- Paper 2 -->
+                <div class="about-curr-card">
+                    <div>
+                        <div class="about-curr-head">
+                            <span class="about-curr-code">Paper 2</span>
+                            <span class="pill">SL 35% &bull; HL 40%</span>
+                        </div>
+                        <h3 class="about-curr-title">Computational Thinking &amp; Python</h3>
+                        <div class="about-curr-meta">SL: 1h 15m (50m) &bull; HL: 2h 00m (80m)</div>
+                        <p class="about-curr-desc">
+                            Assesses algorithmic decomposition, programming syntax, and data structures in Python across Theme B.
+                        </p>
+                        <ul class="about-curr-points">
+                            <li>
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span><strong>Algorithmic Section:</strong> Language-agnostic logic, trace tables, and decomposition.</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span><strong>Coding Section:</strong> OOP classes, inheritance, Big O complexity, and ADTs (HL).</span>
+                            </li>
+                        </ul>
                     </div>
-                    <ul style="margin:0; padding-left:20px; color:var(--text-2); font-size:0.92rem; line-height:1.8;">
-                        <li><strong>Classroom Location:</strong> Computer Science Lab assignment per school timetable.</li>
-                        <li><strong>Help Clinic / Office Hours:</strong> After-school IA and Python clinic timings announced via the homepage Department Notices feed.</li>
+                    <div style="margin-top: 14px;">
+                        <a href="curriculum.html#b1" class="home-more" style="width:100%; justify-content:center;">
+                            <span>View Theme B Syllabus</span>
+                            <span aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Internal Assessment -->
+                <div class="about-curr-card">
+                    <div>
+                        <div class="about-curr-head">
+                            <span class="about-curr-code">IA</span>
+                            <span class="pill">SL 30% &bull; HL 20%</span>
+                        </div>
+                        <h3 class="about-curr-title">The Computational Solution</h3>
+                        <div class="about-curr-meta">30 Marks &bull; 35 Teaching Hours</div>
+                        <p class="about-curr-desc">
+                            Authentic software product engineered for a real client, assessed across Criteria A through E.
+                        </p>
+                        <ul class="about-curr-points">
+                            <li>
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span><strong>Criteria A&ndash;C:</strong> Planning, record of tasks, and algorithmic implementation.</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span><strong>Criteria D&ndash;E:</strong> Screencast video demo, client feedback, and evaluation.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: 14px;">
+                        <a href="ia.html" class="home-more" style="width:100%; justify-content:center;">
+                            <span>Review IA Rubrics &amp; Guide</span>
+                            <span aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clarification Notice Banner -->
+            <div class="about-notice-banner">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                <div class="about-notice-content">
+                    <h4>Official Curriculum Note on Case Study Assessment</h4>
+                    <p>
+                        Under the official IB DP Computer Science Subject Guide, the pre-seen annual case study is assessed strictly within <strong>Paper 1 Section B extended responses</strong> as an integrated external examination component.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab Pane 4: Facilities & Support -->
+        <section class="about-tab-pane" id="pane-logistics" role="tabpanel" aria-labelledby="tab-btn-logistics">
+            <div class="about-section-head">
+                <h2>Learning Facilities &amp; Student Support</h2>
+                <p>Dedicated computer laboratories, weekly help clinics, and academic integrity policies.</p>
+            </div>
+
+            <div class="about-logistics-grid">
+                <!-- Lab Facilities -->
+                <div class="about-logistics-card">
+                    <h3>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        <span>CS Innovation Lab &amp; Workstations</span>
+                    </h3>
+                    <p>Our dedicated Computer Science laboratory provides students with high-performance desktop machines, modern development tooling, and collaborative environments.</p>
+                    <ul class="about-logistics-list">
+                        <li>
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span><strong>Development Environments:</strong> Python 3.12, PyCharm Professional, VS Code, and SQLite tools.</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span><strong>Hardware Kits:</strong> Microcontrollers, logic gate boards, and networking test benches.</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span><strong>Timetable Access:</strong> Available during scheduled class periods and supervised study blocks.</span>
+                        </li>
                     </ul>
+                </div>
+
+                <!-- Help Clinics -->
+                <div class="about-logistics-card">
+                    <h3>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span>After-School Clinics &amp; IA Mentorship</span>
+                    </h3>
+                    <p>Weekly peer tutoring and teacher drop-in sessions designed to provide targeted assistance on coding, algorithm design, and IA criteria milestones.</p>
+                    <ul class="about-logistics-list">
+                        <li>
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span><strong>Python Help Clinic:</strong> Dedicated code walkthroughs, recursion drills, and OOP syntax practice.</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span><strong>IA Milestones Clinic:</strong> One-on-one review of Criterion A planning through Criterion E evaluation.</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span><strong>Timings &amp; Schedules:</strong> Announced weekly via the <a href="deadlines.html" style="color:var(--accent); text-decoration:underline;">Deadlines &amp; Announcements</a> board.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Academic Integrity -->
+                <div class="about-logistics-card">
+                    <h3>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <span>Academic Integrity &amp; Responsible AI</span>
+                    </h3>
+                    <p>Adherence to the IB Academic Integrity policy is strictly upheld across all course submissions, internal assessments, and classroom projects.</p>
+                    <ul class="about-logistics-list">
+                        <li>
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span><strong>Original Software:</strong> All code written for the Internal Assessment must be authentic and properly documented.</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span><strong>Library Citations:</strong> External Python libraries, APIs, and algorithms must be transparently acknowledged.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Inquiries & Contact -->
+                <div class="about-logistics-card">
+                    <h3>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        <span>Speaking Inquiries &amp; Admissions</span>
+                    </h3>
+                    <p>For inquiries regarding course placement, university recommendation letters, speaking invitations, or subject transitions, contact the department.</p>
+                    <div style="margin-top: 14px;">
+                        <a href="mailto:Siddiquin@eischools.ae" class="home-more" style="width:100%; justify-content:center;">
+                            <span>Email Department Head</span>
+                            <span aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="site-footer">
+        <footer class="site-footer">
         <div class="wrap">
             <div class="footer-grid">
                 <div>
                     <div class="footer-title">Computer Science &bull; EIS</div>
                     <p>
-                        IB Diploma Programme Computer Science (SL &amp; HL) at Emirates International School. Speaking requests &amp; inquiries: <a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui (Siddiquin@eischools.ae)</a>.
+                        IB Diploma Programme Computer Science (SL &amp; HL) at Emirates International School Meadows. Department lead &amp; inquiries: <a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui (Siddiquin@eischools.ae)</a>.
                     </p>
                 </div>
                 <div>
                     <div class="footer-title">Navigation</div>
                     <ul>
-                        <li><a href="courses.html">Courses Overview</a></li>
+                        <li><a href="deadlines.html">Deadlines &amp; Announcements</a></li>
                         <li><a href="practice.html">Practice Question Bank</a></li>
-                        <li><a href="curriculum.html">Curriculum &amp; Pacing</a></li>
-                        <li><a href="theme-a.html">Theme A: Systems &amp; Hardware</a></li>
-                        <li><a href="theme-b.html">Theme B: Computational Thinking</a></li>
+                        <li><a href="curriculum.html">Syllabus</a></li>
                         <li><a href="ia.html">Internal Assessment (IA)</a></li>
-                        <li><a href="case-study.html">Paper 3 Case Study</a></li>
+                        <li><a href="case-study.html">Case Study (Paper 1 Section B)</a></li>
                         <li><a href="resources.html">Resources &amp; Worksheets</a></li>
                     </ul>
                 </div>
                 <div>
-                    <div class="footer-title">Department Team &amp; Appearance</div>
+                    <div class="footer-title">Department Team &amp; Ambassadors</div>
                     <ul>
                         <li><a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui &mdash; Head of CS</a></li>
                         <li><a href="mailto:anishdongarkar@gmail.com">Anish Dongarkar &mdash; Tech Ambassador</a></li>
-                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaren &mdash; AI Ambassador</a></li>
+                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaran &mdash; AI Ambassador</a></li>
                         <li><a href="about-us.html">About the Department</a></li>
                         <li><a href="admin.html">Faculty Administration Portal</a></li>
                     </ul>
@@ -235,11 +494,16 @@
 
             <div class="footer-base">
                 <span>&copy; 2026 Computer Science Department &bull; Emirates International School (IB DP World School)</span>
-                <span>Theme A &bull; Theme B &bull; IA &bull; Paper 3</span>
+                <span>Theme A &bull; Theme B &bull; IA &bull; Paper 1 Section B</span>
             </div>
         </div>
     </footer>
 
     <script src="../assets/js/site.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            window.initTabs('.rv-tab-btn', '.about-tab-pane');
+        });
+    </script>
 </body>
 </html>

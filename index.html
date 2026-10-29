@@ -30,14 +30,15 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/home.css">
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to main content</a>
     <canvas class="ribbons" id="interactive-canvas" aria-hidden="true"></canvas>
 
-    <header class="site-header">
+        <header class="site-header">
         <div class="wrap">
             <a href="index.html" class="brand">
                 <span class="brand-name">
@@ -54,9 +55,10 @@
             <div class="header-right">
                 <nav class="site-nav" id="site-nav" aria-label="Primary">
                     <ul class="nav-list">
-                        <li><a href="index.html" aria-current="page">Homepage</a></li>
+                        <li><a href="index.html" aria-current="page">Home</a></li>
+                        <li><a href="pages/curriculum.html">Syllabus</a></li>
                         <li><a href="pages/practice.html">Practice</a></li>
-                        <li><a href="pages/courses.html">Courses</a></li>
+                        <li><a href="pages/deadlines.html">Deadlines</a></li>
                         <li><a href="pages/resources.html">Resources</a></li>
                     </ul>
                 </nav>
@@ -66,431 +68,410 @@
         </div>
     </header>
 
-    <main id="main" class="wrap">
-        <section class="hero">
-            <div class="eyebrow">
-                <span>IB Computer Science &bull; EIS</span>
-            </div>
-            <h1 class="display">
-                Course notes, syllabus guides, and exam practice.
-            </h1>
-            <p class="lead">
-                Resources for Standard and Higher Level students at Emirates International School.
+    <main id="main" class="wrap wrap-wide home">
+        <!-- Hero Section -->
+        <section class="home-hero" aria-labelledby="home-title">
+            <h1 id="home-title">Computer Science</h1>
+            <p class="home-lead">
+                Official academic portal for IB DP Computer Science at Emirates International School Meadows. Access active assessment milestones, question banks, and classroom resources.
             </p>
-            <div class="hero-actions">
-                <a class="btn btn-primary" href="pages/practice.html">
-                    <span>Open Exam Practice Bank (12 Qs)</span>
-                    <span class="arrow" aria-hidden="true">&rarr;</span>
+
+            <!-- Quick Jump Segmented Anchors -->
+            <nav class="home-anchors" aria-label="Page section jumps">
+                <a href="#sec-deadlines" class="home-anchor-link">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="18" y2="10"></line></svg>
+                    <span>Deadlines</span>
                 </a>
-                <a class="btn" href="pages/resources.html">
-                    <span>Browse All 131 Student Files</span>
+                <a href="#sec-practice" class="home-anchor-link">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    <span>Exam Practice</span>
                 </a>
-                <a class="btn" href="pages/courses.html">
-                    <span>Course Modules</span>
+                <a href="#sec-syllabus" class="home-anchor-link">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    <span>Syllabus</span>
+                </a>
+            </nav>
+        </section>
+
+        <!-- Section 01: Deadlines & Announcements -->
+        <section class="home-section" id="sec-deadlines" aria-labelledby="head-deadlines">
+            <div class="home-section-head">
+                <div class="home-section-head-info">
+                    <h2 id="head-deadlines">Deadlines &amp; Announcements</h2>
+                    <p>Active term checkpoints, unit assessments, and faculty bulletins.</p>
+                </div>
+                <a class="home-more" href="pages/deadlines.html">
+                    <span>Full Calendar</span>
+                    <span aria-hidden="true">&rarr;</span>
                 </a>
             </div>
 
-            <aside class="callout" aria-label="Coursework milestone notice">
-                <span class="pill">Checkpoint</span>
-                <div>
-                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:4px;">
-                        <h2 class="callout-title" style="margin:0;">Internal Assessment: Criterion B Due</h2>
-                        <span class="status-badge ready">Criterion B</span>
+            <div class="feed-grid">
+                <!-- Column 1: Deadlines -->
+                <div class="feed-panel">
+                    <div class="feed-panel-head">
+                        <h3>
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            Upcoming Deadlines
+                        </h3>
+                        <a href="pages/deadlines.html?tab=deadlines">View all &rarr;</a>
                     </div>
-                    <p>
-                        Make sure your design specifications, system flowcharts, and test plan table match each measurable success criterion from Criterion A. Review the <a href="pages/ia.html">30-Mark IA Guide</a> and <a href="resources/Error%20log%20-%20Python%20Programming.pdf" target="_blank" rel="noopener">Python Error Log</a>.
-                    </p>
+                    <ol class="feed-list" id="home-deadlines-list">
+                        <li>
+                            <a class="dl-row" href="pages/deadlines.html#dl-01">
+                                <div class="dl-date-block">
+                                    <span class="dl-day">05</span>
+                                    <span class="dl-mon">Nov</span>
+                                </div>
+                                <div class="dl-body">
+                                    <span class="dl-title">Paper 1 Unit Test: Computer Fundamentals</span>
+                                    <span class="dl-sub">CPU Architecture, Registers, Logic Gates &amp; Packet Networks</span>
+                                    <div class="dl-tags">
+                                        <span class="cat-badge cat-exam">Unit Test</span>
+                                        <span class="cohort-chip">Y12</span>
+                                        <span class="cohort-chip">15% Term Grade</span>
+                                    </div>
+                                </div>
+                                <div class="dl-meta-right">
+                                    <span class="countdown-badge is-urgent">in 9 days</span>
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="next-up-arrow" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dl-row" href="pages/deadlines.html#dl-02">
+                                <div class="dl-date-block">
+                                    <span class="dl-day">14</span>
+                                    <span class="dl-mon">Nov</span>
+                                </div>
+                                <div class="dl-body">
+                                    <span class="dl-title">Internal Assessment: Criterion B Architecture</span>
+                                    <span class="dl-sub">System Flowcharts, UML Class Diagram &amp; Test Plan Matrix</span>
+                                    <div class="dl-tags">
+                                        <span class="cat-badge cat-ia">IA Milestone</span>
+                                        <span class="cohort-chip">Y13</span>
+                                        <span class="cohort-chip">6 Marks</span>
+                                    </div>
+                                </div>
+                                <div class="dl-meta-right">
+                                    <span class="countdown-badge">in 18 days</span>
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="next-up-arrow" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dl-row" href="pages/deadlines.html#dl-03">
+                                <div class="dl-date-block">
+                                    <span class="dl-day">22</span>
+                                    <span class="dl-mon">Nov</span>
+                                </div>
+                                <div class="dl-body">
+                                    <span class="dl-title">Python OOP Mini-Project: Simulation Deck</span>
+                                    <span class="dl-sub">Object Hierarchy, Encapsulation, File I/O &amp; CLI Interface</span>
+                                    <div class="dl-tags">
+                                        <span class="cat-badge cat-project">Project</span>
+                                        <span class="cohort-chip">Y12</span>
+                                        <span class="cohort-chip">10% Practical</span>
+                                    </div>
+                                </div>
+                                <div class="dl-meta-right">
+                                    <span class="countdown-badge">in 26 days</span>
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="next-up-arrow" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </div>
+                            </a>
+                        </li>
+                    </ol>
                 </div>
-            </aside>
-        </section>
 
-        <!-- Section 01: Syllabus Modules -->
-        <section class="section" id="curriculum" aria-labelledby="sec-syllabus">
-            <div class="section-label">
-                <span>01</span>Syllabus Modules
-            </div>
-            <div class="section-body">
-                <div class="section-head">
-                    <div>
-                        <h2 class="h1" id="sec-syllabus">Core Syllabus Themes</h2>
-                        <p class="sub">
-                            Expand each module to review subtopics, open classroom slide decks and worksheets, or jump straight to topic-filtered exam questions.
-                        </p>
+                <!-- Column 2: Announcements -->
+                <div class="feed-panel">
+                    <div class="feed-panel-head">
+                        <h3>
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                            Faculty Announcements
+                        </h3>
+                        <a href="pages/deadlines.html?tab=announcements">View all &rarr;</a>
                     </div>
-                    <a class="btn btn-sm" href="pages/courses.html">
-                        <span>All Courses</span>
-                        <span class="arrow" aria-hidden="true">&rarr;</span>
-                    </a>
-                </div>
-
-                <div class="units">
-                    <!-- Theme A -->
-                    <details class="unit" open>
-                        <summary>
-                            <div class="unit-head">
-                                <span class="pill">Theme A</span>
-                                <span class="unit-title">Systems, Networks, Databases &amp; Machine Learning</span>
-                            </div>
-                            <span class="unit-meta">
-                                <span class="status-badge ready">Ready &bull; 70 Files</span>
-                                <span class="chev" aria-hidden="true"></span>
-                            </span>
-                        </summary>
-                        <div class="unit-body">
-                            <p>
-                                Computer architecture, machine instruction cycle (Fetch-Decode-Execute), logic gates, memory hierarchy, packet-switched networks, relational databases (1NF to 3NF &amp; SQL), and machine learning fundamentals.
-                            </p>
-                            <ul class="subtopics">
-                                <li>
-                                    <span class="subtopic-code">A1</span>
-                                    <div>
-                                        <span class="subtopic-name">Computer Fundamentals</span>
-                                        <span class="subtopic-detail">CPU architecture (ALU, CU, registers, buses), primary/secondary memory, fetch-decode-execute cycle, truth tables, OS scheduling, and translators.</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="subtopic-code">A2</span>
-                                    <div>
-                                        <span class="subtopic-name">Networks</span>
-                                        <span class="subtopic-detail">TCP/IP &amp; OSI models, packet switching, routing, DNS, firewalls, encryption, and the interactive 85-minute networking studio.</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="subtopic-code">A3</span>
-                                    <div>
-                                        <span class="subtopic-name">Databases &amp; SQL</span>
-                                        <span class="subtopic-detail">Entity-relationship diagrams, primary/foreign keys, normalization (1NF, 2NF, 3NF), SQL DDL/DML queries, and ACID transactions.</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="subtopic-code">A4</span>
-                                    <div>
-                                        <span class="subtopic-name">Machine Learning</span>
-                                        <span class="subtopic-detail">Supervised, unsupervised, and reinforcement learning, linear regression, classification, neural networks, and algorithmic ethics.</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="unit-foot">
-                                <a class="btn btn-primary btn-sm" href="pages/theme-a.html">
-                                    <span>Open Theme A Notes &amp; 70 Files</span>
-                                    <span class="arrow" aria-hidden="true">&rarr;</span>
-                                </a>
-                                <a class="btn btn-sm" href="pages/practice.html?topic=architecture">
-                                    <span>Practice Theme A Questions</span>
-                                </a>
-                            </div>
-                        </div>
-                    </details>
-
-                    <!-- Theme B -->
-                    <details class="unit">
-                        <summary>
-                            <div class="unit-head">
-                                <span class="pill">Theme B</span>
-                                <span class="unit-title">Computational Thinking, Python &amp; OOP</span>
-                            </div>
-                            <span class="unit-meta">
-                                <span class="status-badge ready">Ready &bull; 48 Files</span>
-                                <span class="chev" aria-hidden="true"></span>
-                            </span>
-                        </summary>
-                        <div class="unit-body">
-                            <p>
-                                Problem decomposition, algorithmic trace tables, searching and sorting algorithms, Python programming constructs, and Object-Oriented Programming (encapsulation, inheritance, polymorphism).
-                            </p>
-                            <ul class="subtopics">
-                                <li>
-                                    <span class="subtopic-code">B1</span>
-                                    <div>
-                                        <span class="subtopic-name">Computational Thinking</span>
-                                        <span class="subtopic-detail">Problem specification, abstraction, decomposition, flowcharts, pseudocode conventions, and trace tables.</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="subtopic-code">B2</span>
-                                    <div>
-                                        <span class="subtopic-name">Programming Constructs</span>
-                                        <span class="subtopic-detail">Variables, strings, 1D/2D arrays, file I/O, modular subroutines, Big-O complexity, linear/binary search, and bubble/selection sort.</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span class="subtopic-code">B3</span>
-                                    <div>
-                                        <span class="subtopic-name">Object-Oriented Programming</span>
-                                        <span class="subtopic-detail">Classes, constructors, encapsulation, inheritance, polymorphism, aggregation, and UML class diagrams in Python.</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="unit-foot">
-                                <a class="btn btn-primary btn-sm" href="pages/theme-b.html">
-                                    <span>Open Theme B Notes &amp; 48 Files</span>
-                                    <span class="arrow" aria-hidden="true">&rarr;</span>
-                                </a>
-                                <a class="btn btn-sm" href="pages/practice.html?topic=algorithms">
-                                    <span>Practice Theme B Questions</span>
-                                </a>
-                            </div>
-                        </div>
-                    </details>
-
-                    <!-- Theme C & D / HL Abstract Data Structures -->
-                    <details class="unit">
-                        <summary>
-                            <div class="unit-head">
-                                <span class="pill">HL Modules</span>
-                                <span class="unit-title">Abstract Data Structures &amp; Advanced Algorithms</span>
-                            </div>
-                            <span class="unit-meta">
-                                <span class="status-badge pending">HL Focus</span>
-                                <span class="chev" aria-hidden="true"></span>
-                            </span>
-                        </summary>
-                        <div class="unit-body">
-                            <p>
-                                Dynamic linked lists (singly, doubly, circular), stacks, queues, binary search trees, recursion, quicksort, mergesort, hash tables, and graph traversal algorithms (BFS &amp; DFS).
-                            </p>
-                            <div class="missing-box">
-                                Note: Additional HL lecture notes for Theme C &amp; D are pending faculty upload. In the meantime, use the B4 Abstract Data Types slides and the OOP &amp; Data Structures practice bank.
-                            </div>
-                            <div class="unit-foot">
-                                <a class="btn btn-primary btn-sm" href="pages/practice.html?topic=oop">
-                                    <span>Practice Data Structures &amp; OOP Questions</span>
-                                    <span class="arrow" aria-hidden="true">&rarr;</span>
-                                </a>
-                                <a class="btn btn-sm" href="pages/curriculum.html">
-                                    <span>Check Syllabus Roadmap</span>
-                                </a>
-                            </div>
-                        </div>
-                    </details>
+                    <ol class="feed-list" id="home-announcements-list">
+                        <li>
+                            <a class="an-row" href="pages/practice.html">
+                                <div class="an-meta-bar">
+                                    <span class="an-date">01 Dec</span>
+                                    <span class="cat-badge cat-notice">Mock Exam</span>
+                                </div>
+                                <span class="an-title">Paper 2 Mock Exam Seating Plan &amp; Formula Reference</span>
+                                <span class="an-snippet">Seating arrangement for the December 10 mock in the Main Hall is finalized. Review your desk assignment.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="an-row" href="pages/ia.html">
+                                <div class="an-meta-bar">
+                                    <span class="an-date">16 Nov</span>
+                                    <span class="cat-badge cat-notice">IA Checkpoint</span>
+                                </div>
+                                <span class="an-title">Internal Assessment Criterion B Peer Review Sessions</span>
+                                <span class="an-snippet">Paired peer reviews during laboratory sessions. Bring printed test plan matrices with boundary cases.</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="an-row" href="pages/curriculum.html">
+                                <div class="an-meta-bar">
+                                    <span class="an-date">02 Nov</span>
+                                    <span class="cat-badge cat-notice">Revision Clinic</span>
+                                </div>
+                                <span class="an-title">Term 1 Mid-Term Assessment Schedule &amp; Revision Clinics</span>
+                                <span class="an-snippet">Revision clinics for Paper 1 Unit Tests will be held during lunch hours in Room 214 for CPU bus architecture.</span>
+                            </a>
+                        </li>
+                    </ol>
                 </div>
             </div>
         </section>
 
-        <!-- Section 02: Featured Exam Practice Question -->
-        <section class="section" aria-labelledby="sec-featured-q">
-            <div class="section-label">
-                <span>02</span>Exam Practice
-            </div>
-            <div class="section-body">
-                <div class="section-head">
-                    <div>
-                        <span class="pill" style="margin-bottom:8px;">Featured Exam Question</span>
-                        <h2 class="h1" id="sec-featured-q">Practice an Exam Question</h2>
-                        <p class="sub">
-                            Test your recall before revealing the official IB marking points.
-                        </p>
-                    </div>
-                    <a class="btn btn-primary btn-sm" href="pages/practice.html">
-                        <span>View All 12 Questions</span>
-                        <span class="arrow" aria-hidden="true">&rarr;</span>
-                    </a>
+        <!-- Section 02: Exam Practice -->
+        <section class="home-section" id="sec-practice" aria-labelledby="head-practice">
+            <div class="home-section-head">
+                <div class="home-section-head-info">
+                    <h2 id="head-practice">Exam Practice</h2>
+                    <p>Authentic Paper 1 &amp; 2 exam questions with official examiner mark schemes.</p>
                 </div>
-
-                <article class="question-card">
-                    <div class="question-header">
-                        <div class="question-tags">
-                            <span class="pill">Theme A.1</span>
-                            <span class="status-badge ready">SL / HL</span>
-                            <span class="question-topic">Computer Architecture</span>
-                        </div>
-                        <span class="pill pill-accent">2 Marks</span>
-                    </div>
-                    <p class="question-prompt">
-                        State one architectural difference between a central processing unit (CPU) and a graphics processing unit (GPU).
-                    </p>
-                    <button type="button" class="btn-reveal" aria-expanded="false" onclick="toggleScheme(this)">
-                        <span>Show Mark Scheme</span>
-                        <span aria-hidden="true">&#9660;</span>
-                    </button>
-                    <div class="mark-scheme">
-                        <div class="mark-scheme-title">Official Mark Scheme [Max 2 Marks]</div>
-                        <ul>
-                            <li><strong>CPU:</strong> Optimized for sequential processing; contains relatively few powerful, low-latency execution cores. [1 mark]</li>
-                            <li><strong>GPU:</strong> Designed for parallel execution; contains hundreds or thousands of smaller cores executing operations concurrently. [1 mark]</li>
-                        </ul>
-                        <div class="mark-scheme-tip">
-                            Examiner Tip: Answer must address processor architecture (cores / parallel vs sequential execution), not just end-user application ("video games").
-                        </div>
-                    </div>
-                </article>
+                <a class="home-more" href="pages/practice.html">
+                    <span>Question Bank (22)</span>
+                    <span aria-hidden="true">&rarr;</span>
+                </a>
             </div>
-        </section>
 
-        <!-- Section 03: Quick Action Hubs -->
-        <section class="section" aria-labelledby="sec-hubs">
-            <div class="section-label">
-                <span>03</span>Study Hubs
-            </div>
-            <div class="section-body">
-                <div class="section-head">
-                    <div>
-                        <h2 class="h1" id="sec-hubs">Coursework, Case Study &amp; Archive</h2>
-                        <p class="sub">
-                            Direct access to the 30-mark Internal Assessment guide, Paper 3 HL Case Study, and the 131-file student resource vault.
-                        </p>
+            <div class="practice-grid">
+                <a class="practice-tool-row" href="pages/practice.html?tab=bank">
+                    <div class="tool-icon-wrap">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                     </div>
-                </div>
+                    <div class="tool-info">
+                        <div class="tool-name">Question Bank</div>
+                        <div class="tool-desc">22 curated past questions with keyword &amp; subtopic filters</div>
+                    </div>
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tool-arrow" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
 
-                <div class="hub-grid">
-                    <a class="hub-card" href="pages/ia.html">
-                        <div class="hub-top">
-                            <span class="pill">Coursework</span>
-                            <span class="status-badge ready">30 Marks</span>
-                        </div>
-                        <div>
-                            <h3>Internal Assessment Guide</h3>
-                            <p>Criteria A to E rubric, 7-video tutorial masterclass, assessed student work exemplar PDF, and Python Error Log.</p>
-                        </div>
-                        <div class="hub-foot">
-                            <span>Criteria A&ndash;E + Exemplar</span>
-                            <span>Open IA Guide &rarr;</span>
-                        </div>
-                    </a>
+                <a class="practice-tool-row" href="pages/practice.html?tab=builder">
+                    <div class="tool-icon-wrap">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="9"></line><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="11" y2="17"></line></svg>
+                    </div>
+                    <div class="tool-info">
+                        <div class="tool-name">Custom Test Builder</div>
+                        <div class="tool-desc">Assemble timed assessments with printable answer sheets</div>
+                    </div>
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tool-arrow" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
 
-                    <a class="hub-card" href="pages/case-study.html">
-                        <div class="hub-top">
-                            <span class="pill">Paper 3 &bull; HL</span>
-                            <span class="status-badge ready">Ready</span>
-                        </div>
-                        <div>
-                            <h3>Case Study: The Perfect Chatbot</h3>
-                            <p>Official booklet preview, RAKT Insurance scenario breakdown, NLP/NLU pipeline notes, and HL AI practice questions.</p>
-                        </div>
-                        <div class="hub-foot">
-                            <span>Dossier + AI Questions</span>
-                            <span>Read Case Study &rarr;</span>
-                        </div>
-                    </a>
+                <a class="practice-tool-row" href="pages/practice.html?tab=flashcards">
+                    <div class="tool-icon-wrap">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    </div>
+                    <div class="tool-info">
+                        <div class="tool-name">3D Key-Term Flashcards</div>
+                        <div class="tool-desc">Master definitions, command terms, and hardware architecture</div>
+                    </div>
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tool-arrow" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
 
-                    <a class="hub-card" href="pages/resources.html">
-                        <div class="hub-top">
-                            <span class="pill">Archive</span>
-                            <span class="status-badge ready">131 Files</span>
-                        </div>
-                        <div>
-                            <h3>Resources &amp; Worksheets</h3>
-                            <p>Searchable repository of all Theme A &amp; B slide decks, worksheets, subject guides, error handbook, and revision materials.</p>
-                        </div>
-                        <div class="hub-foot">
-                            <span>Instant Search &amp; Download</span>
-                            <span>Open Resource Vault &rarr;</span>
-                        </div>
-                    </a>
-
-                    <a class="hub-card" href="pages/practice.html">
-                        <div class="hub-top">
-                            <span class="pill">Revision</span>
-                            <span class="status-badge ready">12 Questions</span>
-                        </div>
-                        <div>
-                            <h3>Interactive Exam Question Bank</h3>
-                            <p>Filter SL and HL questions by topic (Architecture, Memory, Networks, Databases, Algorithms, OOP, AI) and self-assess with official mark schemes.</p>
-                        </div>
-                        <div class="hub-foot">
-                            <span>7 Syllabus Topics</span>
-                            <span>Start Practicing &rarr;</span>
-                        </div>
-                    </a>
-                </div>
+                <a class="practice-tool-row" href="pages/practice.html?tab=progress">
+                    <div class="tool-icon-wrap">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    </div>
+                    <div class="tool-info">
+                        <div class="tool-name">Progress &amp; Review Queue</div>
+                        <div class="tool-desc">Track topic mastery and revisit flagged test problems</div>
+                    </div>
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tool-arrow" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
             </div>
         </section>
 
-        <!-- Section 04: Department Notices & Status Checklist -->
-        <section class="section" aria-labelledby="sec-notices">
-            <div class="section-label">
-                <span>04</span>Department Status
+        <!-- Section 03: Core Syllabus Hub -->
+        <section class="home-section" id="sec-syllabus" aria-labelledby="head-syllabus">
+            <div class="home-section-head">
+                <div class="home-section-head-info">
+                    <h2 id="head-syllabus">Core Syllabus Hub</h2>
+                    <p>Two-year sequence covering all 8 syllabus topics and 114 statements.</p>
+                </div>
+                <a class="home-more" href="pages/curriculum.html">
+                    <span>All 114 Statements</span>
+                    <span aria-hidden="true">&rarr;</span>
+                </a>
             </div>
-            <div class="section-body">
-                <div class="section-head">
-                    <div>
-                        <h2 class="h1" id="sec-notices">Department Notices &amp; Content Status</h2>
-                        <p class="sub">
-                            Official announcements from the EIS Computer Science faculty alongside current repository readiness.
-                        </p>
+
+            <div class="syllabus-grid">
+                <!-- Theme A: Concepts of Computer Science -->
+                <div class="syllabus-panel">
+                    <div class="syllabus-panel-head">
+                        <div class="syl-badge-group">
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <span class="qotd-pill">Theme A</span>
+                                <span class="rv-tag">Paper 1 &middot; SL/HL</span>
+                            </div>
+                            <h3 class="syl-title" style="margin-top:4px;">Concepts of Computer Science</h3>
+                        </div>
+                        <span class="syl-meta">70 Files</span>
                     </div>
-                    <a class="btn btn-sm" href="pages/admin.html">
-                        <span>Faculty Portal</span>
-                        <span class="arrow" aria-hidden="true">&rarr;</span>
-                    </a>
+
+                    <ul class="syl-unit-list">
+                        <li>
+                            <a class="syl-unit-row" href="pages/curriculum.html#a1">
+                                <div class="syl-unit-left">
+                                    <span class="syl-unit-code">A1</span>
+                                    <span class="syl-unit-title">Computer Fundamentals</span>
+                                </div>
+                                <span class="syl-unit-hours">SL 11h &middot; HL 18h</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="syl-unit-row" href="pages/curriculum.html#a2">
+                                <div class="syl-unit-left">
+                                    <span class="syl-unit-code">A2</span>
+                                    <span class="syl-unit-title">Networks &amp; TCP/IP</span>
+                                </div>
+                                <span class="syl-unit-hours">SL 11h &middot; HL 18h</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="syl-unit-row" href="pages/curriculum.html#a3">
+                                <div class="syl-unit-left">
+                                    <span class="syl-unit-code">A3</span>
+                                    <span class="syl-unit-title">Databases &amp; SQL</span>
+                                </div>
+                                <span class="syl-unit-hours">SL 11h &middot; HL 18h</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="syl-unit-row" href="pages/curriculum.html#a4">
+                                <div class="syl-unit-left">
+                                    <span class="syl-unit-code">A4</span>
+                                    <span class="syl-unit-title">Machine Learning</span>
+                                </div>
+                                <span class="syl-unit-hours">SL 5h &middot; HL 18h</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="syllabus-panel-foot">
+                        <a href="pages/resources.html?topic=Theme A" class="syl-hub-link">Theme A Resources &rarr;</a>
+                        <a href="pages/practice.html?topic=a1" class="syl-hub-link">Practice &rarr;</a>
+                    </div>
                 </div>
 
-                <div class="notices" data-notices>
-                    <article class="notice">
-                        <div class="notice-meta">
-                            <span>Criterion B Checkpoint</span>
-                            <span>Current Term</span>
+                <!-- Theme B: Computational Thinking -->
+                <div class="syllabus-panel">
+                    <div class="syllabus-panel-head">
+                        <div class="syl-badge-group">
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <span class="qotd-pill">Theme B</span>
+                                <span class="rv-tag">Paper 2 &middot; SL/HL</span>
+                            </div>
+                            <h3 class="syl-title" style="margin-top:4px;">Computational Thinking &amp; OOP</h3>
                         </div>
-                        <h3>IA Criterion B Solution Overview &amp; Record of Tasks</h3>
-                        <p>Ensure your system architecture diagrams, UI wireframes, flowcharts, and test plan map directly to your Criterion A success criteria.</p>
-                    </article>
-                </div>
+                        <span class="syl-meta">48 Files</span>
+                    </div>
 
-                <!-- Website Content Status Checklist -->
-                <div style="margin-top: 32px;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-                        <span class="pill">Website Content Status &amp; Pending Items</span>
-                        <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-3);">Emirates International School &bull; 2026</span>
-                    </div>
-                    <div class="status-checklist">
-                        <div class="status-row">
-                            <span>Theme A Materials (70 Files)</span>
-                            <span class="status-badge ready">Ready</span>
-                        </div>
-                        <div class="status-row">
-                            <span>Theme B Materials (48 Files)</span>
-                            <span class="status-badge ready">Ready</span>
-                        </div>
-                        <div class="status-row">
-                            <span>Exam Practice Bank (12 Qs)</span>
-                            <span class="status-badge ready">Ready</span>
-                        </div>
-                        <div class="status-row">
-                            <span>IA Guide &amp; Student Exemplar</span>
-                            <span class="status-badge ready">Ready</span>
-                        </div>
-                        <div class="status-row">
-                            <span>Year 2 Sem 2 Unit Plan</span>
-                            <span class="status-badge missing">Missing From Folder</span>
-                        </div>
-                        <div class="status-row">
-                            <span>Past Exam Papers (2016&ndash;2025)</span>
-                            <span class="status-badge missing">Needs Teacher Upload</span>
-                        </div>
+                    <ul class="syl-unit-list">
+                        <li>
+                            <a class="syl-unit-row" href="pages/curriculum.html#b1">
+                                <div class="syl-unit-left">
+                                    <span class="syl-unit-code">B1</span>
+                                    <span class="syl-unit-title">Computational Thinking</span>
+                                </div>
+                                <span class="syl-unit-hours">SL 5h &middot; HL 5h</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="syl-unit-row" href="pages/curriculum.html#b2">
+                                <div class="syl-unit-left">
+                                    <span class="syl-unit-code">B2</span>
+                                    <span class="syl-unit-title">Programming Constructs</span>
+                                </div>
+                                <span class="syl-unit-hours">SL 40h &middot; HL 42h</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="syl-unit-row" href="pages/curriculum.html#b3">
+                                <div class="syl-unit-left">
+                                    <span class="syl-unit-code">B3</span>
+                                    <span class="syl-unit-title">Object-Oriented Programming</span>
+                                </div>
+                                <span class="syl-unit-hours">SL 7h &middot; HL 23h</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="syl-unit-row" href="pages/curriculum.html#b4">
+                                <div class="syl-unit-left">
+                                    <span class="syl-unit-code">B4</span>
+                                    <span class="syl-unit-title">Abstract Data Types (ADTs)</span>
+                                </div>
+                                <span class="syl-unit-hours"><span class="hl-only-badge">HL</span> 23h</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="syllabus-panel-foot">
+                        <a href="pages/resources.html?topic=Theme B" class="syl-hub-link">Theme B Resources &rarr;</a>
+                        <a href="pages/practice.html?topic=b2" class="syl-hub-link">Practice &rarr;</a>
                     </div>
                 </div>
+            </div>
+
+            <!-- Extra Assessment Milestones (IA & Paper 1 Section B Case Study) -->
+            <div class="syllabus-extra-grid">
+                <a class="syl-extra-card" href="pages/ia.html">
+                    <div class="syl-extra-left">
+                        <span class="syl-unit-code">IA</span>
+                        <div>
+                            <div class="syl-extra-title">Internal Assessment (Solution)</div>
+                            <div style="font-size:0.78rem; color:var(--text-3);">Criteria A&ndash;E Rubrics, Video Guides &amp; Student Exemplar</div>
+                        </div>
+                    </div>
+                    <span class="syl-extra-meta">30 Marks Coursework &rarr;</span>
+                </a>
+
+                <a class="syl-extra-card" href="pages/case-study.html">
+                    <div class="syl-extra-left">
+                        <span class="syl-unit-code">CS</span>
+                        <div>
+                            <div class="syl-extra-title">Paper 1 Section B Case Study</div>
+                            <div style="font-size:0.78rem; color:var(--text-3);">The Perfect Chatbot &middot; RAKT Insurance Architecture &amp; NLP</div>
+                        </div>
+                    </div>
+                    <span class="syl-extra-meta">Section B &rarr;</span>
+                </a>
             </div>
         </section>
     </main>
 
-    <footer class="site-footer">
+        <footer class="site-footer">
         <div class="wrap">
             <div class="footer-grid">
                 <div>
                     <div class="footer-title">Computer Science &bull; EIS</div>
                     <p>
-                        IB Diploma Programme Computer Science (SL &amp; HL) at Emirates International School. Speaking requests &amp; inquiries: <a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui (Siddiquin@eischools.ae)</a>.
+                        IB Diploma Programme Computer Science (SL &amp; HL) at Emirates International School Meadows. Department lead &amp; inquiries: <a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui (Siddiquin@eischools.ae)</a>.
                     </p>
                 </div>
                 <div>
                     <div class="footer-title">Navigation</div>
                     <ul>
-                        <li><a href="pages/courses.html">Courses Overview</a></li>
+                        <li><a href="pages/deadlines.html">Deadlines &amp; Announcements</a></li>
                         <li><a href="pages/practice.html">Practice Question Bank</a></li>
-                        <li><a href="pages/curriculum.html">Curriculum &amp; Pacing</a></li>
-                        <li><a href="pages/theme-a.html">Theme A: Systems &amp; Hardware</a></li>
-                        <li><a href="pages/theme-b.html">Theme B: Computational Thinking</a></li>
+                        <li><a href="pages/curriculum.html">Syllabus</a></li>
                         <li><a href="pages/ia.html">Internal Assessment (IA)</a></li>
-                        <li><a href="pages/case-study.html">Paper 3 Case Study</a></li>
+                        <li><a href="pages/case-study.html">Case Study (Paper 1 Section B)</a></li>
                         <li><a href="pages/resources.html">Resources &amp; Worksheets</a></li>
                     </ul>
                 </div>
                 <div>
-                    <div class="footer-title">Department Team &amp; Appearance</div>
+                    <div class="footer-title">Department Team &amp; Ambassadors</div>
                     <ul>
                         <li><a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui &mdash; Head of CS</a></li>
                         <li><a href="mailto:anishdongarkar@gmail.com">Anish Dongarkar &mdash; Tech Ambassador</a></li>
-                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaren &mdash; AI Ambassador</a></li>
+                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaran &mdash; AI Ambassador</a></li>
                         <li><a href="pages/about-us.html">About the Department</a></li>
                         <li><a href="pages/admin.html">Faculty Administration Portal</a></li>
                     </ul>
@@ -499,12 +480,12 @@
 
             <div class="footer-base">
                 <span>&copy; 2026 Computer Science Department &bull; Emirates International School (IB DP World School)</span>
-                <span>Theme A &bull; Theme B &bull; IA &bull; Paper 3</span>
+                <span>Theme A &bull; Theme B &bull; IA &bull; Paper 1 Section B</span>
             </div>
         </div>
     </footer>
 
     <script src="assets/js/site.js" defer></script>
-    <script type="module" src="assets/js/notices.js"></script>
+    <script src="assets/js/home-sync.js" defer></script>
 </body>
 </html>

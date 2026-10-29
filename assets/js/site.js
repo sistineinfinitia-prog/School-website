@@ -156,8 +156,10 @@
         var bar = header.querySelector('.wrap');
         if (!bar) return;
 
-        var base = document.documentElement.getAttribute('data-base') || './';
-        var currentPath = window.location.pathname.replace(/\/$/, '') || '/index.html';
+        var baseAttr = document.documentElement.getAttribute('data-base');
+        var isSubdir = window.location.pathname.replace(/\\/g, '/').toLowerCase().indexOf('/pages/') !== -1;
+        var base = (baseAttr !== null && baseAttr !== undefined) ? (baseAttr || './') : (isSubdir ? '../' : './');
+        var currentPath = window.location.pathname.replace(/\\/g, '/').replace(/\/$/, '') || '/index.html';
 
         // Ensure header-right container exists
         var rightGroup = bar.querySelector('.header-right');
@@ -226,6 +228,18 @@
                 b.setAttribute('aria-pressed', String(isActive));
             });
         }
+
+        // Global Website Color Scheme (Theme Mode) Controller
+        window.toggleScheme = function (explicitMode) {
+            if (explicitMode && (explicitMode === 'dark' || explicitMode === 'light' || explicitMode === 'system')) {
+                applyMode(explicitMode);
+                return explicitMode;
+            }
+            var current = root.getAttribute('data-mode') || 'dark';
+            var next = current === 'dark' ? 'light' : 'dark';
+            applyMode(next);
+            return next;
+        };
 
         window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function () {
             if (userMode === 'system') applyMode('system');
@@ -383,26 +397,27 @@
                 '<div class="popover-heading">Core Navigation</div>' +
                 '<a href="' + base + 'index.html" class="popover-link" data-page="index.html"><span>Homepage</span></a>' +
                 '<a href="' + base + 'pages/practice.html" class="popover-link" data-page="practice.html"><span>Practice Bank</span><span class="popover-tag">12 Qs</span></a>' +
-                '<a href="' + base + 'pages/courses.html" class="popover-link" data-page="courses.html"><span>Courses Overview</span></a>' +
-                '<a href="' + base + 'pages/resources.html" class="popover-link" data-page="resources.html"><span>Resources Vault</span><span class="popover-tag">151 Files</span></a>' +
+                '<a href="' + base + 'pages/deadlines.html" class="popover-link" data-page="deadlines.html"><span>Deadlines & Announcements</span><span class="popover-tag">Calendar</span></a>' +
+                '<a href="' + base + 'pages/curriculum.html" class="popover-link" data-page="curriculum.html"><span>Syllabus</span></a>' +
+                '<a href="' + base + 'pages/resources.html" class="popover-link" data-page="resources.html"><span>Resources</span></a>' +
             '</div>' +
             '<div class="popover-group">' +
-                '<div class="popover-heading">Syllabus & Specializations</div>' +
-                '<a href="' + base + 'pages/curriculum.html" class="popover-link" data-page="curriculum.html"><span>Curriculum & Pacing</span></a>' +
-                '<a href="' + base + 'pages/theme-a.html" class="popover-link" data-page="theme-a.html"><span>Theme A: Systems & Hardware</span></a>' +
-                '<a href="' + base + 'pages/theme-b.html" class="popover-link" data-page="theme-b.html"><span>Theme B: Thinking & Python</span></a>' +
+                '<div class="popover-heading">Info</div>' +
                 '<a href="' + base + 'pages/ia.html" class="popover-link" data-page="ia.html"><span>Internal Assessment (IA)</span><span class="popover-tag">30 Marks</span></a>' +
-                '<a href="' + base + 'pages/case-study.html" class="popover-link" data-page="case-study.html"><span>Paper 3 Case Study</span><span class="popover-tag">HL</span></a>' +
-                '<a href="' + base + 'pages/about-us.html" class="popover-link" data-page="about-us.html"><span>About the Faculty</span></a>' +
+                '<a href="' + base + 'pages/case-study.html" class="popover-link" data-page="case-study.html"><span>Case Study (Paper 1)</span><span class="popover-tag">2027</span></a>' +
             '</div>' +
             '<div class="popover-group">' +
-                '<div class="popover-heading">Administration</div>' +
-                '<a href="' + base + 'pages/admin.html" class="popover-link" data-page="admin.html"><span>Faculty Portal</span></a>' +
+                '<div class="popover-heading">More</div>' +
+                '<a href="' + base + 'pages/about-us.html" class="popover-link" data-page="about-us.html"><span>About Us</span></a>' +
+                '<a href="' + base + 'pages/admin.html" class="popover-link" data-page="admin.html"><span>Admin</span></a>' +
             '</div>';
 
         menuPopover.querySelectorAll('.popover-link').forEach(function (link) {
             var pageTarget = link.getAttribute('data-page');
-            if (currentPath.endsWith(pageTarget) || (pageTarget === 'index.html' && (currentPath.endsWith('/') || currentPath.endsWith('/index.html')))) {
+            if (
+                currentPath.endsWith(pageTarget) ||
+                (pageTarget === 'index.html' && (currentPath.endsWith('/') || currentPath.endsWith('/index.html')))
+            ) {
                 link.setAttribute('aria-current', 'page');
             }
         });
@@ -663,17 +678,60 @@
     }
 
     /* ------------------------------------------------------------------
-       3. Mark Scheme Reveal Toggle (Practice Questions)
+       3. Academic Mark Scheme Reveal Helper (Fallback)
        ------------------------------------------------------------------ */
-    window.toggleScheme = function (btn) {
+    window.toggleMarkScheme = function (btn) {
         if (!btn) return;
-        var scheme = btn.nextElementSibling;
+        var scheme = btn.nextElementSibling || (btn.closest && (btn.closest('.qotd-card') || btn.parentElement).querySelector('.mark-scheme-box'));
         if (!scheme) return;
         var isOpen = scheme.classList.toggle('open');
         btn.setAttribute('aria-expanded', String(isOpen));
         btn.innerHTML = isOpen
             ? '<span>Hide Mark Scheme</span><span aria-hidden="true">&#9650;</span>'
             : '<span>Show Mark Scheme</span><span aria-hidden="true">&#9660;</span>';
+    };
+
+    /* ------------------------------------------------------------------
+       4. Universal Tab Controller (Revision Village / Zen Atelier)
+       ------------------------------------------------------------------ */
+    window.initTabs = function (tabSelector, paneSelector, options) {
+        var tabs = document.querySelectorAll(tabSelector || '.rv-tab-btn');
+        var panes = document.querySelectorAll(paneSelector || '.tab-pane');
+        var prefix = (options && options.prefix) || 'pane-';
+        if (!tabs.length || !panes.length) return null;
+
+        function switchTab(tabId) {
+            tabs.forEach(function (btn) {
+                var isTarget = btn.getAttribute('data-tab') === tabId;
+                btn.classList.toggle('active', isTarget);
+                btn.classList.toggle('is-active', isTarget);
+                btn.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+            });
+
+            panes.forEach(function (pane) {
+                var isTarget = pane.id === prefix + tabId;
+                pane.classList.toggle('active', isTarget);
+            });
+        }
+
+        tabs.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var tabId = this.getAttribute('data-tab');
+                if (tabId) {
+                    switchTab(tabId);
+                    if (window.history && window.history.replaceState) {
+                        window.history.replaceState(null, '', '#' + tabId);
+                    }
+                }
+            });
+        });
+
+        var hash = window.location.hash.replace('#', '');
+        if (hash && document.getElementById(prefix + hash)) {
+            switchTab(hash);
+        }
+
+        return { switchTab: switchTab };
     };
 
     function init() {

@@ -1,0 +1,166 @@
+[
+  {
+    "id": "dl-00",
+    "title": "Paper 1 Diagnostic Assessment: Logic Gates & Truth Tables",
+    "type": "exam",
+    "typeName": "Diagnostic Exam",
+    "cohort": "Year 1 (SL/HL)",
+    "date": "2026-10-15",
+    "time": "09:15 GST",
+    "weight": "Diagnostic Baseline",
+    "location": "Room 214 • Closed Book",
+    "description": "Baseline evaluation testing Boolean logic simplification, combinational circuit schematics, and truth table construction.",
+    "topics": [
+      { "code": "A.1", "name": "Logic Gates & Truth Tables (AND, OR, NOT, XOR, NAND)", "link": "resources.html?topic=Theme A" },
+      { "code": "A.1", "name": "Boolean Algebra & Circuit Simplification", "link": "resources.html?topic=Theme A" }
+    ],
+    "deliverables": "Individual assessment paper in Class Lab 2. Closed book.",
+    "resources": [
+      { "title": "Theme A Notes", "url": "resources.html?topic=Theme A" },
+      { "title": "Theory Questions Worksheet (DOCX)", "url": "../resources/Theme A/Theory Questions -B1,B2.docx" }
+    ]
+  },
+  {
+    "id": "dl-01",
+    "title": "Paper 1 Unit Test: Computer Fundamentals & Networks",
+    "type": "exam",
+    "typeName": "Unit Test",
+    "cohort": "Year 1 (SL/HL)",
+    "date": "2026-11-05",
+    "time": "08:30 GST",
+    "weight": "15% Term Grade",
+    "location": "Room 214 • Closed Book",
+    "description": "Formal written exam assessing internal computer architecture, instruction pipelining, Boolean logic circuit design, and packet network models.",
+    "topics": [
+      { "code": "A.1", "name": "CPU Registers (PC, MAR, MDR, CIR, ACC)", "link": "resources.html?topic=Theme A" },
+      { "code": "A.1", "name": "Fetch-Decode-Execute Cycle & Bus Architecture", "link": "resources.html?topic=Theme A" },
+      { "code": "A.1", "name": "Logic Gates & Truth Tables (AND, OR, NOT, XOR, NAND)", "link": "resources.html?topic=Theme A" },
+      { "code": "A.1", "name": "Primary vs Secondary Memory (RAM, ROM, Virtual Memory)", "link": "resources.html?topic=Theme A" },
+      { "code": "A.2", "name": "Packet Switching vs Circuit Switching", "link": "resources.html?topic=Theme A" },
+      { "code": "A.2", "name": "OSI 7-Layer vs TCP/IP Protocol Stack", "link": "resources.html?topic=Theme A" }
+    ],
+    "deliverables": "Bring black pens, pencils, and ruler. No calculators allowed.",
+    "resources": [
+      { "title": "Theme A Notes", "url": "resources.html?topic=Theme A" },
+      { "title": "Architecture Practice Questions", "url": "practice.html?topic=architecture" },
+      { "title": "Theory Questions Worksheet (DOCX)", "url": "../resources/Theme A/Theory Questions -B1,B2.docx" }
+    ]
+  },
+  {
+    "id": "dl-02",
+    "title": "Internal Assessment: Criterion B Architecture & Test Plan",
+    "type": "ia",
+    "typeName": "IA Milestone",
+    "cohort": "Year 2 (SL/HL)",
+    "date": "2026-11-14",
+    "time": "23:59 GST",
+    "weight": "6 Marks (Coursework)",
+    "location": "Submit to ManageBac & Google Classroom",
+    "description": "Submit complete system flowcharts, algorithmic pseudocode, UML class diagram, data persistence structure, and a comprehensive test plan table traceable to Criterion A.",
+    "topics": [
+      { "code": "Crit B", "name": "System Architecture & High-Level Flowchart", "link": "ia.html" },
+      { "code": "Crit B", "name": "UML Class Diagram & Modular Decomposition", "link": "ia.html" },
+      { "code": "Crit B", "name": "Test Plan Table (Normal, Boundary, Erroneous Cases)", "link": "ia.html" },
+      { "code": "Crit B", "name": "Chronological Record of Tasks (Table 1)", "link": "ia.html" }
+    ],
+    "deliverables": "PDF submission containing Record of Tasks, design diagrams, and test table with measurable pass/fail columns.",
+    "resources": [
+      { "title": "30-Mark IA Rubric Guide", "url": "ia.html" },
+      { "title": "Assessed Student Work Exemplar (PDF)", "url": "../resources/IA/Computer Science Assessed Student Work 2027 (1).pdf" },
+      { "title": "Python Error Log (PDF)", "url": "../resources/Error log - Python Programming.pdf" }
+    ]
+  },
+  {
+    "id": "dl-03",
+    "title": "Python OOP Mini-Project: Interactive Simulation Deck",
+    "type": "project",
+    "typeName": "Other",
+    "cohort": "Year 1 (SL/HL)",
+    "date": "2026-11-22",
+    "time": "16:00 GST",
+    "weight": "10% Practical Grade",
+    "location": "GitHub Repository + ManageBac Link",
+    "description": "Develop a modular Python application featuring class hierarchies, data encapsulation, file persistence, and interactive user command handling.",
+    "topics": [
+      { "code": "B.2", "name": "Subroutines, Modular Design & File Handling", "link": "resources.html?topic=Theme B" },
+      { "code": "B.3", "name": "Classes, Constructors (__init__), and Encapsulation", "link": "resources.html?topic=Theme B" },
+      { "code": "B.3", "name": "Inheritance Hierarchies & Method Overriding", "link": "resources.html?topic=Theme B" },
+      { "code": "B.3", "name": "Defensive Programming & Input Validation", "link": "resources.html?topic=Theme B" }
+    ],
+    "deliverables": "Clean Python (.py) source code with docstrings, README.md setup instructions, and sample execution log.",
+    "resources": [
+      { "title": "Theme B Slides & Worksheets", "url": "resources.html?topic=Theme B" },
+      { "title": "OOP Practice Questions", "url": "practice.html?topic=oop" },
+      { "title": "Python 2026 Manual (DOCX)", "url": "../resources/Theme B/IB Python 2026.docx" }
+    ]
+  },
+  {
+    "id": "dl-04",
+    "title": "HL Case Study Seminar: The Perfect Chatbot Pipeline Review",
+    "type": "announcement",
+    "typeName": "Announcement",
+    "cohort": "Year 2 (HL Only)",
+    "date": "2026-11-28",
+    "time": "14:15 GST",
+    "weight": "Paper 1 Section B Preparation",
+    "location": "CS Innovation Lab 3",
+    "description": "Collaborative technical dissection of the RAKT Insurance conversational AI case study booklet. Focus on transformer latency, RAG pipelines, and token embeddings.",
+    "topics": [
+      { "code": "CS.1", "name": "Natural Language Processing (NLP) & Tokenization", "link": "case-study.html" },
+      { "code": "CS.2", "name": "Retrieval-Augmented Generation (RAG) Architecture", "link": "case-study.html" },
+      { "code": "CS.3", "name": "Vector Embeddings & Semantic Search Similarity", "link": "case-study.html" },
+      { "code": "CS.4", "name": "AI Ethics: Bias, Hallucinations, and Data Privacy", "link": "case-study.html" }
+    ],
+    "deliverables": "Annotated case study booklet with 3 prepared discussion points on RAKT customer support transition.",
+    "resources": [
+      { "title": "Case Study Dossier Hub", "url": "case-study.html" },
+      { "title": "AI Practice Questions Bank", "url": "practice.html?topic=ai" }
+    ]
+  },
+  {
+    "id": "dl-05",
+    "title": "Paper 2 Mock Examination: Computational Thinking & Algorithms",
+    "type": "exam",
+    "typeName": "Mock Exam",
+    "cohort": "Year 2 (SL/HL)",
+    "date": "2026-12-10",
+    "time": "09:00 GST",
+    "weight": "Term 1 Final Mock",
+    "location": "Main Examination Hall",
+    "description": "Comprehensive Paper 2 simulation covering algorithm tracing, pseudocode formulation, data structures, and Big-O efficiency analysis.",
+    "topics": [
+      { "code": "B.1", "name": "Pseudocode Conventions & Algorithm Trace Tables", "link": "resources.html?topic=Theme B" },
+      { "code": "B.2", "name": "Searching (Linear/Binary) & Sorting (Bubble/Selection)", "link": "resources.html?topic=Theme B" },
+      { "code": "B.2", "name": "Big-O Time & Space Complexity Analysis", "link": "resources.html?topic=Theme B" },
+      { "code": "B.4", "name": "Abstract Data Types: Stacks, Queues & Linked Lists (HL)", "link": "resources.html?topic=Theme B" },
+      { "code": "B.4", "name": "Binary Search Trees & Recursion (HL)", "link": "resources.html?topic=Theme B" }
+    ],
+    "deliverables": "Official IB DP Paper 2 format (SL: 1h 30m / HL: 2h 10m).",
+    "resources": [
+      { "title": "Algorithms Practice Bank", "url": "practice.html?topic=algorithms" },
+      { "title": "OOP & ADT Practice Questions", "url": "practice.html?topic=oop" }
+    ]
+  },
+  {
+    "id": "dl-06",
+    "title": "Internal Assessment: Criterion C First Working Prototype",
+    "type": "ia",
+    "typeName": "IA Milestone",
+    "cohort": "Year 2 (SL/HL)",
+    "date": "2026-12-18",
+    "time": "18:00 GST",
+    "weight": "Criterion C Progress Check",
+    "location": "One-on-One Code Review with Ms. Neha",
+    "description": "Demonstrate a functioning core prototype exhibiting complex algorithmic techniques (OOP classes, dynamic structures, or database queries) matching Criterion B specifications.",
+    "topics": [
+      { "code": "Crit C", "name": "Algorithmic Complexity & Modular Python Code", "link": "ia.html" },
+      { "code": "Crit C", "name": "Data Storage Persistence (SQLite or JSON files)", "link": "ia.html" },
+      { "code": "Crit C", "name": "Input Validation & Robust Exception Handling", "link": "ia.html" }
+    ],
+    "deliverables": "Live demo during class appointment and push working prototype branch to GitHub.",
+    "resources": [
+      { "title": "IA Guide & Exemplars", "url": "ia.html" },
+      { "title": "Error Log Reference", "url": "../resources/Error log - Python Programming.pdf" }
+    ]
+  }
+]

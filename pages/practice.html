@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Practice Questions | IB Computer Science &mdash; Emirates International School</title>
-    <meta name="description" content="Interactive IB DP Computer Science exam question bank for SL and HL students. Filter by topic and reveal official mark schemes.">
+    <meta name="description" content="Interactive IB DP Computer Science learning suite: Question Bank, Test Builder, 3D Flashcards, Progress Analytics, and Review for SL &amp; HL.">
     <script>
         (function () {
             try {
@@ -30,8 +30,9 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/site.css">
+    <link rel="stylesheet" href="../assets/css/practice.css">
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -54,9 +55,10 @@
             <div class="header-right">
                 <nav class="site-nav" id="site-nav" aria-label="Primary">
                     <ul class="nav-list">
-                        <li><a href="../index.html">Homepage</a></li>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="curriculum.html">Syllabus</a></li>
                         <li><a href="practice.html" aria-current="page">Practice</a></li>
-                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="deadlines.html">Deadlines</a></li>
                         <li><a href="resources.html">Resources</a></li>
                     </ul>
                 </nav>
@@ -67,436 +69,815 @@
     </header>
 
     <main id="main" class="wrap wrap-wide">
-        <section class="hero">
-            <div class="eyebrow">
-                <span>Exam Question Bank &bull; SL &amp; HL</span>
+        <!-- Revision Village Inspired Header -->
+        <header class="rv-header-wrap">
+            <div class="rv-breadcrumbs">
+                <a href="../index.html">Home</a>
+                <span class="sep">/</span>
+                <span>Practice</span>
             </div>
-            <h1 class="display">
-                Exam Question Practice
-            </h1>
-            <p class="lead">
-                Filter questions by syllabus topic. Write or formulate your answer first, then reveal the official IB marking scheme to self-assess.
-            </p>
+            <div class="rv-header-main">
+                <h1 class="rv-subject-title">Practice with Questions, Flashcards &amp; More</h1>
+
+                <div class="rv-header-actions">
+                    <div class="rv-level-switch" role="toolbar" aria-label="Select IB Level">
+                        <button type="button" class="level-toggle-btn active" data-level="all">All</button>
+                        <button type="button" class="level-toggle-btn" data-level="hl">HL</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5 Primary Tabs (Clean SVGs) -->
+            <nav class="rv-tabs-nav" role="tablist" aria-label="Practice navigation tabs">
+                <button type="button" class="rv-tab-btn active" data-tab="bank" role="tab" aria-selected="true" id="tab-bank">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path><path d="M6 2v20"></path></svg>
+                    <span>Question Bank</span>
+                </button>
+                <button type="button" class="rv-tab-btn" data-tab="builder" role="tab" aria-selected="false" id="tab-builder">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+                    <span>Build a Test</span>
+                </button>
+                <button type="button" class="rv-tab-btn" data-tab="flashcards" role="tab" aria-selected="false" id="tab-flashcards">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="16" height="13" rx="2"></rect><path d="M6 3h12a2 2 0 0 1 2 2v12"></path></svg>
+                    <span>Flashcards</span>
+                </button>
+                <button type="button" class="rv-tab-btn" data-tab="progress" role="tab" aria-selected="false" id="tab-progress">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    <span>Progress</span>
+                </button>
+                <button type="button" class="rv-tab-btn" data-tab="review" role="tab" aria-selected="false" id="tab-review">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><polyline points="12 7 12 12 15 15"></polyline></svg>
+                    <span>Review</span>
+                    <span class="rv-tab-badge" id="review-tab-badge" style="display:none;">0</span>
+                </button>
+            </nav>
+        </header>
+
+        <!-- ==================================================================
+             TAB 1: QUESTION BANK
+             ================================================================== -->
+        <section id="panel-bank" class="rv-tab-panel active" role="tabpanel" aria-labelledby="tab-bank">
+            <!-- Topics & Subtopics Pill Selector -->
+            <div class="rv-topics-box">
+                <div class="rv-topics-header">
+                    <div class="rv-topics-label">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path></svg>
+                        <span>TOPICS</span>
+                        <span id="topics-count-badge" style="font-weight: normal; text-transform: none; color: var(--text-muted);"></span>
+                    </div>
+                    <button type="button" class="rv-topics-reset-btn" id="reset-topics-btn">Reset</button>
+                </div>
+
+                <div class="topic-pills-grid" id="topics-pill-container">
+                    <!-- Injected by practice-bank.js -->
+                </div>
+
+                <div class="subtopics-wrapper" id="subtopics-wrapper" style="display:none;">
+                    <div class="subtopics-label">SUBTOPICS</div>
+                    <div class="subtopics-pills-grid" id="subtopics-pill-container">
+                        <!-- Subtopic pills injected dynamically -->
+                    </div>
+                </div>
+
+                <div class="match-mode-row">
+                    <div class="match-mode-toggle" role="toolbar" aria-label="Topic Matching Mode">
+                        <button type="button" class="match-mode-btn active" data-mode="any">Include any selected topic</button>
+                        <button type="button" class="match-mode-btn" data-mode="within">Stay within selected topics</button>
+                    </div>
+
+                    <div class="rv-topics-hint">
+                        Click a topic to include it, click again to <span class="pill-hint-exclude"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg> exclude</span> it, and once more to clear.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collapsible Filters Drawer -->
+            <div class="rv-filters-card">
+                <button type="button" class="rv-filters-toggle-bar" id="toggle-filters-drawer" aria-expanded="false">
+                    <span style="display:inline-flex; align-items:center; gap:8px;">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+                        <span>Filters</span>
+                        <span class="rv-filter-count-badge" id="active-filters-count" style="display:none;">0</span>
+                    </span>
+                    <span aria-hidden="true">&#9660;</span>
+                </button>
+
+                <div class="rv-filters-drawer" id="filters-drawer">
+                    <div class="drawer-grid">
+                        <!-- Papers -->
+                        <div class="drawer-col">
+                            <span class="drawer-col-title">Show Papers</span>
+                            <div class="drawer-cb-group">
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-paper" value="1"> Paper 1 (Concepts &amp; Case Study)</label>
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-paper" value="2"> Paper 2 (Computational Thinking &amp; Python)</label>
+                            </div>
+                        </div>
+
+                        <!-- Difficulties -->
+                        <div class="drawer-col">
+                            <span class="drawer-col-title">Difficulty</span>
+                            <div class="drawer-cb-group">
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-difficulty" value="Easy"><span class="diff-dot" style="background:#10b981;"></span> Easy</label>
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-difficulty" value="Medium"><span class="diff-dot" style="background:#f59e0b;"></span> Medium</label>
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-difficulty" value="Hard"><span class="diff-dot" style="background:#ef4444;"></span> Hard</label>
+                            </div>
+                        </div>
+
+                        <!-- Format -->
+                        <div class="drawer-col">
+                            <span class="drawer-col-title">Question Format</span>
+                            <div class="drawer-cb-group">
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-format" value="Section A"> Section A (Short questions)</label>
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-format" value="Section B"> Section B (Long questions)</label>
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-format" value="Coding/Query"> Python &amp; SQL Implementation</label>
+                            </div>
+                        </div>
+
+                        <!-- Skills -->
+                        <div class="drawer-col">
+                            <span class="drawer-col-title">Cognitive Skill</span>
+                            <div class="drawer-cb-group">
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-skill" value="Recall/Concept"> Recall &amp; Concepts</label>
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-skill" value="Tracing/Dry Run"> Algorithm Tracing</label>
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-skill" value="Code Implementation"> Coding &amp; Queries</label>
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-skill" value="Evaluation/Discussion"> Evaluation &amp; Discussion</label>
+                            </div>
+                        </div>
+
+                        <!-- Status -->
+                        <div class="drawer-col">
+                            <span class="drawer-col-title">Show Status</span>
+                            <div class="drawer-status-segment" role="toolbar" aria-label="Status Filter">
+                                <button type="button" class="status-segment-btn active" data-status="all">All</button>
+                                <button type="button" class="status-segment-btn" data-status="correct">Right</button>
+                                <button type="button" class="status-segment-btn" data-status="wrong">Wrong</button>
+                                <button type="button" class="status-segment-btn" data-status="not_done">Not done</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="drawer-reset-link" id="reset-drawer-filters">Reset all filters</button>
+                </div>
+            </div>
+
+            <!-- Progress Bar & Search -->
+            <div class="rv-progress-strip">
+                <div class="rv-completed-counter">
+                    <span id="completed-count-text">0 / 0 completed</span>
+                    <div class="rv-progress-track">
+                        <div class="rv-progress-fill" id="completed-progress-fill" style="width: 0%;"></div>
+                    </div>
+                </div>
+
+                <div class="rv-mode-switch" role="toolbar" aria-label="Practice Mode">
+                    <button type="button" class="mode-toggle-btn active" data-mode="practice">Practice Mode</button>
+                    <button type="button" class="mode-toggle-btn" data-mode="browse">Browse Mode</button>
+                </div>
+            </div>
+
+            <div class="rv-search-bar-wrap">
+                <label class="visually-hidden" for="question-search">Search question keywords</label>
+                <input type="search" id="question-search" class="rv-search-input" placeholder="Search questions by keyword (e.g. CPU, GPU, 3NF, SQL, Binary Search, Bubble Sort, OOP, Overfitting)...">
+            </div>
+
+            <!-- Questions Container (Strictly 10 items initially) -->
+            <div id="questions-container"></div>
+
+            <!-- Pagination Load More -->
+            <div class="rv-pagination-footer" id="load-more-wrap" style="display:none;">
+                <span id="results-count" style="font-size: 0.85rem; color: var(--text-muted);">Showing 10 questions</span>
+                <button type="button" class="btn-load-more" id="load-more-btn">Load 10 more questions</button>
+            </div>
         </section>
 
-        <section class="section" aria-labelledby="sec-questions">
-            <div class="section-label">
-                <span>01</span>Question Bank
+        <!-- ==================================================================
+             TAB 2: BUILD A TEST
+             ================================================================== -->
+        <section id="panel-builder" class="rv-tab-panel" role="tabpanel" aria-labelledby="tab-builder">
+            <div class="tb-two-col-layout">
+                <!-- Left Wizard Stepper & Panels -->
+                <div class="tb-left-col">
+                    <div class="tb-stepper-header" role="tablist">
+                        <div class="tb-stepper-item active" data-step="1">
+                            <span class="tb-step-num">1</span>
+                            <span>Level</span>
+                        </div>
+                        <div class="tb-stepper-item" data-step="2">
+                            <span class="tb-step-num">2</span>
+                            <span>Topics</span>
+                        </div>
+                        <div class="tb-stepper-item" data-step="3">
+                            <span class="tb-step-num">3</span>
+                            <span>Filters</span>
+                        </div>
+                        <div class="tb-stepper-item" data-step="4">
+                            <span class="tb-step-num">4</span>
+                            <span>Settings</span>
+                        </div>
+                    </div>
+
+                    <div class="tb-wizard-card">
+                        <!-- Step 1: Level -->
+                        <div class="tb-step-panel" data-step="1">
+                            <h2 class="tb-step-title">1. Choose Candidate Level</h2>
+                            <p class="tb-step-desc">Select Standard Level (SL) or Higher Level (HL) to calibrate syllabus difficulty.</p>
+                            <div class="drawer-status-segment" style="margin-bottom: 20px;">
+                                <button type="button" class="status-segment-btn tb-level-pill active" data-level="all">All Levels (SL &amp; HL)</button>
+                                <button type="button" class="status-segment-btn tb-level-pill" data-level="sl">Standard Level (SL Only)</button>
+                                <button type="button" class="status-segment-btn tb-level-pill" data-level="hl">Higher Level (HL Only)</button>
+                            </div>
+                            <div class="tb-actions-row">
+                                <div></div>
+                                <button type="button" class="btn btn-sm btn-primary tb-btn-next">Next: Choose Topics</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Topics -->
+                        <div class="tb-step-panel" data-step="2" style="display:none;">
+                            <h2 class="tb-step-title">2. Choose Topics</h2>
+                            <p class="tb-step-desc">Pick syllabus units to include in the generated assessment.</p>
+                            <div style="display:flex; gap:10px; margin-bottom:12px;">
+                                <button type="button" class="btn btn-sm" id="tb-topics-select-all">Select All Units</button>
+                                <button type="button" class="btn btn-sm" id="tb-topics-clear-all">Clear All</button>
+                            </div>
+                            <div class="tb-topics-grid" id="tb-topics-picker"></div>
+                            <div class="tb-actions-row">
+                                <button type="button" class="btn btn-sm tb-btn-prev">Back</button>
+                                <button type="button" class="btn btn-sm btn-primary tb-btn-next">Next: Filters</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Filters -->
+                        <div class="tb-step-panel" data-step="3" style="display:none;">
+                            <h2 class="tb-step-title">3. Question Components &amp; Difficulty</h2>
+                            <p class="tb-step-desc">Filter by IB Examination papers and challenge rating.</p>
+                            <div class="drawer-grid" style="margin-bottom: 20px;">
+                                <div class="drawer-col">
+                                    <span class="drawer-col-title">Papers</span>
+                                    <label class="drawer-cb-label"><input type="checkbox" name="tb-paper" value="1"> Paper 1 (Concepts &amp; Case Study)</label>
+                                    <label class="drawer-cb-label"><input type="checkbox" name="tb-paper" value="2"> Paper 2 (Computational Thinking &amp; Python)</label>
+                                </div>
+                                <div class="drawer-col">
+                                    <span class="drawer-col-title">Difficulty</span>
+                                    <label class="drawer-cb-label"><input type="checkbox" name="tb-diff" value="Easy"> Easy</label>
+                                    <label class="drawer-cb-label"><input type="checkbox" name="tb-diff" value="Medium"> Medium</label>
+                                    <label class="drawer-cb-label"><input type="checkbox" name="tb-diff" value="Hard"> Hard</label>
+                                </div>
+                            </div>
+                            <div class="tb-actions-row">
+                                <button type="button" class="btn btn-sm tb-btn-prev">Back</button>
+                                <button type="button" class="btn btn-sm btn-primary tb-btn-next">Next: Test Settings</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Settings -->
+                        <div class="tb-step-panel" data-step="4" style="display:none;">
+                            <h2 class="tb-step-title">4. Test Settings &amp; Configuration</h2>
+                            <p class="tb-step-desc">Configure assessment volume, title, and exam constraints.</p>
+                            <div class="tb-settings-grid" style="display:grid; gap:18px; margin-bottom:20px;">
+                                <!-- Assessment Title Config -->
+                                <div>
+                                    <label class="drawer-col-title" for="tb-test-title">Assessment Title</label>
+                                    <input type="text" id="tb-test-title" class="input" value="Custom IB Computer Science Practice Exam" placeholder="e.g. Paper 1 Revision Mock, Unit A1 & A2 Quiz...">
+                                </div>
+
+                                <!-- Question Count & Custom Chooser -->
+                                <div>
+                                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                                        <label class="drawer-col-title" style="margin:0;">Question Count</label>
+                                        <span id="tb-count-estimate-badge" class="tb-estimate-pill">~45 marks &bull; 60 mins</span>
+                                    </div>
+
+                                    <div class="tb-count-presets" role="toolbar" aria-label="Question Count Presets">
+                                        <button type="button" class="tb-count-btn" data-count="5">5</button>
+                                        <button type="button" class="tb-count-btn active" data-count="10">10</button>
+                                        <button type="button" class="tb-count-btn" data-count="15">15</button>
+                                        <button type="button" class="tb-count-btn" data-count="20">20</button>
+                                        <button type="button" class="tb-count-btn" data-count="all">All</button>
+                                        <button type="button" class="tb-count-btn" data-count="custom">Custom...</button>
+                                    </div>
+
+                                    <!-- Hidden Select for form parity -->
+                                    <select id="tb-question-count" class="visually-hidden">
+                                        <option value="5">5 Questions</option>
+                                        <option value="10" selected>10 Questions</option>
+                                        <option value="15">15 Questions</option>
+                                        <option value="20">20 Questions</option>
+                                        <option value="all">All Questions</option>
+                                        <option value="custom">Custom</option>
+                                    </select>
+
+                                    <!-- Custom Count Chooser Drawer -->
+                                    <div id="tb-custom-count-wrap" class="tb-custom-count-box" style="display:none; margin-top:12px;">
+                                        <div style="display:flex; align-items:center; gap:12px;">
+                                            <input type="range" id="tb-custom-count-slider" min="1" max="22" value="10" class="tb-range-slider" style="flex:1;">
+                                            <div style="display:inline-flex; align-items:center; gap:6px;">
+                                                <input type="number" id="tb-custom-count-input" min="1" max="50" value="10" class="input" style="width:75px; text-align:center; padding:6px;">
+                                                <span style="font-size:0.85rem; color:var(--text-muted);">questions</span>
+                                            </div>
+                                        </div>
+                                        <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">
+                                            Choose any volume from 1 up to all available matching syllabus questions.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Timer & Shuffling Config Options -->
+                                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:12px;">
+                                    <label class="drawer-cb-label" style="align-items:flex-start;">
+                                        <input type="checkbox" id="tb-timed-toggle" checked style="margin-top:3px;">
+                                        <span>
+                                            <strong>Enable Countdown Timer</strong><br>
+                                            <span style="font-size:0.75rem; color:var(--text-muted);">Standard IB pace (1.25 min / mark)</span>
+                                        </span>
+                                    </label>
+                                    <label class="drawer-cb-label" style="align-items:flex-start;">
+                                        <input type="checkbox" id="tb-shuffle-toggle" checked style="margin-top:3px;">
+                                        <span>
+                                            <strong>Randomize Question Order</strong><br>
+                                            <span style="font-size:0.75rem; color:var(--text-muted);">Shuffle sequence for exam simulation</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn-generate-test" id="tb-btn-generate">
+                                <span style="display:inline-flex; align-items:center; gap:8px;">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                                    <span>Generate Custom Test</span>
+                                </span>
+                            </button>
+                            <div style="text-align:center; margin-top:8px;">
+                                <span id="tb-match-subtext" style="font-size:0.78rem; color:var(--text-muted);">Drawing from matched syllabus questions...</span>
+                            </div>
+
+                            <div class="tb-actions-row">
+                                <button type="button" class="btn btn-sm tb-btn-prev">Back</button>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Preview Column -->
+                <div class="tb-right-col">
+                    <div class="tb-preview-card">
+                        <!-- Empty State -->
+                        <div class="tb-preview-empty" id="tb-preview-empty">
+                            <div class="tb-preview-gear" aria-hidden="true" style="display:flex; justify-content:center;">
+                                <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.6;"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                            </div>
+                            <h3 style="font-size: 1.15rem; font-weight: 700; margin: 0 0 6px 0;">Your test will appear here</h3>
+                            <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0 0 16px 0;">
+                                Choose topics, set your filters, and hit Generate. You can keep tweaking and regenerating until it feels right.
+                            </p>
+                            <span class="pill" id="tb-match-count-badge">Calculating available questions...</span>
+                        </div>
+
+                        <!-- Generated Ready State -->
+                        <div class="tb-preview-ready" id="tb-preview-ready" style="display:none;">
+                            <span class="pill pill-accent" id="tb-ready-level">SL &amp; HL</span>
+                            <h3 id="tb-ready-title" style="font-size: 1.25rem; font-weight: 700; margin: 8px 0;">Custom IB Examination</h3>
+
+                            <div class="tb-ready-stats">
+                                <div>
+                                    <div class="tb-stat-val" id="tb-ready-qcount">10</div>
+                                    <div class="tb-stat-lbl">Questions</div>
+                                </div>
+                                <div>
+                                    <div class="tb-stat-val" id="tb-ready-marks">45</div>
+                                    <div class="tb-stat-lbl">Marks</div>
+                                </div>
+                                <div>
+                                    <div class="tb-stat-val" id="tb-ready-time">60m</div>
+                                    <div class="tb-stat-lbl">Duration</div>
+                                </div>
+                            </div>
+
+                            <ul class="tb-ready-qlist" id="tb-ready-questions-list"></ul>
+
+                            <div style="display:flex; flex-direction:column; gap:10px;">
+                                <button type="button" class="btn btn-primary" id="tb-preview-start-btn" style="width:100%; display:inline-flex; align-items:center; justify-content:center; gap:8px;">
+                                    <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                    <span>Start Test Runner (On-Screen Exam)</span>
+                                </button>
+                                <button type="button" class="btn" id="tb-preview-print-btn" style="width:100%; display:inline-flex; align-items:center; justify-content:center; gap:8px;">
+                                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                                    <span>Export / Print Exam Paper (with Markscheme)</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="section-body">
-                <div class="section-head">
+        </section>
+
+        <!-- ==================================================================
+             TAB 3: FLASHCARDS
+             ================================================================== -->
+        <section id="panel-flashcards" class="rv-tab-panel" role="tabpanel" aria-labelledby="tab-flashcards">
+            <!-- Clean Search & Filter Toolbar (Screenshot 1) -->
+            <div class="fc-toolbar">
+                <div class="fc-search-wrap">
+                    <svg class="fc-search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="search" id="fc-search-input" class="fc-search-input" placeholder="Search your cards" aria-label="Search flashcards">
+                    <span class="fc-shortcut-badge">/</span>
+                </div>
+
+                <div class="fc-toolbar-actions">
+                    <button type="button" class="fc-filter-toggle-btn" id="fc-filter-toggle-btn" aria-expanded="false" aria-controls="fc-cat-filter-wrap">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"></line><line x1="7" y1="12" x2="17" y2="12"></line><line x1="10" y1="18" x2="14" y2="18"></line></svg>
+                        <span>Filter</span>
+                    </button>
+
+                    <button type="button" class="btn-study-lavender" id="fc-btn-study">
+                        <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20"></polygon></svg>
+                        <span>Study</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Expandable Category Filter Pills -->
+            <div class="fc-cat-filter-wrap" id="fc-cat-filter-wrap" style="display:none;">
+                <button type="button" class="level-toggle-btn fc-cat-btn active" data-cat="all">All</button>
+                <button type="button" class="level-toggle-btn fc-cat-btn" data-cat="theme-a">Theme A</button>
+                <button type="button" class="level-toggle-btn fc-cat-btn" data-cat="theme-b">Theme B</button>
+                <button type="button" class="level-toggle-btn fc-cat-btn" data-cat="case-study">Case Study</button>
+                <button type="button" class="level-toggle-btn fc-cat-btn" data-cat="custom">My Cards</button>
+            </div>
+
+            <!-- Inline Creator Form (Screenshots 1 & 2) -->
+            <div class="fc-write-card-box">
+                <div class="fc-write-toggle" id="fc-write-card-toggle">
+                    <span class="fc-plus-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </span>
+                    <span class="fc-write-title">Write a card...</span>
+                    <span class="fc-write-desc">A term on the front, what it means on the back. Cards you write yourself stick better than ones you are handed.</span>
+                </div>
+
+                <div id="fc-write-card-form" style="display:none;" class="fc-write-card-form">
+                    <div class="fc-write-grid">
+                        <div class="fc-write-col">
+                            <div class="fc-write-field-head">
+                                <label for="fc-new-term">Front</label>
+                            </div>
+                            <input type="text" id="fc-new-term" class="fc-clean-input" placeholder="Term or question, e.g. Encapsulation">
+                        </div>
+                        <div class="fc-write-col">
+                            <div class="fc-write-field-head">
+                                <label for="fc-new-def">Back</label>
+                            </div>
+                            <textarea id="fc-new-def" class="fc-clean-textarea" rows="3" placeholder="Definition or answer..."></textarea>
+                        </div>
+                    </div>
+                    <div class="fc-write-bottom-row">
+                        <div class="fc-topic-select-wrap">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                            <label for="fc-new-unit" class="visually-hidden">Syllabus Topic</label>
+                            <select id="fc-new-unit" class="fc-topic-select">
+                                <option value="A1">Topic: A1 Computer Fundamentals</option>
+                                <option value="A2">Topic: A2 Networks</option>
+                                <option value="A3">Topic: A3 Databases</option>
+                                <option value="A4">Topic: A4 Machine Learning</option>
+                                <option value="B1">Topic: B1 Computational Thinking</option>
+                                <option value="B2">Topic: B2 Programming</option>
+                                <option value="B3">Topic: B3 Object-Oriented</option>
+                                <option value="B4">Topic: B4 Abstract Data Types</option>
+                                <option value="CS">Topic: HL Case Study</option>
+                            </select>
+                        </div>
+                        <div class="fc-write-actions">
+                            <span class="fc-write-hint">Tab to back &bull; Enter to save</span>
+                            <button type="button" class="fc-btn-text" id="fc-write-cancel-btn">Done</button>
+                            <button type="button" class="btn-dark-pill" id="fc-btn-save-card">Add card</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fc-stats-bar">
+                <div class="fc-stats-left">
+                    <span id="fc-count-label" class="fc-count-label">17 cards</span>
+                    <span class="fc-dot-sep" aria-hidden="true">&bull;</span>
+                    <span id="fc-completed-label" class="fc-completed-label">0 completed</span>
+                </div>
+                <div class="fc-stats-right">
+                    <button type="button" class="fc-reset-progress-btn" id="fc-reset-progress-btn" style="display:none;" title="Reset all completed flashcard markers">Reset Progress</button>
+                    <span class="fc-flip-hint-pill">
+                        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                        Click any card to flip
+                    </span>
+                </div>
+            </div>
+
+            <div class="fc-cards-grid" id="fc-cards-grid"></div>
+        </section>
+
+        <!-- ==================================================================
+             TAB 4: PROGRESS
+             ================================================================== -->
+        <section id="panel-progress" class="rv-tab-panel" role="tabpanel" aria-labelledby="tab-progress">
+            <div class="prog-metrics-grid">
+                <div class="prog-stat-card">
+                    <div class="prog-stat-num" id="prog-stat-accuracy">0%</div>
+                    <div class="prog-stat-label">Practice Accuracy</div>
+                </div>
+                <div class="prog-stat-card">
+                    <div class="prog-stat-num" id="prog-stat-completed">0 / 0</div>
+                    <div class="prog-stat-label">Questions Completed</div>
+                </div>
+                <div class="prog-stat-card">
+                    <div class="prog-stat-num" id="prog-stat-wrong" style="color:#ef4444;">0</div>
+                    <div class="prog-stat-label">Questions to Review</div>
+                </div>
+                <div class="prog-stat-card">
+                    <div class="prog-stat-num" id="prog-stat-saved" style="color:#f59e0b;">0</div>
+                    <div class="prog-stat-label">Bookmarked Questions</div>
+                </div>
+            </div>
+
+            <div class="prog-breakdown-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
                     <div>
-                        <h2 class="h1" id="sec-questions">Interactive Practice Questions</h2>
-                        <p class="sub">
-                            12 curated Paper 1, Paper 2, and Paper 3 questions across Theme A, Theme B, and the HL Case Study.
-                        </p>
+                        <h2 style="font-size:1.2rem; font-weight:700; margin:0 0 4px 0;">Syllabus Topic Breakdown</h2>
+                        <span style="font-size:0.84rem; color:var(--text-muted);">Performance tracking across all 8 official syllabus units</span>
                     </div>
                 </div>
 
-                <!-- Search & Filters -->
-                <div class="practice-toolbar">
-                    <div class="search-wrap">
-                        <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-                            <circle cx="8.5" cy="8.5" r="5.5"></circle>
-                            <path d="M13 13l4 4" stroke-linecap="round"></path>
-                        </svg>
-                        <label class="visually-hidden" for="question-search">Search questions by keyword</label>
-                        <input type="search" id="question-search" class="search-input" placeholder="Search questions by keyword (e.g. CPU, ROM, Normalization, Array, OOP, RAG)...">
-                    </div>
-
-                    <div class="filter-bar" id="filter-bar" role="toolbar" aria-label="Filter questions by topic">
-                        <button type="button" class="filter-btn active" data-filter="all">All Topics (12)</button>
-                        <button type="button" class="filter-btn" data-filter="architecture">Architecture &amp; CPU</button>
-                        <button type="button" class="filter-btn" data-filter="systems">Memory &amp; OS</button>
-                        <button type="button" class="filter-btn" data-filter="networks">Networks &amp; Security</button>
-                        <button type="button" class="filter-btn" data-filter="databases">Databases &amp; SQL</button>
-                        <button type="button" class="filter-btn" data-filter="algorithms">Computational Thinking</button>
-                        <button type="button" class="filter-btn" data-filter="oop">OOP &amp; Data Structures</button>
-                        <button type="button" class="filter-btn" data-filter="ai">Paper 3 / AI</button>
-                    </div>
-                </div>
-
-                <div class="practice-meta">
-                    <span id="results-count" role="status" aria-live="polite">Showing 12 practice questions</span>
-                    <a href="../resources/Overall%20Practice%20Papers/IB%20Computer%20Science%20Worksheet.docx" download class="btn btn-sm">
-                        <span>Download Printable Worksheet (DOCX)</span>
-                    </a>
-                </div>
-
-                <!-- Questions Container -->
-                <div class="question-list" id="questions-container">
-
-                    <!-- Q1 Architecture -->
-                    <article class="question-card" data-topic="architecture">
-                        <div class="question-header">
-                            <div class="question-tags">
-                                <span class="pill">Theme A.1</span>
-                                <span class="status-badge ready">SL / HL</span>
-                                <span class="question-topic">Computer Architecture</span>
-                            </div>
-                            <span class="pill pill-accent">2 Marks</span>
-                        </div>
-                        <p class="question-prompt">
-                            State one architectural difference between a central processing unit (CPU) and a graphics processing unit (GPU).
-                        </p>
-                        <button type="button" class="btn-reveal" aria-expanded="false" onclick="toggleScheme(this)">
-                            <span>Show Mark Scheme</span>
-                            <span aria-hidden="true">&#9660;</span>
-                        </button>
-                        <div class="mark-scheme">
-                            <div class="mark-scheme-title">Official Mark Scheme [Max 2 Marks]</div>
-                            <ul>
-                                <li><strong>CPU:</strong> Optimized for sequential processing and contains relatively few, powerful, low-latency execution cores. [1 mark]</li>
-                                <li><strong>GPU:</strong> Designed for parallel execution and contains hundreds or thousands of smaller cores to execute repetitive matrix math concurrently. [1 mark]</li>
-                            </ul>
-                            <div class="mark-scheme-tip">
-                                Examiner Tip: Do not accept vague statements like "a GPU is only for video games". The question tests architectural differences (sequential vs parallel cores).
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Q2 Architecture -->
-                    <article class="question-card" data-topic="architecture">
-                        <div class="question-header">
-                            <div class="question-tags">
-                                <span class="pill">Theme A.1</span>
-                                <span class="status-badge ready">SL / HL</span>
-                                <span class="question-topic">Processor Cycle</span>
-                            </div>
-                            <span class="pill pill-accent">4 Marks</span>
-                        </div>
-                        <p class="question-prompt">
-                            Outline the four distinct stages of the machine fetch-decode-execute cycle, referring to the registers involved.
-                        </p>
-                        <button type="button" class="btn-reveal" aria-expanded="false" onclick="toggleScheme(this)">
-                            <span>Show Mark Scheme</span>
-                            <span aria-hidden="true">&#9660;</span>
-                        </button>
-                        <div class="mark-scheme">
-                            <div class="mark-scheme-title">Official Mark Scheme [Max 4 Marks]</div>
-                            <ul>
-                                <li><strong>Fetch:</strong> The address in the Program Counter (PC) is passed to the MAR; the instruction is fetched from RAM into the MDR; the PC is incremented. [1 mark]</li>
-                                <li><strong>Copy:</strong> The instruction is copied from MDR to the Current Instruction Register (CIR). [1 mark]</li>
-                                <li><strong>Decode:</strong> The Control Unit (CU) decodes the opcode and determines what ALU operations or memory reads are required. [1 mark]</li>
-                                <li><strong>Execute:</strong> The ALU performs the operation or transfers data to registers/memory; status flags are updated. [1 mark]</li>
-                            </ul>
-                            <div class="mark-scheme-tip">
-                                Examiner Tip: Always state that the Program Counter (PC) is incremented after fetching.
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Q3 Systems / Memory -->
-                    <article class="question-card" data-topic="systems">
-                        <div class="question-header">
-                            <div class="question-tags">
-                                <span class="pill">Theme A.1</span>
-                                <span class="status-badge ready">SL / HL</span>
-                                <span class="question-topic">Primary Memory</span>
-                            </div>
-                            <span class="pill pill-accent">3 Marks</span>
-                        </div>
-                        <p class="question-prompt">
-                            Distinguish between read-only memory (ROM) and random-access memory (RAM) in terms of volatility, mutability, and purpose.
-                        </p>
-                        <button type="button" class="btn-reveal" aria-expanded="false" onclick="toggleScheme(this)">
-                            <span>Show Mark Scheme</span>
-                            <span aria-hidden="true">&#9660;</span>
-                        </button>
-                        <div class="mark-scheme">
-                            <div class="mark-scheme-title">Official Mark Scheme [Max 3 Marks]</div>
-                            <ul>
-                                <li><strong>Volatility:</strong> RAM is volatile (loses contents on power loss); ROM is non-volatile (retains data indefinitely). [1 mark]</li>
-                                <li><strong>Mutability:</strong> RAM is read-write; ROM is typically read-only during standard operations. [1 mark]</li>
-                                <li><strong>Purpose:</strong> RAM holds the currently executing programs and operating system working data; ROM holds the bootstrap/BIOS start-up loader. [1 mark]</li>
-                            </ul>
-                        </div>
-                    </article>
-
-                    <!-- Q4 Systems / OS -->
-                    <article class="question-card" data-topic="systems">
-                        <div class="question-header">
-                            <div class="question-tags">
-                                <span class="pill">Theme A.1</span>
-                                <span class="status-badge ready">SL / HL</span>
-                                <span class="question-topic">Operating Systems</span>
-                            </div>
-                            <span class="pill pill-accent">3 Marks</span>
-                        </div>
-                        <p class="question-prompt">
-                            Explain why an operating system uses hardware interrupts rather than polling to detect keyboard input.
-                        </p>
-                        <button type="button" class="btn-reveal" aria-expanded="false" onclick="toggleScheme(this)">
-                            <span>Show Mark Scheme</span>
-                            <span aria-hidden="true">&#9660;</span>
-                        </button>
-                        <div class="mark-scheme">
-                            <div class="mark-scheme-title">Official Mark Scheme [Max 3 Marks]</div>
-                            <ul>
-                                <li>Polling forces the processor to repeatedly query the device, consuming clock cycles and power when no key is pressed. [1 mark]</li>
-                                <li>An interrupt sends an electrical signal only when a key event occurs, leaving the CPU free to execute other processes. [1 mark]</li>
-                                <li>The CPU pauses the current process, executes the Interrupt Service Routine (ISR) with minimal latency, and returns to execution. [1 mark]</li>
-                            </ul>
-                        </div>
-                    </article>
-
-                    <!-- Q5 Networks -->
-                    <article class="question-card" data-topic="networks">
-                        <div class="question-header">
-                            <div class="question-tags">
-                                <span class="pill">Theme A.2</span>
-                                <span class="status-badge ready">SL / HL</span>
-                                <span class="question-topic">Data Transmission</span>
-                            </div>
-                            <span class="pill pill-accent">3 Marks</span>
-                        </div>
-                        <p class="question-prompt">
-                            Describe the function of packet switching across the Internet, referring to headers, routing, and reassembly.
-                        </p>
-                        <button type="button" class="btn-reveal" aria-expanded="false" onclick="toggleScheme(this)">
-                            <span>Show Mark Scheme</span>
-                            <span aria-hidden="true">&#9660;</span>
-                        </button>
-                        <div class="mark-scheme">
-                            <div class="mark-scheme-title">Official Mark Scheme [Max 3 Marks]</div>
-                            <ul>
-                                <li>The data payload is broken down into small, numbered packets, each tagged with destination IP, sender IP, and sequence numbers in the header. [1 mark]</li>
-                                <li>Routers inspect the destination IP and forward each packet independently along the most efficient available route. [1 mark]</li>
-                                <li>The recipient node uses packet sequence numbers to reorder and reassemble the original message, requesting retransmission for missing packets. [1 mark]</li>
-                            </ul>
-                        </div>
-                    </article>
-
-                    <!-- Q6 Networks / Security -->
-                    <article class="question-card" data-topic="networks">
-                        <div class="question-header">
-                            <div class="question-tags">
-                                <span class="pill">Theme A.2</span>
-                                <span class="status-badge ready">HL Only</span>
-                                <span class="question-topic">Cryptography</span>
-                            </div>
-                            <span class="pill pill-accent">3 Marks</span>
-                        </div>
-                        <p class="question-prompt">
-                            Compare symmetric and asymmetric encryption, explaining why asymmetric keys are preferred for key exchange over insecure channels.
-                        </p>
-                        <button type="button" class="btn-reveal" aria-expanded="false" onclick="toggleScheme(this)">
-                            <span>Show Mark Scheme</span>
-                            <span aria-hidden="true">&#9660;</span>
-                        </button>
-                        <div class="mark-scheme">
-                            <div class="mark-scheme-title">Official Mark Scheme [Max 3 Marks]</div>
-                            <ul>
-                                <li>Symmetric encryption uses a single shared secret key for both encryption and decryption. [1 mark]</li>
-                                <li>Asymmetric encryption uses a mathematically linked key pair: a public key for encryption and a private key for decryption. [1 mark]</li>
-                                <li>Asymmetric eliminates the key distribution problem: the private key is never transmitted across the network, preventing interception. [1 mark]</li>
-                            </ul>
-                        </div>
-                    </article>
-
-                    <!-- Q7 Databases -->
-                    <article class="question-card" data-topic="databases">
-                        <div class="question-header">
-                            <div class="question-tags">
-                                <span class="pill">Theme A.3</span>
-                                <span class="status-badge ready">SL / HL</span>
-                                <span class="question-topic">Relational Schemas</span>
-                            </div>
-                            <span class="pill pill-accent">3 Marks</span>
-                        </div>
-                        <p class="question-prompt">
-                            Explain the role of primary keys and foreign keys in maintaining referential integrity across relational database tables.
-                        </p>
-                        <button type="button" class="btn-reveal" aria-expanded="false" onclick="toggleScheme(this)">
-                            <span>Show Mark Scheme</span>
-                            <span aria-hidden="true">&#9660;</span>
-                        </button>
-                        <div class="mark-scheme">
-                            <div class="mark-scheme-title">Official Mark Scheme [Max 3 Marks]</div>
-                            <ul>
-                                <li>A primary key uniquely identifies each record/tuple within its home table, preventing duplicate entries. [1 mark]</li>
-                                <li>A foreign key is an attribute in one table that references the primary key in another table, establishing a relationship. [1 mark]</li>
-                                <li>Referential integrity ensures a foreign key value cannot exist without a corresponding valid primary key record in the parent table. [1 mark]</li>
-                            </ul>
-                        </div>
-                    </article>
-
-                    <!-- Q8 Computational Thinking -->
-                    <article class="question-card" data-topic="algorithms">
-                        <div class="question-header">
-                            <div class="question-tags">
-                                <span class="pill">Theme B.1</span>
-                                <span class="status-badge ready">SL / HL</span>
-                                <span class="question-topic">Algorithmic Design</span>
-                            </div>
-                            <span class="pill pill-accent">4 Marks</span>
-                        </div>
-                        <p class="question-prompt">
-                            Define abstraction and decomposition. Explain how each technique reduces cognitive complexity when developing large software systems.
-                        </p>
-                        <button type="button" class="btn-reveal" aria-expanded="false" onclick="toggleScheme(this)">
-                            <span>Show Mark Scheme</span>
-                            <span aria-hidden="true">&#9660;</span>
-                        </button>
-                        <div class="mark-scheme">
-                            <div class="mark-scheme-title">Official Mark Scheme [Max 4 Marks]</div>
-                            <ul>
-                                <li><strong>Decomposition:</strong> Breaking a complex problem into smaller, self-contained sub-problems or functions that can be solved independently. [1 mark]</li>
-                                <li><strong>Benefit:</strong> Enables team parallel development, modular testing, and clear subroutine interfaces. [1 mark]</li>
-                                <li><strong>Abstraction:</strong> Filtering out irrelevant implementation details to focus on high-level behaviors and inputs/outputs. [1 mark]</li>
-                                <li><strong>Benefit:</strong> Prevents information overload and allows code reuse across different parts of a program. [1 mark]</li>
-                            </ul>
-                        </div>
-                    </article>
-
-                    <!-- Q9 Data Structures -->
-                    <article class="question-card" data-topic="oop">
-                        <div class="question-header">
-                            <div class="question-tags">
-                                <span class="pill">Theme B.2 / B.4</span>
-                                <span class="status-badge ready">SL / HL</span>
-                                <span class="question-topic">Memory Allocation</span>
-                            </div>
-                            <span class="pill pill-accent">4 Marks</span>
-                        </div>
-                        <p class="question-prompt">
-                            Compare static arrays with dynamic linked lists with respect to memory allocation, insertion complexity, and random access speed.
-                        </p>
-                        <button type="button" class="btn-reveal" aria-expanded="false" onclick="toggleScheme(this)">
-                            <span>Show Mark Scheme</span>
-                            <span aria-hidden="true">&#9660;</span>
-                        </button>
-                        <div class="mark-scheme">
-                            <div class="mark-scheme-title">Official Mark Scheme [Max 4 Marks]</div>
-                            <ul>
-                                <li><strong>Memory Allocation:</strong> Arrays have a fixed size declared at compile time in contiguous memory; linked lists allocate nodes dynamically anywhere in the heap. [1 mark]</li>
-                                <li><strong>Insertion:</strong> Arrays require shifting subsequent elements (<code>O(n)</code>); linked lists insert in <code>O(1)</code> time once the pointer reference is found. [1 mark]</li>
-                                <li><strong>Random Access:</strong> Arrays support instant <code>O(1)</code> index access using base address + index calculation; linked lists require <code>O(n)</code> pointer traversal from the head node. [1 mark]</li>
-                                <li><strong>Overhead:</strong> Linked lists require additional memory for pointer addresses with each data node. [1 mark]</li>
-                            </ul>
-                        </div>
-                    </article>
-
-                    <!-- Q10 OOP -->
-                    <article class="question-card" data-topic="oop">
-                        <div class="question-header">
-                            <div class="question-tags">
-                                <span class="pill">Theme B.3</span>
-                                <span class="status-badge ready">SL / HL</span>
-                                <span class="question-topic">Object-Oriented Programming</span>
-                            </div>
-                            <span class="pill pill-accent">3 Marks</span>
-                        </div>
-                        <p class="question-prompt">
-                            Explain the concept of encapsulation in object-oriented programming and outline two advantages it provides to software maintainability.
-                        </p>
-                        <button type="button" class="btn-reveal" aria-expanded="false" onclick="toggleScheme(this)">
-                            <span>Show Mark Scheme</span>
-                            <span aria-hidden="true">&#9660;</span>
-                        </button>
-                        <div class="mark-scheme">
-                            <div class="mark-scheme-title">Official Mark Scheme [Max 3 Marks]</div>
-                            <ul>
-                                <li>Encapsulation bundles data (attributes) and methods that operate on that data inside a class, while restricting direct access using private modifiers. [1 mark]</li>
-                                <li><strong>Advantage 1 (Data Protection):</strong> Prevents accidental external modification; state changes must pass through validated getter/setter methods. [1 mark]</li>
-                                <li><strong>Advantage 2 (Maintainability):</strong> Internal class implementations can be updated or optimized without breaking external client code that calls public methods. [1 mark]</li>
-                            </ul>
-                        </div>
-                    </article>
-
-                    <!-- Q11 AI / Paper 3 -->
-                    <article class="question-card" data-topic="ai">
-                        <div class="question-header">
-                            <div class="question-tags">
-                                <span class="pill">Paper 3</span>
-                                <span class="status-badge ready">HL Only</span>
-                                <span class="question-topic">Case Study: Chatbots</span>
-                            </div>
-                            <span class="pill pill-accent">4 Marks</span>
-                        </div>
-                        <p class="question-prompt">
-                            Explain why large language model chatbots are susceptible to "hallucinations", and describe two mitigation strategies used by developers.
-                        </p>
-                        <button type="button" class="btn-reveal" aria-expanded="false" onclick="toggleScheme(this)">
-                            <span>Show Mark Scheme</span>
-                            <span aria-hidden="true">&#9660;</span>
-                        </button>
-                        <div class="mark-scheme">
-                            <div class="mark-scheme-title">Official Mark Scheme [Max 4 Marks]</div>
-                            <ul>
-                                <li><strong>Cause:</strong> LLMs generate text based on statistical token probabilities rather than semantic reasoning or grounded fact verification. [2 marks]</li>
-                                <li><strong>Mitigation 1 (RAG):</strong> Retrieval-Augmented Generation retrieves vetted documents from an external vector database to ground the prompt in verified facts. [1 mark]</li>
-                                <li><strong>Mitigation 2 (RLHF):</strong> Reinforcement Learning from Human Feedback trains reward models that penalize fabricated responses and encourage cautious answers. [1 mark]</li>
-                            </ul>
-                        </div>
-                    </article>
-
-                    <!-- Q12 Algorithms -->
-                    <article class="question-card" data-topic="algorithms">
-                        <div class="question-header">
-                            <div class="question-tags">
-                                <span class="pill">Theme B.1 / B.2</span>
-                                <span class="status-badge ready">SL / HL</span>
-                                <span class="question-topic">Algorithm Efficiency</span>
-                            </div>
-                            <span class="pill pill-accent">3 Marks</span>
-                        </div>
-                        <p class="question-prompt">
-                            Compare the worst-case time complexity of linear search and binary search, explaining the precondition required to execute binary search.
-                        </p>
-                        <button type="button" class="btn-reveal" aria-expanded="false" onclick="toggleScheme(this)">
-                            <span>Show Mark Scheme</span>
-                            <span aria-hidden="true">&#9660;</span>
-                        </button>
-                        <div class="mark-scheme">
-                            <div class="mark-scheme-title">Official Mark Scheme [Max 3 Marks]</div>
-                            <ul>
-                                <li><strong>Precondition:</strong> The array or list must be strictly sorted prior to running binary search. [1 mark]</li>
-                                <li><strong>Linear Search:</strong> O(n) worst-case time complexity because every element must be inspected if the target is at the end or absent. [1 mark]</li>
-                                <li><strong>Binary Search:</strong> O(log n) worst-case time complexity because the search space is halved after each comparison. [1 mark]</li>
-                            </ul>
-                        </div>
-                    </article>
-
-                </div>
-
-                <div class="load-more" id="load-more" hidden>
-                    <button type="button" class="btn" id="load-more-btn">Load more questions</button>
-                    <span class="load-more-note" id="load-more-note" role="status" aria-live="polite"></span>
-                    <div id="load-sentinel" aria-hidden="true" style="height:1px;width:100%;"></div>
-                </div>
+                <div id="prog-topics-breakdown-list"></div>
             </div>
+        </section>
+
+        <!-- ==================================================================
+             TAB 5: REVIEW
+             ================================================================== -->
+        <section id="panel-review" class="rv-tab-panel" role="tabpanel" aria-labelledby="tab-review">
+            <div class="rv-review-buckets" role="toolbar" aria-label="Review Buckets">
+                <button type="button" class="rv-bucket-btn active" data-bucket="wrong">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    <span>Wrong</span>
+                    <span class="bucket-pill-badge" id="count-bucket-wrong">0</span>
+                </button>
+                <button type="button" class="rv-bucket-btn" data-bucket="saved">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+                    <span>Saved</span>
+                    <span class="bucket-pill-badge" id="count-bucket-saved">0</span>
+                </button>
+                <button type="button" class="rv-bucket-btn" data-bucket="done">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>Completed</span>
+                    <span class="bucket-pill-badge" id="count-bucket-done">0</span>
+                </button>
+                <button type="button" class="rv-bucket-btn" data-bucket="notes">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                    <span>Notes</span>
+                    <span class="bucket-pill-badge" id="count-bucket-notes">0</span>
+                </button>
+            </div>
+
+            <!-- Review Empty State Celebration (Clean SVG Check Shield) -->
+            <div class="rv-empty-celebration" id="review-empty-state" style="display:none;">
+                <div class="rv-celebration-popper" aria-hidden="true" style="display:flex; justify-content:center; margin-bottom:14px;">
+                    <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#10b981" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                </div>
+                <h3 class="rv-celebration-title" id="review-empty-title">Nothing wrong right now</h3>
+                <p class="rv-celebration-desc" id="review-empty-desc">
+                    You've resolved all questions you'd previously missed. Questions appear here when marked wrong, and clear once mastered.
+                </p>
+            </div>
+
+            <!-- Review Questions List -->
+            <div id="review-questions-container"></div>
         </section>
     </main>
 
-    <footer class="site-footer">
-        <div class="wrap wrap-wide">
+    <!-- ==================================================================
+         MODAL 1: EXAM RUNNER MODAL
+         ================================================================== -->
+    <div class="rv-modal" id="exam-runner-modal" role="dialog" aria-modal="true" aria-labelledby="runner-title">
+        <div class="rv-modal-dialog" style="max-width: 900px;">
+            <div class="rv-modal-header">
+                <div>
+                    <h2 class="rv-modal-title" id="runner-title">Mock Examination Session</h2>
+                    <span id="runner-q-unit" style="font-size:0.8rem; color:var(--text-muted); font-family:var(--font-mono);"></span>
+                </div>
+                <div style="display:flex; align-items:center; gap:16px;">
+                    <div style="display:flex; align-items:center; gap:6px; font-weight:bold; font-family:var(--font-mono); font-size:1.1rem; color:var(--accent);">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span id="runner-timer-display">60:00</span>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline" id="runner-close-btn">Exit Exam</button>
+                </div>
+            </div>
+
+            <!-- Question Navigation Bubbles -->
+            <div class="runner-bubbles-nav" id="runner-question-nav"></div>
+
+            <!-- Question Content -->
+            <div style="margin-bottom: 20px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                    <span id="runner-q-indicator" style="font-weight:700; color:var(--text);">Question 1</span>
+                    <span id="runner-q-marks" class="pill pill-accent">[2 Marks]</span>
+                </div>
+                <div id="runner-q-prompt" style="font-size:1.05rem; line-height:1.65; margin-bottom:14px; color:var(--text);"></div>
+
+                <div id="runner-code-wrap" class="rv-code-block-wrap" style="display:none;">
+                    <pre class="rv-code-snippet"><code></code></pre>
+                </div>
+
+                <label class="drawer-col-title" for="runner-answer-textarea" style="margin-top:16px;">Your Working / Answer:</label>
+                <textarea id="runner-answer-textarea" class="rv-scratchpad-input" rows="6" placeholder="Write or formulate your response here..."></textarea>
+
+                <div style="margin-top:14px;">
+                    <button type="button" class="btn btn-sm" id="runner-markscheme-toggle">Reveal Mark Scheme</button>
+                    <div id="runner-markscheme-box" class="rv-mark-scheme-drawer" style="display:none; margin-top:10px;">
+                        <div class="mark-scheme-header">Official Criteria</div>
+                        <ul class="runner-ms-items" style="padding-left:20px; font-size:0.9rem; line-height:1.6;"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Runner Footer -->
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-top:16px; border-top:1px solid var(--line);">
+                <button type="button" class="btn" id="runner-btn-prev">Previous Question</button>
+                <button type="button" class="btn btn-primary" id="runner-btn-next">Next Question</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================================================================
+         MODAL 2: 3D FLASHCARD STUDY MODAL (Reference-Aligned)
+         ================================================================== -->
+    <div class="rv-modal fc-study-modal" id="fc-study-modal" role="dialog" aria-modal="true" aria-labelledby="study-front-term">
+        <!-- Confetti Particle Canvas -->
+        <canvas id="fc-confetti-canvas" class="fc-confetti-canvas" aria-hidden="true"></canvas>
+
+        <div class="rv-modal-dialog fc-study-dialog">
+            <!-- Sleek Top Utility Bar (Screenshot 6 & 7) -->
+            <div class="study-top-bar">
+                <div class="study-top-left">
+                    <button type="button" class="study-icon-btn" id="study-btn-star" title="Star / Bookmark card" aria-label="Star card">
+                        <svg class="study-star-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </button>
+                    <span class="study-topic-tag" id="study-topic-tag">A1 &bull; Fundamentals</span>
+                </div>
+
+                <!-- Thin Hairline Progress Track in Center (Screenshot 6 & 7) -->
+                <div class="study-hairline-track" role="progressbar" aria-label="Session Progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div class="study-hairline-fill" id="study-progress-bar" style="width: 0%;"></div>
+                </div>
+
+                <div class="study-top-right">
+                    <span class="study-counter-text" id="study-progress-text">1 of 17</span>
+                    <button type="button" class="study-icon-btn study-close-btn" id="study-modal-close" title="Close study session (Esc)" aria-label="Close study modal">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Active Card Study View -->
+            <div id="study-main-view" class="study-main-view">
+                <div class="study-card-outer" id="study-card-box">
+                    <div class="study-card-inner">
+                        <!-- Front Face -->
+                        <div class="study-face study-face-front">
+                            <div class="study-face-top-row">
+                                <span class="study-face-label">Front</span>
+                                <span class="study-face-status" id="study-front-status">New</span>
+                            </div>
+                            <div class="study-face-body">
+                                <h3 class="study-term-text" id="study-front-term">Term</h3>
+                            </div>
+                            <div class="study-face-foot">
+                                <span>Tap or press Space to turn over</span>
+                            </div>
+                        </div>
+
+                        <!-- Back Face -->
+                        <div class="study-face study-face-back">
+                            <div class="study-face-top-row">
+                                <span class="study-face-label">Answer</span>
+                                <span class="study-face-status" id="study-back-status">Answer</span>
+                            </div>
+                            <div class="study-face-body study-face-back-body">
+                                <p class="study-def-text" id="study-back-def"></p>
+                                <p class="study-example-text" id="study-back-example"></p>
+                            </div>
+                            <div class="study-face-foot">
+                                <span>Tap or press Space to turn over</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Bottom Footer Controls -->
+                <!-- 1. Front Mode: Sleek Full-Width 'Show answer Space' (Screenshot 6) -->
+                <div class="study-footer-front" id="study-footer-front">
+                    <button type="button" class="study-btn-show-answer" id="study-btn-show-answer">
+                        <span>Show answer</span>
+                        <kbd class="study-key-tag">Space</kbd>
+                    </button>
+                </div>
+
+                <!-- 2. Back Mode: [Previous], [Mark as Complete ✓], [Next] (Screenshot 7 & User Alignment) -->
+                <div class="study-footer-back" id="study-footer-back" style="display:none;">
+                    <button type="button" class="study-action-btn study-btn-nav" id="study-btn-prev" title="Previous card (Left Arrow)">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        <span>Previous</span>
+                    </button>
+
+                    <button type="button" class="study-action-btn study-btn-complete" id="study-btn-toggle-complete">
+                        <svg class="study-check-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span id="study-complete-btn-text">Mark as Complete</span>
+                        <kbd class="study-key-tag">C</kbd>
+                    </button>
+
+                    <button type="button" class="study-action-btn study-btn-nav study-btn-next" id="study-btn-next" title="Next card (Right Arrow)">
+                        <span id="study-next-btn-text">Next</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- End Celebration Screen (Screenshot 8) -->
+            <div id="study-end-screen" class="study-end-screen" style="display:none;">
+                <div class="study-trophy-wrap">
+                    <svg viewBox="0 0 96 96" width="68" height="68" fill="none" class="study-trophy-svg" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="trophyGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#FDE047"/>
+                                <stop offset="50%" stop-color="#EAB308"/>
+                                <stop offset="100%" stop-color="#CA8A04"/>
+                            </linearGradient>
+                            <linearGradient id="trophyGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#FEF08A" stop-opacity="0.8"/>
+                                <stop offset="100%" stop-color="#F59E0B" stop-opacity="0.15"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="48" cy="48" r="42" fill="url(#trophyGlow)"/>
+                        <path d="M28 20H68V42C68 53.0457 59.0457 62 48 62C36.9543 62 28 53.0457 28 42V20Z" fill="url(#trophyGold)"/>
+                        <path d="M28 26H22C17.5817 26 14 29.5817 14 34C14 38.4183 17.5817 42 22 42H28" stroke="url(#trophyGold)" stroke-width="4.5" stroke-linecap="round"/>
+                        <path d="M68 26H74C78.4183 26 82 29.5817 82 34C82 38.4183 78.4183 42 74 42H68" stroke="url(#trophyGold)" stroke-width="4.5" stroke-linecap="round"/>
+                        <path d="M44 62H52V74H44V62Z" fill="url(#trophyGold)"/>
+                        <rect x="30" y="74" width="36" height="8" rx="4" fill="url(#trophyGold)"/>
+                        <path d="M48 30L50.5 35.5L56.5 36.2L52 40.2L53.3 46.1L48 43L42.7 46.1L44 40.2L39.5 36.2L45.5 35.5L48 30Z" fill="#FFFFFF" opacity="0.95"/>
+                    </svg>
+                </div>
+
+                <h3 class="study-end-title" id="study-end-headline">17 cards, none forgotten.</h3>
+                <p class="study-end-desc" id="study-end-subtitle">All cards recalled in this session.</p>
+
+                <!-- Thin horizontal progress bar at end (Screenshot 8) -->
+                <div class="study-end-bar-wrap">
+                    <div class="study-end-bar-fill" style="width: 100%;"></div>
+                </div>
+
+                <div class="study-end-bullets">
+                    <span class="study-bullet study-bullet-completed">
+                        <span class="study-bullet-dot"></span>
+                        <span id="study-final-completed-bullet">Completed 17</span>
+                    </span>
+                    <span class="study-bullet study-bullet-remaining">
+                        <span class="study-bullet-dot"></span>
+                        <span id="study-final-remaining-bullet">To review 0</span>
+                    </span>
+                </div>
+
+                <div class="study-end-actions">
+                    <button type="button" class="btn btn-study-lavender" id="study-btn-restart">New session</button>
+                    <button type="button" class="btn btn-clean-outline" id="study-btn-close-final">Back to cards</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <footer class="site-footer">
+        <div class="wrap">
             <div class="footer-grid">
                 <div>
                     <div class="footer-title">Computer Science &bull; EIS</div>
                     <p>
-                        IB Diploma Programme Computer Science (SL &amp; HL) at Emirates International School. Speaking requests &amp; inquiries: <a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui (Siddiquin@eischools.ae)</a>.
+                        IB Diploma Programme Computer Science (SL &amp; HL) at Emirates International School Meadows. Department lead &amp; inquiries: <a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui (Siddiquin@eischools.ae)</a>.
                     </p>
                 </div>
                 <div>
                     <div class="footer-title">Navigation</div>
                     <ul>
-                        <li><a href="courses.html">Courses Overview</a></li>
+                        <li><a href="deadlines.html">Deadlines &amp; Announcements</a></li>
                         <li><a href="practice.html">Practice Question Bank</a></li>
-                        <li><a href="curriculum.html">Curriculum &amp; Pacing</a></li>
-                        <li><a href="theme-a.html">Theme A: Systems &amp; Hardware</a></li>
-                        <li><a href="theme-b.html">Theme B: Computational Thinking</a></li>
+                        <li><a href="curriculum.html">Syllabus</a></li>
                         <li><a href="ia.html">Internal Assessment (IA)</a></li>
-                        <li><a href="case-study.html">Paper 3 Case Study</a></li>
+                        <li><a href="case-study.html">Case Study (Paper 1 Section B)</a></li>
                         <li><a href="resources.html">Resources &amp; Worksheets</a></li>
                     </ul>
                 </div>
                 <div>
-                    <div class="footer-title">Department Team &amp; Appearance</div>
+                    <div class="footer-title">Department Team &amp; Ambassadors</div>
                     <ul>
                         <li><a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui &mdash; Head of CS</a></li>
                         <li><a href="mailto:anishdongarkar@gmail.com">Anish Dongarkar &mdash; Tech Ambassador</a></li>
-                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaren &mdash; AI Ambassador</a></li>
+                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaran &mdash; AI Ambassador</a></li>
                         <li><a href="about-us.html">About the Department</a></li>
                         <li><a href="admin.html">Faculty Administration Portal</a></li>
                     </ul>
@@ -505,104 +886,103 @@
 
             <div class="footer-base">
                 <span>&copy; 2026 Computer Science Department &bull; Emirates International School (IB DP World School)</span>
-                <span>Theme A &bull; Theme B &bull; IA &bull; Paper 3</span>
+                <span>Theme A &bull; Theme B &bull; IA &bull; Paper 1 Section B</span>
             </div>
         </div>
     </footer>
 
+    <!-- Modular Practice Scripts -->
     <script src="../assets/js/site.js" defer></script>
+    <script src="../assets/js/practice-data.js"></script>
+    <script src="../assets/js/practice-state.js"></script>
+    <script src="../assets/js/practice-bank.js"></script>
+    <script src="../assets/js/practice-test-builder.js"></script>
+    <script src="../assets/js/practice-flashcards.js"></script>
+    <script src="../assets/js/practice-progress.js"></script>
+    <script src="../assets/js/practice-review.js"></script>
+
+    <!-- Orchestrator Script -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var PAGE_SIZE = 6;
-            var filterBtns = Array.prototype.slice.call(document.querySelectorAll('.filter-btn'));
-            var searchInput = document.getElementById('question-search');
-            var cards = Array.prototype.slice.call(document.querySelectorAll('.question-card'));
-            var countDisplay = document.getElementById('results-count');
-            var loadMore = document.getElementById('load-more');
-            var loadBtn = document.getElementById('load-more-btn');
-            var loadNote = document.getElementById('load-more-note');
-            var sentinel = document.getElementById('load-sentinel');
+        (function () {
+            // Tab Navigation Controller
+            window.PracticeNav = {
+                switchTab: function (tabKey) {
+                    var tabBtns = document.querySelectorAll('.rv-tab-btn');
+                    var panels = document.querySelectorAll('.rv-tab-panel');
 
-            var activeFilter = 'all';
-            var matches = [];
-            var shown = 0;
+                    tabBtns.forEach(function (btn) {
+                        var isActive = btn.getAttribute('data-tab') === tabKey;
+                        btn.classList.toggle('active', isActive);
+                        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                    });
 
-            // Cache searchable text once so typing stays cheap.
-            cards.forEach(function (card) {
-                card.dataset.text = card.textContent.toLowerCase().replace(/\s+/g, ' ');
-            });
+                    panels.forEach(function (panel) {
+                        panel.classList.toggle('active', panel.id === 'panel-' + tabKey);
+                    });
 
-            var topicParam = new URLSearchParams(window.location.search).get('topic');
-            if (topicParam) {
-                var targetBtn = filterBtns.filter(function (b) { return b.getAttribute('data-filter') === topicParam; })[0];
-                if (targetBtn) {
-                    filterBtns.forEach(function (b) { b.classList.remove('active'); });
-                    targetBtn.classList.add('active');
-                    activeFilter = topicParam;
+                    // Update URL hash without causing page jump
+                    if (window.history && window.history.replaceState) {
+                        window.history.replaceState(null, null, '#' + tabKey);
+                    }
+                }
+            };
+
+            function initAll(questions, flashcards) {
+                if (window.PracticeBank) window.PracticeBank.init(questions);
+                if (window.PracticeTestBuilder) window.PracticeTestBuilder.init(questions);
+                if (window.PracticeFlashcards) window.PracticeFlashcards.init(flashcards);
+                if (window.PracticeProgress) window.PracticeProgress.init(questions);
+                if (window.PracticeReview) window.PracticeReview.init(questions);
+            }
+
+            function setupTabs() {
+                var tabBtns = document.querySelectorAll('.rv-tab-btn');
+                tabBtns.forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        var tab = btn.getAttribute('data-tab');
+                        window.PracticeNav.switchTab(tab);
+                    });
+                });
+
+                var hash = window.location.hash.replace('#', '').toLowerCase();
+                var tabParam = new URLSearchParams(window.location.search).get('tab');
+                var initialTab = tabParam || hash || 'bank';
+                if (['bank', 'builder', 'flashcards', 'progress', 'review'].indexOf(initialTab) !== -1) {
+                    window.PracticeNav.switchTab(initialTab);
                 }
             }
 
-            function renderBatch() {
-                var end = Math.min(shown + PAGE_SIZE, matches.length);
-                for (var i = shown; i < end; i++) matches[i].hidden = false;
-                shown = end;
-                updateStatus();
-            }
+            function onReady() {
+                setupTabs();
 
-            function updateStatus() {
-                var total = matches.length;
-                if (countDisplay) {
-                    countDisplay.textContent = total === 0
-                        ? 'No questions match your search'
-                        : 'Showing ' + shown + ' of ' + total + ' practice question' + (total === 1 ? '' : 's');
+                // 1. Instantly initialize with bundled data (guaranteed to work locally with 0 errors)
+                var questions = window.IB_PRACTICE_QUESTIONS || [];
+                var flashcards = window.IB_PRACTICE_FLASHCARDS || [];
+                initAll(questions, flashcards);
+
+                // 2. If running via HTTP/HTTPS, attempt to fetch latest JSON in background
+                if (window.location.protocol.indexOf('http') === 0) {
+                    Promise.all([
+                        fetch('../data/questions.json').then(function (r) { return r.json(); }).catch(function () { return null; }),
+                        fetch('../data/flashcards.json').then(function (r) { return r.json(); }).catch(function () { return null; })
+                    ]).then(function (results) {
+                        var freshQ = results[0];
+                        var freshF = results[1];
+                        if (freshQ && freshQ.length) questions = freshQ;
+                        if (freshF && freshF.length) flashcards = freshF;
+                        initAll(questions, flashcards);
+                    }).catch(function (err) {
+                        console.warn('[PracticeSuite] Local bundled data in use.', err);
+                    });
                 }
-                var remaining = total - shown;
-                loadMore.hidden = remaining <= 0;
-                if (remaining > 0) {
-                    loadBtn.textContent = 'Load ' + Math.min(PAGE_SIZE, remaining) + ' more question' + (Math.min(PAGE_SIZE, remaining) === 1 ? '' : 's');
-                    loadNote.textContent = remaining + ' remaining';
-                }
             }
 
-            function applyFilters() {
-                var query = (searchInput ? searchInput.value : '').toLowerCase().trim();
-                matches = cards.filter(function (card) {
-                    var okTopic = activeFilter === 'all' || card.getAttribute('data-topic') === activeFilter;
-                    return okTopic && (query === '' || card.dataset.text.indexOf(query) !== -1);
-                });
-                cards.forEach(function (card) { card.hidden = true; });
-                shown = 0;
-                renderBatch();
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', onReady);
+            } else {
+                onReady();
             }
-
-            filterBtns.forEach(function (btn) {
-                btn.addEventListener('click', function () {
-                    filterBtns.forEach(function (b) { b.classList.remove('active'); });
-                    btn.classList.add('active');
-                    activeFilter = btn.getAttribute('data-filter');
-                    applyFilters();
-                });
-            });
-
-            var debounce = 0;
-            if (searchInput) {
-                searchInput.addEventListener('input', function () {
-                    clearTimeout(debounce);
-                    debounce = setTimeout(applyFilters, 120);
-                });
-            }
-
-            loadBtn.addEventListener('click', renderBatch);
-
-            // Auto-load the next batch when the visitor scrolls close to the bottom.
-            if ('IntersectionObserver' in window) {
-                new IntersectionObserver(function (entries) {
-                    if (entries[0].isIntersecting && !loadMore.hidden && shown < matches.length) renderBatch();
-                }, { rootMargin: '240px 0px' }).observe(sentinel);
-            }
-
-            applyFilters();
-        });
+        })();
     </script>
 </body>
 </html>

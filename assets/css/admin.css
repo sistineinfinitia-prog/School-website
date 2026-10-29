@@ -1,0 +1,69 @@
+
+
+/* ==========================================================================
+   Forms & Admin extracted from site.css
+   ========================================================================== */
+
+/* --- Forms & Admin ------------------------------------------------------- */
+
+.panel {
+    background: var(--surface-elevated);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow-panel);
+}
+
+.field + .field {
+    margin-top: 20px;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.field .hint {
+    font-weight: 400;
+    color: var(--text-3);
+}
+
+.input {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 14px;
+    background: var(--bg);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    transition: border-color 0.15s ease;
+}
+
+.input::placeholder {
+    color: var(--text-3);
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+textarea.input {
+    min-height: 132px;
+    resize: vertical;
+}
+
+.form-status {
+    min-height: 1.5em;
+    margin-top: 14px;
+    font-size: 0.875rem;
+    color: var(--text-2);
+}
+
+.form-status.is-error {
+    color: var(--danger);
+}
+

@@ -30,14 +30,15 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/site.css">
+    <link rel="stylesheet" href="../assets/css/resources.css">
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to main content</a>
     <canvas class="ribbons" id="interactive-canvas" aria-hidden="true"></canvas>
 
-        <header class="site-header">
+            <header class="site-header">
         <div class="wrap">
             <a href="../index.html" class="brand">
                 <span class="brand-name">
@@ -54,9 +55,10 @@
             <div class="header-right">
                 <nav class="site-nav" id="site-nav" aria-label="Primary">
                     <ul class="nav-list">
-                        <li><a href="../index.html">Homepage</a></li>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="curriculum.html">Syllabus</a></li>
                         <li><a href="practice.html">Practice</a></li>
-                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="deadlines.html">Deadlines</a></li>
                         <li><a href="resources.html" aria-current="page">Resources</a></li>
                     </ul>
                 </nav>
@@ -66,167 +68,127 @@
         </div>
     </header>
 
-    <main id="main" class="wrap">
-        <section class="hero">
-            <div class="eyebrow">
-                <span>Course Documents &amp; Practice &bull; 131 Student Files</span>
+    <main id="main" class="wrap wrap-wide">
+        <!-- Practice / Revision Village Inspired Header -->
+        <header class="rv-header-wrap">
+            <div class="rv-breadcrumbs">
+                <a href="../index.html">Home</a>
+                <span class="sep">/</span>
+                <span>Resources</span>
             </div>
-            <h1 class="display">
-                Resources &amp; Past Papers
-            </h1>
-            <p class="lead">
-                Search and download every slide deck, worksheet, Python handbook, IA exemplar, and official IB subject guide in the Emirates International School repository.
-            </p>
+            <div class="rv-header-main">
+                <h1 class="rv-subject-title">Resources &amp; Course Drops</h1>
+            </div>
 
-            <aside class="callout" aria-label="Interactive Practice Question Bank">
-                <span class="pill">Exam Revision Tool</span>
-                <div>
-                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:4px;">
-                        <h2 class="callout-title" style="margin:0;">Interactive Practice Question Bank</h2>
-                        <span class="status-badge ready">12 Questions Ready</span>
+            <!-- Primary Tabs Navigation (Practice Style) -->
+            <nav class="rv-tabs-nav resources-tabs" role="tablist" aria-label="Resource Library Views">
+                <button type="button" class="rv-tab-btn resources-tab-btn active is-active" data-tab="drops" id="tab-btn-drops" role="tab" aria-selected="true" aria-controls="tab-pane-drops">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span>Teacher Drops &amp; Updates</span>
+                    <span class="rv-tab-badge resources-tab-count" id="drops-count-badge">11</span>
+                </button>
+                <button type="button" class="rv-tab-btn resources-tab-btn" data-tab="archive" id="tab-btn-archive" role="tab" aria-selected="false" aria-controls="tab-pane-archive">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span>Department Archive</span>
+                    <span class="rv-tab-badge resources-tab-count">151 Files</span>
+                </button>
+            </nav>
+        </header>
+
+
+        <!-- View 1: Teacher Drops Feed -->
+        <section id="tab-pane-drops" role="tabpanel" aria-labelledby="tab-btn-drops">
+            <div class="resources-feed-toolbar">
+                <div class="search-wrap">
+                    <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                        <circle cx="8.5" cy="8.5" r="5.5"></circle>
+                        <path d="M13 13l4 4" stroke-linecap="round"></path>
+                    </svg>
+                    <label class="visually-hidden" for="resource-search-input">Search teacher drops</label>
+                    <input type="search" id="resource-search-input" class="search-input" placeholder="Search teacher drops by topic, code (A.1, B.2, IA), title, or linked assessment...">
+                </div>
+
+                <div class="resources-feed-controls">
+                    <div class="topic-chip-bar" role="toolbar" aria-label="Filter by Topic">
+                        <button type="button" class="topic-chip is-active" data-topic="all">All Topics</button>
+                        <button type="button" class="topic-chip" data-topic="Theme A">Theme A</button>
+                        <button type="button" class="topic-chip" data-topic="Theme B">Theme B</button>
+                        <button type="button" class="topic-chip" data-topic="IA">IA Milestone</button>
+                        <button type="button" class="topic-chip" data-topic="Revision">Revision</button>
                     </div>
-                    <p>
-                        Filter questions by topic (Architecture, Memory, Networks, Databases, Algorithms, OOP, Paper 3 AI) and click to reveal official mark schemes. <a href="practice.html">Open Question Bank &rarr;</a>
+
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span id="resource-search-summary" class="sub" style="font-size: 0.78rem; font-family: var(--font-mono);">11 drops available</span>
+                        <button type="button" class="sort-toggle-btn" id="sort-toggle-btn" aria-label="Toggle sort order">
+                            <span id="sort-order-label">Newest First</span>
+                            <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feed list target -->
+            <div id="teacher-drops-container">
+                <p class="sub">Loading teacher resource drops&hellip;</p>
+            </div>
+        </section>
+
+        <!-- View 2: Complete 131-File Archive -->
+        <section id="tab-pane-archive" role="tabpanel" aria-labelledby="tab-btn-archive" hidden>
+            <div class="section-head" style="margin-bottom: 20px;">
+                <div>
+                    <h2 class="h2" style="margin-bottom: 4px;">Department Archive (151 Student Files)</h2>
+                    <p class="sub">
+                        Direct access to every syllabus slide deck, worksheet, Python handbook, and coursework exemplar in the repository.
                     </p>
                 </div>
-            </aside>
-        </section>
-
-        <!-- Section 01: Essential Reference Packs -->
-        <section class="section" aria-labelledby="sec-featured-files">
-            <div class="section-label">
-                <span>01</span>Core Packs
             </div>
-            <div class="section-body">
-                <div class="section-head">
-                    <div>
-                        <h2 class="h1" id="sec-featured-files">Essential Reference Downloads</h2>
-                        <p class="sub">
-                            Most frequently used revision worksheets, official syllabus guides, and coursework handbooks.
-                        </p>
-                    </div>
-                </div>
 
-                <div class="hub-grid">
-                    <a class="hub-card" href="practice.html">
-                        <div class="hub-top">
-                            <span class="pill">Practice</span>
-                            <span class="status-badge ready">12 Questions</span>
-                        </div>
-                        <div>
-                            <h3>Interactive Question Bank</h3>
-                            <p>12 authentic IB DP questions with topic filtering and click-to-reveal official mark schemes.</p>
-                        </div>
-                        <div class="hub-foot">
-                            <span>SL &amp; HL</span>
-                            <span>Practice Now &rarr;</span>
-                        </div>
-                    </a>
-
-                    <a class="hub-card" href="../resources/Overall%20Practice%20Papers/IB%20Computer%20Science%20Worksheet.docx" download>
-                        <div class="hub-top">
-                            <span class="pill">DOCX</span>
-                            <span class="status-badge ready">Ready</span>
-                        </div>
-                        <div>
-                            <h3>Overall Practice Worksheet</h3>
-                            <p>Comprehensive problem set covering computer fundamentals, networks, and Python trace tables.</p>
-                        </div>
-                        <div class="hub-foot">
-                            <span>Worksheet Collection</span>
-                            <span>Download DOCX &rarr;</span>
-                        </div>
-                    </a>
-
-                    <a class="hub-card" href="../resources/Curriculum/ib-compsci-guide-en-2025.pdf" target="_blank" rel="noopener">
-                        <div class="hub-top">
-                            <span class="pill">PDF</span>
-                            <span class="status-badge ready">Ready</span>
-                        </div>
-                        <div>
-                            <h3>Official IB Subject Guide</h3>
-                            <p>Complete IB DP Computer Science syllabus specification, assessment outline, and command terms.</p>
-                        </div>
-                        <div class="hub-foot">
-                            <span>1.2 MB PDF</span>
-                            <span>Open PDF &rarr;</span>
-                        </div>
-                    </a>
-
-                    <a class="hub-card" href="../resources/Error%20log%20-%20Python%20Programming.pdf" target="_blank" rel="noopener">
-                        <div class="hub-top">
-                            <span class="pill">PDF</span>
-                            <span class="status-badge ready">Ready</span>
-                        </div>
-                        <div>
-                            <h3>Python Error Log Handbook</h3>
-                            <p>Diagnostic guide to common syntax errors, runtime exceptions, and Criterion C debugging documentation.</p>
-                        </div>
-                        <div class="hub-foot">
-                            <span>IA &amp; Paper 2</span>
-                            <span>Open PDF &rarr;</span>
-                        </div>
-                    </a>
-                </div>
+            <div data-library="full">
+                <p class="sub">Loading department resource index&hellip;</p>
             </div>
-        </section>
 
-        <!-- Section 02: Full Searchable 131-File Vault -->
-        <section class="section" aria-labelledby="sec-vault">
-            <div class="section-label">
-                <span>02</span>Full Index
-            </div>
-            <div class="section-body">
-                <div class="section-head">
-                    <div>
-                        <h2 class="h1" id="sec-vault">Search All 131 Student Files</h2>
-                        <p class="sub">
-                            Filter instantaneously by keyword or file type across Theme A (70 files), Theme B (48 files), Curriculum &amp; Scheme of Work, IA, Revision Folder, and Practice Papers.
-                        </p>
-                    </div>
-                </div>
-
-                <div data-library="full">
-                    <p class="sub">Loading department resource index&hellip;</p>
-                </div>
-
-                <div class="missing-box" style="margin-top: 32px;">
-                    <div>
-                        <strong>Pending Faculty Uploads:</strong> Past Exam Papers (2016&ndash;2025 PDFs), Theme B/C/D Revision Folder summaries, and the Year 2 Semester 2 Unit Plan are awaiting teacher upload. All 131 currently uploaded department files are indexed above.
-                    </div>
+            <div class="missing-box" style="margin-top: 32px;">
+                <div>
+                    <strong>Faculty Notice:</strong> All permanent curriculum and revision files are indexed above. For recently dumped homework sheets and assessment materials, switch to the <em>Teacher Drops &amp; Updates</em> tab.
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="site-footer">
+        <footer class="site-footer">
         <div class="wrap">
             <div class="footer-grid">
                 <div>
                     <div class="footer-title">Computer Science &bull; EIS</div>
                     <p>
-                        IB Diploma Programme Computer Science (SL &amp; HL) at Emirates International School. Speaking requests &amp; inquiries: <a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui (Siddiquin@eischools.ae)</a>.
+                        IB Diploma Programme Computer Science (SL &amp; HL) at Emirates International School Meadows. Department lead &amp; inquiries: <a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui (Siddiquin@eischools.ae)</a>.
                     </p>
                 </div>
                 <div>
                     <div class="footer-title">Navigation</div>
                     <ul>
-                        <li><a href="courses.html">Courses Overview</a></li>
+                        <li><a href="deadlines.html">Deadlines &amp; Announcements</a></li>
                         <li><a href="practice.html">Practice Question Bank</a></li>
-                        <li><a href="curriculum.html">Curriculum &amp; Pacing</a></li>
-                        <li><a href="theme-a.html">Theme A: Systems &amp; Hardware</a></li>
-                        <li><a href="theme-b.html">Theme B: Computational Thinking</a></li>
+                        <li><a href="curriculum.html">Syllabus</a></li>
                         <li><a href="ia.html">Internal Assessment (IA)</a></li>
-                        <li><a href="case-study.html">Paper 3 Case Study</a></li>
+                        <li><a href="case-study.html">Case Study (Paper 1 Section B)</a></li>
                         <li><a href="resources.html">Resources &amp; Worksheets</a></li>
                     </ul>
                 </div>
                 <div>
-                    <div class="footer-title">Department Team &amp; Appearance</div>
+                    <div class="footer-title">Department Team &amp; Ambassadors</div>
                     <ul>
                         <li><a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui &mdash; Head of CS</a></li>
                         <li><a href="mailto:anishdongarkar@gmail.com">Anish Dongarkar &mdash; Tech Ambassador</a></li>
-                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaren &mdash; AI Ambassador</a></li>
+                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaran &mdash; AI Ambassador</a></li>
                         <li><a href="about-us.html">About the Department</a></li>
                         <li><a href="admin.html">Faculty Administration Portal</a></li>
                     </ul>
@@ -235,12 +197,13 @@
 
             <div class="footer-base">
                 <span>&copy; 2026 Computer Science Department &bull; Emirates International School (IB DP World School)</span>
-                <span>Theme A &bull; Theme B &bull; IA &bull; Paper 3</span>
+                <span>Theme A &bull; Theme B &bull; IA &bull; Paper 1 Section B</span>
             </div>
         </div>
     </footer>
 
     <script src="../assets/js/site.js" defer></script>
     <script src="../assets/js/library.js" defer></script>
+    <script src="../assets/js/resources-feed.js" defer></script>
 </body>
 </html>

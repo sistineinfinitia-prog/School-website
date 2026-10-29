@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internal Assessment (IA) | IB Computer Science &mdash; EIS</title>
-    <meta name="description" content="30-Mark Internal Assessment guide for IB DP Computer Science at Emirates International School: Criteria A–E rubric, video tutorials, and assessed student exemplar.">
+    <title>Internal Assessment (IA) | IB Computer Science &mdash; Emirates International School Meadows</title>
+    <meta name="description" content="Official 30-mark Internal Assessment guide for the redesigned IB DP Computer Science course (First Assessment May 2027) at Emirates International School Meadows: Criteria A–E rubrics, DOs and DONTs, assessed student work exemplar, and video masterclass.">
     <script>
         (function () {
             try {
@@ -30,10 +30,11 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/site.css">
+    <link rel="stylesheet" href="../assets/css/ia.css">
 </head>
-<body>
+<body class="page-ia">
     <a class="skip-link" href="#main">Skip to main content</a>
     <canvas class="ribbons" id="interactive-canvas" aria-hidden="true"></canvas>
 
@@ -54,9 +55,10 @@
             <div class="header-right">
                 <nav class="site-nav" id="site-nav" aria-label="Primary">
                     <ul class="nav-list">
-                        <li><a href="../index.html">Homepage</a></li>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="curriculum.html">Syllabus</a></li>
                         <li><a href="practice.html">Practice</a></li>
-                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="deadlines.html">Deadlines</a></li>
                         <li><a href="resources.html">Resources</a></li>
                     </ul>
                 </nav>
@@ -66,186 +68,1204 @@
         </div>
     </header>
 
-    <main id="main" class="wrap">
-        <section class="hero">
-            <div class="eyebrow">
-                <span>Coursework &bull; 30 Marks (30% SL / 20% HL)</span>
+    <main id="main" class="wrap wrap-wide ia-page">
+        <!-- Editorial Hero Header -->
+        <header class="rv-header-wrap">
+            <div class="rv-breadcrumbs">
+                <a href="../index.html">Home</a>
+                <span class="sep">/</span>
+                <span>Internal Assessment</span>
             </div>
-            <h1 class="display">
-                Internal Assessment (IA)
-            </h1>
-            <p class="lead">
-                Rubrics, video walkthroughs, assessed student coursework exemplar, and guidelines for Criteria A through E.
-            </p>
-            <div class="hero-actions">
-                <a class="btn btn-primary" href="../resources/IA/Computer%20Science%20Assessed%20Student%20Work%202027%20(1).pdf" target="_blank" rel="noopener">
-                    <span>Open Assessed Student Work Exemplar (PDF)</span>
-                    <span class="arrow" aria-hidden="true">&rarr;</span>
-                </a>
-                <a class="btn" href="../resources/Error%20log%20-%20Python%20Programming.pdf" target="_blank" rel="noopener">
-                    <span>Open Python Error Log (PDF)</span>
-                </a>
-                <a class="btn" href="https://drive.google.com/file/d/10UpqjN-yrhiJL5oOSiYBInVLxT0dWZVW/view" target="_blank" rel="noopener">
-                    <span>Official IA Rubric (Google Drive)</span>
-                </a>
+            <div class="rv-header-main">
+                <div class="rv-title-area">
+                    <div class="rv-overline">IB DIPLOMA PROGRAMME &bull; COMPONENT 03</div>
+                    <h1 class="rv-subject-title">Internal Assessment (Computational Solution)</h1>
+                    <p class="rv-subject-desc">
+                        Official coursework specification for the redesigned IB Computer Science syllabus (First Assessment May 2027). A 35-hour individual engineering project marked out of 30 marks, weighted at 30% for Standard Level and 20% for Higher Level.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Primary Navigation Tabs (Sharp Architectural Geometry - No Pills) -->
+            <nav class="rv-tabs-nav" role="tablist" aria-label="Internal Assessment Sections">
+                <button type="button" class="rv-tab-btn active" data-tab="criteria" role="tab" aria-selected="true" id="tab-btn-criteria">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                    <span>Criteria &amp; Rubrics</span>
+                    <span class="ia-tab-badge">30 Marks</span>
+                </button>
+                <button type="button" class="rv-tab-btn" data-tab="exemplars" role="tab" aria-selected="false" id="tab-btn-exemplars">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    <span>Student Exemplar</span>
+                    <span class="ia-tab-badge">2027 Work</span>
+                </button>
+                <button type="button" class="rv-tab-btn" data-tab="videos" role="tab" aria-selected="false" id="tab-btn-videos">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                    <span>Video Masterclass</span>
+                    <span class="ia-tab-badge">7 Lessons</span>
+                </button>
+                <button type="button" class="rv-tab-btn" data-tab="guide" role="tab" aria-selected="false" id="tab-btn-guide">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    <span>Official 2027 Guide</span>
+                    <span class="ia-tab-badge">Full Specification</span>
+                </button>
+            </nav>
+        </header>
+
+        <!-- ==================================================================
+             TAB PANE 1: CRITERIA & RUBRICS (SYLLABUS BOX FORMAT + COLLAPSE/EXPAND)
+             ================================================================== -->
+        <section class="ia-tab-pane active" id="pane-criteria" role="tabpanel" aria-labelledby="tab-btn-criteria">
+            
+            <!-- Syllabus-Style Toolbar & Controls -->
+            <div class="ia-toolbar">
+                <div class="ia-stats-bar">
+                    <div class="ia-stats-counter">
+                        Showing <strong id="visible-criteria-count">5</strong> Assessment Criteria &bull; <strong>30 Marks Total</strong> &bull; Redesigned 2027 Syllabus Framework
+                    </div>
+                    <div class="ia-stats-actions">
+                        <button type="button" class="btn btn-sm" id="btn-expand-all-criteria" aria-label="Expand all criteria">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="7 11 12 6 17 11"></polyline><polyline points="7 18 12 13 17 18"></polyline></svg>
+                            <span>Expand All Criteria</span>
+                        </button>
+                        <button type="button" class="btn btn-sm" id="btn-collapse-all-criteria" aria-label="Collapse all criteria">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+                            <span>Collapse All Criteria</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prominent Curriculum Clarification Callout Card -->
+            <div class="ia-callout-card ia-callout-gold">
+                <div class="ia-callout-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                </div>
+                <div class="ia-callout-content">
+                    <div class="ia-callout-title">
+                        <span>2027 Syllabus Paradigm Shift: No External Client Required</span>
+                        <span class="ia-tag ia-tag-gold">Official Curriculum Update</span>
+                    </div>
+                    <p>
+                        A major update in the redesigned IB Computer Science curriculum is that <strong>students are NO LONGER required to have a real individual, external third-party client, or formal business contract</strong>. You do not need formal client interview transcripts, business sign-off letters, or workplace advisors.
+                    </p>
+                    <p>
+                        Instead, the IA is defined as an <strong>authentic computational solution to an identified problem</strong>. The core requirement is that you identify a real-world problem or intellectual challenge that demands computational thinking, algorithmic complexity, structured data modeling, and empirical verification. The "user" can be a user group, school club, academic peer cohort, simulated community, or even an optimization tool for personal scientific exploration.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Main Criteria Units Accordion Stack (Syllabus Format) -->
+            <div class="ia-criteria-stack" id="criteria-container">
+
+                <!-- -----------------------------------------------------------
+                     CRITERION A: Problem Specification (4 Marks)
+                     ----------------------------------------------------------- -->
+                <details class="ia-unit" data-criterion="A" open>
+                    <summary class="ia-unit-summary">
+                        <div class="ia-unit-left">
+                            <span class="ia-unit-code">A</span>
+                            <div class="ia-unit-info">
+                                <h2 class="ia-unit-name">Criterion A: Problem Specification</h2>
+                                <p class="ia-unit-theme">Problem scenario, computational justification, user requirements &amp; testable success criteria</p>
+                            </div>
+                        </div>
+                        <div class="ia-unit-meta">
+                            <span class="ia-tag ia-tag-accent">4 Marks</span>
+                            <span class="ia-tag">13.3% of IA</span>
+                            <span class="ia-tag ia-tag-subtle">~400–500 Words</span>
+                            <svg class="ia-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                    </summary>
+                    <div class="ia-unit-body">
+                        <div class="ia-unit-desc-row">
+                            <p class="ia-unit-desc">
+                                Establish a clear, authentic problem scenario within a justifiable computational context. Define detailed functional and user requirements, analyze technical feasibility, and formulate <strong>5 to 8 specific, measurable, and testable success criteria</strong> that anchor the entire project lifecycle.
+                            </p>
+                            <div class="ia-unit-stats-strip">
+                                <span>Max Marks: <strong>4</strong></span>
+                                <span>&bull;</span>
+                                <span>Core Focus: <strong>Chain Foundation</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Block 1: Official Markband Rubric -->
+                        <div class="ia-sub-block">
+                            <div class="ia-sub-bar">
+                                <div class="ia-sub-title-wrap">
+                                    <span class="ia-sub-code-badge">A.1</span>
+                                    <h3 class="ia-sub-title">Official 2027 Markband Descriptors</h3>
+                                </div>
+                                <span class="ia-tag ia-tag-subtle">Examiner Matrix</span>
+                            </div>
+                            <div class="ia-sub-content">
+                                <div class="ia-rubric-grid">
+                                    <div class="ia-rubric-card">
+                                        <div class="ia-rubric-top">
+                                            <span class="ia-rubric-band">0 Marks</span>
+                                            <span class="ia-rubric-status">Unmet</span>
+                                        </div>
+                                        <p class="ia-rubric-desc">The student's submission does not reach any standard described by the markband descriptors below.</p>
+                                    </div>
+                                    <div class="ia-rubric-card">
+                                        <div class="ia-rubric-top">
+                                            <span class="ia-rubric-band">1–2 Marks</span>
+                                            <span class="ia-rubric-status">Partial / Limited</span>
+                                        </div>
+                                        <p class="ia-rubric-desc">The problem scenario is vaguely described or the computational context is weak or inappropriate. Solution requirements are generic, subjective, or incomplete. Success criteria are missing, purely qualitative, or untestable.</p>
+                                    </div>
+                                    <div class="ia-rubric-card top-band">
+                                        <div class="ia-rubric-top">
+                                            <span class="ia-rubric-band">3–4 Marks</span>
+                                            <span class="ia-rubric-status">Excellent / Top Standard</span>
+                                        </div>
+                                        <p class="ia-rubric-desc">The problem scenario is thoroughly described and compellingly justified within an appropriate computational context. Requirements are comprehensive and explicitly defined. A robust set of specific, testable, and measurable success criteria is established.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Block 2: Key Deliverables & Technical Evidence -->
+                        <div class="ia-sub-block">
+                            <div class="ia-sub-bar">
+                                <div class="ia-sub-title-wrap">
+                                    <span class="ia-sub-code-badge">A.2</span>
+                                    <h3 class="ia-sub-title">Mandatory Deliverables &amp; Evidence</h3>
+                                </div>
+                                <span class="ia-tag ia-tag-subtle">Checklist</span>
+                            </div>
+                            <div class="ia-sub-content">
+                                <div class="ia-deliverables-grid">
+                                    <div class="ia-deliverable-item">
+                                        <span class="ia-deliverable-num">1</span>
+                                        <div class="ia-deliverable-text">
+                                            <h5>Authentic Problem Scenario</h5>
+                                            <p>Clear narrative describing the operational bottleneck, current manual inefficiencies, and the scope of the problem to be solved.</p>
+                                        </div>
+                                    </div>
+                                    <div class="ia-deliverable-item">
+                                        <span class="ia-deliverable-num">2</span>
+                                        <div class="ia-deliverable-text">
+                                            <h5>Computational Rationale</h5>
+                                            <p>Explicit justification explaining why existing off-the-shelf software (e.g. basic spreadsheets) is unsuitable and why bespoke programmatic logic is needed.</p>
+                                        </div>
+                                    </div>
+                                    <div class="ia-deliverable-item">
+                                        <span class="ia-deliverable-num">3</span>
+                                        <div class="ia-deliverable-text">
+                                            <h5>User Needs &amp; Constraints</h5>
+                                            <p>Functional requirements, input data structures, expected system throughput, technical constraints, and target user profile.</p>
+                                        </div>
+                                    </div>
+                                    <div class="ia-deliverable-item">
+                                        <span class="ia-deliverable-num">4</span>
+                                        <div class="ia-deliverable-text">
+                                            <h5>Testable Success Criteria Matrix</h5>
+                                            <p>5 to 8 individually numbered criteria [SC1..SCn] with precise quantitative thresholds that will be tested in Criterion D and evaluated in Criterion E.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Block 3: Concrete DO's vs DON'Ts (With Real IB CS Examples) -->
+                        <div class="ia-sub-block">
+                            <div class="ia-sub-bar">
+                                <div class="ia-sub-title-wrap">
+                                    <span class="ia-sub-code-badge">A.3</span>
+                                    <h3 class="ia-sub-title">Examiner DO's vs DON'Ts (With Concrete Examples)</h3>
+                                </div>
+                                <span class="ia-tag ia-tag-accent">Scoring Strategy</span>
+                            </div>
+                            <div class="ia-sub-content">
+                                <div class="ia-comparison-grid">
+                                    <!-- DO Column -->
+                                    <div class="ia-comparison-col">
+                                        <div class="ia-comparison-card card-do">
+                                            <div class="ia-comparison-header">
+                                                <span class="ia-comparison-badge">
+                                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                                    <span>DO</span>
+                                                </span>
+                                                <span class="ia-comparison-tag">EXEMPLARY STANDARD</span>
+                                            </div>
+                                            <h4 class="ia-comparison-title">Write Testable, Quantitative Criteria</h4>
+                                            <p class="ia-comparison-body">State measurable parameters, specific boundary numbers, response time limits, and verification methods so examiners can confirm achievement objectively.</p>
+                                            <div class="ia-comparison-example">
+                                                <div class="ia-example-lead">
+                                                    <span class="ia-example-badge">[SC-01 SPECIMEN]</span>
+                                                    <span class="ia-example-text">"The system must authenticate users by hashing input passwords using SHA-256 with salting, locking the account for 300 seconds after 3 consecutive failed login attempts."</span>
+                                                </div>
+                                                <div class="ia-example-lead">
+                                                    <span class="ia-example-badge">[SC-02 SPECIMEN]</span>
+                                                    <span class="ia-example-text">"The timetable generator algorithm must resolve room allocations for 40 teachers without conflict in under 2.5 seconds, outputting a valid schedule to SQLite."</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ia-comparison-card card-do">
+                                            <div class="ia-comparison-header">
+                                                <span class="ia-comparison-badge">
+                                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                                    <span>DO</span>
+                                                </span>
+                                                <span class="ia-comparison-tag">COMPUTATIONAL JUSTIFICATION</span>
+                                            </div>
+                                            <h4 class="ia-comparison-title">Justify Algorithmic Need</h4>
+                                            <p class="ia-comparison-body">Demonstrate that the problem requires algorithmic complexity, automated parsing, multi-relational database integrity, or computational automation.</p>
+                                            <div class="ia-comparison-example">
+                                                <div class="ia-example-lead">
+                                                    <span class="ia-example-badge">[RATIONALE SPECIMEN]</span>
+                                                    <span class="ia-example-text">"A standard spreadsheet cannot enforce relational referential integrity between student prerequisite courses and course sections, resulting in manual schedule clashes that take 20+ hours each term to resolve."</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- DONT Column -->
+                                    <div class="ia-comparison-col">
+                                        <div class="ia-comparison-card card-dont">
+                                            <div class="ia-comparison-header">
+                                                <span class="ia-comparison-badge">
+                                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                                    <span>DON'T</span>
+                                                </span>
+                                                <span class="ia-comparison-tag">COMMON PITFALL</span>
+                                            </div>
+                                            <h4 class="ia-comparison-title">Write Vague, Subjective Descriptors</h4>
+                                            <p class="ia-comparison-body">Never use untestable subjective adjectives like 'user-friendly', 'fast', 'visually appealing', or 'secure' without measurable parameters.</p>
+                                            <div class="ia-comparison-example">
+                                                <div class="ia-example-lead">
+                                                    <span class="ia-example-badge">[UNTESTABLE ANTI-PATTERN]</span>
+                                                    <span class="ia-example-text">"The program should be very easy to use and intuitive, and students will love using the UI." &mdash; <em style="color:var(--text-3);">(Pure opinion; untestable and penalized by moderators).</em></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ia-comparison-card card-dont">
+                                            <div class="ia-comparison-header">
+                                                <span class="ia-comparison-badge">
+                                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                                    <span>DON'T</span>
+                                                </span>
+                                                <span class="ia-comparison-tag">FEASIBILITY VIOLATION</span>
+                                            </div>
+                                            <h4 class="ia-comparison-title">Over-Scope or Invent Impossible AI Goals</h4>
+                                            <p class="ia-comparison-body">Avoid unrealistic claims that cannot be proven or developed within the 35-hour coursework allocation.</p>
+                                            <div class="ia-comparison-example">
+                                                <div class="ia-example-lead">
+                                                    <span class="ia-example-badge">[UNFEASIBLE ANTI-PATTERN]</span>
+                                                    <span class="ia-example-text">"The app will predict global cryptocurrency price movements with 100% precision using an advanced neural network." &mdash; <em style="color:var(--text-3);">(Unrealistic, unmeasurable, unmanageable).</em></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Block 4: Examiner Pro-Tips & Red Flags -->
+                        <div class="ia-tip-box">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            <div class="ia-tip-content">
+                                <strong>Examiner Moderation Insight for Criterion A:</strong>
+                                Number each success criterion as <code>SC-01</code>, <code>SC-02</code>, up to <code>SC-07</code>. The external moderator will trace these exact tags directly into Criterion C (Test Strategy Matrix), Criterion D (Executed Test Logs &amp; Screenshots), and Criterion E (Evaluation Appraisal). If an examiner sees unnumbered or narrative criteria, your coursework risks losing marks across multiple criteria due to broken coherence.
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- -----------------------------------------------------------
+                     CRITERION B: Planning (4 Marks)
+                     ----------------------------------------------------------- -->
+                <details class="ia-unit" data-criterion="B">
+                    <summary class="ia-unit-summary">
+                        <div class="ia-unit-left">
+                            <span class="ia-unit-code">B</span>
+                            <div class="ia-unit-info">
+                                <h2 class="ia-unit-name">Criterion B: Planning</h2>
+                                <p class="ia-unit-theme">Problem decomposition, development methodology, sprint roadmap &amp; chronological task record</p>
+                            </div>
+                        </div>
+                        <div class="ia-unit-meta">
+                            <span class="ia-tag ia-tag-accent">4 Marks</span>
+                            <span class="ia-tag">13.3% of IA</span>
+                            <span class="ia-tag ia-tag-subtle">~300–450 Words + Table</span>
+                            <svg class="ia-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                    </summary>
+                    <div class="ia-unit-body">
+                        <div class="ia-unit-desc-row">
+                            <p class="ia-unit-desc">
+                                Deconstruct the overarching computational problem into modular, cohesive sub-systems. Outline a structured software development lifecycle methodology (e.g. Iterative Agile Sprints), define project milestones, and maintain a rigorous chronological task record reflecting actual technical hurdles and problem-solving decisions.
+                            </p>
+                            <div class="ia-unit-stats-strip">
+                                <span>Max Marks: <strong>4</strong></span>
+                                <span>&bull;</span>
+                                <span>Core Focus: <strong>Decomposition &amp; Task Logging</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Block 1: Official Markband Rubric -->
+                        <div class="ia-sub-block">
+                            <div class="ia-sub-bar">
+                                <div class="ia-sub-title-wrap">
+                                    <span class="ia-sub-code-badge">B.1</span>
+                                    <h3 class="ia-sub-title">Official 2027 Markband Descriptors</h3>
+                                </div>
+                                <span class="ia-tag ia-tag-subtle">Examiner Matrix</span>
+                            </div>
+                            <div class="ia-sub-content">
+                                <div class="ia-rubric-grid">
+                                    <div class="ia-rubric-card">
+                                        <div class="ia-rubric-top">
+                                            <span class="ia-rubric-band">0 Marks</span>
+                                            <span class="ia-rubric-status">Unmet</span>
+                                        </div>
+                                        <p class="ia-rubric-desc">The student's submission does not reach any standard described by the markband descriptors below.</p>
+                                    </div>
+                                    <div class="ia-rubric-card">
+                                        <div class="ia-rubric-top">
+                                            <span class="ia-rubric-band">1–2 Marks</span>
+                                            <span class="ia-rubric-status">Partial / Limited</span>
+                                        </div>
+                                        <p class="ia-rubric-desc">Problem decomposition is partial, superficial, or disorganized. The development roadmap is vague, lacking distinct milestone dates, modular sub-tasks, or chronological technical logging.</p>
+                                    </div>
+                                    <div class="ia-rubric-card top-band">
+                                        <div class="ia-rubric-top">
+                                            <span class="ia-rubric-band">3–4 Marks</span>
+                                            <span class="ia-rubric-status">Excellent / Top Standard</span>
+                                        </div>
+                                        <p class="ia-rubric-desc">Thorough, structured decomposition of the problem into logical sub-problems and functional modules. A comprehensive, realistic development plan featuring clear milestones, task sequencing, and a detailed chronological record of development tasks.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Block 2: Key Deliverables -->
+                        <div class="ia-sub-block">
+                            <div class="ia-sub-bar">
+                                <div class="ia-sub-title-wrap">
+                                    <span class="ia-sub-code-badge">B.2</span>
+                                    <h3 class="ia-sub-title">Mandatory Deliverables &amp; Evidence</h3>
+                                </div>
+                                <span class="ia-tag ia-tag-subtle">Checklist</span>
+                            </div>
+                            <div class="ia-sub-content">
+                                <div class="ia-deliverables-grid">
+                                    <div class="ia-deliverable-item">
+                                        <span class="ia-deliverable-num">1</span>
+                                        <div class="ia-deliverable-text">
+                                            <h5>Modular Problem Decomposition</h5>
+                                            <p>Hierarchical decomposition diagram breaking the system into distinct computational layers (Data Layer, Business Logic Engine, Authentication, UI View).</p>
+                                        </div>
+                                    </div>
+                                    <div class="ia-deliverable-item">
+                                        <span class="ia-deliverable-num">2</span>
+                                        <div class="ia-deliverable-text">
+                                            <h5>Development Methodology Justification</h5>
+                                            <p>Rationale for selecting an iterative development framework (e.g. 2-week agile sprints) with technical milestones linked to Success Criteria.</p>
+                                        </div>
+                                    </div>
+                                    <div class="ia-deliverable-item">
+                                        <span class="ia-deliverable-num">3</span>
+                                        <div class="ia-deliverable-text">
+                                            <h5>Chronological Record of Tasks</h5>
+                                            <p>Comprehensive tabular log containing: Task ID, Sprint Date, Planned Objective, Actual Outcome, Technical Hurdle, and Resolution.</p>
+                                        </div>
+                                    </div>
+                                    <div class="ia-deliverable-item">
+                                        <span class="ia-deliverable-num">4</span>
+                                        <div class="ia-deliverable-text">
+                                            <h5>Technical Dependency Inventory</h5>
+                                            <p>Audit of required frameworks, target Python runtime, third-party libraries (e.g. PyQt6, SQLite3, Matplotlib), and IDE configurations.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Block 3: DO's vs DON'Ts Comparison -->
+                        <div class="ia-sub-block">
+                            <div class="ia-sub-bar">
+                                <div class="ia-sub-title-wrap">
+                                    <span class="ia-sub-code-badge">B.3</span>
+                                    <h3 class="ia-sub-title">Examiner DO's vs DON'Ts (With Concrete Examples)</h3>
+                                </div>
+                                <span class="ia-tag ia-tag-accent">Scoring Strategy</span>
+                            </div>
+                            <div class="ia-sub-content">
+                                <div class="ia-comparison-grid">
+                                    <div class="ia-comparison-col">
+                                        <div class="ia-comparison-card card-do">
+                                            <div class="ia-comparison-header">
+                                                <span class="ia-comparison-badge">
+                                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                                    <span>DO</span>
+                                                </span>
+                                                <span class="ia-comparison-tag">ENGINEERING AUTHENTICITY</span>
+                                            </div>
+                                            <h4 class="ia-comparison-title">Log Real Engineering Hurdles &amp; Fixes</h4>
+                                            <p class="ia-comparison-body">Examiners want to see the iterative engineering struggle. Document authentic debugging breakthroughs, database schema alterations, and refactorings.</p>
+                                            <div class="ia-comparison-example">
+                                                <div class="ia-example-lead">
+                                                    <span class="ia-example-badge">[AUTHENTIC TASK LOG EXCERPT]</span>
+                                                    <span class="ia-example-text">&bull; <strong>Task:</strong> "Build recursive tree search in Python"<br>&bull; <strong>Sprint Date:</strong> "Oct 14, 2026 (Est: 3h, Actual: 4.5h)"<br>&bull; <strong>Hurdle:</strong> "Encountered RecursionError on unbalanced binary trees with 1,200 nodes."<br>&bull; <strong>Resolution:</strong> "Implemented iterative traversal stack using deque, reducing memory overhead to O(1) auxiliary space."</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ia-comparison-col">
+                                        <div class="ia-comparison-card card-dont">
+                                            <div class="ia-comparison-header">
+                                                <span class="ia-comparison-badge">
+                                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                                    <span>DON'T</span>
+                                                </span>
+                                                <span class="ia-comparison-tag">SUPERFICIAL LOGGING</span>
+                                            </div>
+                                            <h4 class="ia-comparison-title">Submit a Retrospective Fake Diary</h4>
+                                            <p class="ia-comparison-body">Examiners spot fake diaries immediately. A log that has no hurdles, smooth round hours, or generic phrases loses credibility.</p>
+                                            <div class="ia-comparison-example">
+                                                <div class="ia-example-lead">
+                                                    <span class="ia-example-badge">[FABRICATED RETROSPECTIVE]</span>
+                                                    <span class="ia-example-text">&bull; "Week 1: Thought of idea. Everything went well."<br>&bull; "Week 2: Coded the entire program without errors."<br>&bull; "Week 3: Tested and finished." &mdash; <em style="color:var(--text-3);">(Zero technical specificity; capped at 1-2 marks).</em></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Block 4: Examiner Pro-Tips -->
+                        <div class="ia-tip-box">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            <div class="ia-tip-content">
+                                <strong>Examiner Moderation Insight for Criterion B:</strong>
+                                Ensure your decomposition diagram explicitly separates concerns. If you present a diagram with only 2 boxes ("Code" and "Database"), you will be capped at 1–2 marks. Show distinct modules: Data Model, Business Engine, Validation Filter, Presentation Layer, and File I/O.
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- -----------------------------------------------------------
+                     CRITERION C: System Overview (6 Marks)
+                     ----------------------------------------------------------- -->
+                <details class="ia-unit" data-criterion="C">
+                    <summary class="ia-unit-summary">
+                        <div class="ia-unit-left">
+                            <span class="ia-unit-code">C</span>
+                            <div class="ia-unit-info">
+                                <h2 class="ia-unit-name">Criterion C: System Overview</h2>
+                                <p class="ia-unit-theme">System architecture models, algorithmic flowcharts &amp; pseudocode, UI wireframes, 3-tier testing strategy</p>
+                            </div>
+                        </div>
+                        <div class="ia-unit-meta">
+                            <span class="ia-tag ia-tag-accent">6 Marks</span>
+                            <span class="ia-tag">20% of IA</span>
+                            <span class="ia-tag ia-tag-subtle">~500–700 Words + Diagrams</span>
+                            <svg class="ia-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                    </summary>
+                    <div class="ia-unit-body">
+                        <div class="ia-unit-desc-row">
+                            <p class="ia-unit-desc">
+                                Provide architectural system modeling (UML class diagrams, ER diagrams, data dictionaries), formal algorithm representations (standard IB flowcharts and pseudocode), annotated UI wireframes, and a comprehensive <strong>3-tier planned testing strategy (Normal, Boundary, Abnormal data)</strong> mapped directly to Criterion A success criteria.
+                            </p>
+                            <div class="ia-unit-stats-strip">
+                                <span>Max Marks: <strong>6</strong></span>
+                                <span>&bull;</span>
+                                <span>Core Focus: <strong>Design Architecture &amp; Test Matrix Plan</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Block 1: Official Markband Rubric -->
+                        <div class="ia-sub-block">
+                            <div class="ia-sub-bar">
+                                <div class="ia-sub-title-wrap">
+                                    <span class="ia-sub-code-badge">C.1</span>
+                                    <h3 class="ia-sub-title">Official 2027 Markband Descriptors</h3>
+                                </div>
+                                <span class="ia-tag ia-tag-subtle">Examiner Matrix</span>
+                            </div>
+                            <div class="ia-sub-content">
+                                <div class="ia-rubric-grid">
+                                    <div class="ia-rubric-card">
+                                        <div class="ia-rubric-top">
+                                            <span class="ia-rubric-band">0 Marks</span>
+                                            <span class="ia-rubric-status">Unmet</span>
+                                        </div>
+                                        <p class="ia-rubric-desc">The student's submission does not reach any standard described by the markband descriptors below.</p>
+                                    </div>
+                                    <div class="ia-rubric-card">
+                                        <div class="ia-rubric-top">
+                                            <span class="ia-rubric-band">1–2 Marks</span>
+                                            <span class="ia-rubric-status">Basic / Incomplete</span>
+                                        </div>
+                                        <p class="ia-rubric-desc">System models are missing or severely incomplete. Algorithms are represented informally or superficially. UI mockups are absent. Testing strategy is missing or lacks clear data categories.</p>
+                                    </div>
+                                    <div class="ia-rubric-card">
+                                        <div class="ia-rubric-top">
+                                            <span class="ia-rubric-band">3–4 Marks</span>
+                                            <span class="ia-rubric-status">Competent</span>
+                                        </div>
+                                        <p class="ia-rubric-desc">Adequate system modeling provided (e.g. basic UML or database diagram). Core algorithms represented via flowcharts or pseudocode. UI wireframes present. Basic test strategy outlined with normal data.</p>
+                                    </div>
+                                    <div class="ia-rubric-card top-band">
+                                        <div class="ia-rubric-top">
+                                            <span class="ia-rubric-band">5–6 Marks</span>
+                                            <span class="ia-rubric-status">Excellent / Top Standard</span>
+                                        </div>
+                                        <p class="ia-rubric-desc">Comprehensive, professional system modeling (complete UML class diagram with visibility and relationships, database ER diagram, data dictionary). Detailed algorithmic designs using standard pseudocode and flowcharts for non-trivial logic. Annotated UI wireframes. Rigorous 3-tier testing strategy covering normal, boundary, and abnormal test data mapped directly to Criterion A success criteria.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Block 2: Key Deliverables -->
+                        <div class="ia-sub-block">
+                            <div class="ia-sub-bar">
+                                <div class="ia-sub-title-wrap">
+                                    <span class="ia-sub-code-badge">C.2</span>
+                                    <h3 class="ia-sub-title">Mandatory Deliverables &amp; Evidence</h3>
+                                </div>
+                                <span class="ia-tag ia-tag-subtle">Checklist</span>
+                            </div>
+                            <div class="ia-sub-content">
+                                <div class="ia-deliverables-grid">
+                                    <div class="ia-deliverable-item">
+                                        <span class="ia-deliverable-num">1</span>
+                                        <div class="ia-deliverable-text">
+                                            <h5>Standard UML Class Diagram</h5>
+                                            <p>Complete OOP class diagram showing class names, private/public attributes, method signatures, return types, inheritance, and multiplicities.</p>
+                                        </div>
+                                    </div>
+                                    <div class="ia-deliverable-item">
+                                        <span class="ia-deliverable-num">2</span>
+                                        <div class="ia-deliverable-text">
+                                            <h5>Relational ER Diagram &amp; Data Dictionary</h5>
+                                            <p>Entity-relationship schema with primary/foreign keys and data dictionary defining field types, lengths, validation rules, and default values.</p>
+                                        </div>
+                                    </div>
+                                    <div class="ia-deliverable-item">
+                                        <span class="ia-deliverable-num">3</span>
+                                        <div class="ia-deliverable-text">
+                                            <h5>Algorithm Flowcharts &amp; IB Pseudocode</h5>
+                                            <p>Formal algorithmic specifications for core custom routines (sorting, graph traversal, recursive rebalancing, validation parsers).</p>
+                                        </div>
+                                    </div>
+                                    <div class="ia-deliverable-item">
+                                        <span class="ia-deliverable-num">4</span>
+                                        <div class="ia-deliverable-text">
+                                            <h5>Planned 3-Tier Testing Matrix Table</h5>
+                                            <p>Structured table pre-planning every test case with: Test ID, Criterion ID, Test Type (Normal, Boundary, Abnormal), Exact Input Data, and Expected Outcome.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Block 3: DO's vs DON'Ts Comparison -->
+                        <div class="ia-sub-block">
+                            <div class="ia-sub-bar">
+                                <div class="ia-sub-title-wrap">
+                                    <span class="ia-sub-code-badge">C.3</span>
+                                    <h3 class="ia-sub-title">Examiner DO's vs DON'Ts (With Concrete Examples)</h3>
+                                </div>
+                                <span class="ia-tag ia-tag-accent">Scoring Strategy</span>
+                            </div>
+                            <div class="ia-sub-content">
+                                <div class="ia-comparison-grid">
+                                    <div class="ia-comparison-col">
+                                        <div class="ia-comparison-card card-do">
+                                            <div class="ia-comparison-header">
+                                                <span class="ia-comparison-badge">
+                                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                                    <span>DO</span>
+                                                </span>
+                                                <span class="ia-comparison-tag">COMPREHENSIVE TEST DESIGN</span>
+                                            </div>
+                                            <h4 class="ia-comparison-title">Plan Normal, Boundary &amp; Abnormal Data</h4>
+                                            <p class="ia-comparison-body">A test plan that only tests valid inputs cannot score above 4 marks. Include boundary limits and deliberately invalid inputs to verify defensive exception handling.</p>
+                                            <div class="ia-comparison-example">
+                                                <div class="ia-example-lead">
+                                                    <span class="ia-example-badge">[TEST MATRIX SPECIMEN - SC-01]</span>
+                                                    <span class="ia-example-text">&bull; <strong>Test T1 (Normal):</strong> Input "Passw0rd123!" &rarr; Auth success, redirect to dashboard.<br>&bull; <strong>Test T2 (Boundary):</strong> Input password with exactly 8 chars &rarr; Accepted.<br>&bull; <strong>Test T3 (Boundary):</strong> Input password with 7 chars &rarr; Error "Min 8 chars required."<br>&bull; <strong>Test T4 (Abnormal):</strong> Input SQL injection "' OR '1'='1" &rarr; Sanitized and blocked.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ia-comparison-col">
+                                        <div class="ia-comparison-card card-dont">
+                                            <div class="ia-comparison-header">
+                                                <span class="ia-comparison-badge">
+                                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                                    <span>DON'T</span>
+                                                </span>
+                                                <span class="ia-comparison-tag">INFORMAL MODELING</span>
+                                            </div>
+                                            <h4 class="ia-comparison-title">Draw Informal Sketches or Box Dumps</h4>
+                                            <p class="ia-comparison-body">Do not use generic unformatted boxes with no method parameters, attribute types, or arrows. Hand-drawn unreadable sketches are penalized.</p>
+                                            <div class="ia-comparison-example">
+                                                <div class="ia-example-lead">
+                                                    <span class="ia-example-badge">[DEFECTIVE DIAGRAM]</span>
+                                                    <span class="ia-example-text">Box with just "User" pointing to "Database" with an unlabelled line. No method signatures like <code>+login(u: str, p: str): bool</code>, no primary keys. &mdash; <em style="color:var(--text-3);">(Instantly caps Criterion C at 2 marks).</em></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Block 4: Examiner Pro-Tips -->
+                        <div class="ia-tip-box">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            <div class="ia-tip-content">
+                                <strong>Examiner Moderation Insight for Criterion C:</strong>
+                                Remember: Criterion C is the <em>plan</em>, not the result. Do not paste screenshots of test results in Criterion C! Criterion C contains the blank test matrix with planned inputs and expected outcomes. The actual screenshots and executed results belong in Criterion D.
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- -----------------------------------------------------------
+                     CRITERION D: Development (12 Marks - The Core Engine!)
+                     ----------------------------------------------------------- -->
+                <details class="ia-unit" data-criterion="D" open>
+                    <summary class="ia-unit-summary">
+                        <div class="ia-unit-left">
+                            <span class="ia-unit-code">D</span>
+                            <div class="ia-unit-info">
+                                <h2 class="ia-unit-name">Criterion D: Development &amp; Algorithmic Complexity</h2>
+                                <p class="ia-unit-theme">Working computational solution, algorithmic complexity, technical justifications &amp; empirical test evidence</p>
+                            </div>
+                        </div>
+                        <div class="ia-unit-meta">
+                            <span class="ia-tag ia-tag-accent">12 Marks</span>
+                            <span class="ia-tag">40% of IA (Heaviest Weight)</span>
+                            <span class="ia-tag ia-tag-subtle">~800–1,200 Words + Code Excerpts</span>
+                            <svg class="ia-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                    </summary>
+                    <div class="ia-unit-body">
+                        <div class="ia-unit-desc-row">
+                            <p class="ia-unit-desc">
+                                The central core of the IA carrying <strong>40% of the entire grade</strong>. Candidates must prove non-trivial algorithmic mastery, OOP modular structure, defensive programming, and rigorous technical decision-making. Includes annotated excerpts of 4–6 core algorithms and <strong>empirical test execution evidence (actual screenshots and logs)</strong> validating every single success criterion.
+                            </p>
+                            <div class="ia-unit-stats-strip">
+                                <span>Max Marks: <strong>12</strong></span>
+                                <span>&bull;</span>
+                                <span>Core Focus: <strong>Algorithmic Complexity &amp; Empirical Proof</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Block 1: Official Markband Rubric -->
+                        <div class="ia-sub-block">
+                            <div class="ia-sub-bar">
+                                <div class="ia-sub-title-wrap">
+                                    <span class="ia-sub-code-badge">D.1</span>
+                                    <h3 class="ia-sub-title">Official 2027 Markband Descriptors (12 Marks)</h3>
+                                </div>
+                                <span class="ia-tag ia-tag-accent">4-Tier Assessment</span>
+                            </div>
+                            <div class="ia-sub-content">
+                                <div class="ia-rubric-grid">
+                                    <div class="ia-rubric-card">
+                                        <div class="ia-rubric-top">
+                                            <span class="ia-rubric-band">1–3 Marks</span>
+                                            <span class="ia-rubric-status">Basic Functionality</span>
+                                        </div>
+                                        <p class="ia-rubric-desc">The software demonstrates limited functionality. Trivial programming techniques are used (linear procedural scripts, basic if-else logic). Code lacks modularity. Technical decisions are unjustified. Testing evidence is minimal or incomplete.</p>
+                                    </div>
+                                    <div class="ia-rubric-card">
+                                        <div class="ia-rubric-top">
+                                            <span class="ia-rubric-band">4–6 Marks</span>
+                                            <span class="ia-rubric-status">Partial Complexity</span>
+                                        </div>
+                                        <p class="ia-rubric-desc">The solution is partially functioning with moderate complexity. Basic modular structures are implemented. Code excerpts are present with minimal annotations. Testing evidence covers some criteria but lacks boundary or abnormal cases.</p>
+                                    </div>
+                                    <div class="ia-rubric-card">
+                                        <div class="ia-rubric-top">
+                                            <span class="ia-rubric-band">7–9 Marks</span>
+                                            <span class="ia-rubric-status">Competent Engineering</span>
+                                        </div>
+                                        <p class="ia-rubric-desc">The computational solution is fully functional and exhibits sound algorithmic complexity (custom OOP classes, search/sort, structured file or database persistence). Modular code with clear structure. Sound justification of technical decisions. Good testing evidence validating most success criteria.</p>
+                                    </div>
+                                    <div class="ia-rubric-card top-band">
+                                        <div class="ia-rubric-top">
+                                            <span class="ia-rubric-band">10–12 Marks</span>
+                                            <span class="ia-rubric-status">High Mastery / Top Band</span>
+                                        </div>
+                                        <p class="ia-rubric-desc">High-level computational solution demonstrating advanced algorithmic complexity (custom recursion, dynamic programming, custom tree/graph algorithms, relational queries, defensive validation). Elegant, modular OOP architecture. Thoroughly annotated code excerpts justifying technical trade-offs. Exhaustive empirical testing evidence (screenshots, terminal logs, database state changes) confirming ALL Criterion A success criteria across normal, boundary, and abnormal cases.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Block 2: Key Deliverables -->
+                        <div class="ia-sub-block">
+                            <div class="ia-sub-bar">
+                                <div class="ia-sub-title-wrap">
+                                    <span class="ia-sub-code-badge">D.2</span>
+                                    <h3 class="ia-sub-title">Mandatory Deliverables &amp; Evidence</h3>
+                                </div>
+                                <span class="ia-tag ia-tag-subtle">Checklist</span>
+                            </div>
+                            <div class="ia-sub-content">
+                                <div class="ia-deliverables-grid">
+                                    <div class="ia-deliverable-item">
+                                        <span class="ia-deliverable-num">1</span>
+                                        <div class="ia-deliverable-text">
+                                            <h5>Evidence of Algorithmic Complexity</h5>
+                                            <p>Demonstration of non-trivial computational thinking: recursive algorithms, custom searching/sorting, multi-dimensional data structures, OOP inheritance, or SQL relational joins.</p>
+                                        </div>
+                                    </div>
+                                    <div class="ia-deliverable-item">
+                                        <span class="ia-deliverable-num">2</span>
+                                        <div class="ia-deliverable-text">
+                                            <h5>Annotated Code Excerpts (4–6 Samples)</h5>
+                                            <p>High-resolution code snippets with line-by-line annotations explaining algorithm mechanics, defensive exceptions, and time/space complexity.</p>
+                                        </div>
+                                    </div>
+                                    <div class="ia-deliverable-item">
+                                        <span class="ia-deliverable-num">3</span>
+                                        <div class="ia-deliverable-text">
+                                            <h5>Technical Decision Justifications</h5>
+                                            <p>Explicit rationale explaining why specific architectures, algorithms, and data persistence models were chosen over alternatives.</p>
+                                        </div>
+                                    </div>
+                                    <div class="ia-deliverable-item">
+                                        <span class="ia-deliverable-num">4</span>
+                                        <div class="ia-deliverable-text">
+                                            <h5>Completed Testing Table with Screenshots</h5>
+                                            <p>Empirical proof: Executed test cases matching Criterion C test plan with actual inputs, outputs, Pass/Fail badges, and indexed screenshot references.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Block 3: DO's vs DON'Ts Comparison -->
+                        <div class="ia-sub-block">
+                            <div class="ia-sub-bar">
+                                <div class="ia-sub-title-wrap">
+                                    <span class="ia-sub-code-badge">D.3</span>
+                                    <h3 class="ia-sub-title">Examiner DO's vs DON'Ts (With Concrete Examples)</h3>
+                                </div>
+                                <span class="ia-tag ia-tag-accent">Scoring Strategy</span>
+                            </div>
+                            <div class="ia-sub-content">
+                                <div class="ia-comparison-grid">
+                                    <div class="ia-comparison-col">
+                                        <div class="ia-comparison-card card-do">
+                                            <div class="ia-comparison-header">
+                                                <span class="ia-comparison-badge">
+                                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                                    <span>DO</span>
+                                                </span>
+                                                <span class="ia-comparison-tag">ALGORITHMIC COMPLEXITY</span>
+                                            </div>
+                                            <h4 class="ia-comparison-title">Write Custom Algorithmic Logic</h4>
+                                            <p class="ia-comparison-body">Examiners grade YOUR algorithmic logic, not external library calls. Write custom traversal, mathematical heuristics, sorting filters, or recursive parsers.</p>
+                                            <div class="ia-comparison-example">
+                                                <div class="ia-example-lead">
+                                                    <span class="ia-example-badge">[ANNOTATED PYTHON SPECIMEN]</span>
+                                                    <span class="ia-example-text"># Lines 45-62: Recursive QuickSort with Median-of-Three Pivot<br>def _quick_sort(self, records, low, high):<br>&nbsp;&nbsp;&nbsp;&nbsp;if low &lt; high:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pivot_idx = self._partition(records, low, high)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self._quick_sort(records, low, pivot_idx - 1)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self._quick_sort(records, pivot_idx + 1, high)<br><em># Annotation: Chosen over standard BubbleSort to achieve O(n log n) average time complexity when handling up to 5,000 transaction records (SC-02).</em></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ia-comparison-card card-do">
+                                            <div class="ia-comparison-header">
+                                                <span class="ia-comparison-badge">
+                                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                                    <span>DO</span>
+                                                </span>
+                                                <span class="ia-comparison-tag">EMPIRICAL VERIFICATION</span>
+                                            </div>
+                                            <h4 class="ia-comparison-title">Provide Screenshot Evidence for Every Test</h4>
+                                            <p class="ia-comparison-body">Every row in your testing table must have an embedded screenshot proving that the software actually ran and handled the test case.</p>
+                                            <div class="ia-comparison-example">
+                                                <div class="ia-example-lead">
+                                                    <span class="ia-example-badge">[EXECUTED TEST ROW SPECIMEN]</span>
+                                                    <span class="ia-example-text">Test T3 (Boundary: password length = 7) &rarr; Expected: Error dialogue &rarr; Actual: UI dialogue displayed: "Password must contain at least 8 characters" &rarr; Status: <strong>PASS</strong> &bull; [See Figure D.4: UI boundary warning screenshot].</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ia-comparison-col">
+                                        <div class="ia-comparison-card card-dont">
+                                            <div class="ia-comparison-header">
+                                                <span class="ia-comparison-badge">
+                                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                                    <span>DON'T</span>
+                                                </span>
+                                                <span class="ia-comparison-tag">TRIVIAL IMPLEMENTATION</span>
+                                            </div>
+                                            <h4 class="ia-comparison-title">Rely on Black-Box One-Liners</h4>
+                                            <p class="ia-comparison-body">If your program just calls <code>data.sort_values()</code> or calls a third-party AI API with zero student-written logic, you will be penalized heavily in algorithmic complexity.</p>
+                                            <div class="ia-comparison-example">
+                                                <div class="ia-example-lead">
+                                                    <span class="ia-example-badge">[BLACK-BOX ANTI-PATTERN]</span>
+                                                    <span class="ia-example-text">def do_everything():<br>&nbsp;&nbsp;&nbsp;&nbsp;response = openai.ChatCompletion.create(...) # 95% of project<br>&nbsp;&nbsp;&nbsp;&nbsp;print(response)<br><em style="color:var(--text-3);">(Fatal flaw: zero candidate algorithmic complexity demonstrated; marks capped at 3/12).</em></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ia-comparison-card card-dont">
+                                            <div class="ia-comparison-header">
+                                                <span class="ia-comparison-badge">
+                                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                                    <span>DON'T</span>
+                                                </span>
+                                                <span class="ia-comparison-tag">UNANNOTATED CODE DUMP</span>
+                                            </div>
+                                            <h4 class="ia-comparison-title">Dump Unannotated Source Code</h4>
+                                            <p class="ia-comparison-body">Never paste 30 pages of raw code without line-by-line annotations. Examiners will not read raw dumps; they only score annotated snippets.</p>
+                                            <div class="ia-comparison-example">
+                                                <div class="ia-example-lead">
+                                                    <span class="ia-example-badge">[BOILERPLATE DUMP ANTI-PATTERN]</span>
+                                                    <span class="ia-example-text">Pasting 1,500 lines of boilerplate UI button positioning code or standard getter/setter properties without explaining algorithmic significance.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Block 4: Examiner Pro-Tips -->
+                        <div class="ia-tip-box">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            <div class="ia-tip-content">
+                                <strong>Examiner Moderation Insight for Criterion D:</strong>
+                                Criterion D is where students gain or lose the most marks in the entire diploma. To reach 10–12 marks, you must show both <em>algorithmic depth</em> (demonstrating why your code is computationally non-trivial) and <em>empirical testing validity</em> (proving with screenshots that boundary and abnormal inputs are properly caught).
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- -----------------------------------------------------------
+                     CRITERION E: Evaluation (4 Marks)
+                     ----------------------------------------------------------- -->
+                <details class="ia-unit" data-criterion="E">
+                    <summary class="ia-unit-summary">
+                        <div class="ia-unit-left">
+                            <span class="ia-unit-code">E</span>
+                            <div class="ia-unit-info">
+                                <h2 class="ia-unit-name">Criterion E: Evaluation &amp; Future Recommendations</h2>
+                                <p class="ia-unit-theme">Systematic appraisal against Criterion A success criteria, authentic user/peer feedback &amp; technical future extensions</p>
+                            </div>
+                        </div>
+                        <div class="ia-unit-meta">
+                            <span class="ia-tag ia-tag-accent">4 Marks</span>
+                            <span class="ia-tag">13.3% of IA</span>
+                            <span class="ia-tag ia-tag-subtle">~350–500 Words</span>
+                            <svg class="ia-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                    </summary>
+                    <div class="ia-unit-body">
+                        <div class="ia-unit-desc-row">
+                            <p class="ia-unit-desc">
+                                Conduct a rigorous, objective evaluation of the completed software mapped directly back to every single Criterion A success criterion. Analyze empirical test results honestly, integrate authentic peer/user evaluation feedback, and propose concrete, technically grounded recommendations for future iterations.
+                            </p>
+                            <div class="ia-unit-stats-strip">
+                                <span>Max Marks: <strong>4</strong></span>
+                                <span>&bull;</span>
+                                <span>Core Focus: <strong>Critical Appraisal &amp; Technical Recommendations</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Block 1: Official Markband Rubric -->
+                        <div class="ia-sub-block">
+                            <div class="ia-sub-bar">
+                                <div class="ia-sub-title-wrap">
+                                    <span class="ia-sub-code-badge">E.1</span>
+                                    <h3 class="ia-sub-title">Official 2027 Markband Descriptors</h3>
+                                </div>
+                                <span class="ia-tag ia-tag-subtle">Examiner Matrix</span>
+                            </div>
+                            <div class="ia-sub-content">
+                                <div class="ia-rubric-grid">
+                                    <div class="ia-rubric-card">
+                                        <div class="ia-rubric-top">
+                                            <span class="ia-rubric-band">0 Marks</span>
+                                            <span class="ia-rubric-status">Unmet</span>
+                                        </div>
+                                        <p class="ia-rubric-desc">The student's submission does not reach any standard described by the markband descriptors below.</p>
+                                    </div>
+                                    <div class="ia-rubric-card">
+                                        <div class="ia-rubric-top">
+                                            <span class="ia-rubric-band">1–2 Marks</span>
+                                            <span class="ia-rubric-status">Superficial / Incomplete</span>
+                                        </div>
+                                        <p class="ia-rubric-desc">Evaluation against success criteria is superficial or partial. Feedback from users/peers is absent, subjective, or invented. Recommendations for future improvements are vague, cosmetic, or non-technical.</p>
+                                    </div>
+                                    <div class="ia-rubric-card top-band">
+                                        <div class="ia-rubric-top">
+                                            <span class="ia-rubric-band">3–4 Marks</span>
+                                            <span class="ia-rubric-status">Excellent / Top Standard</span>
+                                        </div>
+                                        <p class="ia-rubric-desc">Systematic, objective evaluation of each success criterion from Criterion A supported by empirical test results. Meaningful, authentic user or peer feedback is analyzed. Concrete, technically feasible recommendations for future improvements are proposed.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Block 2: Key Deliverables -->
+                        <div class="ia-sub-block">
+                            <div class="ia-sub-bar">
+                                <div class="ia-sub-title-wrap">
+                                    <span class="ia-sub-code-badge">E.2</span>
+                                    <h3 class="ia-sub-title">Mandatory Deliverables &amp; Evidence</h3>
+                                </div>
+                                <span class="ia-tag ia-tag-subtle">Checklist</span>
+                            </div>
+                            <div class="ia-sub-content">
+                                <div class="ia-deliverables-grid">
+                                    <div class="ia-deliverable-item">
+                                        <span class="ia-deliverable-num">1</span>
+                                        <div class="ia-deliverable-text">
+                                            <h5>Success Criteria Evaluation Matrix</h5>
+                                            <p>Comprehensive table auditing each criterion [SC-01..SC-07] with status (Fully Met, Partially Met, Unmet) and explicit cross-references to Criterion D test evidence.</p>
+                                        </div>
+                                    </div>
+                                    <div class="ia-deliverable-item">
+                                        <span class="ia-deliverable-num">2</span>
+                                        <div class="ia-deliverable-text">
+                                            <h5>Critical Analysis of Limitations</h5>
+                                            <p>Objective discussion of software edge cases, performance bottlenecks, computational inefficiencies, and scalability constraints.</p>
+                                        </div>
+                                    </div>
+                                    <div class="ia-deliverable-item">
+                                        <span class="ia-deliverable-num">3</span>
+                                        <div class="ia-deliverable-text">
+                                            <h5>Authentic User &amp; Peer Feedback</h5>
+                                            <p>Documented qualitative and quantitative feedback collected from real users, testers, or student peers running the software on different devices.</p>
+                                        </div>
+                                    </div>
+                                    <div class="ia-deliverable-item">
+                                        <span class="ia-deliverable-num">4</span>
+                                        <div class="ia-deliverable-text">
+                                            <h5>Justified Technical Recommendations</h5>
+                                            <p>3 to 5 realistic, technically detailed architectural improvements (e.g. database indexing, async networking, concurrency management) for version 2.0.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Block 3: DO's vs DON'Ts Comparison -->
+                        <div class="ia-sub-block">
+                            <div class="ia-sub-bar">
+                                <div class="ia-sub-title-wrap">
+                                    <span class="ia-sub-code-badge">E.3</span>
+                                    <h3 class="ia-sub-title">Examiner DO's vs DON'Ts (With Concrete Examples)</h3>
+                                </div>
+                                <span class="ia-tag ia-tag-accent">Scoring Strategy</span>
+                            </div>
+                            <div class="ia-sub-content">
+                                <div class="ia-comparison-grid">
+                                    <div class="ia-comparison-col">
+                                        <div class="ia-comparison-card card-do">
+                                            <div class="ia-comparison-header">
+                                                <span class="ia-comparison-badge">
+                                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                                    <span>DO</span>
+                                                </span>
+                                                <span class="ia-comparison-tag">OBJECTIVE APPRAISAL</span>
+                                            </div>
+                                            <h4 class="ia-comparison-title">Be Honest About Limitations</h4>
+                                            <p class="ia-comparison-body">Examiners award high marks for critical honesty. Acknowledging partially met criteria and explaining technical reasons shows superior academic maturity.</p>
+                                            <div class="ia-comparison-example">
+                                                <div class="ia-example-lead">
+                                                    <span class="ia-example-badge">[CRITICAL EVALUATION SPECIMEN]</span>
+                                                    <span class="ia-example-text">"SC-04 (CSV Batch Import): Partially Met. While the parser successfully processes standard UTF-8 files up to 2,000 rows, it crashes on Windows-1252 encoded strings with accented characters (Test D.12). A dedicated encoding auto-detection filter using chardet should be implemented."</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ia-comparison-card card-do">
+                                            <div class="ia-comparison-header">
+                                                <span class="ia-comparison-badge">
+                                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                                    <span>DO</span>
+                                                </span>
+                                                <span class="ia-comparison-tag">TECHNICAL RECOMMENDATIONS</span>
+                                            </div>
+                                            <h4 class="ia-comparison-title">Write Actionable Technical Future Work</h4>
+                                            <p class="ia-comparison-body">Propose concrete software engineering upgrades with named libraries, data structures, or algorithms.</p>
+                                            <div class="ia-comparison-example">
+                                                <div class="ia-example-lead">
+                                                    <span class="ia-example-badge">[FUTURE EXTENSION SPECIMEN]</span>
+                                                    <span class="ia-example-text">"Recommendation 1: Replace synchronous SQLite transactions with an asynchronous connection pool via aiosqlite and introduce a B-tree composite index on (student_id, term_date) to reduce timetable query latency from 850ms to &lt;50ms."</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ia-comparison-col">
+                                        <div class="ia-comparison-card card-dont">
+                                            <div class="ia-comparison-header">
+                                                <span class="ia-comparison-badge">
+                                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                                    <span>DON'T</span>
+                                                </span>
+                                                <span class="ia-comparison-tag">UNCRITICAL BIAS</span>
+                                            </div>
+                                            <h4 class="ia-comparison-title">Write Blanket Self-Praise</h4>
+                                            <p class="ia-comparison-body">Never write that your program is flawless or that zero improvements are needed. This is an immediate red flag for examiners.</p>
+                                            <div class="ia-comparison-example">
+                                                <div class="ia-example-lead">
+                                                    <span class="ia-example-badge">[BLANKET PRAISE ANTI-PATTERN]</span>
+                                                    <span class="ia-example-text">"My project was a complete success with 100% perfection. All features work amazingly and the user said it was the best software they had ever seen." &mdash; <em style="color:var(--text-3);">(Immediate deduction to 1-2 marks).</em></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ia-comparison-card card-dont">
+                                            <div class="ia-comparison-header">
+                                                <span class="ia-comparison-badge">
+                                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                                    <span>DON'T</span>
+                                                </span>
+                                                <span class="ia-comparison-tag">COSMETIC TRIVIALITY</span>
+                                            </div>
+                                            <h4 class="ia-comparison-title">Give Trivial or Cosmetic Suggestions</h4>
+                                            <p class="ia-comparison-body">Avoid superficial wishes like changing button colors or adding generic animations.</p>
+                                            <div class="ia-comparison-example">
+                                                <div class="ia-example-lead">
+                                                    <span class="ia-example-badge">[COSMETIC ANTI-PATTERN]</span>
+                                                    <span class="ia-example-text">"In the future I would make the background blue, add some sound effects, and make it look prettier." &mdash; <em style="color:var(--text-3);">(Zero technical value).</em></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Block 4: Examiner Pro-Tips -->
+                        <div class="ia-tip-box">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            <div class="ia-tip-content">
+                                <strong>Examiner Moderation Insight for Criterion E:</strong>
+                                Every single criterion listed in Criterion A must appear in the Criterion E evaluation matrix. If you wrote 7 success criteria in A, there must be 7 rows evaluated in E. If a criterion was not met, state "Unmet / Partially Met" and explain why; examiners reward critical reflection!
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
             </div>
         </section>
 
-        <!-- Section 01: Criteria Breakdown -->
-        <section class="section" aria-labelledby="sec-criteria">
-            <div class="section-label">
-                <span>01</span>Mark Breakdown
-            </div>
-            <div class="section-body">
-                <div class="section-head">
+        <!-- ==================================================================
+             TAB PANE 2: STUDENT EXEMPLAR (OFFICIAL 2027 ASSESSED WORK)
+             ================================================================== -->
+        <section class="ia-tab-pane" id="pane-exemplars" role="tabpanel" aria-labelledby="tab-btn-exemplars">
+            
+            <!-- Hero Feature Card: Computer Science Assessed Student Work 2027 -->
+            <article class="ia-exemplar-hero">
+                <div class="ia-exemplar-top">
                     <div>
-                        <span class="pill" style="margin-bottom:8px;">Criteria Checklist</span>
-                        <h2 class="h1" id="sec-criteria">Criteria A&ndash;E Assessment Rubric</h2>
-                        <p class="sub">
-                            Every Criterion A success criterion must be testable in Criterion B, implemented in Criterion C, demonstrated on video in Criterion D, and evaluated with client feedback in Criterion E.
+                        <div class="ia-exemplar-badge-row">
+                            <span class="ia-tag ia-tag-accent">Official Assessed Coursework</span>
+                            <span class="ia-tag ia-tag-gold">2027 Redesigned Syllabus</span>
+                            <span class="ia-tag ia-tag-subtle">Grade 7 Exemplar &bull; 2.26 MB PDF</span>
+                        </div>
+                        <h2 class="ia-exemplar-title">Computer Science Assessed Student Work (2027 Standard)</h2>
+                        <p class="ia-exemplar-desc">
+                            Complete official IB assessed student exemplar featuring annotated Criteria A through E documentation, authentic system architecture models, non-trivial algorithmic code excerpts, exhaustive testing tables, and criterion-by-criterion examiner marks and moderation commentary.
                         </p>
+                    </div>
+
+                    <div class="ia-exemplar-actions">
+                        <a class="btn btn-sm" href="../resources/IA/Computer%20Science%20Assessed%20Student%20Work%202027%20(1).pdf" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            <span>Preview Document</span>
+                        </a>
+                        <a class="btn btn-primary btn-sm" href="../resources/IA/Computer%20Science%20Assessed%20Student%20Work%202027%20(1).pdf" download>
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            <span>Download Official PDF</span>
+                        </a>
                     </div>
                 </div>
 
-                <table class="criteria">
-                    <thead>
-                        <tr>
-                            <th scope="col">Criterion</th>
-                            <th scope="col">Deliverables &amp; Examiner Expectations</th>
-                            <th scope="col">Marks</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="criteria-id">Criterion A</td>
-                            <td>
-                                <strong>Planning &amp; Problem Specification</strong>
-                                <p>Identify a real client or advisor, document evidence of consultation, justify why a computational solution is needed, and define measurable, testable success criteria.</p>
-                            </td>
-                            <td class="criteria-marks">6 Marks<span class="weight-bar" aria-hidden="true"><span style="width: 50%"></span></span></td>
-                        </tr>
-                        <tr>
-                            <td class="criteria-id">Criterion B</td>
-                            <td>
-                                <strong>Solution Overview &amp; Record of Tasks</strong>
-                                <p>Maintain a chronological Record of Tasks and provide system architecture diagrams, data structure specifications, UI wireframes, flowcharts/pseudocode, and a comprehensive test plan table.</p>
-                            </td>
-                            <td class="criteria-marks">6 Marks<span class="weight-bar" aria-hidden="true"><span style="width: 50%"></span></span></td>
-                        </tr>
-                        <tr>
-                            <td class="criteria-id">Criterion C</td>
-                            <td>
-                                <strong>Development &amp; Algorithmic Complexity</strong>
-                                <p>Present annotated screenshots of key algorithms, data structures, OOP/modular organization, input validation, and database/file persistence, explaining how each technique works and citing external libraries.</p>
-                            </td>
-                            <td class="criteria-marks">12 Marks<span class="weight-bar" aria-hidden="true"><span style="width: 100%"></span></span></td>
-                        </tr>
-                        <tr>
-                            <td class="criteria-id">Criterion D</td>
-                            <td>
-                                <strong>Functionality &amp; Extensibility (Video)</strong>
-                                <p>Submit a 2&ndash;7 minute screen-cast video demonstrating every success criterion working live, including edge-case handling, data persistence, and code extensibility.</p>
-                            </td>
-                            <td class="criteria-marks">4 Marks<span class="weight-bar" aria-hidden="true"><span style="width: 34%"></span></span></td>
-                        </tr>
-                        <tr>
-                            <td class="criteria-id">Criterion E</td>
-                            <td>
-                                <strong>Evaluation &amp; Future Recommendations</strong>
-                                <p>Evaluate each success criterion against the Criterion B test plan, include documented client feedback, and propose realistic technical improvements for future iterations.</p>
-                            </td>
-                            <td class="criteria-marks">6 Marks<span class="weight-bar" aria-hidden="true"><span style="width: 50%"></span></span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Section 02: IA Files & Exemplars -->
-        <section class="section" aria-labelledby="sec-ia-files">
-            <div class="section-label">
-                <span>02</span>Exemplars
-            </div>
-            <div class="section-body">
-                <div class="section-head">
-                    <div>
-                        <h2 class="h1" id="sec-ia-files">Student Exemplars &amp; Templates</h2>
-                        <p class="sub">
-                            Review moderated IB student work and the Python debugging log before finalizing your Criterion B and C documentation.
-                        </p>
+                <!-- Score Matrix Strip -->
+                <div class="ia-score-matrix">
+                    <div class="ia-score-cell">
+                        <span class="ia-score-label">Criterion A</span>
+                        <span class="ia-score-value">4</span>
+                        <span class="ia-score-max">out of 4</span>
+                    </div>
+                    <div class="ia-score-cell">
+                        <span class="ia-score-label">Criterion B</span>
+                        <span class="ia-score-value">4</span>
+                        <span class="ia-score-max">out of 4</span>
+                    </div>
+                    <div class="ia-score-cell">
+                        <span class="ia-score-label">Criterion C</span>
+                        <span class="ia-score-value">6</span>
+                        <span class="ia-score-max">out of 6</span>
+                    </div>
+                    <div class="ia-score-cell">
+                        <span class="ia-score-label">Criterion D</span>
+                        <span class="ia-score-value">11</span>
+                        <span class="ia-score-max">out of 12</span>
+                    </div>
+                    <div class="ia-score-cell">
+                        <span class="ia-score-label">Criterion E</span>
+                        <span class="ia-score-value">4</span>
+                        <span class="ia-score-max">out of 4</span>
+                    </div>
+                    <div class="ia-score-cell total">
+                        <span class="ia-score-label">Total Score</span>
+                        <span class="ia-score-value">29</span>
+                        <span class="ia-score-max">out of 30 (Grade 7)</span>
                     </div>
                 </div>
+            </article>
 
-                <div class="files">
-                    <div class="file">
-                        <div class="file-main">
-                            <span class="file-ext">PDF</span>
-                            <div>
-                                <div class="file-name">Computer Science Assessed Student Work (2027 Spec)</div>
-                                <span class="file-path">Annotated exemplar with official examiner marks and commentary</span>
-                            </div>
-                        </div>
-                        <div class="file-actions">
-                            <span class="status-badge ready">Ready</span>
-                            <a class="btn btn-sm" href="../resources/IA/Computer%20Science%20Assessed%20Student%20Work%202027%20(1).pdf" target="_blank" rel="noopener">Preview</a>
-                            <a class="btn btn-primary btn-sm" href="../resources/IA/Computer%20Science%20Assessed%20Student%20Work%202027%20(1).pdf" download>Download</a>
-                        </div>
-                    </div>
-
-                    <div class="file">
-                        <div class="file-main">
-                            <span class="file-ext">PDF</span>
-                            <div>
-                                <div class="file-name">Python Error Log &amp; Troubleshooting Template</div>
-                                <span class="file-path">Reference log for documenting bugs and debugging steps in Criterion C</span>
-                            </div>
-                        </div>
-                        <div class="file-actions">
-                            <span class="status-badge ready">Ready</span>
-                            <a class="btn btn-sm" href="../resources/Error%20log%20-%20Python%20Programming.pdf" target="_blank" rel="noopener">Preview</a>
-                            <a class="btn btn-primary btn-sm" href="../resources/Error%20log%20-%20Python%20Programming.pdf" download>Download</a>
-                        </div>
-                    </div>
-
-                    <div class="file">
-                        <div class="file-main">
-                            <span class="file-ext">MP4</span>
-                            <div>
-                                <div class="file-name">Criterion D Student Video Exemplar</div>
-                                <span class="file-path">Awaiting student permission before posting online</span>
-                            </div>
-                        </div>
-                        <div class="file-actions">
-                            <span class="status-badge pending">Pending Permission</span>
-                        </div>
-                    </div>
+            <!-- Detailed Breakdown Analysis Cards -->
+            <div class="ia-exemplar-analysis-grid">
+                <div class="ia-analysis-card">
+                    <h4>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span>Why Criterion A Scored 4/4</span>
+                    </h4>
+                    <p>The student formulated 7 sharp, quantitative success criteria. Rather than vague statements, each criterion specified data boundaries, encryption methods, and execution time thresholds that anchored the testing matrix.</p>
+                </div>
+                <div class="ia-analysis-card">
+                    <h4>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span>Why Criterion B Scored 4/4</span>
+                    </h4>
+                    <p>The problem decomposition separated concerns cleanly into Data Access, Computational Heuristic, and GUI components. The chronological record of tasks documented real technical hurdles and engineering solutions.</p>
+                </div>
+                <div class="ia-analysis-card">
+                    <h4>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span>Why Criterion C Scored 6/6</span>
+                    </h4>
+                    <p>Features formal UML class diagrams with visibility symbols and multiplicity, relational entity-relationship diagrams with data dictionaries, and an exhaustive 3-tier test plan covering normal, boundary, and abnormal cases.</p>
+                </div>
+                <div class="ia-analysis-card">
+                    <h4>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span>Why Criterion D Scored 11/12</span>
+                    </h4>
+                    <p>Demonstrates genuine algorithmic complexity in Python using custom recursive algorithms, relational SQLite queries, defensive exception handling, and full screenshot proof matching every single planned test case.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Section 03: Video Masterclass & Official Guide Embed -->
-        <section class="section" aria-labelledby="sec-ia-media">
-            <div class="section-label">
-                <span>03</span>Walkthroughs
-            </div>
-            <div class="section-body">
-                <div class="section-head">
-                    <div>
-                        <h2 class="h1" id="sec-ia-media">IA Video Playlist &amp; Official Rubric</h2>
-                        <p class="sub">
-                            Watch the 7-part video tutorial series covering Criteria A through E, or inspect the official IA assessment guide directly below.
-                        </p>
+        <!-- ==================================================================
+             TAB PANE 3: VIDEO MASTERCLASS
+             ================================================================== -->
+        <section class="ia-tab-pane" id="pane-videos" role="tabpanel" aria-labelledby="tab-btn-videos">
+            <div class="ia-video-section">
+                <!-- Video Player Card -->
+                <div class="ia-video-frame-card">
+                    <div class="ia-video-bar">
+                        <span>IB DP Computer Science Internal Assessment Video Masterclass</span>
+                        <span class="ia-tag ia-tag-accent">Official Playlist</span>
                     </div>
-                </div>
-
-                <div class="stack">
-                    <div class="embed">
-                        <div class="embed-bar">
-                            <span class="embed-title">Video Guide &bull; IA Tutorial Playlist (7 Videos)</span>
-                            <span class="status-badge ready">Ready</span>
-                        </div>
+                    <div class="ia-video-frame-wrap">
                         <iframe
-                            class="embed-frame video"
                             src="https://www.youtube.com/embed/videoseries?list=PLZbVESc4rBHkMp5sywd89W07IACJ8oWIm"
                             title="IB Computer Science Internal Assessment Masterclass Playlist"
                             loading="lazy"
@@ -253,55 +1273,312 @@
                             allowfullscreen>
                         </iframe>
                     </div>
+                </div>
 
-                    <div class="embed">
-                        <div class="embed-bar">
-                            <span class="embed-title">Official IB Computer Science IA Assessment Guide</span>
-                            <a class="btn btn-sm" href="https://drive.google.com/file/d/10UpqjN-yrhiJL5oOSiYBInVLxT0dWZVW/view" target="_blank" rel="noopener">
-                                <span>Open PDF Fullscreen</span>
-                                <span class="arrow" aria-hidden="true">&rarr;</span>
-                            </a>
+                <!-- Playlist Breakdown Guide -->
+                <div class="ia-video-playlist-guide">
+                    <div class="ia-video-guide-card">
+                        <span class="ia-video-num">01</span>
+                        <div class="ia-video-details">
+                            <h4>Overview &amp; Problem Selection</h4>
+                            <p>How to identify an authentic, non-trivial computational problem, define realistic scope boundaries, and avoid common traps.</p>
                         </div>
-                        <iframe
-                            class="embed-frame"
-                            src="https://drive.google.com/file/d/10UpqjN-yrhiJL5oOSiYBInVLxT0dWZVW/preview"
-                            title="Official IB Computer Science Internal Assessment Guide PDF"
-                            loading="lazy">
-                        </iframe>
+                    </div>
+
+                    <div class="ia-video-guide-card">
+                        <span class="ia-video-num">02</span>
+                        <div class="ia-video-details">
+                            <h4>Criterion A &amp; Measurable Success Criteria</h4>
+                            <p>Writing testable, quantitative success criteria [SC-01..SC-07] and structuring computational justification arguments.</p>
+                        </div>
+                    </div>
+
+                    <div class="ia-video-guide-card">
+                        <span class="ia-video-num">03</span>
+                        <div class="ia-video-details">
+                            <h4>Criterion B Decomposition &amp; Roadmap</h4>
+                            <p>Deconstructing problems into modular tiers, planning iterative agile sprints, and logging genuine engineering hurdles.</p>
+                        </div>
+                    </div>
+
+                    <div class="ia-video-guide-card">
+                        <span class="ia-video-num">04</span>
+                        <div class="ia-video-details">
+                            <h4>Criterion C Architecture &amp; Test Matrix</h4>
+                            <p>Constructing standard UML class diagrams, database ER schemas, data dictionaries, and planning 3-tier test matrices.</p>
+                        </div>
+                    </div>
+
+                    <div class="ia-video-guide-card">
+                        <span class="ia-video-num">05</span>
+                        <div class="ia-video-details">
+                            <h4>Criterion D Algorithmic Mastery in Python</h4>
+                            <p>Demonstrating non-trivial algorithms (recursion, sorting, search, OOP), annotating code, and compiling screenshot test proof.</p>
+                        </div>
+                    </div>
+
+                    <div class="ia-video-guide-card">
+                        <span class="ia-video-num">06</span>
+                        <div class="ia-video-details">
+                            <h4>Criterion E Critical Evaluation &amp; Feedback</h4>
+                            <p>Mapping evaluations back to success criteria, gathering peer feedback, and proposing technical future extensions.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- ==================================================================
+             TAB PANE 4: OFFICIAL 2027 GUIDE (REWRITTEN & OPULENTLY FORMATTED)
+             ================================================================== -->
+        <section class="ia-tab-pane" id="pane-guide" role="tabpanel" aria-labelledby="tab-btn-guide">
+            <div class="ia-guide-container">
+                <article class="ia-guide-article">
+                    
+                    <!-- Section 1: Overview -->
+                    <div class="ia-guide-section">
+                        <h2 class="ia-guide-h2">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                            <span>1. The Redesigned 2027 Internal Assessment Architecture</span>
+                        </h2>
+                        <p class="ia-guide-p">
+                            The Internal Assessment (IA) for the redesigned International Baccalaureate Diploma Programme (IB DP) Computer Science curriculum&mdash;first assessed in <strong>May 2027</strong>&mdash;is an individual computational project that challenges students to solve a genuine problem through algorithmic thinking and software development.
+                        </p>
+                        <p class="ia-guide-p">
+                            Unlike the legacy syllabus (which was marked out of 34 marks and mandated external third-party client interviews), the 2027 specification is marked out of <strong>30 marks</strong> across <strong>five unified criteria (A through E)</strong>. It accounts for <strong>30% of the final grade at Standard Level (SL)</strong> and <strong>20% of the final grade at Higher Level (HL)</strong>, representing approximately <strong>35 hours</strong> of instructional and development time.
+                        </p>
+
+                        <!-- Overview Summary Table -->
+                        <div class="ia-guide-table-wrap">
+                            <table class="ia-guide-table">
+                                <thead>
+                                    <tr>
+                                        <th>Criterion</th>
+                                        <th>Focus &amp; Scope</th>
+                                        <th>Maximum Marks</th>
+                                        <th>IA Weighting</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Criterion A</strong></td>
+                                        <td>Problem specification, computational context, user requirements &amp; success criteria</td>
+                                        <td><strong>4 Marks</strong></td>
+                                        <td>13.3%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Criterion B</strong></td>
+                                        <td>Problem decomposition, development methodology &amp; chronological task logging</td>
+                                        <td><strong>4 Marks</strong></td>
+                                        <td>13.3%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Criterion C</strong></td>
+                                        <td>System architecture modeling, algorithms, UI wireframes &amp; testing strategy</td>
+                                        <td><strong>6 Marks</strong></td>
+                                        <td>20.0%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Criterion D</strong></td>
+                                        <td>Working solution, algorithmic complexity, technical decisions &amp; test evidence</td>
+                                        <td><strong>12 Marks</strong></td>
+                                        <td>40.0%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Criterion E</strong></td>
+                                        <td>Systematic evaluation against success criteria, user feedback &amp; future extensions</td>
+                                        <td><strong>4 Marks</strong></td>
+                                        <td>13.3%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>TOTAL</strong></td>
+                                        <td><strong>Complete 35-Hour Computational Coursework Solution</strong></td>
+                                        <td><strong>30 Marks</strong></td>
+                                        <td><strong>100%</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Shift Away from Clients -->
+                    <div class="ia-guide-section">
+                        <h2 class="ia-guide-h2">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            <span>2. The Client Requirement Dispelled: Authentic Problem Solving</span>
+                        </h2>
+                        <p class="ia-guide-p">
+                            A widespread point of confusion among IB students relates to the requirement of an external "client". Under previous curriculum guides, candidates had to identify an external third-party individual or small business and conduct recorded interviews.
+                        </p>
+                        <p class="ia-guide-p">
+                            <strong>In the redesigned 2027 curriculum, an external client is NO LONGER strictly mandated.</strong> The IB recognized that finding authentic commercial clients created artificial barriers and resulted in scripted interactions. The 2027 IA refocuses squarely on <strong>authentic computational problem-solving</strong>.
+                        </p>
+                        <p class="ia-guide-p">
+                            What matters to IB examiners is whether you are addressing a <strong>genuine problem that demands computational thinking</strong>. Acceptable project domains include:
+                        </p>
+                        <ul class="ia-check-list" style="margin-left: 10px; margin-bottom: 16px;">
+                            <li><strong>School / Community Operational Tools:</strong> Automated scheduling engines, library asset trackers, sports tournament brackets with conflict resolution.</li>
+                            <li><strong>Scientific &amp; Mathematical Simulators:</strong> Orbital mechanics visualizers, epidemiological transmission models, ecological predator-prey systems.</li>
+                            <li><strong>Algorithmic &amp; Educational Platforms:</strong> Interactive sorting/graph algorithm visualizers, adaptive flashcard engines utilizing spaced repetition heuristics.</li>
+                            <li><strong>Data Processing &amp; Analytics Utilities:</strong> Relational data management systems with custom filtering, data sanitization, and automated PDF report generation.</li>
+                            <li><strong>Game Engineering with Algorithmic AI:</strong> Strategy board games (e.g. Chess, Connect Four) powered by Minimax algorithms with alpha-beta pruning.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Section 3: The Golden Chain of Consistency -->
+                    <div class="ia-guide-section">
+                        <h2 class="ia-guide-h2">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="10" y1="13" x2="14" y2="17"></line><line x1="14" y1="13" x2="10" y2="17"></line><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                            <span>3. The Golden Chain of Consistency (The Core Examiner Principle)</span>
+                        </h2>
+                        <p class="ia-guide-p">
+                            According to top IB examiner reports and RevisionDojo's analysis, the single most critical factor in achieving a Grade 7 (26–30 marks) is maintaining an <strong>unbroken chain of consistency</strong> across all five criteria. The success criteria formulated in Criterion A must drive every subsequent phase of the project:
+                        </p>
+
+                        <!-- Visual Chain of Consistency Flowchart -->
+                        <div class="ia-guide-chain-flow">
+                            <div class="ia-chain-step">
+                                <span class="ia-chain-code">Criterion A</span>
+                                <span class="ia-chain-label">Specify Criteria</span>
+                                <span class="ia-chain-sub">Define SC1..SC7</span>
+                            </div>
+                            <span class="ia-chain-arrow">&rarr;</span>
+                            <div class="ia-chain-step">
+                                <span class="ia-chain-code">Criterion B</span>
+                                <span class="ia-chain-label">Plan Modules</span>
+                                <span class="ia-chain-sub">Sprints to build SC1..7</span>
+                            </div>
+                            <span class="ia-chain-arrow">&rarr;</span>
+                            <div class="ia-chain-step">
+                                <span class="ia-chain-code">Criterion C</span>
+                                <span class="ia-chain-label">Model &amp; Strategy</span>
+                                <span class="ia-chain-sub">Test plan for SC1..7</span>
+                            </div>
+                            <span class="ia-chain-arrow">&rarr;</span>
+                            <div class="ia-chain-step">
+                                <span class="ia-chain-code">Criterion D</span>
+                                <span class="ia-chain-label">Code &amp; Empirical Test</span>
+                                <span class="ia-chain-sub">Proof of SC1..7</span>
+                            </div>
+                            <span class="ia-chain-arrow">&rarr;</span>
+                            <div class="ia-chain-step">
+                                <span class="ia-chain-code">Criterion E</span>
+                                <span class="ia-chain-label">Evaluate Status</span>
+                                <span class="ia-chain-sub">Appraise SC1..7</span>
+                            </div>
+                        </div>
+
+                        <p class="ia-guide-p">
+                            If an examiner identifies a criterion tested in D that was never specified in A, or if Criterion E evaluates features never tested in D, your coursework is penalized for fragmented planning. Ensure that every success criterion has an identical ID (e.g. <code>SC-01</code> through <code>SC-07</code>) maintained seamlessly throughout the document.
+                        </p>
+                    </div>
+
+                    <!-- Section 4: Technical Stack, Languages & Persistence -->
+                    <div class="ia-guide-section">
+                        <h2 class="ia-guide-h2">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                            <span>4. Technical Stack, Language Selection &amp; Data Persistence</span>
+                        </h2>
+                        <p class="ia-guide-p">
+                            The IB Diploma Programme does not mandate a specific programming language. However, the chosen language must support object-oriented programming (OOP) principles, structured data manipulation, and non-trivial algorithmic techniques.
+                        </p>
+                        <h3 class="ia-guide-h3">Recommended Programming Languages</h3>
+                        <p class="ia-guide-p">
+                            <strong>Python 3.x</strong> is the primary language recommended at Emirates International School Meadows due to its expressive syntax, comprehensive standard library, robust database bindings (<code>sqlite3</code>), and GUI frameworks (<code>PyQt6</code>, <code>Tkinter</code>, <code>CustomTkinter</code>). Java and C# are equally acceptable if students possess advanced fluency.
+                        </p>
+                        <h3 class="ia-guide-h3">Data Persistence Mandate</h3>
+                        <p class="ia-guide-p">
+                            Projects that store data purely in temporary RAM variables (e.g. basic Python dictionaries that reset when the window closes) will be heavily capped in Criterion D. A top-band computational solution <strong>must implement structured data persistence</strong>:
+                        </p>
+                        <ul class="ia-check-list" style="margin-left: 10px;">
+                            <li><strong>Relational SQL Databases (Best Practice):</strong> Local SQLite embedded database with primary keys, foreign keys, and normalized tables.</li>
+                            <li><strong>Structured File Serialization:</strong> Complex hierarchical JSON or multi-file CSV persistence with automated validation schemas.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Section 5: Academic Integrity & AI Policy -->
+                    <div class="ia-guide-section">
+                        <h2 class="ia-guide-h2">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                            <span>5. Academic Integrity &amp; Generative AI Regulations</span>
+                        </h2>
+                        <p class="ia-guide-p">
+                            Emirates International School Meadows enforces the official <strong>IB Academic Integrity Policy</strong> across all coursework stages. With the rise of Large Language Models (LLMs) and code assistants (ChatGPT, GitHub Copilot, Claude), candidates must strictly adhere to the following rules:
+                        </p>
+                        <div class="ia-deliverables-grid" style="margin-top: 14px;">
+                            <div class="ia-deliverable-item">
+                                <span class="ia-deliverable-num">1</span>
+                                <div class="ia-deliverable-text">
+                                    <h5>Original Code Authorship</h5>
+                                    <p>All core algorithmic logic, data models, and business logic must be authored directly by the candidate. Using AI to generate entire functions, classes, or documentation violates IB regulations.</p>
+                                </div>
+                            </div>
+                            <div class="ia-deliverable-item">
+                                <span class="ia-deliverable-num">2</span>
+                                <div class="ia-deliverable-text">
+                                    <h5>AI Assistance Declaration</h5>
+                                    <p>If generative AI is used for conceptual brainstorming, troubleshooting a syntax error, or syntax referencing, the interaction must be transparently cited in an appendix (specifying the tool, version, prompt, and date).</p>
+                                </div>
+                            </div>
+                            <div class="ia-deliverable-item">
+                                <span class="ia-deliverable-num">3</span>
+                                <div class="ia-deliverable-text">
+                                    <h5>Third-Party Library Attribution</h5>
+                                    <p>Using open-source libraries (e.g. Pygame, NumPy, PyQt, bcrypt) is fully permitted, but they must be explicitly cited in a dedicated library declaration table in Criterion D.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 6: Submission Checklist -->
+                    <div class="ia-guide-section">
+                        <h2 class="ia-guide-h2">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                            <span>6. Coursework Assembly &amp; Final Submission Checklist</span>
+                        </h2>
+                        <p class="ia-guide-p">
+                            Before submitting your coursework to the EIS Computer Science Department for internal marking and IBO moderation upload, verify the following:
+                        </p>
+                        <ul class="ia-check-list" style="margin-left: 10px; margin-top: 12px;">
+                            <li>&bull; <strong>Single PDF Document:</strong> The complete written coursework (Criteria A through E) must be compiled into a single PDF document.</li>
+                            <li>&bull; <strong>Word Count Guidelines:</strong> The recommended word limit is approximately <strong>2,000 to 3,000 words</strong> across all criteria (excluding code listings, UML diagrams, test data tables, and bibliographies).</li>
+                            <li>&bull; <strong>Numbered Success Criteria:</strong> Ensure all criteria in Criterion A are tagged (e.g. <code>SC-01</code>) and traced verbatim into Criteria C, D, and E.</li>
+                            <li>&bull; <strong>Empirical Test Screenshots:</strong> Verify that every row in your Criterion D test execution table includes an accompanying screenshot showing actual program output.</li>
+                            <li>&bull; <strong>Anonymity Standards:</strong> Remove all student names and school names from the document header and body, retaining only your candidate session code.</li>
+                        </ul>
+                    </div>
+
+                </article>
+            </div>
+        </section>
     </main>
 
-    <footer class="site-footer">
+        <footer class="site-footer">
         <div class="wrap">
             <div class="footer-grid">
                 <div>
                     <div class="footer-title">Computer Science &bull; EIS</div>
                     <p>
-                        IB Diploma Programme Computer Science (SL &amp; HL) at Emirates International School. Speaking requests &amp; inquiries: <a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui (Siddiquin@eischools.ae)</a>.
+                        IB Diploma Programme Computer Science (SL &amp; HL) at Emirates International School Meadows. Department lead &amp; inquiries: <a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui (Siddiquin@eischools.ae)</a>.
                     </p>
                 </div>
                 <div>
                     <div class="footer-title">Navigation</div>
                     <ul>
-                        <li><a href="courses.html">Courses Overview</a></li>
+                        <li><a href="deadlines.html">Deadlines &amp; Announcements</a></li>
                         <li><a href="practice.html">Practice Question Bank</a></li>
-                        <li><a href="curriculum.html">Curriculum &amp; Pacing</a></li>
-                        <li><a href="theme-a.html">Theme A: Systems &amp; Hardware</a></li>
-                        <li><a href="theme-b.html">Theme B: Computational Thinking</a></li>
+                        <li><a href="curriculum.html">Syllabus</a></li>
                         <li><a href="ia.html">Internal Assessment (IA)</a></li>
-                        <li><a href="case-study.html">Paper 3 Case Study</a></li>
+                        <li><a href="case-study.html">Case Study (Paper 1 Section B)</a></li>
                         <li><a href="resources.html">Resources &amp; Worksheets</a></li>
                     </ul>
                 </div>
                 <div>
-                    <div class="footer-title">Department Team &amp; Appearance</div>
+                    <div class="footer-title">Department Team &amp; Ambassadors</div>
                     <ul>
                         <li><a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui &mdash; Head of CS</a></li>
                         <li><a href="mailto:anishdongarkar@gmail.com">Anish Dongarkar &mdash; Tech Ambassador</a></li>
-                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaren &mdash; AI Ambassador</a></li>
+                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaran &mdash; AI Ambassador</a></li>
                         <li><a href="about-us.html">About the Department</a></li>
                         <li><a href="admin.html">Faculty Administration Portal</a></li>
                     </ul>
@@ -310,11 +1587,69 @@
 
             <div class="footer-base">
                 <span>&copy; 2026 Computer Science Department &bull; Emirates International School (IB DP World School)</span>
-                <span>Theme A &bull; Theme B &bull; IA &bull; Paper 3</span>
+                <span>Theme A &bull; Theme B &bull; IA &bull; Paper 1 Section B</span>
             </div>
         </div>
     </footer>
 
     <script src="../assets/js/site.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Tab switching logic
+            var tabs = document.querySelectorAll('.rv-tab-btn');
+            var panes = document.querySelectorAll('.ia-tab-pane');
+
+            function switchTab(tabId) {
+                tabs.forEach(function (btn) {
+                    var isTarget = btn.getAttribute('data-tab') === tabId;
+                    btn.classList.toggle('active', isTarget);
+                    btn.classList.toggle('is-active', isTarget);
+                    btn.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+                });
+
+                panes.forEach(function (pane) {
+                    var isTarget = pane.id === 'pane-' + tabId;
+                    pane.classList.toggle('active', isTarget);
+                });
+            }
+
+            tabs.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var tabId = this.getAttribute('data-tab');
+                    switchTab(tabId);
+                    if (history.replaceState) {
+                        history.replaceState(null, '', '#' + tabId);
+                    }
+                });
+            });
+
+            // Handle URL Hash if present
+            var hash = window.location.hash.replace('#', '');
+            if (hash && document.getElementById('pane-' + hash)) {
+                switchTab(hash);
+            }
+
+            // Criteria Units Accordion Expand / Collapse All Controls (Syllabus Format)
+            var btnExpandAll = document.getElementById('btn-expand-all-criteria');
+            var btnCollapseAll = document.getElementById('btn-collapse-all-criteria');
+            var criteriaUnits = document.querySelectorAll('#criteria-container .ia-unit');
+
+            if (btnExpandAll) {
+                btnExpandAll.addEventListener('click', function () {
+                    criteriaUnits.forEach(function (unit) {
+                        unit.setAttribute('open', '');
+                    });
+                });
+            }
+
+            if (btnCollapseAll) {
+                btnCollapseAll.addEventListener('click', function () {
+                    criteriaUnits.forEach(function (unit) {
+                        unit.removeAttribute('open');
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>

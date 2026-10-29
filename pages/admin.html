@@ -30,14 +30,15 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/site.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to main content</a>
     <canvas class="ribbons" id="interactive-canvas" aria-hidden="true"></canvas>
 
-        <header class="site-header">
+            <header class="site-header">
         <div class="wrap">
             <a href="../index.html" class="brand">
                 <span class="brand-name">
@@ -54,9 +55,10 @@
             <div class="header-right">
                 <nav class="site-nav" id="site-nav" aria-label="Primary">
                     <ul class="nav-list">
-                        <li><a href="../index.html">Homepage</a></li>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="curriculum.html">Syllabus</a></li>
                         <li><a href="practice.html">Practice</a></li>
-                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="deadlines.html">Deadlines</a></li>
                         <li><a href="resources.html">Resources</a></li>
                     </ul>
                 </nav>
@@ -116,14 +118,14 @@
                             <span class="meta-note">Live on homepage</span>
                         </div>
                         <div class="meta-cell">
-                            <span class="meta-key">Student Files</span>
-                            <span class="meta-val">131</span>
-                            <span class="meta-note">Indexed in Resource Vault</span>
+                            <span class="meta-key">Live Teacher Drops</span>
+                            <span class="meta-val" id="stat-drops">0</span>
+                            <span class="meta-note">Resources feed</span>
                         </div>
                         <div class="meta-cell">
-                            <span class="meta-key">Staff Planners</span>
-                            <span class="meta-val">20</span>
-                            <span class="meta-note">Weekly Unit Planning</span>
+                            <span class="meta-key">Student Archive</span>
+                            <span class="meta-val">131</span>
+                            <span class="meta-note">Indexed in static vault</span>
                         </div>
                         <div class="meta-cell">
                             <span class="meta-key">Session</span>
@@ -164,6 +166,229 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Teacher Resource Drops Publisher -->
+                    <div class="split" style="margin-top: 32px;">
+                        <div class="panel">
+                            <span class="pill" style="margin-bottom: 10px;">Resource Stream</span>
+                            <h2 class="h2" style="margin-bottom: 16px;">Publish Faculty Resource Drop</h2>
+                            <form id="drop-form">
+                                <div class="field">
+                                    <label for="drop-title">Resource Title</label>
+                                    <input type="text" id="drop-title" class="input" placeholder="e.g. A1.2 Truth Tables &amp; Karnaugh Maps Worksheet" required>
+                                </div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                                    <div class="field">
+                                        <label for="drop-date">Publication Date</label>
+                                        <input type="date" id="drop-date" class="input" required>
+                                    </div>
+                                    <div class="field">
+                                        <label for="drop-topic">Topic Theme</label>
+                                        <select id="drop-topic" class="input">
+                                            <option value="Theme A">Theme A: Systems &amp; Architecture</option>
+                                            <option value="Theme B">Theme B: Computational Thinking &amp; OOP</option>
+                                            <option value="IA">IA: Coursework Milestone</option>
+                                            <option value="Revision">Revision &amp; Practice Paper</option>
+                                            <option value="General">General Curriculum</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                                    <div class="field">
+                                        <label for="drop-topic-code">Topic Code <span class="hint">(e.g. A.1, B.2)</span></label>
+                                        <input type="text" id="drop-topic-code" class="input" placeholder="e.g. A.1">
+                                    </div>
+                                    <div class="field">
+                                        <label for="drop-cohort">Cohort</label>
+                                        <select id="drop-cohort" class="input">
+                                            <option value="Year 1 (SL/HL)">Year 1 (SL/HL)</option>
+                                            <option value="Year 2 (SL/HL)">Year 2 (SL/HL)</option>
+                                            <option value="Both Cohorts">Both Cohorts</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label for="drop-url">File or Google Drive URL</label>
+                                    <input type="text" id="drop-url" class="input" placeholder="../resources/Theme A/... or https://drive.google.com/..." required>
+                                </div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                                    <div class="field">
+                                        <label for="drop-type">File Format</label>
+                                        <select id="drop-type" class="input">
+                                            <option value="PDF">PDF Document</option>
+                                            <option value="DOCX">Word Document (DOCX)</option>
+                                            <option value="PPTX">Presentation (PPTX)</option>
+                                            <option value="XLSX">Spreadsheet (XLSX)</option>
+                                            <option value="ZIP">Archive (ZIP)</option>
+                                            <option value="LINK">External Link</option>
+                                        </select>
+                                    </div>
+                                    <div class="field">
+                                        <label for="drop-size">File Size <span class="hint">(optional)</span></label>
+                                        <input type="text" id="drop-size" class="input" placeholder="e.g. 1.2 MB">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label for="drop-deadline">Connect to Upcoming Assessment / Deadline</label>
+                                    <select id="drop-deadline" class="input">
+                                        <option value="">-- No Direct Assessment Link --</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label for="drop-note">Teacher Context &amp; Instructions</label>
+                                    <textarea id="drop-note" class="input" rows="3" placeholder="Guidance for students, key problems to attempt, preparation notes..." required></textarea>
+                                </div>
+                                <div style="margin-top: 20px;">
+                                    <button type="submit" id="drop-submit-btn" class="btn btn-primary">Publish Resource Drop</button>
+                                </div>
+                                <p id="drop-status" class="form-status" role="status" aria-live="polite"></p>
+                            </form>
+                        </div>
+
+                        <div class="panel">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+                                <div>
+                                    <span class="pill" style="margin-bottom: 6px;">Live Stream</span>
+                                    <h2 class="h2" style="margin: 0;">Active Teacher Drops</h2>
+                                </div>
+                                <button type="button" id="export-drops-json-btn" class="btn btn-sm">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="7 10 12 15 17 10"></polyline>
+                                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                                    </svg>
+                                    <span>Export JSON</span>
+                                </button>
+                            </div>
+                            <div id="drops-admin-container" class="notices">
+                                <p class="sub">Loading published resource drops&hellip;</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question Authoring Engine inside Authenticated Admin Section -->
+                    <div class="panel" id="question-authoring-panel" style="margin-top: 24px;">
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+                            <div>
+                                <span class="pill pill-accent" style="margin-bottom: 6px;">Faculty Authoring Engine</span>
+                                <h3 class="h3" style="margin: 0 0 4px 0;">Syllabus Question Authoring &amp; JSON Export</h3>
+                                <p class="sub" style="margin: 0;">Compose verified IB examination questions and export directly into <code>data/questions.json</code>.</p>
+                            </div>
+                            <a href="practice.html" target="_blank" class="btn btn-secondary">
+                                <span>Preview Student Practice Suite &rarr;</span>
+                            </a>
+                        </div>
+
+                        <!-- Question Authoring Form -->
+                        <form id="admin-question-form" onsubmit="return false;">
+                            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:12px; margin-bottom:14px;">
+                                <div>
+                                    <label class="drawer-col-title" for="tq-unit">Syllabus Unit</label>
+                                    <select id="tq-unit" class="input">
+                                        <option value="A1">A1: Computer Fundamentals</option>
+                                        <option value="A2">A2: Networks</option>
+                                        <option value="A3">A3: Databases</option>
+                                        <option value="A4">A4: Machine Learning</option>
+                                        <option value="B1">B1: Computational Thinking</option>
+                                        <option value="B2">B2: Programming</option>
+                                        <option value="B3">B3: Object-Oriented Programming</option>
+                                        <option value="B4">B4: Abstract Data Types</option>
+                                        <option value="CS">CS: HL Case Study</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="drawer-col-title" for="tq-subtopic-code">Subtopic Code</label>
+                                    <input type="text" id="tq-subtopic-code" class="input" placeholder="e.g. A1.1 or B2.4">
+                                </div>
+                                <div>
+                                    <label class="drawer-col-title" for="tq-subtopic-name">Subtopic Name</label>
+                                    <input type="text" id="tq-subtopic-name" class="input" placeholder="e.g. CPU Architecture">
+                                </div>
+                                <div>
+                                    <label class="drawer-col-title" for="tq-level">Level</label>
+                                    <select id="tq-level" class="input">
+                                        <option value="SL/HL">SL &amp; HL</option>
+                                        <option value="SL">SL Only</option>
+                                        <option value="HL">HL Only</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="drawer-col-title" for="tq-paper">Paper</label>
+                                    <select id="tq-paper" class="input">
+                                        <option value="1">Paper 1</option>
+                                        <option value="2">Paper 2</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="drawer-col-title" for="tq-difficulty">Difficulty</label>
+                                    <select id="tq-difficulty" class="input">
+                                        <option value="Easy">Easy</option>
+                                        <option value="Medium" selected>Medium</option>
+                                        <option value="Hard">Hard</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="drawer-col-title" for="tq-format">Format</label>
+                                    <select id="tq-format" class="input">
+                                        <option value="Section A">Section A (Short)</option>
+                                        <option value="Section B">Section B (Long)</option>
+                                        <option value="Coding/Query">Coding / Query</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="drawer-col-title" for="tq-skill">Skill</label>
+                                    <select id="tq-skill" class="input">
+                                        <option value="Recall/Concept">Recall &amp; Concept</option>
+                                        <option value="Tracing/Dry Run">Tracing / Dry Run</option>
+                                        <option value="Code Implementation">Code Implementation</option>
+                                        <option value="Evaluation/Discussion">Evaluation / Discussion</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="drawer-col-title" for="tq-marks">Total Marks</label>
+                                    <input type="number" id="tq-marks" class="input" min="1" max="20" value="4">
+                                </div>
+                                <div>
+                                    <label class="drawer-col-title" for="tq-origin">Question Source</label>
+                                    <input type="text" id="tq-origin" class="input" placeholder="e.g. Teacher Created 2026">
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom:14px;">
+                                <label class="drawer-col-title" for="tq-prompt">Question Prompt</label>
+                                <textarea id="tq-prompt" class="input" rows="4" placeholder="Enter full question text, parts, and context..."></textarea>
+                            </div>
+
+                            <div style="margin-bottom:14px;">
+                                <label class="drawer-col-title" for="tq-code">Optional Python / SQL Code Snippet</label>
+                                <textarea id="tq-code" class="input" rows="3" placeholder="def example_function(): ..."></textarea>
+                            </div>
+
+                            <div style="margin-bottom:14px;">
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                                    <label class="drawer-col-title" style="margin:0;">Official Mark Scheme Points</label>
+                                    <button type="button" class="btn btn-sm" id="btn-add-ms-point">+ Add Point</button>
+                                </div>
+                                <div id="teacher-ms-container">
+                                    <div class="teacher-ms-row" style="display:flex; gap:8px; margin-bottom:8px;">
+                                        <input type="text" class="input ms-point-text" placeholder="Mark scheme statement..." style="flex:1;">
+                                        <input type="number" class="input ms-point-marks" min="1" max="10" value="1" style="width:70px;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom:20px;">
+                                <label class="drawer-col-title" for="tq-tip">Examiner Advice / Tip</label>
+                                <input type="text" id="tq-tip" class="input" placeholder="e.g. Be precise about sequential vs parallel execution.">
+                            </div>
+
+                            <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+                                <button type="button" class="btn btn-primary" id="btn-admin-copy-qjson">Copy Question JSON</button>
+                                <button type="button" class="btn btn-secondary" id="btn-admin-export-questions">Export Complete questions.json</button>
+                                <span id="admin-q-status" class="sub" style="margin-left:8px;"></span>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
@@ -188,34 +413,32 @@
         </section>
     </main>
 
-    <footer class="site-footer">
+        <footer class="site-footer">
         <div class="wrap">
             <div class="footer-grid">
                 <div>
                     <div class="footer-title">Computer Science &bull; EIS</div>
                     <p>
-                        IB Diploma Programme Computer Science (SL &amp; HL) at Emirates International School. Speaking requests &amp; inquiries: <a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui (Siddiquin@eischools.ae)</a>.
+                        IB Diploma Programme Computer Science (SL &amp; HL) at Emirates International School Meadows. Department lead &amp; inquiries: <a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui (Siddiquin@eischools.ae)</a>.
                     </p>
                 </div>
                 <div>
                     <div class="footer-title">Navigation</div>
                     <ul>
-                        <li><a href="courses.html">Courses Overview</a></li>
+                        <li><a href="deadlines.html">Deadlines &amp; Announcements</a></li>
                         <li><a href="practice.html">Practice Question Bank</a></li>
-                        <li><a href="curriculum.html">Curriculum &amp; Pacing</a></li>
-                        <li><a href="theme-a.html">Theme A: Systems &amp; Hardware</a></li>
-                        <li><a href="theme-b.html">Theme B: Computational Thinking</a></li>
+                        <li><a href="curriculum.html">Syllabus</a></li>
                         <li><a href="ia.html">Internal Assessment (IA)</a></li>
-                        <li><a href="case-study.html">Paper 3 Case Study</a></li>
+                        <li><a href="case-study.html">Case Study (Paper 1 Section B)</a></li>
                         <li><a href="resources.html">Resources &amp; Worksheets</a></li>
                     </ul>
                 </div>
                 <div>
-                    <div class="footer-title">Department Team &amp; Appearance</div>
+                    <div class="footer-title">Department Team &amp; Ambassadors</div>
                     <ul>
                         <li><a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui &mdash; Head of CS</a></li>
                         <li><a href="mailto:anishdongarkar@gmail.com">Anish Dongarkar &mdash; Tech Ambassador</a></li>
-                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaren &mdash; AI Ambassador</a></li>
+                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaran &mdash; AI Ambassador</a></li>
                         <li><a href="about-us.html">About the Department</a></li>
                         <li><a href="admin.html">Faculty Administration Portal</a></li>
                     </ul>
@@ -224,7 +447,7 @@
 
             <div class="footer-base">
                 <span>&copy; 2026 Computer Science Department &bull; Emirates International School (IB DP World School)</span>
-                <span>Theme A &bull; Theme B &bull; IA &bull; Paper 3</span>
+                <span>Theme A &bull; Theme B &bull; IA &bull; Paper 1 Section B</span>
             </div>
         </div>
     </footer>
@@ -246,12 +469,49 @@
         const submitBtn = document.getElementById("submit-btn");
         const postsContainer = document.getElementById("posts-container");
         const statPosts = document.getElementById("stat-posts");
+        const statDrops = document.getElementById("stat-drops");
+
+        // Teacher Drops Elements
+        const dropForm = document.getElementById("drop-form");
+        const dropDateInput = document.getElementById("drop-date");
+        const dropDeadlineSelect = document.getElementById("drop-deadline");
+        const dropSubmitBtn = document.getElementById("drop-submit-btn");
+        const dropStatus = document.getElementById("drop-status");
+        const dropsAdminContainer = document.getElementById("drops-admin-container");
+        const exportDropsBtn = document.getElementById("export-drops-json-btn");
+
+        let liveDropsCache = [];
+
+        // Set default publication date to today
+        if (dropDateInput) {
+            dropDateInput.value = new Date().toISOString().split('T')[0];
+        }
+
+        // Preload deadlines for dropdown
+        async function loadDeadlinesForDropdown() {
+            if (!dropDeadlineSelect) return;
+            try {
+                const res = await fetch("../data/deadlines.json");
+                if (!res.ok) return;
+                const deadlines = await res.json();
+                deadlines.forEach(dl => {
+                    const opt = document.createElement("option");
+                    opt.value = dl.id;
+                    opt.textContent = `[${dl.cohort || 'All'}] ${dl.title} (Due: ${dl.date})`;
+                    dropDeadlineSelect.appendChild(opt);
+                });
+            } catch (err) {
+                console.warn("Could not load deadlines for admin dropdown", err);
+            }
+        }
+        loadDeadlinesForDropdown();
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 loginSection.hidden = true;
                 adminSection.hidden = false;
                 loadPosts();
+                loadDrops();
             } else {
                 loginSection.hidden = false;
                 adminSection.hidden = true;
@@ -302,6 +562,80 @@
             }
         });
 
+        // Handle Teacher Drop Form Submit
+        dropForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            dropSubmitBtn.textContent = "Publishing Drop...";
+            dropSubmitBtn.disabled = true;
+            dropStatus.classList.remove("is-error");
+
+            try {
+                const title = document.getElementById("drop-title").value.trim();
+                const date = document.getElementById("drop-date").value;
+                const topic = document.getElementById("drop-topic").value;
+                const topicCode = document.getElementById("drop-topic-code").value.trim() || topic;
+                const cohort = document.getElementById("drop-cohort").value;
+                const fileUrl = document.getElementById("drop-url").value.trim();
+                const fileType = document.getElementById("drop-type").value;
+                const fileSize = document.getElementById("drop-size").value.trim();
+                const connectedDeadlineId = document.getElementById("drop-deadline").value || null;
+                const note = document.getElementById("drop-note").value.trim();
+
+                const newDropRef = push(dbRef(db, "teacher_resources"));
+                await set(newDropRef, {
+                    title,
+                    date,
+                    topic,
+                    topicCode,
+                    cohort,
+                    fileUrl,
+                    fileType,
+                    fileSize: fileSize || null,
+                    connectedDeadlineId,
+                    note
+                });
+
+                dropStatus.textContent = "Resource drop published live to the Resources feed.";
+                dropForm.reset();
+                if (dropDateInput) dropDateInput.value = new Date().toISOString().split('T')[0];
+                setTimeout(() => { dropStatus.textContent = ""; }, 4000);
+            } catch (err) {
+                dropStatus.textContent = "Error: " + err.message;
+                dropStatus.classList.add("is-error");
+            } finally {
+                dropSubmitBtn.textContent = "Publish Resource Drop";
+                dropSubmitBtn.disabled = false;
+            }
+        });
+
+        // Export JSON handler
+        if (exportDropsBtn) {
+            exportDropsBtn.addEventListener("click", async () => {
+                try {
+                    const fallbackRes = await fetch("../data/teacher-resources.json");
+                    const fallbackDrops = fallbackRes.ok ? await fallbackRes.json() : [];
+                    
+                    const mergedMap = new Map();
+                    fallbackDrops.forEach(item => mergedMap.set(item.id, item));
+                    liveDropsCache.forEach(item => mergedMap.set(item.id, item));
+
+                    const fullList = Array.from(mergedMap.values());
+                    fullList.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+                    const jsonStr = JSON.stringify(fullList, null, 2);
+                    const blob = new Blob([jsonStr], { type: "application/json" });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.download = "teacher-resources.json";
+                    a.click();
+                    URL.revokeObjectURL(url);
+                } catch (e) {
+                    alert("Could not export JSON: " + e.message);
+                }
+            });
+        }
+
         function loadPosts() {
             onValue(dbRef(db, "posts"), (snapshot) => {
                 postsContainer.innerHTML = "";
@@ -349,6 +683,163 @@
                     article.appendChild(p);
                     postsContainer.appendChild(article);
                 });
+            });
+        }
+
+        function loadDrops() {
+            if (!dropsAdminContainer) return;
+            onValue(dbRef(db, "teacher_resources"), (snapshot) => {
+                dropsAdminContainer.innerHTML = "";
+                const drops = [];
+                snapshot.forEach((childSnapshot) => {
+                    drops.push({ id: childSnapshot.key, ...childSnapshot.val() });
+                });
+
+                liveDropsCache = drops;
+                if (statDrops) statDrops.textContent = String(drops.length);
+                drops.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+                if (drops.length === 0) {
+                    dropsAdminContainer.innerHTML = "<div class='notice'><p>No live resource drops published to Firebase yet. (Static repository drops are currently active from teacher-resources.json).</p></div>";
+                    return;
+                }
+
+                drops.forEach((drop) => {
+                    const article = document.createElement("article");
+                    article.className = "notice";
+
+                    const meta = document.createElement("div");
+                    meta.className = "notice-meta";
+                    const d = document.createElement("span");
+                    d.textContent = `${drop.date || 'Undated'} • [${drop.fileType || 'FILE'}] ${drop.topic || ''}`;
+                    const del = document.createElement("button");
+                    del.type = "button";
+                    del.className = "btn btn-sm";
+                    del.textContent = "Remove";
+                    del.addEventListener("click", async () => {
+                        if (confirm("Permanently remove this resource drop?")) {
+                            await remove(dbRef(db, "teacher_resources/" + drop.id));
+                        }
+                    });
+                    meta.appendChild(d);
+                    meta.appendChild(del);
+
+                    const h3 = document.createElement("h3");
+                    h3.textContent = drop.title || "Untitled Resource";
+
+                    const p = document.createElement("p");
+                    p.textContent = drop.note || "";
+
+                    article.appendChild(meta);
+                    article.appendChild(h3);
+                    article.appendChild(p);
+                    dropsAdminContainer.appendChild(article);
+                });
+            });
+        }
+
+        // --- Faculty Question Authoring Controller ---
+        const addMsPointBtn = document.getElementById('btn-add-ms-point');
+        const msContainer = document.getElementById('teacher-ms-container');
+        const copyQJsonBtn = document.getElementById('btn-admin-copy-qjson');
+        const exportQuestionsBtn = document.getElementById('btn-admin-export-questions');
+        const qStatus = document.getElementById('admin-q-status');
+
+        if (addMsPointBtn && msContainer) {
+            addMsPointBtn.addEventListener('click', () => {
+                const row = document.createElement('div');
+                row.className = 'teacher-ms-row';
+                row.style.cssText = 'display:flex; gap:8px; margin-bottom:8px;';
+                row.innerHTML = `
+                    <input type="text" class="input ms-point-text" placeholder="Mark scheme statement..." style="flex:1;">
+                    <input type="number" class="input ms-point-marks" min="1" max="10" value="1" style="width:70px;">
+                    <button type="button" class="btn btn-sm btn-remove-ms" style="padding:4px 10px;">&times;</button>
+                `;
+                row.querySelector('.btn-remove-ms').addEventListener('click', () => row.remove());
+                msContainer.appendChild(row);
+            });
+        }
+
+        function extractAdminQuestion() {
+            const prompt = (document.getElementById('tq-prompt')?.value || '').trim();
+            if (!prompt) {
+                alert('Please enter a question prompt.');
+                return null;
+            }
+            const unit = document.getElementById('tq-unit')?.value || 'A1';
+            const unitSelect = document.getElementById('tq-unit');
+            const unitText = unitSelect ? unitSelect.options[unitSelect.selectedIndex].text : 'Unit ' + unit;
+            const marks = parseInt(document.getElementById('tq-marks')?.value, 10) || 4;
+
+            const msRows = document.querySelectorAll('.teacher-ms-row');
+            const markScheme = [];
+            msRows.forEach(r => {
+                const text = r.querySelector('.ms-point-text')?.value.trim();
+                const pts = parseInt(r.querySelector('.ms-point-marks')?.value, 10) || 1;
+                if (text) markScheme.push({ point: text, marks: pts });
+            });
+            if (markScheme.length === 0) {
+                markScheme.push({ point: 'Accurate and comprehensive response meeting IB rubric standards.', marks: marks });
+            }
+
+            const codeSnippet = document.getElementById('tq-code')?.value.trim();
+            const tip = document.getElementById('tq-tip')?.value.trim();
+
+            return {
+                id: 'q-' + unit.toLowerCase() + '-' + Date.now(),
+                theme: unit.startsWith('A') ? 'A' : (unit.startsWith('B') ? 'B' : 'CaseStudy'),
+                unit: unit,
+                unitName: unitText,
+                subtopicCode: (document.getElementById('tq-subtopic-code')?.value || unit + '.1').trim(),
+                subtopicName: (document.getElementById('tq-subtopic-name')?.value || 'Syllabus Topic').trim(),
+                level: document.getElementById('tq-level')?.value || 'SL/HL',
+                paper: parseInt(document.getElementById('tq-paper')?.value, 10) || 1,
+                difficulty: document.getElementById('tq-difficulty')?.value || 'Medium',
+                format: document.getElementById('tq-format')?.value || 'Section A',
+                skill: document.getElementById('tq-skill')?.value || 'Recall/Concept',
+                marks: marks,
+                origin: (document.getElementById('tq-origin')?.value || 'Teacher Created 2026').trim(),
+                prompt: prompt,
+                hint: null,
+                codeSnippet: codeSnippet.length > 0 ? codeSnippet : null,
+                markScheme: markScheme,
+                examinerTip: tip.length > 0 ? tip : null
+            };
+        }
+
+        if (copyQJsonBtn) {
+            copyQJsonBtn.addEventListener('click', () => {
+                const q = extractAdminQuestion();
+                if (!q) return;
+                navigator.clipboard.writeText(JSON.stringify(q, null, 2)).then(() => {
+                    qStatus.textContent = 'Question JSON copied to clipboard!';
+                    setTimeout(() => { qStatus.textContent = ''; }, 2500);
+                });
+            });
+        }
+
+        if (exportQuestionsBtn) {
+            exportQuestionsBtn.addEventListener('click', async () => {
+                try {
+                    const res = await fetch('../data/questions.json');
+                    const questions = res.ok ? await res.json() : [];
+                    const newQ = extractAdminQuestion();
+                    if (newQ) questions.unshift(newQ);
+
+                    const blob = new Blob([JSON.stringify(questions, null, 2) + '\n'], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'questions.json';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    qStatus.textContent = `Exported ${questions.length} questions to questions.json!`;
+                    setTimeout(() => { qStatus.textContent = ''; }, 3000);
+                } catch (err) {
+                    alert('Failed to export questions: ' + err.message);
+                }
             });
         }
     </script>
