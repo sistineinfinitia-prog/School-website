@@ -24,7 +24,7 @@
         { code: 'B2', name: 'Programming', theme: 'B' },
         { code: 'B3', name: 'Object-Oriented Programming', theme: 'B' },
         { code: 'B4', name: 'Abstract Data Types', theme: 'B' },
-        { code: 'CS', name: 'HL Case Study', theme: 'CaseStudy' }
+        { code: 'CS', name: '2027 Case Study (Paper 1 Section B)', theme: 'CaseStudy' }
     ];
 
     var Builder = {

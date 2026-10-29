@@ -174,7 +174,7 @@
                 },
                 {
                     "id": "dl-04",
-                    "title": "HL Case Study Seminar: The Perfect Chatbot Pipeline Review",
+                    "title": "2027 Case Study Seminar: Visionary Studios & Generative AI",
                     "type": "announcement",
                     "typeName": "Announcement",
                     "cohort": "Year 2 (HL Only)",
@@ -280,7 +280,7 @@
                 {
                     "id": "paper-3-case-study",
                     "date": "2026-10-04",
-                    "title": "HL Case Study Seminar: The Perfect Chatbot",
+                    "title": "2027 Case Study Seminar: Generative AI for Image Creation",
                     "description": "Higher Level candidates should annotate the RAKT Insurance case study booklet ahead of our seminar on natural language processing pipelines, transformer latency, and dataset bias.",
                     "category": "HL Seminar",
                     "driveLink": "case-study.html"

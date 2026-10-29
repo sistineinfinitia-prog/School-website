@@ -236,7 +236,7 @@
                 'B2': { name: 'Programming', theme: 'B', total: 0, completed: 0, correct: 0, wrong: 0 },
                 'B3': { name: 'Object-Oriented Programming', theme: 'B', total: 0, completed: 0, correct: 0, wrong: 0 },
                 'B4': { name: 'Abstract Data Types', theme: 'B', total: 0, completed: 0, correct: 0, wrong: 0 },
-                'CS': { name: 'HL Case Study', theme: 'CaseStudy', total: 0, completed: 0, correct: 0, wrong: 0 }
+                'CS': { name: '2027 Case Study (Paper 1 Section B)', theme: 'CaseStudy', total: 0, completed: 0, correct: 0, wrong: 0 }
             };
 
             allQuestions.forEach(function (q) {

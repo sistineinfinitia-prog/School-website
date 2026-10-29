@@ -115,7 +115,7 @@
         },
         {
             code: 'CS',
-            name: 'HL Case Study',
+            name: '2027 Case Study (Paper 1 Section B)',
             theme: 'CaseStudy',
             subtopics: [
                 { code: 'CS.1', name: 'Scenario Analysis & System Specifications' },
