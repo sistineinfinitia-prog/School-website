@@ -240,7 +240,7 @@
         wrap.innerHTML = '<svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"></circle><path d="M13 13l4 4" stroke-linecap="round"></path></svg>';
         var input = el('input', 'search-input');
         input.type = 'search';
-        input.placeholder = 'Search 131 files by topic, code (A1, B2, SQL, OOP), or filename...';
+        input.placeholder = 'Search 151 files by topic, code (A1, B2, SQL, OOP), or filename...';
         input.setAttribute('aria-label', 'Search department resource files');
         wrap.appendChild(input);
         tools.appendChild(wrap);
