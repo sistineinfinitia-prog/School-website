@@ -85,11 +85,11 @@ main.wrap.wrap-wide.home {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.home-more span {
+.home-more svg {
     transition: transform 0.2s ease;
 }
 
-.home-more:hover span {
+.home-more:hover svg {
     transform: translateX(3px);
 }
 
@@ -165,6 +165,12 @@ main.wrap.wrap-wide.home {
 .home-anchor-link svg {
     color: var(--accent);
     opacity: 0.8;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.home-anchor-link:hover svg {
+    opacity: 1;
+    transform: scale(1.1);
 }
 
 .home-anchor-link:hover {
@@ -300,16 +306,27 @@ main.wrap.wrap-wide.home {
 }
 
 .feed-panel-head a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     font-family: var(--font-mono);
     font-size: 0.78rem;
     font-weight: 600;
     color: var(--accent);
     text-decoration: none;
-    transition: opacity 0.15s ease;
+    transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.feed-panel-head a svg {
+    transition: transform 0.2s ease;
 }
 
 .feed-panel-head a:hover {
-    text-decoration: underline;
+    opacity: 0.85;
+}
+
+.feed-panel-head a:hover svg {
+    transform: translateX(3px);
 }
 
 .feed-list {

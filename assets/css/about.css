@@ -514,17 +514,17 @@ main.wrap.wrap-wide.about-page {
     margin-top: 3px;
 }
 
-/* Callout Note Banner */
+/* Callout Note Banner - Radial Blur (No Side Banner) */
 .about-notice-banner {
-    background: color-mix(in srgb, var(--accent) 8%, var(--surface-elevated));
+    background: radial-gradient(ellipse at 50% 50%, color-mix(in srgb, var(--accent) 10%, var(--surface-elevated)) 0%, var(--surface-elevated) 100%);
     border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-    border-left: 4px solid var(--accent);
     border-radius: 12px;
     padding: 18px 22px;
     margin-top: 24px;
     display: flex;
     align-items: flex-start;
     gap: 14px;
+    box-shadow: 0 0 28px -4px color-mix(in srgb, var(--accent) 24%, transparent);
 }
 
 .about-notice-banner svg {

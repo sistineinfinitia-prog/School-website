@@ -408,29 +408,31 @@
     margin: 0 0 16px 0;
 }
 
-/* Connected Assessment Box - 10px Smooth Inner Box */
+/* Connected Assessment Box - Clean Surface with Palette Outer Blur Glow (No Center Smudge, No Side Banner) */
 .resource-connected-box {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    padding: 12px 18px;
+    padding: 13px 20px;
     background: var(--surface);
-    border: 1px solid var(--line);
-    border-left: 3px solid var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--line));
     border-radius: 10px;
     margin-bottom: 18px;
     text-decoration: none;
     color: inherit;
+    box-shadow: 0 0 16px -1px color-mix(in srgb, var(--accent) 24%, transparent),
+                0 2px 6px rgba(0, 0, 0, 0.04);
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     flex-wrap: wrap;
 }
 
 .resource-connected-box:hover {
     border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 8%, var(--surface));
-    transform: translateX(3px);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+    transform: translateY(-1px);
+    box-shadow: 0 0 24px 0px color-mix(in srgb, var(--accent) 35%, transparent),
+                0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .resource-connected-info {
@@ -1167,7 +1169,7 @@ mark {
     margin: 0;
 }
 
-/* Bottom Vault Jump Banner */
+/* Bottom Vault Jump Banner - Clean Surface with Palette Outer Blur Glow (No Center Smudge, No Side Banner) */
 .vault-banner-card {
     display: flex;
     align-items: center;
@@ -1177,12 +1179,18 @@ mark {
     margin-top: 32px;
     padding: 24px 30px;
     background: var(--surface-elevated);
-    border: 1px solid var(--line);
-    border-left: 3px solid var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--line));
     border-radius: 14px;
-    box-shadow: var(--shadow-panel);
+    box-shadow: 0 0 24px -2px color-mix(in srgb, var(--accent) 22%, transparent), var(--shadow-panel);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vault-banner-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 32px 0px color-mix(in srgb, var(--accent) 34%, transparent), var(--shadow-panel);
+    transform: translateY(-2px);
 }
 
 .vault-banner-info h4 {

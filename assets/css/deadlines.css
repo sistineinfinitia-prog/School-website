@@ -1159,7 +1159,8 @@
 }
 
 .deadline-card-minimal.is-urgent {
-    border-left: 3px solid #f08a8e;
+    border: 1px solid color-mix(in srgb, var(--danger, #f08a8e) 45%, var(--line));
+    box-shadow: 0 0 24px -2px color-mix(in srgb, var(--danger, #f08a8e) 24%, transparent);
 }
 
 .card-top-row {
