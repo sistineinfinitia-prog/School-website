@@ -33,6 +33,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/site.css">
     <link rel="stylesheet" href="../assets/css/case-study.css">
+    <script>
+        function switchCaseStudyTab(tabKey) {
+            if (!tabKey) return;
+            var tabs = document.querySelectorAll('.rv-tab-btn');
+            var panes = document.querySelectorAll('.cs-tab-pane');
+            tabs.forEach(function (btn) {
+                var isTarget = btn.getAttribute('data-tab') === tabKey;
+                btn.classList.toggle('active', isTarget);
+                btn.classList.toggle('is-active', isTarget);
+                btn.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+            });
+            panes.forEach(function (pane) {
+                var isTarget = pane.id === 'pane-' + tabKey;
+                pane.classList.toggle('active', isTarget);
+            });
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState(null, '', '#' + tabKey);
+            }
+        }
+        window.switchCaseStudyTab = switchCaseStudyTab;
+    </script>
 </head>
 <body class="page-case-study">
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -87,22 +108,22 @@
 
             <!-- Primary 4 Tabs Navigation -->
             <nav class="rv-tabs-nav" role="tablist" aria-label="Case Study Sections">
-                <button type="button" class="rv-tab-btn active" data-tab="overview" role="tab" aria-selected="true" id="tab-btn-overview">
+                <button type="button" class="rv-tab-btn active" data-tab="overview" role="tab" aria-selected="true" id="tab-btn-overview" onclick="switchCaseStudyTab('overview')">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
                     <span>Scenario Brief</span>
                     <span class="rv-tab-badge">Visionary Studios</span>
                 </button>
-                <button type="button" class="rv-tab-btn" data-tab="models" role="tab" aria-selected="false" id="tab-btn-models">
+                <button type="button" class="rv-tab-btn" data-tab="models" role="tab" aria-selected="false" id="tab-btn-models" onclick="switchCaseStudyTab('models')">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
                     <span>Technical Architectures</span>
                     <span class="rv-tab-badge">DDPM &amp; GANs</span>
                 </button>
-                <button type="button" class="rv-tab-btn" data-tab="media" role="tab" aria-selected="false" id="tab-btn-media">
+                <button type="button" class="rv-tab-btn" data-tab="media" role="tab" aria-selected="false" id="tab-btn-media" onclick="switchCaseStudyTab('media')">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                     <span>Booklet &amp; Masterclass</span>
                     <span class="rv-tab-badge">Dual Studio</span>
                 </button>
-                <button type="button" class="rv-tab-btn" data-tab="practice" role="tab" aria-selected="false" id="tab-btn-practice">
+                <button type="button" class="rv-tab-btn" data-tab="practice" role="tab" aria-selected="false" id="tab-btn-practice" onclick="switchCaseStudyTab('practice')">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                     <span>Exam Guide &amp; Practice</span>
                     <span class="rv-tab-badge">Paper 1 Sec B</span>
@@ -843,209 +864,6 @@ E<sub>x &sim; p<sub>data</sub></sub> [ log D(x) ] + E<sub>z &sim; p<sub>z</sub><
         window.EMBEDDED_CS_QUESTIONS = [{"id": "q-cs-2027-1", "theme": "CaseStudy", "unit": "CS", "unitName": "2027 Case Study: Generative AI for Image Creation", "subtopicCode": "CS.1", "subtopicName": "Iterative Denoising & Computational Trade-offs", "level": "SL/HL", "paper": 1, "difficulty": "Medium", "format": "Section B Short", "skill": "Analysis/Explanation", "marks": 4, "origin": "2027 Pre-Seen Case Study (Visionary Studios)", "prompt": "Visionary Studios is evaluating the computational requirements of Denoising Diffusion Probabilistic Models (DDPMs) for generating client advertising drafts.\n\n(a) Outline the role of the Markov chain and Gaussian noise schedule during the forward diffusion process. [2 marks]\n\n(b) Explain why the reverse denoising process creates a computational latency bottleneck when generating high-resolution images, and explain how a modern scheduler (e.g. DDIM) mitigates this latency. [2 marks]", "hint": "Consider the predetermined variance schedule beta_t in forward diffusion vs the sequential iterative evaluation of the U-Net in reverse sampling.", "codeSnippet": null, "markScheme": [{"point": "(a) Forward Process: In forward diffusion, Gaussian noise is iteratively injected into an image over T discrete timesteps according to a predetermined noise schedule (beta_t). The Markov property ensures each noisy state x_t depends solely on the immediate previous state x_(t-1), asymptotically transforming the image into pure isotropic Gaussian noise.", "marks": 2}, {"point": "(b) Reverse Bottleneck: The reverse denoising process cannot jump straight to the clean image; the neural network (U-Net) must be executed iteratively across all timesteps (e.g., T=1000) to estimate and subtract noise step-by-step, demanding significant GPU FLOPs and wall-clock latency per generation.", "marks": 1}, {"point": "(b) Scheduler Mitigation: Non-Markovian deterministic schedulers (such as Denoising Diffusion Implicit Models - DDIM) skip intermediate steps during inference, enabling high-fidelity image synthesis in as few as 20 to 50 steps instead of 1000, slashing production latency for client drafts.", "marks": 1}], "examinerTip": "Distinguish clearly between the forward process (which has an analytical closed-form jump during training) and the reverse process (which is strictly sequential during inference)."}, {"id": "q-cs-2027-2", "theme": "CaseStudy", "unit": "CS", "unitName": "2027 Case Study: Generative AI for Image Creation", "subtopicCode": "CS.1", "subtopicName": "Dataset Curation, Copyright & Bias Mitigation", "level": "SL/HL", "paper": 1, "difficulty": "Medium", "format": "Section B Short", "skill": "Evaluation/Discussion", "marks": 4, "origin": "2027 Pre-Seen Case Study (Visionary Studios)", "prompt": "Visionary Studios plans to fine-tune an image generation model using scraped web artwork for commercial client brand campaigns.\n\n(a) Explain one legal or copyright risk Visionary Studios faces if copyrighted artistic works are included in their model training dataset without explicit licensing. [2 marks]\n\n(b) Describe two proactive data governance or technical measures Visionary Studios should implement to protect against intellectual property infringement and algorithmic bias. [2 marks]", "hint": "Address model memorization, commercial indemnity liability, C2PA content provenance, and demographic bias auditing.", "codeSnippet": null, "markScheme": [{"point": "(a) Legal/Copyright Risk: Scraping copyrighted artwork without license exposes the studio to copyright infringement lawsuits; generative models can memorize and reproduce distinctive stylistic elements or trademarked brand assets (substantial similarity) in commercial client outputs, violating IP indemnity clauses in client contracts.", "marks": 2}, {"point": "(b) Measure 1 - Curated & Licensed Corpora: Restrict fine-tuning datasets strictly to public domain, Creative Commons with commercial permissions, or commercially licensed art assets with clean chain-of-title and artist opt-in agreements.", "marks": 1}, {"point": "(b) Measure 2 - Content Provenance & Bias Auditing: Embed cryptographic provenance watermarks (such as C2PA standards) in generated deliverables to maintain transparency, while conducting demographic audit checks on training data distributions to prevent discriminatory or stereotypical visual representations in client ads.", "marks": 1}], "examinerTip": "Use precise industry terminology: chain-of-title, substantial similarity, model memorization, and C2PA provenance standards."}, {"id": "q-cs-2027-3", "theme": "CaseStudy", "unit": "CS", "unitName": "2027 Case Study: Generative AI for Image Creation", "subtopicCode": "CS.2", "subtopicName": "GAN Training Stability & Mode Collapse (HL Only)", "level": "HL", "paper": 1, "difficulty": "Hard", "format": "Section B Extended", "skill": "Analysis/Explanation", "marks": 6, "origin": "2027 Pre-Seen Case Study (Visionary Studios)", "prompt": "Visionary Studios machine learning team is experimenting with Generative Adversarial Networks (GANs) to generate rapid photorealistic textures for concept art backgrounds.\n\n(a) Describe the adversarial zero-sum dynamic between the Generator and the Discriminator during GAN training. [2 marks]\n\n(b) Explain the phenomenon of mode collapse in GANs, citing how it would negatively impact Visionary Studios advertising campaigns. [2 marks]\n\n(c) Outline two mathematical or architectural strategies used to stabilize GAN training and mitigate mode collapse. [2 marks]", "hint": "Focus on the minimax objective, latent-to-data mapping, diversity reduction, and Wasserstein loss with gradient penalty (WGAN-GP).", "codeSnippet": null, "markScheme": [{"point": "(a) Adversarial Dynamic: The Generator maps a d-dimensional noise vector z to synthetic images G(z) aiming to minimize log(1 - D(G(z))) to deceive the Discriminator. Simultaneously, the Discriminator is trained to maximize log D(x) + log(1 - D(G(z))), classifying real images x as 1 and fake images G(z) as 0 in a two-player zero-sum minimax optimization.", "marks": 2}, {"point": "(b) Mode Collapse: Mode collapse occurs when the Generator learns to output only a narrow subset of realistic images that consistently trick the Discriminator, rather than learning the full distribution. For Visionary Studios, this results in repetitive, non-diverse concept art (e.g. generating only one car model or one face type across all prompts), failing client creative briefs.", "marks": 2}, {"point": "(c) Strategy 1 - Wasserstein GAN with Gradient Penalty (WGAN-GP): Replaces standard Jensen-Shannon divergence with Earth Mover's Distance (Wasserstein metric) and enforces 1-Lipschitz continuity via gradient penalty, eliminating vanishing gradients and ensuring continuous informative gradient feedback.", "marks": 1}, {"point": "(c) Strategy 2 - Minibatch Discrimination / Feature Matching: Equips the Discriminator with information across all samples in a batch to detect lack of diversity, penalizing the Generator if sample variance collapses.", "marks": 1}], "examinerTip": "Higher Level Section B questions require exact understanding of why the Discriminator overpowering the Generator causes vanishing gradients, and how Earth Mover's Distance solves it."}, {"id": "q-cs-2027-4", "theme": "CaseStudy", "unit": "CS", "unitName": "2027 Case Study: Generative AI for Image Creation", "subtopicCode": "CS.2", "subtopicName": "Quantitative Model Evaluation: FID vs Inception Score (HL Only)", "level": "HL", "paper": 1, "difficulty": "Hard", "format": "Section B Extended", "skill": "Evaluation/Discussion", "marks": 6, "origin": "2027 Pre-Seen Case Study (Visionary Studios)", "prompt": "Visionary Studios needs a quantitative methodology to benchmark the quality and diversity of images produced by candidate generative models before deploying them into client workflows.\n\n(a) Contrast how the Inception Score (IS) and the Fréchet Inception Distance (FID) evaluate synthetic images. [3 marks]\n\n(b) Explain why Visionary Studios should prioritize FID over IS when benchmarking commercial advertising image generation models. [3 marks]", "hint": "Consider reference vs reference-free metrics, conditional entropy vs feature-space Gaussian statistics (mean and covariance), and sensitivity to mode collapse.", "codeSnippet": null, "markScheme": [{"point": "(a) Inception Score (IS): Evaluates ONLY generated images using a pre-trained Inception-v3 classifier. It measures fidelity via low conditional entropy (sharp, recognizable objects) and diversity via high marginal entropy across classes. Crucially, IS never compares generated images against real training images.", "marks": 1.5}, {"point": "(a) Fréchet Inception Distance (FID): Extracts deep feature representations from the penultimate layer of Inception-v3 for BOTH real and generated datasets, fitting multivariate Gaussian distributions (mean mu and covariance matrix Sigma) and computing the Wasserstein-2 / Fréchet distance between them. Lower FID indicates higher fidelity and distribution similarity.", "marks": 1.5}, {"point": "(b) Reason 1 - Direct Reference Comparison: Unlike IS, FID explicitly checks whether the generated images mirror the statistical distribution of real commercial assets; if a model creates beautiful but unrepresentative images, FID penalizes it.", "marks": 1}, {"point": "(b) Reason 2 - Mode Collapse Detection: If the model suffers from mode collapse and outputs only one category or style, IS can still report a falsely high score if outputs are sharp, whereas FID immediately detects the covariance collapse (Sigma_g mismatch) and produces a poor score.", "marks": 1}, {"point": "(b) Reason 3 - Robustness to Artifacts: FID is much more sensitive to subtle perceptual artifacts, noise injection errors, and blur, mirroring human visual perception much better than IS.", "marks": 1}], "examinerTip": "State the scoring direction clearly: higher IS is better, but lower FID is better (0 indicates identical distributions)."}, {"id": "q-cs-2027-5", "theme": "CaseStudy", "unit": "CS", "unitName": "2027 Case Study: Generative AI for Image Creation", "subtopicCode": "CS.2", "subtopicName": "Hybrid Latent Diffusion vs Pixel-Space Evaluation (HL Only)", "level": "HL", "paper": 1, "difficulty": "Hard", "format": "Section B Extended", "skill": "Evaluation/Discussion", "marks": 12, "origin": "2027 Pre-Seen Case Study (Visionary Studios)", "prompt": "Visionary Studios currently relies on pixel-space diffusion models to generate concept art and commercial advertising assets. While the visual fidelity is high, the generation latency (up to 45 seconds per 1024x1024 image) and massive GPU memory footprint on workstation graphics cards bottleneck creative velocity.\n\nThe studio's AI Director proposes adopting a Hybrid Latent Diffusion Model (combining a Variational Autoencoder [VAE] for spatial compression with a latent-space U-Net conditioned via CLIP cross-attention).\n\nEvaluate this proposal for Visionary Studios. In your response, address:\n- Architectural mechanisms (VAE perceptual compression, latent diffusion, and text-conditioning)\n- Computational performance, hardware feasibility, and latency benefits\n- Creative limitations, artifacts, and trade-offs\n- A synthesized strategic recommendation for Visionary Studios' production pipeline. [12 marks]", "hint": "Structure your 12-mark answer across: (1) Architecture, (2) Computational advantages, (3) Limitations & failure modes, and (4) Contextualized studio recommendation with two-tiered pipeline.", "codeSnippet": null, "markScheme": [{"point": "Architectural Mechanisms (3 marks): VAE Encoder compresses high-dimensional pixel space (H x W x 3) by a factor of 8 (e.g. 64x spatial area reduction) into a compact latent space representation (h x w x c), removing imperceptible high-frequency noise while retaining core semantics. Iterative forward/reverse diffusion is executed exclusively in this compressed latent space via a U-Net. A CLIP text encoder converts prompts into text embeddings, which are injected into the U-Net through cross-attention layers to steer generation. Finally, the VAE Decoder reconstructs the high-resolution pixel image from the denoised latent vector.", "marks": 3}, {"point": "Computational & Hardware Feasibility (3 marks): Performing denoising in latent space reduces the tensor dimension processed by each attention and convolutional layer by roughly 64-fold, leading to dramatic reductions in floating-point operations (FLOPs) and VRAM usage. This slashes inference latency from ~45s down to 2-4s, enabling designers to execute iterative prompt prototyping locally on standard high-end studio workstations without constantly renting high-cost cloud clusters.", "marks": 3}, {"point": "Limitations & Creative Trade-offs (3 marks): The VAE compression is lossy; high-frequency fine details (e.g. legible typography, micro-textures, intricate hands and eyes) can suffer from blur or latent reconstruction distortions. Cross-attention conditioning can suffer from prompt leakage (attribute binding errors where adjectives attach to the wrong nouns). Additionally, a multi-stage pipeline introduces compound failure points where a defect in the VAE decoder ruins an otherwise pristine latent generation.", "marks": 3}, {"point": "Synthesized Strategic Recommendation (3 marks): Visionary Studios should adopt the Hybrid Latent Diffusion model as their primary tier for creative ideation, client concept boards, and rapid iterative exploration. To resolve the high-frequency detail limitations on final client deliverables, the studio should implement a two-tiered pipeline: fast latent diffusion for drafting, followed by a selective high-resolution upscaling pass (using pixel-space refinement or a GAN-based super-resolution perceptual enhancer) combined with mandatory C2PA content provenance watermarking.", "marks": 3}], "examinerTip": "In the Paper 1 Section B 12-mark evaluation question, high-scoring responses provide balanced criteria with specific operational solutions (e.g., two-tiered pipeline, C2PA watermarks, FLOPs/VRAM reduction) rather than vague opinions."}];
     </script>
     <script src="../assets/js/site.js" defer></script>
-    <script>
-        // Terminology Glossary Dictionary
-        var CS_GLOSSARY = {
-            'DDPM': 'Denoising Diffusion Probabilistic Model: A generative deep learning framework that models data generation as the reverse of a progressive Gaussian noise injection Markov chain.',
-            'Diffusion Model': 'A class of generative models that learns to recover target data by estimating and subtracting injected noise across parameterized discrete timesteps.',
-            'Noise Injection': 'The deliberate, scheduled addition of Gaussian noise to an image tensor over timesteps t during the forward diffusion process.',
-            'Denoising': 'The algorithmic estimation and removal of injected noise from a corrupted input representation, performed by a parameterized neural network (typically a U-Net).',
-            'Conditional Generation': 'Image generation guided by explicit external constraints, such as natural language text prompts, class category labels, segmentation depth maps, or edge sketches.',
-            'Unconditional Generation': 'Generating novel samples purely from learned data distribution statistics without any external guiding prompts or class conditions.',
-            'Text-to-Image Generation': 'Synthesizing coherent spatial imagery conditioned on textual descriptions using multimodal semantic cross-attention embeddings (e.g. CLIP).',
-            'Image-to-Image Translation': 'Transforming an existing source visual representation into a target artistic style or domain while preserving underlying spatial geometry.',
-            'Embedding-based Approach': 'Mapping discrete words or visual patches into a continuous, dense, semantic vector space where distance corresponds to contextual conceptual similarity.',
-            'Dataset Curation': 'Systematically filtering, balancing, deduplicating, and auditing training data to ensure copyright compliance, artist permission, and representational fairness.',
-            'Bias Mitigation': 'Active algorithmic and statistical measures designed to identify and eliminate systematic skew, prejudice, or demographic stereotyping in AI generation.',
-            'Character Consistency': 'Preserving identical facial identity, attire, proportions, and lighting of a subject across multiple distinct generated camera angles and scenes.',
-            'CNN': 'Convolutional Neural Network: A specialized deep architecture using spatial kernels with translation invariance, widely utilized in early computer vision and GAN discriminators.',
-            'GAN': 'Generative Adversarial Network: A two-player zero-sum minimax framework where a Generator and Discriminator compete against each other to produce synthetic outputs.',
-            'Generator & Discriminator': 'The two networks in a GAN: the Generator synthesizes fake samples from random noise, while the Discriminator acts as a binary classifier discerning real from fake.',
-            'Adversarial Dynamic': 'The continuous competitive optimization dynamic between Generator and Discriminator, converging ideally toward a Nash equilibrium where the discriminator cannot distinguish authentic from synthetic data.',
-            'Mode Collapse': 'A severe failure mode in GAN training where the Generator outputs only a narrow subset of realistic images that fools the Discriminator, ignoring the variety of the true dataset distribution.',
-            'Latent Space': 'A compressed, lower-dimensional manifold representation where high-dimensional data (e.g. 1024x1024 images) is compactly encoded while retaining core perceptual semantics.',
-            'VAE': 'Variational Autoencoder: A probabilistic generative architecture that encodes input data into a parameterized latent Gaussian distribution and reconstructs it via a decoder.',
-            'Hybrid Model': 'An architectural fusion combining distinct generative approaches (such as VAE perceptual compression + latent diffusion + GAN perceptual patch loss) to maximize fidelity while minimizing compute.',
-            'Flow-based Model': 'An exact-likelihood generative architecture utilizing invertible transformations with tractable Jacobian determinants to map directly between data and latent spaces.',
-            'FID': 'Fréchet Inception Distance: The gold standard metric evaluating synthetic imagery by calculating the Wasserstein-2 distance between Gaussian feature distributions of real and fake images in deep feature space. Lower is better.',
-            'Inception Score': 'An early generative metric measuring conditional class confidence (sharpness) and marginal distribution entropy (diversity) on synthetic images alone, without reference to real images. Higher is better.'
-        };
-
-        // Standalone bulletproof tab switcher (Never fails regardless of defer or timing)
-        function switchCaseStudyTab(tabKey) {
-            var tabs = document.querySelectorAll('.rv-tab-btn');
-            var panes = document.querySelectorAll('.cs-tab-pane');
-
-            tabs.forEach(function (btn) {
-                var isTarget = btn.getAttribute('data-tab') === tabKey;
-                btn.classList.toggle('active', isTarget);
-                btn.classList.toggle('is-active', isTarget);
-                btn.setAttribute('aria-selected', isTarget ? 'true' : 'false');
-            });
-
-            panes.forEach(function (pane) {
-                var isTarget = pane.id === 'pane-' + tabKey;
-                pane.classList.toggle('active', isTarget);
-            });
-
-            if (window.history && window.history.replaceState) {
-                window.history.replaceState(null, '', '#' + tabKey);
-            }
-        }
-        window.switchCaseStudyTab = switchCaseStudyTab;
-
-        // Challenge card accordion toggle
-        function toggleChallengeCard(card) {
-            if (!card) return;
-            card.classList.toggle('expanded');
-        }
-
-        // Instant Terminology Definition
-        function showTermDefinition(termKey) {
-            var box = document.getElementById('cs-term-def-box');
-            var title = document.getElementById('cs-term-title');
-            var body = document.getElementById('cs-term-body');
-            if (!box || !title || !body) return;
-
-            var def = CS_GLOSSARY[termKey] || 'Definition not found.';
-            title.textContent = termKey;
-            body.textContent = def;
-            box.classList.add('open');
-            box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-
-        // Seek video in YouTube iframe
-        function seekVideo(seconds) {
-            var iframe = document.getElementById('cs-youtube-player');
-            if (!iframe) return;
-            iframe.src = 'https://www.youtube-nocookie.com/embed/QT4Gkni0aJc?start=' + seconds + '&autoplay=1';
-            iframe.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-
-        // Dynamic Questions Loader with Offline Fallback
-        function renderCaseStudyQuestions(csQuestions) {
-            var container = document.getElementById('cs-dynamic-questions-container');
-            if (!container) return;
-
-            if (!csQuestions || csQuestions.length === 0) {
-                container.innerHTML = '<div style="padding: 24px; text-align: center; color: var(--text-muted);">No 2027 Case Study questions found in database.</div>';
-                return;
-            }
-
-            var html = '';
-            csQuestions.forEach(function (q, idx) {
-                var isHL = q.level === 'HL';
-                var badgeLevelClass = isHL ? 'badge-hl' : 'badge-sl';
-                var cardId = 'cs-card-' + idx;
-                var drawerId = 'cs-ms-' + idx;
-                var btnId = 'cs-btn-ms-' + idx;
-
-                var markPointsHtml = '';
-                if (Array.isArray(q.markScheme)) {
-                    markPointsHtml = '<ul class="cs-ms-list">' + q.markScheme.map(function (m) {
-                        return '<li>' + escapeHtml(m.point) + (m.marks ? ' <strong>[' + m.marks + ' Mark' + (m.marks > 1 ? 's' : '') + ']</strong>' : '') + '</li>';
-                    }).join('') + '</ul>';
-                }
-
-                var tipHtml = q.examinerTip ? '<div class="cs-tip-box"><strong>Examiner Tip:</strong> ' + escapeHtml(q.examinerTip) + '</div>' : '';
-
-                html += '<div class="cs-q-card" id="' + cardId + '">' +
-                    '<div class="cs-q-header">' +
-                        '<div class="cs-q-badges">' +
-                            '<span class="cs-badge ' + badgeLevelClass + '">' + escapeHtml(q.level) + '</span>' +
-                            '<span class="cs-badge">' + escapeHtml(q.subtopicName || 'Paper 1 Section B') + '</span>' +
-                            '<span class="cs-badge">' + escapeHtml(q.difficulty || 'Medium') + '</span>' +
-                        '</div>' +
-                        '<div class="cs-q-marks">' + escapeHtml(q.marks + ' Marks') + '</div>' +
-                    '</div>' +
-                    '<div class="cs-q-prompt">' + escapeHtml(q.prompt) + '</div>' +
-                    '<div class="cs-q-actions">' +
-                        '<button type="button" class="cs-btn-action cs-btn-secondary" id="' + btnId + '" onclick="toggleMarkScheme('' + drawerId + '', '' + btnId + '')">' +
-                            '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>' +
-                            '<span>Reveal Mark Scheme</span>' +
-                        '</button>' +
-                        '<a href="practice.html?topic=CS&id=' + encodeURIComponent(q.id) + '" class="cs-btn-action cs-btn-secondary" style="font-size: 0.82rem;">' +
-                            '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>' +
-                            '<span>Practice in Simulator</span>' +
-                        '</a>' +
-                    '</div>' +
-                    '<div class="cs-ms-drawer" id="' + drawerId + '">' +
-                        '<div class="cs-ms-title">' +
-                            '<span>Official IB Mark Scheme &bull; ' + escapeHtml(q.marks + ' Marks Total') + '</span>' +
-                            '<span style="font-size: 0.78rem; color: var(--accent);">' + escapeHtml(q.id) + '</span>' +
-                        '</div>' +
-                        markPointsHtml +
-                        tipHtml +
-                    '</div>' +
-                '</div>';
-            });
-
-            container.innerHTML = html;
-        }
-
-        function loadCaseStudyQuestions() {
-            fetch('../data/questions.json')
-                .then(function (res) {
-                    if (!res.ok) throw new Error('Status ' + res.status);
-                    return res.json();
-                })
-                .then(function (questions) {
-                    var csQuestions = questions.filter(function (q) {
-                        return q.unit === 'CS' || (q.theme === 'CaseStudy' && q.id.indexOf('cs-2027') !== -1);
-                    });
-                    renderCaseStudyQuestions(csQuestions);
-                })
-                .catch(function (err) {
-                    console.warn('Live fetch failed (likely offline or file:// protocol). Using embedded questions fallback.');
-                    if (window.EMBEDDED_CS_QUESTIONS) {
-                        renderCaseStudyQuestions(window.EMBEDDED_CS_QUESTIONS);
-                    }
-                });
-        }
-
-        function toggleMarkScheme(drawerId, btnId) {
-            var drawer = document.getElementById(drawerId);
-            var btn = document.getElementById(btnId);
-            if (!drawer) return;
-
-            var isOpen = drawer.classList.toggle('open');
-            if (btn) {
-                var span = btn.querySelector('span');
-                if (span) {
-                    span.textContent = isOpen ? 'Hide Mark Scheme' : 'Reveal Mark Scheme';
-                }
-            }
-        }
-
-        function escapeHtml(str) {
-            if (!str) return '';
-            return str
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;');
-        }
-
-        // Initialize Tab Click Listeners and URL Hash
-        document.addEventListener('DOMContentLoaded', function () {
-            // Tab clicks
-            document.querySelectorAll('.rv-tab-btn').forEach(function (btn) {
-                btn.addEventListener('click', function () {
-                    var t = this.getAttribute('data-tab');
-                    if (t) switchCaseStudyTab(t);
-                });
-            });
-
-            // Hash detection
-            var hash = window.location.hash.replace('#', '');
-            if (hash && (hash === 'overview' || hash === 'models' || hash === 'media' || hash === 'practice')) {
-                switchCaseStudyTab(hash);
-            }
-
-            // Load questions
-            loadCaseStudyQuestions();
-        });
-    </script>
+    <script src="../assets/js/case-study.js"></script>
 </body>
 </html>

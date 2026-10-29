@@ -174,6 +174,17 @@
                 this.bindEvents();
                 this.isInitialized = true;
             }
+            // Sync header level buttons
+            var self = this;
+            var levelBtns = document.querySelectorAll('.rv-header-actions .level-toggle-btn');
+            levelBtns.forEach(function (b) {
+                b.classList.toggle('active', (b.getAttribute('data-level') || 'all') === self.selectedLevel);
+            });
+            // Sync mode buttons
+            var modeBtns = document.querySelectorAll('.mode-toggle-btn');
+            modeBtns.forEach(function (b) {
+                b.classList.toggle('active', (b.getAttribute('data-mode') || 'practice') === self.currentMode);
+            });
             this.applyFilters();
         },
 
@@ -351,10 +362,8 @@
             var modeBtns = document.querySelectorAll('.mode-toggle-btn');
             modeBtns.forEach(function (btn) {
                 btn.addEventListener('click', function () {
-                    modeBtns.forEach(function (b) { b.classList.remove('active'); });
-                    btn.classList.add('active');
-                    self.currentMode = btn.getAttribute('data-mode') || 'practice';
-                    self.renderBatch(true);
+                    var mode = btn.getAttribute('data-mode') || 'practice';
+                    self.setMode(mode);
                 });
             });
 
@@ -503,9 +512,9 @@
             this.filteredQuestions = fullPool.filter(function (q) {
                 // 1. Level Filter
                 if (self.selectedLevel === 'sl') {
-                    if (q.level === 'HL') return false;
+                    if (q.level === 'HL' || q.level === 'HL Only') return false;
                 } else if (self.selectedLevel === 'hl') {
-                    if (q.level === 'SL') return false;
+                    if (q.level !== 'HL' && q.level !== 'HL Only') return false;
                 }
 
                 // 2. Excluded Units Check
@@ -566,6 +575,29 @@
             this.renderedCount = 0;
             this.renderBatch(true);
             this.updateHeaderProgress();
+        },
+
+        setMode: function (mode) {
+            this.currentMode = mode === 'browse' ? 'browse' : 'practice';
+            var self = this;
+            var modeBtns = document.querySelectorAll('.mode-toggle-btn');
+            modeBtns.forEach(function (b) {
+                b.classList.toggle('active', (b.getAttribute('data-mode') || 'practice') === self.currentMode);
+            });
+
+            var isBrowse = this.currentMode === 'browse';
+            var cards = document.querySelectorAll('#questions-container .rv-question-card');
+            cards.forEach(function (card) {
+                var markDrawer = card.querySelector('.rv-mark-scheme-drawer');
+                var ansBtn = card.querySelector('.rv-ans-toggle');
+                if (markDrawer) {
+                    markDrawer.style.display = isBrowse ? 'block' : 'none';
+                }
+                if (ansBtn) {
+                    ansBtn.classList.toggle('active', isBrowse);
+                    ansBtn.setAttribute('aria-expanded', isBrowse ? 'true' : 'false');
+                }
+            });
         },
 
         renderBatch: function (isReset) {
@@ -632,6 +664,7 @@
             var status = State ? State.getStatus(q.id) : 'not_done';
             var bookmarked = State ? State.isBookmarked(q.id) : false;
             var note = State ? State.getNote(q.id) : '';
+            var isBrowse = this.currentMode === 'browse';
 
             if (status === 'correct') card.classList.add('status-correct');
             if (status === 'wrong') card.classList.add('status-wrong');
@@ -670,7 +703,7 @@
                             '<button type="button" class="rv-action-btn btn-bookmark' + (bookmarked ? ' is-active' : '') + '" title="Bookmark Question" aria-label="Bookmark">' + ICONS.bookmark + '</button>' +
                             '<button type="button" class="rv-action-btn btn-wrong' + (status === 'wrong' ? ' is-active' : '') + '" title="Mark Incorrect / Needs Review" aria-label="Mark wrong">' + ICONS.cross + '</button>' +
                             '<button type="button" class="rv-action-btn btn-correct' + (status === 'correct' ? ' is-active' : '') + '" title="Mark Correct / Mastered" aria-label="Mark correct">' + ICONS.correct + '</button>' +
-                            '<button type="button" class="rv-ans-toggle" aria-expanded="false">Ans</button>' +
+                            '<button type="button" class="rv-ans-toggle' + (isBrowse ? ' active' : '') + '" aria-expanded="' + (isBrowse ? 'true' : 'false') + '">Ans</button>' +
                         '</div>' +
                     '</div>';
 
@@ -703,7 +736,7 @@
             }
 
             // Mark Scheme Drawer
-            html += '<div class="rv-mark-scheme-drawer" style="display:none;">' +
+            html += '<div class="rv-mark-scheme-drawer" style="display:' + (isBrowse ? 'block' : 'none') + ';">' +
                         '<div class="mark-scheme-header">' +
                             '<span>Official Marking Scheme [Max ' + q.marks + ' Mark' + (q.marks === 1 ? '' : 's') + ']</span>' +
                         '</div>' +
