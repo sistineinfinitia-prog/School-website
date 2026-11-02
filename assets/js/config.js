@@ -7,7 +7,7 @@ import { getStorage } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-
 const firebaseConfig = {
     apiKey: "AIzaSyDUUj1yqmXfjY9rPPmw-vqyRhIts4i986g",
     authDomain: "computer-science-eism.firebaseapp.com",
-    databaseURL: "https://computer-science-eism-default-rtdb.asia-southeast1.firebasedatabase.app",
+    databaseURL: "https://computer-science-eism-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "computer-science-eism",
     storageBucket: "computer-science-eism.firebasestorage.app",
     messagingSenderId: "361142639070",

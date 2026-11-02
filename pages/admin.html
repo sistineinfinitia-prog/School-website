@@ -1524,7 +1524,7 @@
     </footer>
 
     <script src="../assets/js/site.js" defer></script>
-    <script src="../assets/js/data-service.js" defer></script>
+    <script src="../assets/js/data-service.js"></script>
     <script src="../assets/js/library.js" defer></script>
 
     <!-- Faculty Portal 2.0 Controller Script -->
@@ -2032,7 +2032,25 @@
         // ----------------------------------------------------------------------
         // 5. Unlock / Lock Handlers
         // ----------------------------------------------------------------------
+                async function purgeDeprecatedSeedPlaceholders() {
+            if (!fbDb || !fbFns || typeof fbFns.remove !== 'function') return;
+            const placeholderPosts = [
+                "mock-exam-seating-2026", "crit-b-peer-review", "midterm-schedule-clinics",
+                "ia-criterion-b-c", "syllabus-2027-resources", "paper-3-case-study"
+            ];
+            const placeholderDeadlines = [
+                "dl-00", "dl-01", "dl-02", "dl-03", "dl-04", "dl-05", "dl-06"
+            ];
+            for (const id of placeholderPosts) {
+                try { await fbFns.remove(fbFns.dbRef(fbDb, "posts/" + id)); } catch (e) {}
+            }
+            for (const id of placeholderDeadlines) {
+                try { await fbFns.remove(fbFns.dbRef(fbDb, "deadlines/" + id)); } catch (e) {}
+            }
+        }
+
         function unlockFacultyPortal(modeLabel) {
+            purgeDeprecatedSeedPlaceholders();
             if (loginSection) {
                 loginSection.hidden = true;
                 loginSection.style.setProperty("display", "none", "important");
