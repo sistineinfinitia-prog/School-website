@@ -144,7 +144,7 @@
         'B4': '../resources/Theme B/',
         'IA': '../resources/IA/',
         'CS': '../resources/Curriculum/',
-        'Revision': '../resources/Overall Practice Papers/',
+        'Revision': '../resources/Revision Folder/',
         'External': '../resources/'
     };
 
@@ -1016,7 +1016,8 @@
 
         if (matchCount > 0) {
             const queryLabel = searchQuery || activeUnitCodes.join(', ');
-            archiveBridgeText.textContent = `${matchCount} file${matchCount === 1 ? '' : 's'} in the 151-file Department Archive also match "${queryLabel}".`;
+            const totalArchive = archiveFlatFiles.length || 131;
+            archiveBridgeText.textContent = `${matchCount} file${matchCount === 1 ? '' : 's'} in the ${totalArchive}-file Department Archive also match "${queryLabel}".`;
             archiveBridge.hidden = false;
         } else {
             archiveBridge.hidden = true;
@@ -1442,7 +1443,7 @@
         walk(manifest.tree, []);
 
         if (archiveDatalist) {
-            archiveDatalist.innerHTML = archiveFlatFiles.slice(0, 151).map(f =>
+            archiveDatalist.innerHTML = archiveFlatFiles.map(f =>
                 `<option value="${sanitize(f.path)}">${sanitize(f.title)} (${sanitize(f.trail || 'Root')})</option>`
             ).join('');
         }

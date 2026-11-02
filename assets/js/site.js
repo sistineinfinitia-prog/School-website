@@ -319,9 +319,9 @@
                 type: 'SECTION',
                 tag: 'VAULT',
                 title: 'Department Resource Vault (Archive)',
-                sub: 'Search 151+ syllabus slides, past papers, and worksheets',
+                sub: 'Search 130+ syllabus slides, past papers, and worksheets',
                 url: base + 'pages/resources.html?tab=archive',
-                keywords: ['vault', 'archive', '151 resources', 'past papers archive', 'google drive', 'slides archive', 'folder']
+                keywords: ['vault', 'archive', 'resources', 'past papers archive', 'google drive', 'slides archive', 'folder']
             },
             {
                 category: 'Pages & Key Guides',

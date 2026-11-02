@@ -91,26 +91,18 @@
         "count": 1
       },
       {
-        "name": "Overall Practice Papers",
-        "path": "Overall Practice Papers",
-        "title": "Practice Papers",
-        "files": [
-          {
-            "name": "IB Computer Science Worksheet.docx",
-            "title": "Comprehensive IB Computer Science Practice Paper",
-            "ext": "docx",
-            "size": 220640,
-            "path": "Overall Practice Papers/IB Computer Science Worksheet.docx"
-          }
-        ],
-        "folders": [],
-        "count": 1
-      },
-      {
         "name": "Revision Folder",
         "path": "Revision Folder",
         "title": "Revision Kits",
-        "files": [],
+        "files": [
+          {
+            "name": "IB Computer Science Worksheet.docx",
+            "title": "Comprehensive IB Computer Science Practice Worksheet",
+            "ext": "docx",
+            "size": 220640,
+            "path": "Revision Folder/IB Computer Science Worksheet.docx"
+          }
+        ],
         "folders": [
           {
             "name": "Theme A",
@@ -152,7 +144,7 @@
             "count": 3
           }
         ],
-        "count": 3
+        "count": 4
       },
       {
         "name": "Theme A",

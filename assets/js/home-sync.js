@@ -92,7 +92,16 @@ async function syncDeadlines() {
             if (res.ok) deadlines = await res.json();
         }
 
-        if (!Array.isArray(deadlines) || deadlines.length === 0) return;
+        if (!Array.isArray(deadlines) || deadlines.length === 0) {
+            if (listEl) {
+                listEl.innerHTML = `
+                    <li class="feed-empty-item" style="padding: 24px 16px; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+                        No upcoming deadlines scheduled.
+                    </li>
+                `;
+            }
+            return;
+        }
 
         // Sort by date ascending
         const sorted = [...deadlines].sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -110,6 +119,14 @@ async function syncDeadlines() {
         // Render Top 3 Deadlines
         if (listEl) {
             const top3 = activeList.slice(0, 3);
+            if (top3.length === 0) {
+                listEl.innerHTML = `
+                    <li class="feed-empty-item" style="padding: 24px 16px; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+                        No upcoming deadlines scheduled.
+                    </li>
+                `;
+                return;
+            }
             const html = top3.map(item => {
                 const { day, mon } = formatEventDate(item.date);
                 const daysLeft = getDaysRemaining(item.date);
@@ -195,15 +212,22 @@ async function syncAnnouncements() {
             if (res.ok) posts = await res.json();
         }
 
-        if (!Array.isArray(posts) || posts.length === 0) return;
+        if (!Array.isArray(posts) || posts.length === 0) {
+            listEl.innerHTML = `
+                <li class="feed-empty-item" style="padding: 24px 16px; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+                    No active faculty announcements.
+                </li>
+            `;
+            return;
+        }
 
         // Support teacher-chosen 3 homepage announcements from settings
         const settings = window.DataService ? window.DataService.getSettings() : null;
         let chosenPosts = [];
         if (settings && Array.isArray(settings.featuredAnnouncements) && settings.featuredAnnouncements.length > 0) {
             settings.featuredAnnouncements.forEach(id => {
-                const match = posts.find(p => p.id === id);
-                if (match && !chosenPosts.find(cp => cp.id === match.id)) chosenPosts.push(match);
+                const match = posts.find(p => String(p.id) === String(id));
+                if (match && !chosenPosts.find(cp => String(cp.id) === String(match.id))) chosenPosts.push(match);
             });
         }
         if (chosenPosts.length === 0) {
@@ -212,12 +236,20 @@ async function syncAnnouncements() {
         }
         if (chosenPosts.length < 3) {
             posts.forEach(p => {
-                if (chosenPosts.length < 3 && !chosenPosts.find(cp => cp.id === p.id)) {
+                if (chosenPosts.length < 3 && !chosenPosts.find(cp => String(cp.id) === String(p.id))) {
                     chosenPosts.push(p);
                 }
             });
         }
         const top3 = chosenPosts.slice(0, 3);
+        if (top3.length === 0) {
+            listEl.innerHTML = `
+                <li class="feed-empty-item" style="padding: 24px 16px; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+                    No active faculty announcements.
+                </li>
+            `;
+            return;
+        }
 
         const html = top3.map(post => {
             const { day, mon } = formatEventDate(post.date);

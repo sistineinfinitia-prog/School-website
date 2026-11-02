@@ -214,7 +214,7 @@
                             <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
                         </svg>
                         <span>Questions &amp; Flashcards</span>
-                        <span class="rv-tab-badge" id="badge-questions-count">114+</span>
+                        <span class="rv-tab-badge" id="badge-questions-count">0</span>
                     </button>
                     <button type="button" class="rv-tab-btn" data-tab="settings" role="tab" aria-selected="false" id="tab-btn-settings">
                         <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -284,7 +284,7 @@
                         <span>Learning Resources</span>
                     </div>
                     <div class="admin-kpi-val" id="stat-drops">0</div>
-                    <div class="admin-kpi-sub">Worksheets &amp; lesson files</div>
+                    <div class="admin-kpi-sub" id="stat-drops-sub">Published drops &bull; Vault files</div>
                 </div>
 
                 <div class="admin-kpi-card">
@@ -294,8 +294,8 @@
                         </svg>
                         <span>Questions &amp; Cards</span>
                     </div>
-                    <div class="admin-kpi-val" id="stat-questions">114+</div>
-                    <div class="admin-kpi-sub" id="stat-flashcards-sub">20+ official flashcards</div>
+                    <div class="admin-kpi-val" id="stat-questions">0</div>
+                    <div class="admin-kpi-sub" id="stat-flashcards-sub">Questions &amp; flashcards</div>
                 </div>
                             <div class="admin-kpi-card">
                     <div class="admin-kpi-label">
@@ -586,6 +586,24 @@
                                 <button type="button" id="btn-export-deadlines-json" class="btn btn-sm btn-secondary" title="Export deadlines to deadlines.json">
                                     <span>Export JSON</span>
                                 </button>
+                                <div class="view-mode-switch" id="deadlines-view-switch" role="group" aria-label="Deadlines display layout">
+                                    <button type="button" class="view-mode-btn is-active" data-view="cards" title="Card View" aria-label="Card View">
+                                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                            <rect x="3" y="3" width="18" height="7" rx="1"></rect>
+                                            <rect x="3" y="14" width="18" height="7" rx="1"></rect>
+                                        </svg>
+                                    </button>
+                                    <button type="button" class="view-mode-btn" data-view="table" title="Compact Table View" aria-label="Compact Table View">
+                                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
@@ -766,6 +784,24 @@
                                 <button type="button" id="export-drops-json-btn" class="btn btn-sm btn-secondary" title="Export to teacher-resources.json">
                                     <span>Export JSON</span>
                                 </button>
+                                <div class="view-mode-switch" id="drops-view-switch" role="group" aria-label="Resources display layout">
+                                    <button type="button" class="view-mode-btn is-active" data-view="cards" title="Card View" aria-label="Card View">
+                                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                            <rect x="3" y="3" width="18" height="7" rx="1"></rect>
+                                            <rect x="3" y="14" width="18" height="7" rx="1"></rect>
+                                        </svg>
+                                    </button>
+                                    <button type="button" class="view-mode-btn" data-view="table" title="Compact Table View" aria-label="Compact Table View">
+                                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
@@ -1403,7 +1439,7 @@
                         <div class="backup-tile">
                             <div>
                                 <h3 class="backup-tile-title">Question Archive</h3>
-                                <p class="backup-tile-desc">All 114+ IB exam questions, hints, model answers, and mark schemes.</p>
+                                <p class="backup-tile-desc">All IB exam questions, hints, model answers, and mark schemes.</p>
                             </div>
                             <button type="button" class="btn btn-sm btn-secondary" id="btn-dl-questions">Download questions.json</button>
                         </div>
@@ -1566,6 +1602,7 @@
         const statNextDeadline = document.getElementById("stat-next-deadline");
         const statDrops = document.getElementById("stat-drops");
         const statQuestions = document.getElementById("stat-questions");
+        const statFlashcardsSub = document.getElementById("stat-flashcards-sub");
         const badgePostsCount = document.getElementById("badge-announcements-count");
         const badgeDeadlinesCount = document.getElementById("badge-deadlines-count");
         const badgeDropsCount = document.getElementById("badge-resources-count");
@@ -1680,6 +1717,43 @@
         let liveFlashcardsCache = [];
         let liveQuestionsCache = [];
         let activeSettings = null;
+        let hasSubscribedToDataService = false;
+
+        function initDataServiceSubscriptions() {
+            if (hasSubscribedToDataService || !window.DataService || typeof window.DataService.subscribe !== 'function') return;
+            hasSubscribedToDataService = true;
+
+            window.DataService.subscribe('announcements', function (updated) {
+                livePostsCache = updated || [];
+                if (statPosts) statPosts.textContent = String(livePostsCache.length);
+                if (badgePostsCount) badgePostsCount.textContent = String(livePostsCache.length);
+                renderPostsList(livePostsCache);
+                updateHomepageSlotDropdowns(livePostsCache);
+            });
+
+            window.DataService.subscribe('deadlines', function (updated) {
+                liveDeadlinesCache = updated || [];
+                if (statDeadlines) statDeadlines.textContent = String(liveDeadlinesCache.length);
+                if (badgeDeadlinesCount) badgeDeadlinesCount.textContent = String(liveDeadlinesCache.length);
+                renderDeadlinesList(liveDeadlinesCache);
+                updateSpotlightPreview(liveDeadlinesCache);
+                populateDeadlinesDropdown(liveDeadlinesCache);
+            });
+
+            window.DataService.subscribe('teacherResources', function (updated) {
+                liveDropsCache = updated || [];
+                if (statDrops) statDrops.textContent = String(liveDropsCache.length);
+                if (badgeDropsCount) badgeDropsCount.textContent = String(liveDropsCache.length);
+                renderDropsList(liveDropsCache);
+            });
+
+            window.DataService.subscribe('flashcards', function (updated) {
+                liveFlashcardsCache = updated || [];
+                if (fcBadgeCount) fcBadgeCount.textContent = `${liveFlashcardsCache.length} Cards`;
+                if (statFlashcardsSub) statFlashcardsSub.textContent = `${liveFlashcardsCache.length} official flashcards`;
+                renderFlashcardsList(liveFlashcardsCache);
+            });
+        }
 
         // Firebase references
         let fbAuth = null;
@@ -1738,6 +1812,36 @@
                     });
                 });
             });
+        }
+
+        function initViewSwitches() {
+            const dlSwitch = document.getElementById("deadlines-view-switch");
+            if (dlSwitch) {
+                const btns = dlSwitch.querySelectorAll(".view-mode-btn");
+                btns.forEach(b => {
+                    b.classList.toggle("is-active", b.dataset.view === deadlinesViewMode);
+                    b.addEventListener("click", () => {
+                        deadlinesViewMode = b.dataset.view || "cards";
+                        try { localStorage.setItem("eis_admin_dl_view", deadlinesViewMode); } catch (e) {}
+                        btns.forEach(x => x.classList.toggle("is-active", x === b));
+                        renderDeadlinesList(liveDeadlinesCache);
+                    });
+                });
+            }
+
+            const dropsSwitch = document.getElementById("drops-view-switch");
+            if (dropsSwitch) {
+                const btns = dropsSwitch.querySelectorAll(".view-mode-btn");
+                btns.forEach(b => {
+                    b.classList.toggle("is-active", b.dataset.view === dropsViewMode);
+                    b.addEventListener("click", () => {
+                        dropsViewMode = b.dataset.view || "cards";
+                        try { localStorage.setItem("eis_admin_drops_view", dropsViewMode); } catch (e) {}
+                        btns.forEach(x => x.classList.toggle("is-active", x === b));
+                        renderDropsList(liveDropsCache);
+                    });
+                });
+            }
         }
 
         // ----------------------------------------------------------------------
@@ -1939,6 +2043,7 @@
             }
 
             initAdminTabs();
+            initViewSwitches();
 
             if (sessionStatusText) {
                 sessionStatusText.innerHTML = `<span class="admin-pulse-dot" aria-hidden="true"></span><span>Authorized &bull; ${modeLabel || 'Faculty Portal'}</span>`;
@@ -1952,6 +2057,7 @@
             loadAdminSettings();
             loadQuestionsCount();
             loadFeedback();
+            initDataServiceSubscriptions();
         }
 
         function lockFacultyPortal() {
@@ -2159,17 +2265,41 @@
                 // Delete Notice
                 item.querySelector('.btn-delete-item').addEventListener('click', async () => {
                     if (confirm("Remove this announcement from the noticeboard?")) {
-                        if (window.DataService && typeof window.DataService.deleteAnnouncement === 'function') {
-                            window.DataService.deleteAnnouncement(post.id);
-                        }
-                        if (fbDb && fbFns) {
-                            await fbFns.remove(fbFns.dbRef(fbDb, "posts/" + post.id));
-                        }
-                        livePostsCache = livePostsCache.filter(p => p.id !== post.id);
+                        // 1. Optimistically update local cache and DOM immediately
+                        livePostsCache = livePostsCache.filter(p => String(p.id) !== String(post.id));
                         renderPostsList(livePostsCache);
                         updateHomepageSlotDropdowns(livePostsCache);
                         if (statPosts) statPosts.textContent = String(livePostsCache.length);
                         if (badgePostsCount) badgePostsCount.textContent = String(livePostsCache.length);
+
+                        // 2. Clear from featured slots if selected
+                        if (activeSettings && Array.isArray(activeSettings.featuredAnnouncements)) {
+                            let slotChanged = false;
+                            activeSettings.featuredAnnouncements = activeSettings.featuredAnnouncements.map(id => {
+                                if (String(id) === String(post.id)) {
+                                    slotChanged = true;
+                                    return "";
+                                }
+                                return id;
+                            });
+                            if (slotChanged && window.DataService && typeof window.DataService.saveSettings === 'function') {
+                                window.DataService.saveSettings({ featuredAnnouncements: activeSettings.featuredAnnouncements });
+                            }
+                        }
+
+                        // 3. Persist via DataService (localStorage + broadcast)
+                        if (window.DataService && typeof window.DataService.deleteAnnouncement === 'function') {
+                            window.DataService.deleteAnnouncement(post.id);
+                        }
+
+                        // 4. Remote RTDB removal (safe, non-blocking)
+                        if (fbDb && fbFns && typeof fbFns.remove === 'function') {
+                            try {
+                                await fbFns.remove(fbFns.dbRef(fbDb, "posts/" + post.id));
+                            } catch (err) {
+                                console.warn("Firebase posts remove error:", err);
+                            }
+                        }
                     }
                 });
 
@@ -2225,8 +2355,12 @@
                         window.DataService.saveAnnouncement(newPost);
                     }
 
-                    if (fbDb && fbFns) {
-                        await fbFns.set(fbFns.dbRef(fbDb, "posts/" + newPost.id), newPost);
+                    if (fbDb && fbFns && typeof fbFns.set === 'function') {
+                        try {
+                            await fbFns.set(fbFns.dbRef(fbDb, "posts/" + newPost.id), newPost);
+                        } catch (err) {
+                            console.warn("Firebase posts set warning:", err);
+                        }
                     }
 
                     // Assign to homepage slot if chosen
@@ -2357,6 +2491,51 @@
             if (statNextDeadline) statNextDeadline.textContent = `Next: ${cdText} (${next.date})`;
         }
 
+        let deadlinesViewMode = localStorage.getItem("eis_admin_dl_view") || "cards";
+
+        function onEditDeadline(dl) {
+            if (dlTitle) dlTitle.value = dl.title || "";
+            if (dlDate) dlDate.value = dl.date || "";
+            if (dlTime) dlTime.value = dl.time || "";
+            if (dlType) dlType.value = dl.type || "exam";
+            if (dlCohort) dlCohort.value = dl.cohort || "Year 1 (SL/HL)";
+            if (dlWeight) dlWeight.value = dl.weight || "";
+            if (dlLocation) dlLocation.value = dl.location || "";
+            if (dlDesc) dlDesc.value = dl.description || "";
+            if (dlDeliverables) dlDeliverables.value = dl.deliverables || "";
+            if (dlTopics) {
+                dlTopics.value = (dl.topics || []).map(t => t.code || t.name).join(", ");
+            }
+            if (editDeadlineId) editDeadlineId.value = dl.id;
+            if (btnSaveDeadline) btnSaveDeadline.querySelector('span').textContent = "Update Assessment";
+            if (btnCancelEditDeadline) btnCancelEditDeadline.style.display = "inline-flex";
+            dlTitle.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            dlTitle.focus();
+        }
+
+        async function onDeleteDeadline(dl) {
+            if (confirm(`Permanently delete "${dl.title}"?`)) {
+                liveDeadlinesCache = liveDeadlinesCache.filter(d => String(d.id) !== String(dl.id));
+                renderDeadlinesList(liveDeadlinesCache);
+                updateSpotlightPreview(liveDeadlinesCache);
+                populateDeadlinesDropdown(liveDeadlinesCache);
+                if (statDeadlines) statDeadlines.textContent = String(liveDeadlinesCache.length);
+                if (badgeDeadlinesCount) badgeDeadlinesCount.textContent = String(liveDeadlinesCache.length);
+
+                if (window.DataService && typeof window.DataService.deleteDeadline === 'function') {
+                    window.DataService.deleteDeadline(dl.id);
+                }
+
+                if (fbDb && fbFns && typeof fbFns.remove === 'function') {
+                    try {
+                        await fbFns.remove(fbFns.dbRef(fbDb, "deadlines/" + dl.id));
+                    } catch (err) {
+                        console.warn("Firebase deadlines remove error:", err);
+                    }
+                }
+            }
+        }
+
         function renderDeadlinesList(list) {
             if (!deadlinesAdminContainer) return;
             deadlinesAdminContainer.innerHTML = "";
@@ -2367,6 +2546,59 @@
 
             const sorted = [...list].sort((a, b) => new Date(a.date) - new Date(b.date));
 
+            if (deadlinesViewMode === "table") {
+                const wrap = document.createElement("div");
+                wrap.className = "admin-table-wrap";
+                const table = document.createElement("table");
+                table.className = "admin-table";
+                table.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Title &amp; Deliverables</th>
+                            <th>Cohort / Weight</th>
+                            <th style="text-align: right;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                `;
+                const tbody = table.querySelector("tbody");
+                sorted.forEach(dl => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td class="admin-table-date">${escapeHtml(dl.date || 'Undated')}</td>
+                        <td><span class="admin-table-tag">${escapeHtml(dl.typeName || dl.type || 'Assessment')}</span></td>
+                        <td>
+                            <span class="admin-table-title">${escapeHtml(dl.title || "Untitled Assessment")}</span>
+                            ${dl.deliverables || dl.description ? `<span class="admin-table-sub">${escapeHtml(dl.deliverables || dl.description)}</span>` : ''}
+                        </td>
+                        <td>
+                            <span class="admin-table-tag">${escapeHtml(dl.cohort || 'All Cohorts')}</span>
+                            ${dl.weight ? `<span class="admin-table-tag" style="color:var(--accent); margin-left:4px;">${escapeHtml(dl.weight)}</span>` : ''}
+                        </td>
+                        <td>
+                            <div class="admin-table-actions">
+                                <button type="button" class="btn btn-secondary btn-sm btn-edit-dl"><span>Edit</span></button>
+                                <button type="button" class="btn-delete-item btn-delete-dl" title="Delete deadline">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </td>
+                    `;
+                    tr.querySelector('.btn-edit-dl').addEventListener('click', () => onEditDeadline(dl));
+                    tr.querySelector('.btn-delete-dl').addEventListener('click', () => onDeleteDeadline(dl));
+                    tbody.appendChild(tr);
+                });
+                wrap.appendChild(table);
+                deadlinesAdminContainer.appendChild(wrap);
+                return;
+            }
+
+            // Cards View
             sorted.forEach(dl => {
                 const item = document.createElement("article");
                 item.className = "admin-feed-item";
@@ -2399,45 +2631,8 @@
                     </div>
                 `;
 
-                // Edit Button
-                item.querySelector('.btn-edit-dl').addEventListener('click', () => {
-                    if (dlTitle) dlTitle.value = dl.title || "";
-                    if (dlDate) dlDate.value = dl.date || "";
-                    if (dlTime) dlTime.value = dl.time || "";
-                    if (dlType) dlType.value = dl.type || "exam";
-                    if (dlCohort) dlCohort.value = dl.cohort || "Year 1 (SL/HL)";
-                    if (dlWeight) dlWeight.value = dl.weight || "";
-                    if (dlLocation) dlLocation.value = dl.location || "";
-                    if (dlDesc) dlDesc.value = dl.description || "";
-                    if (dlDeliverables) dlDeliverables.value = dl.deliverables || "";
-                    if (dlTopics) {
-                        dlTopics.value = (dl.topics || []).map(t => t.code || t.name).join(", ");
-                    }
-                    if (editDeadlineId) editDeadlineId.value = dl.id;
-                    if (btnSaveDeadline) btnSaveDeadline.querySelector('span').textContent = "Update Assessment";
-                    if (btnCancelEditDeadline) btnCancelEditDeadline.style.display = "inline-flex";
-                    dlTitle.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    dlTitle.focus();
-                });
-
-                // Delete Button
-                item.querySelector('.btn-delete-dl').addEventListener('click', async () => {
-                    if (confirm(`Permanently delete "${dl.title}"?`)) {
-                        if (window.DataService && typeof window.DataService.deleteDeadline === 'function') {
-                            window.DataService.deleteDeadline(dl.id);
-                        }
-                        if (fbDb && fbFns) {
-                            await fbFns.remove(fbFns.dbRef(fbDb, "deadlines/" + dl.id));
-                        }
-                        liveDeadlinesCache = liveDeadlinesCache.filter(d => d.id !== dl.id);
-                        renderDeadlinesList(liveDeadlinesCache);
-                        updateSpotlightPreview(liveDeadlinesCache);
-                        populateDeadlinesDropdown(liveDeadlinesCache);
-                        if (statDeadlines) statDeadlines.textContent = String(liveDeadlinesCache.length);
-                        if (badgeDeadlinesCount) badgeDeadlinesCount.textContent = String(liveDeadlinesCache.length);
-                    }
-                });
-
+                item.querySelector('.btn-edit-dl').addEventListener('click', () => onEditDeadline(dl));
+                item.querySelector('.btn-delete-dl').addEventListener('click', () => onDeleteDeadline(dl));
                 deadlinesAdminContainer.appendChild(item);
             });
         }
@@ -2538,8 +2733,12 @@
                         window.DataService.saveDeadline(record);
                     }
 
-                    if (fbDb && fbFns) {
-                        await fbFns.set(fbFns.dbRef(fbDb, "deadlines/" + id), record);
+                    if (fbDb && fbFns && typeof fbFns.set === 'function') {
+                        try {
+                            await fbFns.set(fbFns.dbRef(fbDb, "deadlines/" + id), record);
+                        } catch (err) {
+                            console.warn("Firebase deadlines set warning:", err);
+                        }
                     }
 
                     if (isEdit) {
@@ -2609,6 +2808,45 @@
         // ----------------------------------------------------------------------
         // 8. LEARNING RESOURCES: Teacher Drops CRUD
         // ----------------------------------------------------------------------
+        let dropsViewMode = localStorage.getItem("eis_admin_drops_view") || "cards";
+
+        function onCopyMbDrop(drop, btn) {
+            let absUrl = drop.fileUrl || '';
+            try {
+                if (absUrl && !/^https?:\/\///i.test(absUrl)) {
+                    absUrl = new URL(absUrl, window.location.href).href;
+                }
+            } catch (err) {}
+            const snippet = `[${drop.title} (${drop.unit || drop.topic || 'Resource'})](${absUrl}) \u2022 IB Computer Science EIS Meadows`;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(snippet).then(() => {
+                    const originalText = btn.innerHTML;
+                    btn.textContent = 'Copied!';
+                    setTimeout(() => { btn.innerHTML = originalText; }, 1500);
+                });
+            }
+        }
+
+        async function onDeleteDrop(drop) {
+            if (confirm("Permanently delete this learning resource?")) {
+                liveDropsCache = liveDropsCache.filter(d => String(d.id) !== String(drop.id));
+                renderDropsList(liveDropsCache);
+                updateResourcesKpi();
+
+                if (window.DataService && typeof window.DataService.deleteTeacherResource === 'function') {
+                    window.DataService.deleteTeacherResource(drop.id);
+                }
+
+                if (fbDb && fbFns && typeof fbFns.remove === 'function') {
+                    try {
+                        await fbFns.remove(fbFns.dbRef(fbDb, "teacher_resources/" + drop.id));
+                    } catch (err) {
+                        console.warn("Firebase teacher_resources remove error:", err);
+                    }
+                }
+            }
+        }
+
         function renderDropsList(dropsToRender) {
             if (!dropsAdminContainer) return;
             dropsAdminContainer.innerHTML = "";
@@ -2617,6 +2855,65 @@
                 return;
             }
 
+            if (dropsViewMode === "table") {
+                const wrap = document.createElement("div");
+                wrap.className = "admin-table-wrap";
+                const table = document.createElement("table");
+                table.className = "admin-table";
+                table.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Unit</th>
+                            <th>Resource Title &amp; Note</th>
+                            <th>Format / Cohort</th>
+                            <th style="text-align: right;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                `;
+                const tbody = table.querySelector("tbody");
+                dropsToRender.forEach(drop => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td class="admin-table-date">${escapeHtml(drop.date || 'Undated')}</td>
+                        <td>
+                            <span class="admin-table-tag">${escapeHtml(drop.unit || drop.topic || 'Resource')}</span>
+                            ${drop.isSpotlight ? '<span class="admin-table-tag" style="color:var(--accent); margin-left:4px;">Spotlight</span>' : ''}
+                        </td>
+                        <td>
+                            <a href="${escapeHtml(drop.fileUrl || '#')}" target="_blank" class="admin-table-title" style="text-decoration:none;">${escapeHtml(drop.title || "Untitled Resource")}</a>
+                            ${drop.note || drop.description ? `<span class="admin-table-sub">${escapeHtml(drop.note || drop.description)}</span>` : ''}
+                        </td>
+                        <td>
+                            <span class="admin-table-tag">${escapeHtml((drop.fileType || 'FILE').toUpperCase())}</span>
+                            <span class="admin-table-tag" style="margin-left:4px;">${escapeHtml(drop.cohort || 'All')}</span>
+                        </td>
+                        <td>
+                            <div class="admin-table-actions">
+                                <button type="button" class="btn btn-secondary btn-sm btn-admin-copy-mb" title="Copy formatted Markdown for ManageBac">
+                                    <span>MB Copy</span>
+                                </button>
+                                <button type="button" class="btn-delete-item" title="Permanently delete drop">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </td>
+                    `;
+                    const mbBtn = tr.querySelector('.btn-admin-copy-mb');
+                    if (mbBtn) mbBtn.addEventListener('click', (e) => { e.stopPropagation(); onCopyMbDrop(drop, mbBtn); });
+                    tr.querySelector('.btn-delete-item').addEventListener('click', () => onDeleteDrop(drop));
+                    tbody.appendChild(tr);
+                });
+                wrap.appendChild(table);
+                dropsAdminContainer.appendChild(wrap);
+                return;
+            }
+
+            // Cards View
             dropsToRender.forEach((drop) => {
                 const item = document.createElement("article");
                 item.className = "admin-feed-item";
@@ -2658,44 +2955,42 @@
                     </div>
                 `;
 
-                // ManageBac Copy Action
                 const mbBtn = item.querySelector('.btn-admin-copy-mb');
                 if (mbBtn) {
                     mbBtn.addEventListener('click', (e) => {
                         e.stopPropagation();
-                        let absUrl = drop.fileUrl || '';
-                        try {
-                            if (absUrl && !/^https?:\/\///i.test(absUrl)) {
-                                absUrl = new URL(absUrl, window.location.href).href;
-                            }
-                        } catch (err) {}
-                        const snippet = `[${drop.title} (${drop.unit || drop.topic || 'Resource'})](${absUrl}) \u2022 IB Computer Science EIS Meadows`;
-                        if (navigator.clipboard && navigator.clipboard.writeText) {
-                            navigator.clipboard.writeText(snippet).then(() => {
-                                mbBtn.textContent = 'Copied!';
-                                setTimeout(() => { mbBtn.textContent = 'MB Copy'; }, 1500);
-                            });
-                        }
+                        onCopyMbDrop(drop, mbBtn);
                     });
                 }
 
-                item.querySelector('.btn-delete-item').addEventListener('click', async () => {
-                    if (confirm("Permanently delete this learning resource?")) {
-                        if (window.DataService && typeof window.DataService.deleteTeacherResource === 'function') {
-                            window.DataService.deleteTeacherResource(drop.id);
-                        }
-                        if (fbDb && fbFns) {
-                            await fbFns.remove(fbFns.dbRef(fbDb, "teacher_resources/" + drop.id));
-                        }
-                        liveDropsCache = liveDropsCache.filter(d => d.id !== drop.id);
-                        renderDropsList(liveDropsCache);
-                        if (statDrops) statDrops.textContent = String(liveDropsCache.length);
-                        if (badgeDropsCount) badgeDropsCount.textContent = String(liveDropsCache.length);
-                    }
-                });
-
+                item.querySelector('.btn-delete-item').addEventListener('click', () => onDeleteDrop(drop));
                 dropsAdminContainer.appendChild(item);
             });
+        }
+
+        let vaultArchiveCount = 131;
+        async function updateResourcesKpi() {
+            try {
+                const res = await fetch("../data/resources.json");
+                if (res.ok) {
+                    const data = await res.json();
+                    const staffFolders = ['Weekly Unit planning'];
+                    let staffCount = 0;
+                    if (data.tree && data.tree.folders) {
+                        data.tree.folders.forEach(f => {
+                            if (staffFolders.includes(f.name)) staffCount += (f.count || 0);
+                        });
+                    }
+                    vaultArchiveCount = (data.count || 0) - staffCount;
+                }
+            } catch (e) {}
+            const dropsCount = liveDropsCache ? liveDropsCache.length : 0;
+            if (statDrops) statDrops.textContent = String(dropsCount);
+            if (badgeDropsCount) badgeDropsCount.textContent = String(dropsCount);
+            const sub = document.getElementById("stat-drops-sub");
+            if (sub) {
+                sub.innerHTML = `<strong>${dropsCount}</strong> Published Drops &bull; <strong>${vaultArchiveCount}</strong> Vault Files`;
+            }
         }
 
         async function loadDrops() {
@@ -2708,9 +3003,8 @@
                     drops = res.ok ? await res.json() : [];
                 }
                 liveDropsCache = drops || [];
-                if (statDrops) statDrops.textContent = String(liveDropsCache.length);
-                if (badgeDropsCount) badgeDropsCount.textContent = String(liveDropsCache.length);
                 renderDropsList(liveDropsCache);
+                await updateResourcesKpi();
             } catch (e) {
                 renderDropsList([]);
             }
@@ -2763,8 +3057,12 @@
                         window.DataService.saveTeacherResource(newDrop);
                     }
 
-                    if (fbDb && fbFns) {
-                        await fbFns.set(fbFns.dbRef(fbDb, "teacher_resources/" + newDrop.id), newDrop);
+                    if (fbDb && fbFns && typeof fbFns.set === 'function') {
+                        try {
+                            await fbFns.set(fbFns.dbRef(fbDb, "teacher_resources/" + newDrop.id), newDrop);
+                        } catch (err) {
+                            console.warn("Firebase teacher_resources set warning:", err);
+                        }
                     }
 
                     liveDropsCache.unshift(newDrop);
@@ -2992,8 +3290,12 @@
                     if (window.DataService && typeof window.DataService.saveRoadmap === 'function') {
                         window.DataService.saveRoadmap(activeRoadmapData);
                     }
-                    if (fbDb && fbFns) {
-                        await fbFns.set(fbFns.dbRef(fbDb, "roadmap"), activeRoadmapData);
+                    if (fbDb && fbFns && typeof fbFns.set === 'function') {
+                        try {
+                            await fbFns.set(fbFns.dbRef(fbDb, "roadmap"), activeRoadmapData);
+                        } catch (err) {
+                            console.warn("Firebase roadmap set warning:", err);
+                        }
                     }
                     if (roadmapStatus) {
                         roadmapStatus.textContent = "✓ Syllabus roadmaps updated and broadcast live!";
@@ -3158,9 +3460,14 @@
 
         async function loadQuestionsCount() {
             try {
-                const res = await fetch("../data/questions.json");
-                if (res.ok) {
-                    const questions = await res.json();
+                let questions = [];
+                if (window.DataService && typeof window.DataService.getQuestions === 'function') {
+                    questions = window.DataService.getQuestions();
+                } else {
+                    const res = await fetch("../data/questions.json");
+                    if (res.ok) questions = await res.json();
+                }
+                if (Array.isArray(questions) && questions.length > 0) {
                     liveQuestionsCache = questions;
                     if (statQuestions) statQuestions.textContent = String(questions.length);
                     if (badgeQuestionsCount) badgeQuestionsCount.textContent = String(questions.length);
@@ -3202,16 +3509,25 @@
 
                 item.querySelector('.btn-del-fc').addEventListener('click', async () => {
                     if (confirm(`Delete flashcard "${fc.term}"?`)) {
-                        if (window.DataService && typeof window.DataService.deleteFlashcard === 'function') {
-                            window.DataService.deleteFlashcard(fc.id);
-                        }
-                        if (fbDb && fbFns) {
-                            await fbFns.remove(fbFns.dbRef(fbDb, "flashcards/" + fc.id));
-                        }
-                        liveFlashcardsCache = liveFlashcardsCache.filter(f => f.id !== fc.id);
+                        // 1. Optimistically update local cache and DOM immediately
+                        liveFlashcardsCache = liveFlashcardsCache.filter(f => String(f.id) !== String(fc.id));
                         renderFlashcardsList(liveFlashcardsCache);
                         if (fcBadgeCount) fcBadgeCount.textContent = `${liveFlashcardsCache.length} Cards`;
                         if (statFlashcardsSub) statFlashcardsSub.textContent = `${liveFlashcardsCache.length} official flashcards`;
+
+                        // 2. Persist via DataService
+                        if (window.DataService && typeof window.DataService.deleteFlashcard === 'function') {
+                            window.DataService.deleteFlashcard(fc.id);
+                        }
+
+                        // 3. Remote RTDB removal (safe, non-blocking)
+                        if (fbDb && fbFns && typeof fbFns.remove === 'function') {
+                            try {
+                                await fbFns.remove(fbFns.dbRef(fbDb, "flashcards/" + fc.id));
+                            } catch (err) {
+                                console.warn("Firebase flashcards remove error:", err);
+                            }
+                        }
                     }
                 });
 
@@ -3261,8 +3577,12 @@
                     window.DataService.saveFlashcard(newCard);
                 }
 
-                if (fbDb && fbFns) {
-                    await fbFns.set(fbFns.dbRef(fbDb, "flashcards/" + newCard.id), newCard);
+                if (fbDb && fbFns && typeof fbFns.set === 'function') {
+                    try {
+                        await fbFns.set(fbFns.dbRef(fbDb, "flashcards/" + newCard.id), newCard);
+                    } catch (err) {
+                        console.warn("Firebase flashcards set warning:", err);
+                    }
                 }
 
                 liveFlashcardsCache.unshift(newCard);
@@ -3391,8 +3711,12 @@
                     if (window.DataService && typeof window.DataService.saveSettings === 'function') {
                         window.DataService.saveSettings(updated);
                     }
-                    if (fbDb && fbFns) {
-                        await fbFns.set(fbFns.dbRef(fbDb, "settings"), updated);
+                    if (fbDb && fbFns && typeof fbFns.set === 'function') {
+                        try {
+                            await fbFns.set(fbFns.dbRef(fbDb, "settings"), updated);
+                        } catch (err) {
+                            console.warn("Firebase settings set warning:", err);
+                        }
                     }
                     activeSettings = updated;
                     if (settingsStatus) {
@@ -3541,6 +3865,11 @@
                 btn.addEventListener("click", function () {
                     const id = this.getAttribute("data-id");
                     if (confirm("Are you sure you want to delete this request permanently?")) {
+                        // 1. Optimistically update local cache and DOM immediately
+                        liveFeedbackCache = liveFeedbackCache.filter(item => String(item.id) !== String(id));
+                        renderFeedbackList();
+
+                        // 2. Persist via DataService
                         if (window.DataService && typeof window.DataService.deleteFeedback === "function") {
                             window.DataService.deleteFeedback(id);
                         }

@@ -17,7 +17,7 @@
     var STAFF_ONLY = ['Weekly Unit planning'];
 
     // Order of top-level groups in the full library.
-    var ORDER = ['Theme A', 'Theme B', 'Revision Folder', 'Overall Practice Papers', 'IA', 'Curriculum', ''];
+    var ORDER = ['Theme A', 'Theme B', 'Revision Folder', 'IA', 'Curriculum', ''];
 
     var KINDS = {
         slides: { label: 'Slides', exts: ['ppt', 'pptx', 'key', 'odp'] },
@@ -307,7 +307,7 @@
         searchWrap.innerHTML = '<svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"></circle><path d="M13 13l4 4" stroke-linecap="round"></path></svg>';
         var input = el('input', 'search-input');
         input.type = 'search';
-        input.placeholder = 'Search 151 files by topic, code (A1, B2, SQL, OOP), or filename...';
+        input.placeholder = 'Search files by topic, code (A1, B2, SQL, OOP), or filename...';
         input.setAttribute('aria-label', 'Search department resource files');
         searchWrap.appendChild(input);
         topRow.appendChild(searchWrap);
@@ -497,6 +497,10 @@
                 });
             });
         });
+
+        if (dom.searchInput) {
+            dom.searchInput.placeholder = 'Search ' + all.length + ' files by topic, code (A1, B2, SQL, OOP), or filename...';
+        }
 
         var state = {
             query: '',
