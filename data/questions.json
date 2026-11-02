@@ -41,7 +41,7 @@
     "format": "Section B",
     "skill": "Tracing/Dry Run",
     "marks": 4,
-    "origin": "Curriculum Exemplar",
+    "origin": "Syllabus Exemplar",
     "prompt": "Explain the role of the Program Counter (PC), Memory Address Register (MAR), Memory Data Register (MDR), and Current Instruction Register (CIR) during the Fetch stage of the machine cycle.",
     "hint": "Trace how the address moves from the PC across the address bus to fetch the instruction word into the processor.",
     "codeSnippet": null,
@@ -78,7 +78,7 @@
     "format": "Section A",
     "skill": "Recall/Concept",
     "marks": 3,
-    "origin": "Curriculum Practice",
+    "origin": "Syllabus Practice",
     "prompt": "Construct the truth table for the Boolean expression: X = (A AND B) NOR (NOT C).",
     "hint": "Evaluate the terms step by step: first calculate (A AND B), then (NOT C), and finally invert the OR combination of both.",
     "codeSnippet": null,
@@ -111,7 +111,7 @@
     "format": "Section A",
     "skill": "Evaluation/Discussion",
     "marks": 3,
-    "origin": "Curriculum Exemplar",
+    "origin": "Syllabus Exemplar",
     "prompt": "Compare the use of polling versus hardware interrupts for an embedded autonomous rover that monitors obstacle collision sensors.",
     "hint": "Think about CPU cycles wasted during polling and latency requirements when an immediate collision avoidance maneuver is required.",
     "codeSnippet": null,
@@ -181,7 +181,7 @@
     "format": "Section A",
     "skill": "Recall/Concept",
     "marks": 2,
-    "origin": "Curriculum Practice",
+    "origin": "Syllabus Practice",
     "prompt": "Distinguish between a Local Area Network (LAN) and a Wide Area Network (WAN) in terms of geographical span and ownership of telecommunication infrastructure.",
     "hint": "Consider who owns the transmission lines and whether the network is restricted to a single building/campus.",
     "codeSnippet": null,
@@ -210,7 +210,7 @@
     "format": "Section A",
     "skill": "Recall/Concept",
     "marks": 3,
-    "origin": "Curriculum Exemplar",
+    "origin": "Syllabus Exemplar",
     "prompt": "Describe how packet switching routes data across the Internet, mentioning packet headers, routing decisions, and destination reassembly.",
     "hint": "Recall that data is split into independent units that can traverse different physical links.",
     "codeSnippet": null,
@@ -280,7 +280,7 @@
     "format": "Section B",
     "skill": "Evaluation/Discussion",
     "marks": 4,
-    "origin": "Curriculum Exemplar",
+    "origin": "Syllabus Exemplar",
     "prompt": "A student database contains a table with columns: (StudentID, StudentName, CourseCode, CourseTitle, InstructorName, InstructorOffice).\n\nExplain why this table violates Second Normal Form (2NF) and Third Normal Form (3NF), and outline how to decompose it.",
     "hint": "Identify the composite candidate key (StudentID, CourseCode), look for partial functional dependencies, and identify transitive dependencies.",
     "codeSnippet": null,
@@ -317,7 +317,7 @@
     "format": "Coding/Query",
     "skill": "Code Implementation",
     "marks": 3,
-    "origin": "Curriculum Practice",
+    "origin": "Syllabus Practice",
     "prompt": "Given two tables:\n- Students (student_id, full_name, cohort_year)\n- Scores (score_id, student_id, paper_number, marks_earned)\n\nWrite an SQL query to display the full_name and average marks earned for students in cohort_year '2026', showing only students whose average score exceeds 80, sorted descending by average mark.",
     "hint": "Use an INNER JOIN, GROUP BY, HAVING clause, and ORDER BY.",
     "codeSnippet": "SELECT Students.full_name, AVG(Scores.marks_earned) AS avg_mark\nFROM Students\nJOIN Scores ON Students.student_id = Scores.student_id\nWHERE Students.cohort_year = '2026'\nGROUP BY Students.student_id, Students.full_name\nHAVING AVG(Scores.marks_earned) > 80\nORDER BY avg_mark DESC;",
@@ -383,7 +383,7 @@
     "format": "Section A",
     "skill": "Recall/Concept",
     "marks": 2,
-    "origin": "Curriculum Practice",
+    "origin": "Syllabus Practice",
     "prompt": "Distinguish between supervised learning and unsupervised learning, providing one representative application for each.",
     "hint": "Think about the presence or absence of labeled target output data.",
     "codeSnippet": null,
@@ -449,7 +449,7 @@
     "format": "Section A",
     "skill": "Evaluation/Discussion",
     "marks": 3,
-    "origin": "Curriculum Practice",
+    "origin": "Syllabus Practice",
     "prompt": "Discuss two sources of algorithmic bias in an automated university admissions screening model, and state one measure to audit for fairness.",
     "hint": "Consider historical human training bias and underrepresentation in the dataset.",
     "codeSnippet": null,
@@ -515,7 +515,7 @@
     "format": "Coding/Query",
     "skill": "Code Implementation",
     "marks": 3,
-    "origin": "Curriculum Practice",
+    "origin": "Syllabus Practice",
     "prompt": "Write a Python function `filter_valid_scores(scores_list, minimum_pass)` that takes a list of numeric exam scores and returns a new list containing only scores that are greater than or equal to `minimum_pass`, ignoring any negative values.",
     "hint": "Initialize an accumulator list and iterate through each score with a conditional filter.",
     "codeSnippet": "def filter_valid_scores(scores_list, minimum_pass):\n    valid = []\n    for score in scores_list:\n        if score >= 0 and score >= minimum_pass:\n            valid.append(score)\n    return valid",
@@ -581,7 +581,7 @@
     "format": "Coding/Query",
     "skill": "Code Implementation",
     "marks": 5,
-    "origin": "Curriculum Exemplar",
+    "origin": "Syllabus Exemplar",
     "prompt": "Write a complete Python implementation of the Bubble Sort algorithm to sort a list of numbers in ascending order in-place, optimized with an early-exit flag if no swaps occur during a pass.",
     "hint": "Use nested loops: the outer loop runs up to n-1 passes, and the inner loop compares adjacent elements `arr[j]` and `arr[j+1]`.",
     "codeSnippet": "def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n - 1):\n        swapped = False\n        for j in range(n - 1 - i):\n            if arr[j] > arr[j + 1]:\n                arr[j], arr[j + 1] = arr[j + 1], arr[j]\n                swapped = True\n        if not swapped:\n            break\n    return arr",
@@ -622,7 +622,7 @@
     "format": "Coding/Query",
     "skill": "Code Implementation",
     "marks": 4,
-    "origin": "Curriculum Practice",
+    "origin": "Syllabus Practice",
     "prompt": "Define a Python class `BankAccount` with encapsulated instance attributes `__account_number` (string) and `__balance` (float, initialized to 0.0).\n\nInclude:\n1. A constructor `__init__(self, account_number, initial_deposit=0.0)`.\n2. A method `deposit(self, amount)` that adds positive amounts.\n3. A method `withdraw(self, amount)` that deducts funds only if sufficient balance exists and returns True, else returns False.",
     "hint": "Use double underscores `__` for private attribute encapsulation.",
     "codeSnippet": "class BankAccount:\n    def __init__(self, account_number, initial_deposit=0.0):\n        self.__account_number = account_number\n        self.__balance = float(initial_deposit) if initial_deposit > 0 else 0.0\n\n    def deposit(self, amount):\n        if amount > 0:\n            self.__balance += amount\n            return True\n        return False\n\n    def withdraw(self, amount):\n        if 0 < amount <= self.__balance:\n            self.__balance -= amount\n            return True\n        return False\n\n    def get_balance(self):\n        return self.__balance",
@@ -700,7 +700,7 @@
     "format": "Section B",
     "skill": "Code Implementation",
     "marks": 4,
-    "origin": "Curriculum Exemplar",
+    "origin": "Syllabus Exemplar",
     "prompt": "Implement a Queue abstract data type using a Python list that follows the First-In-First-Out (FIFO) principle, providing `enqueue(item)`, `dequeue()`, `is_empty()`, and `peek()` methods.",
     "hint": "Enqueue appends to the tail; dequeue removes and returns element from index 0.",
     "codeSnippet": "class Queue:\n    def __init__(self):\n        self.__items = []\n\n    def enqueue(self, item):\n        self.__items.append(item)\n\n    def dequeue(self):\n        if self.is_empty():\n            raise IndexError('dequeue from empty queue')\n        return self.__items.pop(0)\n\n    def peek(self):\n        if self.is_empty():\n            return None\n        return self.__items[0]\n\n    def is_empty(self):\n        return len(self.__items) == 0",
@@ -904,5 +904,123 @@
       }
     ],
     "examinerTip": "In the Paper 1 Section B 12-mark evaluation question, high-scoring responses provide balanced criteria with specific operational solutions (e.g., two-tiered pipeline, C2PA watermarks, FLOPs/VRAM reduction) rather than vague opinions."
+  },
+  {
+    "id": "q-synoptic-a3-a4-1",
+    "theme": "A",
+    "units": [
+      "A3",
+      "A4"
+    ],
+    "unit": "A3, A4",
+    "unitName": "Databases & Machine Learning",
+    "subtopicCode": "A3.3, A4.2",
+    "subtopicName": "SQL Feature Extraction & Machine Learning Preprocessing",
+    "level": "HL",
+    "paper": 1,
+    "difficulty": "Hard",
+    "format": "Section B",
+    "skill": "Evaluation/Discussion",
+    "marks": 6,
+    "origin": "IB DP Specimen Synoptic (A3+A4)",
+    "prompt": "A national healthcare network maintains normalized relational database tables:\n- Patients(patient_id, age, gender, region_code)\n- Admissions(admission_id, patient_id, admission_date, discharge_date, primary_diagnosis)\n- Vitals(vital_id, admission_id, systolic_bp, diastolic_bp, glucose_level, recorded_timestamp)\n\nThe hospital data science department is deploying a supervised machine learning model (Unit A4) to predict 30-day readmission risk for discharged patients using clinical records stored in the relational database (Unit A3).\n\n(a) Write an SQL query or describe the relational join operations required to extract patient_id, age, average systolic_bp, and total previous admissions count. [2 marks]\n\n(b) Explain two data preprocessing transformations that must be performed on these tabular query results before feeding them into a gradient descent-based machine learning model (such as a neural network or logistic regression). [2 marks]\n\n(c) Evaluate why querying a live normalized OLTP database directly during real-time ML inference can degrade system performance, and explain how a denormalized Feature Store or cache mitigates this issue. [2 marks]",
+    "hint": "Consider relational aggregation with GROUP BY and JOINs, feature scaling (e.g. Min-Max normalization or Standardization) vs one-hot encoding, and OLTP database contention vs low-latency key-value feature stores.",
+    "codeSnippet": "SELECT \n    p.patient_id, \n    p.age, \n    AVG(v.systolic_bp) AS avg_systolic_bp,\n    COUNT(DISTINCT a.admission_id) AS total_admissions\nFROM Patients p\nJOIN Admissions a ON p.patient_id = a.patient_id\nJOIN Vitals v ON a.admission_id = v.admission_id\nGROUP BY p.patient_id, p.age;",
+    "markScheme": [
+      {
+        "point": "(a) SQL Joins & Aggregation: Accurately joins Patients, Admissions, and Vitals on foreign keys (patient_id, admission_id), groups by patient_id and age, and calculates AVG(v.systolic_bp) and COUNT(DISTINCT a.admission_id) [2 marks].",
+        "marks": 2
+      },
+      {
+        "point": "(b) Feature Preprocessing: Explains two essential transformations: (1) Numerical feature scaling (Min-Max normalization or Z-score standardization) to prevent high-magnitude features like blood pressure from dominating gradient updates over age; (2) One-Hot Encoding for categorical features (e.g., gender, region_code) or median/mean imputation for missing vital sensor measurements [2 marks].",
+        "marks": 2
+      },
+      {
+        "point": "(c) OLTP Contention vs Feature Store: Direct analytical multi-table JOIN queries on transactional databases cause table/row locks, high CPU load, and unbounded latency (violating real-time SLA). A denormalized online Feature Store (e.g. key-value cache like Redis alongside an offline warehouse) pre-computes feature vectors, providing sub-millisecond point lookups without locking the primary transactional database [2 marks].",
+        "marks": 2
+      }
+    ],
+    "examinerTip": "In synoptic Paper 1 Section B questions combining Databases (A3) and Machine Learning (A4), answers must bridge both domains: explain how the relational database schema and SQL queries produce the numerical vector representations necessary for machine learning models.",
+    "isSynoptic": true
+  },
+  {
+    "id": "q-synoptic-a1-a2-1",
+    "theme": "A",
+    "units": [
+      "A1",
+      "A2"
+    ],
+    "unit": "A1, A2",
+    "unitName": "Hardware & Networks",
+    "subtopicCode": "A1.3, A2.3",
+    "subtopicName": "CPU Interrupt Handling & Packet Ingestion",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Medium",
+    "format": "Section B",
+    "skill": "Recall/Concept",
+    "marks": 4,
+    "origin": "IB DP Specimen Synoptic (A1+A2)",
+    "prompt": "Trace the step-by-step sequence of operations that take place between a computer's hardware (CPU, RAM, System Bus) and the operating system network stack when an incoming packet arrives at the Network Interface Card (NIC) over a Local Area Network (LAN).\n\nIn your response, refer explicitly to:\n- Direct Memory Access (DMA) and the packet buffer in RAM\n- The Interrupt Request (IRQ) line\n- The CPU's context save and Interrupt Service Routine (ISR)\n- The operating system protocol stack handling. [4 marks]",
+    "hint": "Trace the flow from physical packet arrival at the NIC, DMA transfer into primary RAM, raising an IRQ, CPU pausing its fetch-execute cycle to execute the ISR, and passing the packet up the OSI/TCP-IP stack.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Packet Ingestion & DMA: The NIC receives frame bits from the physical medium, validates the checksum (CRC), and transfers the packet directly into an allocated kernel ring buffer in RAM via Direct Memory Access (DMA) without loading the CPU [1 mark].",
+        "marks": 1
+      },
+      {
+        "point": "Interrupt Signaling: The NIC triggers an Interrupt Request (IRQ) signal along the control bus to notify the CPU that packet data is available in primary memory [1 mark].",
+        "marks": 1
+      },
+      {
+        "point": "Context Save & ISR Dispatch: The CPU completes its current machine instruction, pushes register states (Program Counter, Accumulator, Status Register) onto the system stack, and vectors to the Network Driver Interrupt Service Routine (ISR) [1 mark].",
+        "marks": 1
+      },
+      {
+        "point": "Protocol Demultiplexing: The ISR clears the hardware interrupt and hands the packet off to the OS network stack, which strips Ethernet, IP, and TCP headers before queuing data for the target application socket [1 mark].",
+        "marks": 1
+      }
+    ],
+    "examinerTip": "Clearly trace the distinction between NIC hardware, memory buffer, CPU register saving, and OS protocol stack layers.",
+    "isSynoptic": true
+  },
+  {
+    "id": "q-synoptic-b2-b4-1",
+    "theme": "B",
+    "units": [
+      "B2",
+      "B4"
+    ],
+    "unit": "B2, B4",
+    "unitName": "Programming & Abstract Data Types",
+    "subtopicCode": "B2.4, B4.1",
+    "subtopicName": "Queue ADT & Breadth-First Graph Traversal in Python",
+    "level": "HL",
+    "paper": 2,
+    "difficulty": "Hard",
+    "format": "Coding/Query",
+    "skill": "Code Implementation",
+    "marks": 5,
+    "origin": "IB DP Specimen Synoptic (B2+B4)",
+    "prompt": "In Paper 2, candidates are assessed on combining programming algorithms (Unit B2) with Abstract Data Types (Unit B4).\n\n(a) Write a Python class QueueADT implementing a FIFO queue with enqueue(item), dequeue(), is_empty(), and an optional capacity limit. [2 marks]\n\n(b) Using your QueueADT class, write a Python function bfs_traversal(graph, start_node) that performs a Breadth-First Search on a graph represented as an adjacency dictionary (e.g. {'A': ['B', 'C'], 'B': ['D'], ...}) and returns the list of visited nodes in traversal order. [3 marks]",
+    "hint": "BFS uses a Queue to explore neighbor nodes level-by-level, while maintaining a set of visited nodes to prevent cycles.",
+    "codeSnippet": "class QueueADT:\n    def __init__(self, capacity=50):\n        self._items = []\n        self._capacity = capacity\n    def is_empty(self):\n        return len(self._items) == 0\n    def enqueue(self, item):\n        if len(self._items) >= self._capacity:\n            raise OverflowError(\"Queue is full\")\n        self._items.append(item)\n    def dequeue(self):\n        if self.is_empty():\n            raise IndexError(\"Queue is empty\")\n        return self._items.pop(0)\n\ndef bfs_traversal(graph, start_node):\n    visited = []\n    queue = QueueADT()\n    queue.enqueue(start_node)\n    visited.append(start_node)\n    \n    while not queue.is_empty():\n        current = queue.dequeue()\n        for neighbor in graph.get(current, []):\n            if neighbor not in visited:\n                visited.append(neighbor)\n                queue.enqueue(neighbor)\n    return visited",
+    "markScheme": [
+      {
+        "point": "QueueADT implementation: Correct FIFO logic with enqueue appending to end and dequeue popping from index 0 (or front pointer), including empty check [2 marks].",
+        "marks": 2
+      },
+      {
+        "point": "BFS Traversal Initialization: Correctly initializes QueueADT and visited list/set with start_node [1 mark].",
+        "marks": 1
+      },
+      {
+        "point": "BFS Loop & Level Traversal: Loops while queue is not empty, dequeues current node, iterates through graph neighbors, enqueuing unvisited neighbors and marking them visited [2 marks].",
+        "marks": 2
+      }
+    ],
+    "examinerTip": "Ensure you use the methods of your QueueADT rather than raw list indexing inside bfs_traversal to adhere to ADT encapsulation principles.",
+    "isSynoptic": true
   }
 ]

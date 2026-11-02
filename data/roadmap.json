@@ -1,0 +1,96 @@
+{
+  "dp1": {
+    "cohortBadge": "DP1 \u2022 Class of 2027",
+    "cohortTitle": "Year 1: Foundations & Core Programming",
+    "yearPill": "Year 12",
+    "terms": [
+      {
+        "id": "dp1-term-1",
+        "term": "Term 1",
+        "date": "September \u2013 October",
+        "title": "B2: Programming Fundamentals & Python Constructs",
+        "topics": ["B2.1 Fundamentals", "B2.3 Constructs", "Python"],
+        "description": "Environment setup (VS Code, GitHub), data types, string manipulation, conditionals (if/elif/else), repetition loops (for/while), functions, and tracing.",
+        "milestone": "Diagnostic Coding Baseline \u2022 Week 4",
+        "milestoneType": "badge-exam"
+      },
+      {
+        "id": "dp1-term-2",
+        "term": "Term 2",
+        "date": "November \u2013 December",
+        "title": "B1: Computational Thinking & B3: Single-Class OOP",
+        "topics": ["B1.1 Thinking", "B3.1 OOP Basics", "Flowcharts"],
+        "description": "Problem decomposition, abstraction, flowchart logic, class structure, constructors, instance variables, encapsulation, and unit testing.",
+        "milestone": "IA Problem Identification \u2022 Criterion A Launch",
+        "milestoneType": "badge-ia"
+      },
+      {
+        "id": "dp1-term-3",
+        "term": "Term 3",
+        "date": "January \u2013 March",
+        "title": "B4: ADTs (HL Only) & A3: Relational Databases",
+        "topics": ["B4.1 ADTs (HL)", "A3.1-A3.3 Databases", "SQL"],
+        "description": "Linked lists, binary search trees (BSTs), sets, relational database modeling, ERDs, 1NF\u20133NF normalization, and multi-table SQL queries.",
+        "milestone": "Database Design Practical Challenge",
+        "milestoneType": "default"
+      },
+      {
+        "id": "dp1-term-4",
+        "term": "Term 4 & Summer",
+        "date": "April \u2013 August",
+        "title": "Year 12 Timed Assessments & IA Prototype Drafting",
+        "topics": ["Summative Exams", "IA Criteria A\u2013C"],
+        "description": "End-of-Year exams; client consultation, Criterion A planning, Criterion B system architecture & record of tasks, and first working prototype.",
+        "milestone": "IA Criteria A\u2013C First Draft Submission",
+        "milestoneType": "badge-critical"
+      }
+    ]
+  },
+  "dp2": {
+    "cohortBadge": "DP2 \u2022 Class of 2026/2027",
+    "cohortTitle": "Year 2: Systems, AI, Networks & Finals",
+    "yearPill": "Year 13",
+    "terms": [
+      {
+        "id": "dp2-term-1",
+        "term": "Term 1",
+        "date": "September \u2013 October",
+        "title": "A1: Computer Fundamentals & A4: Machine Learning",
+        "topics": ["A1 Systems", "A4 ML Core", "Logic Gates"],
+        "description": "Von Neumann CPU architecture, GPU functions, cache memory, logic gates, truth tables, OS scheduling, and introductory machine learning algorithms.",
+        "milestone": "Paper 1 Diagnostic \u2022 Logic Circuits",
+        "milestoneType": "badge-exam"
+      },
+      {
+        "id": "dp2-term-2",
+        "term": "Term 2",
+        "date": "November \u2013 December",
+        "title": "A4: ML Deep Dive, A2: Networks & Final IA Submission",
+        "topics": ["A4.3 ANNs & CNNs (HL)", "A2 Networks", "IA Complete"],
+        "description": "Deep learning architectures, hyperparameter tuning; packet switching, TCP/IP, network security; final submission of IA Criterion D & E with video demonstration.",
+        "milestone": "CRITICAL: Official IA Final Submission (Criterion A\u2013E)",
+        "milestoneType": "badge-critical"
+      },
+      {
+        "id": "dp2-term-3",
+        "term": "Term 3",
+        "date": "January \u2013 March",
+        "title": "Paper 3 Case Study Seminars & Full Mock Exams",
+        "topics": ["Paper 3 Case Study", "Full Mocks", "Diagnostic Drill"],
+        "description": "Intensive analysis of pre-seen Case Study (\"The Perfect Chatbot\"), full mock examinations under real timed conditions, and past paper mastery drills.",
+        "milestone": "Full IB Mock Examinations (P1, P2 & P3)",
+        "milestoneType": "badge-exam"
+      },
+      {
+        "id": "dp2-term-4",
+        "term": "Term 4",
+        "date": "April \u2013 May",
+        "title": "Official IB External Diploma Examinations",
+        "topics": ["IB External Papers", "Official Graduation"],
+        "description": "Final IB Diploma written examinations for Paper 1 (Concepts & Case Study), Paper 2 (Computational Thinking & Python), and Paper 3 (HL Only).",
+        "milestone": "Official IB Examination Session (May)",
+        "milestoneType": "badge-critical"
+      }
+    ]
+  }
+}

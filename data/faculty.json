@@ -1,0 +1,281 @@
+{
+  "department": {
+    "name": "Computer Science Department",
+    "school": "Emirates International School Meadows",
+    "location": "Meadows, Dubai, United Arab Emirates",
+    "leadInquiriesEmail": "Siddiquin@eischools.ae",
+    "curriculum": "IB Diploma Programme Computer Science (SL & HL)",
+    "labLocation": "CS Innovation Lab, Room 214"
+  },
+  "overview": {
+    "hero": {
+      "title": "The Unified IB Computer Science Revision & Coursework Ecosystem",
+      "lead": "The official academic command center for IB Diploma Programme Computer Science (SL & HL) at Emirates International School Meadows. Engineered to integrate comprehensive topic-by-topic exam revision, interactive question banks with mark scheme validation, syllabus scope-and-sequence tracking, real-time assessment milestone schedules, and a verified classroom resource repository into a single high-velocity environment."
+    },
+    "metrics": [
+      {
+        "key": "Cohort",
+        "value": "2026+",
+        "note": "First Assessment May 2027"
+      },
+      {
+        "key": "Programme",
+        "value": "IB DP SL & HL",
+        "note": "150h SL • 240h HL Curricula"
+      },
+      {
+        "key": "Practice Engine",
+        "value": "Topic & Paper",
+        "note": "Interactive drills & mark schemes"
+      },
+      {
+        "key": "Resources",
+        "value": "151+ Assets",
+        "note": "Worksheets, guides & unit plans"
+      }
+    ],
+    "pillars": [
+      {
+        "id": "computational-thinking",
+        "title": "Computational Thinking & Python",
+        "description": "Deep algorithmic training focusing on decomposition, pattern recognition, and Big O complexity analysis using Python. Students master data structures, recursive paradigms, and object-oriented architectures.",
+        "icon": "code"
+      },
+      {
+        "id": "systems-architecture",
+        "title": "Systems & Network Architecture",
+        "description": "Rigorous investigation into CPU machine cycles, binary representation, packet-switched routing protocols, relational database normalization, and distributed client-server systems.",
+        "icon": "layers"
+      },
+      {
+        "id": "client-engineering",
+        "title": "Real-World Client Engineering",
+        "description": "The 30-mark Internal Assessment tasks students with engineering a bespoke computational software solution for an authentic problem, following professional software development lifecycles and empirical user testing.",
+        "icon": "tool"
+      }
+    ]
+  },
+  "team": [
+    {
+      "id": "neha-siddiqui",
+      "name": "Neha Siddiqui",
+      "monogram": "NS",
+      "badge": "Faculty",
+      "badgeClass": "ready",
+      "role": "Department Head & DP CS Teacher",
+      "type": "faculty",
+      "email": "Siddiquin@eischools.ae",
+      "bio": "Directs the IB Diploma Computer Science program at Emirates International School Meadows. Oversees syllabus delivery across Standard and Higher Levels, Internal Assessment moderation, and examination strategy.",
+      "tags": [
+        "DP Instructor",
+        "IA Supervisor",
+        "Syllabus Lead"
+      ],
+      "coursesTaught": [
+        "IB DP Computer Science SL",
+        "IB DP Computer Science HL"
+      ]
+    },
+    {
+      "id": "anish-dongarkar",
+      "name": "Anish Dongarkar",
+      "monogram": "AD",
+      "badge": "Student Rep",
+      "badgeClass": "ready",
+      "role": "Technology Ambassador & Technical Lead",
+      "type": "ambassador",
+      "email": "anishdongarkar@gmail.com",
+      "bio": "Coordinates department web engineering, interactive question bank tooling, UI state architecture, and technical peer programming support across Python data structures, algorithms, and HL topics.",
+      "tags": [
+        "Technical Lead",
+        "Practice Suite",
+        "Peer Mentoring",
+        "Algorithms"
+      ],
+      "coursesTaught": [
+        "Peer Programming Clinics",
+        "Practice Suite Support"
+      ]
+    },
+    {
+      "id": "rudolph-babaran",
+      "name": "Rudolph Babaran",
+      "monogram": "RB",
+      "badge": "Student Rep",
+      "badgeClass": "ready",
+      "role": "Lead Web Architect & AI Ethics / Machine Learning",
+      "type": "ambassador",
+      "email": "rudolphmacrinebabaran@gmail.com",
+      "bio": "Lead architect and developer of the EIS Computer Science platform. Built the majority of the departmental website and interactive tools, alongside leading Theme A4 Machine Learning instruction, Case Study analysis, and AI ethics workshops.",
+      "tags": [
+        "Lead Web Architect",
+        "Platform Engineering",
+        "Machine Learning",
+        "AI Ethics"
+      ],
+      "coursesTaught": [
+        "AI Ethics Clinics",
+        "Theme A4 Revision"
+      ]
+    },
+    {
+      "id": "yahya-syed-muhammad",
+      "name": "Yahya Syed Muhammad",
+      "monogram": "YM",
+      "badge": "Student Rep",
+      "badgeClass": "ready",
+      "role": "Support / Advisor (SL Lead)",
+      "type": "ambassador",
+      "email": "yahya.syed2017@outlook.com",
+      "bio": "Directs student support, academic advisory, and cohort onboarding, specializing in Standard Level (SL) candidates. Guides students through course navigation, IA milestone timelines, and day-to-day study workflow strategies.",
+      "tags": [
+        "Student Support",
+        "Academic Advisory",
+        "SL Specialist",
+        "Milestone Tracking"
+      ],
+      "coursesTaught": [
+        "Student Advisory Clinics",
+        "Milestone Planning"
+      ]
+    }
+  ],
+  "curriculumArchitecture": {
+    "components": [
+      {
+        "id": "paper-1",
+        "code": "Paper 1",
+        "title": "Concepts of Computer Science",
+        "weightPill": "SL 35% • HL 40%",
+        "timeMeta": "SL: 1h 15m (50m) • HL: 2h 00m (80m)",
+        "description": "Assesses theoretical foundations across Theme A, combined with the pre-seen scenario stimulus.",
+        "sections": [
+          {
+            "name": "Section A",
+            "desc": "Compulsory extended-response questions on Themes A1–A4."
+          },
+          {
+            "name": "Section B",
+            "desc": "In-depth Case Study extended-response questions on pre-seen stimulus."
+          }
+        ],
+        "link": {
+          "url": "case-study.html",
+          "label": "Explore Case Study Dossier"
+        }
+      },
+      {
+        "id": "paper-2",
+        "code": "Paper 2",
+        "title": "Computational Thinking & Python",
+        "weightPill": "SL 35% • HL 40%",
+        "timeMeta": "SL: 1h 15m (50m) • HL: 2h 00m (80m)",
+        "description": "Assesses algorithmic decomposition, programming syntax, and data structures in Python across Theme B.",
+        "sections": [
+          {
+            "name": "Algorithmic Section",
+            "desc": "Language-agnostic logic, trace tables, and decomposition."
+          },
+          {
+            "name": "Coding Section",
+            "desc": "OOP classes, inheritance, Big O complexity, and ADTs (HL)."
+          }
+        ],
+        "link": {
+          "url": "curriculum.html#b1",
+          "label": "View Theme B Syllabus"
+        }
+      },
+      {
+        "id": "ia",
+        "code": "IA",
+        "title": "The Computational Solution",
+        "weightPill": "SL 30% • HL 20%",
+        "timeMeta": "30 Marks • 35 Teaching Hours",
+        "description": "Authentic software product engineered for an authentic problem, assessed across Criteria A through E.",
+        "sections": [
+          {
+            "name": "Criteria A–C",
+            "desc": "Planning, record of tasks, and algorithmic implementation."
+          },
+          {
+            "name": "Criteria D–E",
+            "desc": "Screencast video demo, user feedback, and evaluation."
+          }
+        ],
+        "link": {
+          "url": "ia.html",
+          "label": "Review IA Rubrics & Guide"
+        }
+      }
+    ],
+    "noticeBanner": {
+      "title": "Official Syllabus Note on Case Study Assessment",
+      "text": "Under the official IB DP Computer Science Subject Guide, the pre-seen annual case study is assessed strictly within Paper 1 Section B extended responses as an integrated external examination component."
+    }
+  },
+  "logistics": [
+    {
+      "id": "facilities",
+      "title": "CS Innovation Lab & Workstations",
+      "lead": "Our dedicated Computer Science laboratory provides students with high-performance desktop machines, modern development tooling, and collaborative environments.",
+      "items": [
+        {
+          "title": "Development Environments",
+          "desc": "Python 3.12, PyCharm Professional, VS Code, and SQLite tools."
+        },
+        {
+          "title": "Hardware Kits",
+          "desc": "Microcontrollers, logic gate boards, and networking test benches."
+        },
+        {
+          "title": "Timetable Access",
+          "desc": "Available during scheduled class periods and supervised study blocks."
+        }
+      ]
+    },
+    {
+      "id": "clinics",
+      "title": "After-School Clinics & IA Mentorship",
+      "lead": "Weekly peer tutoring and teacher drop-in sessions designed to provide targeted assistance on coding, algorithm design, and IA criteria milestones.",
+      "items": [
+        {
+          "title": "Python Help Clinic",
+          "desc": "Dedicated code walkthroughs, recursion drills, and OOP syntax practice."
+        },
+        {
+          "title": "IA Milestones Clinic",
+          "desc": "One-on-one review of Criterion A planning through Criterion E evaluation."
+        },
+        {
+          "title": "Timings & Schedules",
+          "desc": "Announced weekly via the Deadlines & Announcements board."
+        }
+      ]
+    },
+    {
+      "id": "integrity",
+      "title": "Academic Integrity & Responsible AI",
+      "lead": "Adherence to the IB Academic Integrity policy is strictly upheld across all course submissions, internal assessments, and classroom projects.",
+      "items": [
+        {
+          "title": "Original Software",
+          "desc": "All code written for the Internal Assessment must be authentic and properly documented."
+        },
+        {
+          "title": "Library Citations",
+          "desc": "External Python libraries, APIs, and algorithms must be transparently acknowledged."
+        }
+      ]
+    },
+    {
+      "id": "admissions",
+      "title": "Speaking Inquiries & Admissions",
+      "lead": "For inquiries regarding course placement, university recommendation letters, speaking invitations, or subject transitions, contact the department.",
+      "cta": {
+        "label": "Email Department Head",
+        "url": "mailto:Siddiquin@eischools.ae"
+      }
+    }
+  ]
+}

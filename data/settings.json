@@ -1,0 +1,92 @@
+{
+  "site": {
+    "name": "IB Computer Science",
+    "shortName": "CS",
+    "schoolName": "Emirates International School Meadows",
+    "shortSchoolName": "EIS MEADOWS",
+    "portalSubtitle": "Department Academic & Examination Portal",
+    "contactEmail": "Siddiquin@eischools.ae",
+    "activeCohort": "2026-2027",
+    "curriculumVersion": "First Assessment May 2027",
+    "copyrightYear": 2026
+  },
+  "features": {
+    "practiceBank": true,
+    "testBuilder": true,
+    "flashcards": true,
+    "qotd": true,
+    "icalExport": true,
+    "resourceVault": true,
+    "maintenanceMode": false,
+    "heroBanner": false
+  },
+  "heroBanner": {
+    "enabled": false,
+    "badge": "Criterion B Checkpoint",
+    "badgeType": "warning",
+    "text": "Criterion B Record of Tasks & System Architecture design document submission.",
+    "link": "pages/deadlines.html?id=dl-02",
+    "linkText": "View Checkpoint Details"
+  },
+  "themeConfig": {
+    "defaultTheme": "lilac",
+    "defaultMode": "system",
+    "defaultTexture": "animated",
+    "defaultFocus": "normal",
+    "defaultDensity": "comfortable",
+    "availableThemes": [
+      "lilac",
+      "monochrome",
+      "crimson",
+      "matcha",
+      "clay"
+    ]
+  },
+  "navigation": [
+    {
+      "id": "home",
+      "label": "Home",
+      "url": "index.html"
+    },
+    {
+      "id": "curriculum",
+      "label": "Syllabus",
+      "url": "pages/curriculum.html"
+    },
+    {
+      "id": "practice",
+      "label": "Practice",
+      "url": "pages/practice.html"
+    },
+    {
+      "id": "deadlines",
+      "label": "Deadlines",
+      "url": "pages/deadlines.html"
+    },
+    {
+      "id": "resources",
+      "label": "Resources",
+      "url": "pages/resources.html"
+    },
+    {
+      "id": "ia",
+      "label": "IA Guide",
+      "url": "pages/ia.html"
+    },
+    {
+      "id": "case-study",
+      "label": "Case Study",
+      "url": "pages/case-study.html"
+    },
+    {
+      "id": "about",
+      "label": "About Us",
+      "url": "pages/about-us.html"
+    },
+    {
+      "id": "admin",
+      "label": "Faculty Admin",
+      "url": "pages/admin.html"
+    }
+  ]
+}

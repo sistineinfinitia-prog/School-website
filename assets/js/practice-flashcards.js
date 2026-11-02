@@ -33,10 +33,15 @@
         animId: null,
         isRunning: false,
 
-        colors: [
-            '#8b5cf6', '#a78bfa', '#06b6d4', '#38bdf8',
-            '#10b981', '#34d399', '#f59e0b', '#fbbf24'
-        ],
+        getColors: function () {
+            var st = getComputedStyle(document.documentElement);
+            var accent = st.getPropertyValue('--accent').trim() || '#a78bfa';
+            var warn = st.getPropertyValue('--warn').trim() || '#fbbf24';
+            var success = st.getPropertyValue('--success').trim() || '#34d399';
+            var info = st.getPropertyValue('--info').trim() || '#38bdf8';
+            var gold = st.getPropertyValue('--gold').trim() || warn;
+            return [accent, warn, success, info, gold];
+        },
 
         init: function (canvasEl) {
             this.canvas = canvasEl || document.getElementById('fc-confetti-canvas');
@@ -220,6 +225,8 @@
         allCards: [],
         filteredCards: [],
         activeCategory: 'all',
+        activeLevel: 'all',
+        activeStatus: 'all',
         searchQuery: '',
         studySession: {
             deck: [],
@@ -231,10 +238,41 @@
         init: function (rawCards) {
             this.allCards = rawCards || [];
             if (!this.isInitialized) {
+                this.parseUrlParams();
                 this.bindEvents();
                 this.isInitialized = true;
             }
             this.applyFilters();
+        },
+
+        parseUrlParams: function () {
+            try {
+                if (typeof window === 'undefined' || !window.location) return;
+                var params = new URLSearchParams(window.location.search);
+                var cat = params.get('cat');
+                if (cat) this.activeCategory = cat;
+                var lvl = params.get('level');
+                if (lvl) this.activeLevel = lvl.toLowerCase();
+                var st = params.get('status');
+                if (st) this.activeStatus = st.toLowerCase();
+                var q = params.get('search') || params.get('q');
+                if (q) {
+                    this.searchQuery = q.toLowerCase().trim();
+                    var searchInput = document.getElementById('fc-search-input');
+                    if (searchInput) searchInput.value = q;
+                }
+                if (cat || lvl || st) {
+                    var filterWrap = document.getElementById('fc-cat-filter-wrap');
+                    var filterToggleBtn = document.getElementById('fc-filter-toggle-btn');
+                    if (filterWrap) filterWrap.style.display = 'flex';
+                    if (filterToggleBtn) {
+                        filterToggleBtn.classList.add('is-open');
+                        filterToggleBtn.setAttribute('aria-expanded', 'true');
+                    }
+                }
+            } catch (e) {
+                console.warn('[PracticeFlashcards] URL params parse error', e);
+            }
         },
 
         bindEvents: function () {
@@ -268,13 +306,54 @@
                 });
             }
 
-            // Category filter pills
-            var catBtns = document.querySelectorAll('.fc-cat-btn');
+            // 1. Level Filter Buttons (1:1 with Question Bank)
+            var levelBtns = document.querySelectorAll('#fc-level-filter-group [data-fc-level]');
+            levelBtns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    levelBtns.forEach(function (b) { b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    self.activeLevel = btn.getAttribute('data-fc-level') || 'all';
+                    // Synchronize with global header level switch
+                    var topLevelBtns = document.querySelectorAll('.rv-level-switch .level-toggle-btn');
+                    topLevelBtns.forEach(function (tb) {
+                        tb.classList.toggle('active', (tb.getAttribute('data-level') || 'all') === self.activeLevel);
+                    });
+                    self.applyFilters();
+                });
+            });
+
+            // 2. Category / Topic Filter Buttons
+            var catBtns = document.querySelectorAll('.fc-cat-btn, #fc-cat-filter-group [data-cat]');
             catBtns.forEach(function (btn) {
                 btn.addEventListener('click', function () {
                     catBtns.forEach(function (b) { b.classList.remove('active'); });
                     btn.classList.add('active');
                     self.activeCategory = btn.getAttribute('data-cat') || 'all';
+                    self.applyFilters();
+                });
+            });
+
+            // 3. Status Filter Buttons (All / Starred / Completed / Needs Review)
+            var statusBtns = document.querySelectorAll('#fc-status-filter-group [data-fc-status]');
+            statusBtns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    statusBtns.forEach(function (b) { b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    self.activeStatus = btn.getAttribute('data-fc-status') || 'all';
+                    self.applyFilters();
+                });
+            });
+
+            // 4. Listen to global header level switch
+            var topLevelBtns = document.querySelectorAll('.rv-level-switch .level-toggle-btn');
+            topLevelBtns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var lvl = btn.getAttribute('data-level') || 'all';
+                    self.activeLevel = lvl;
+                    var fcLevelBtns = document.querySelectorAll('#fc-level-filter-group [data-fc-level]');
+                    fcLevelBtns.forEach(function (fb) {
+                        fb.classList.toggle('active', (fb.getAttribute('data-fc-level') || 'all') === lvl);
+                    });
                     self.applyFilters();
                 });
             });
@@ -326,7 +405,7 @@
                             theme: unit.charAt(0) === 'A' ? 'A' : (unit.charAt(0) === 'B' ? 'B' : 'CaseStudy'),
                             term: term,
                             definition: def,
-                            level: 'SL/HL',
+                            level: level,
                             isCustom: true
                         });
                     }
@@ -446,16 +525,51 @@
             var fullDeck = customCards.concat(this.allCards);
             var self = this;
 
+            // Synchronize active states on UI buttons
+            if (typeof document !== 'undefined') {
+                var lvlBtns = document.querySelectorAll('#fc-level-filter-group [data-fc-level]');
+                lvlBtns.forEach(function (b) {
+                    b.classList.toggle('active', (b.getAttribute('data-fc-level') || 'all') === self.activeLevel);
+                });
+                var catBtns = document.querySelectorAll('#fc-cat-filter-group [data-cat], .fc-cat-btn');
+                catBtns.forEach(function (b) {
+                    b.classList.toggle('active', (b.getAttribute('data-cat') || 'all') === self.activeCategory);
+                });
+                var stBtns = document.querySelectorAll('#fc-status-filter-group [data-fc-status]');
+                stBtns.forEach(function (b) {
+                    b.classList.toggle('active', (b.getAttribute('data-fc-status') || 'all') === self.activeStatus);
+                });
+            }
+
             this.filteredCards = fullDeck.filter(function (card) {
-                if (self.activeCategory !== 'all') {
-                    if (self.activeCategory === 'custom' && !card.isCustom) return false;
-                    if (self.activeCategory === 'theme-a' && card.theme !== 'A') return false;
-                    if (self.activeCategory === 'theme-b' && card.theme !== 'B') return false;
-                    if (self.activeCategory === 'case-study' && card.theme !== 'CaseStudy') return false;
+                // 1. Level Filter (1:1 with Question Bank logic)
+                var cardLvl = (card.level || 'SL/HL').toUpperCase();
+                if (self.activeLevel === 'sl') {
+                    if (cardLvl === 'HL' || cardLvl === 'HL ONLY') return false;
+                } else if (self.activeLevel === 'hl') {
+                    if (cardLvl !== 'HL' && cardLvl !== 'HL ONLY') return false;
                 }
 
+                // 2. Category / Topic Filter
+                if (self.activeCategory !== 'all') {
+                    if (self.activeCategory === 'custom' && !card.isCustom) return false;
+                    if (self.activeCategory === 'theme-a' && card.theme !== 'A' && !(card.unit && card.unit.startsWith('A'))) return false;
+                    if (self.activeCategory === 'theme-b' && card.theme !== 'B' && !(card.unit && card.unit.startsWith('B'))) return false;
+                    if (self.activeCategory === 'case-study' && card.theme !== 'CaseStudy' && card.unit !== 'CS') return false;
+                }
+
+                // 3. Status Filter (Starred / Completed / Needs Review)
+                if (self.activeStatus !== 'all' && State) {
+                    var isStarred = State.isBookmarked ? State.isBookmarked(card.id) : false;
+                    var isDone = State.isCardCompleted ? State.isCardCompleted(card.id) : false;
+                    if (self.activeStatus === 'starred' && !isStarred) return false;
+                    if (self.activeStatus === 'completed' && !isDone) return false;
+                    if (self.activeStatus === 'uncompleted' && isDone) return false;
+                }
+
+                // 4. Search Filter
                 if (self.searchQuery) {
-                    var text = (card.term + ' ' + card.definition + ' ' + (card.example || '') + ' ' + card.unit).toLowerCase();
+                    var text = (card.term + ' ' + card.definition + ' ' + (card.example || '') + ' ' + (card.unit || '') + ' ' + (card.level || '')).toLowerCase();
                     if (text.indexOf(self.searchQuery) === -1) return false;
                 }
 
@@ -507,9 +621,9 @@
                         '<div class="fc-card-top-row">' +
                             '<div style="display:flex; align-items:center; gap:8px;">' +
                                 '<button type="button" class="fc-star-btn' + (isStarred ? ' is-starred' : '') + '" title="Star card" aria-label="Star card">' +
-                                    '<svg viewBox="0 0 24 24" width="15" height="15" fill="' + (isStarred ? '#f59e0b' : 'none') + '" stroke="' + (isStarred ? '#f59e0b' : 'currentColor') + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>' +
+                                    '<svg viewBox="0 0 24 24" width="15" height="15" fill="' + (isStarred ? 'var(--gold, var(--warn))' : 'none') + '" stroke="' + (isStarred ? 'var(--gold, var(--warn))' : 'currentColor') + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>' +
                                 '</button>' +
-                                '<span class="fc-card-badge">' + card.unit + '</span>' +
+                                '<span class="fc-card-badge">' + card.unit + '</span>' + (card.level ? '<span class="fc-card-level-badge">' + self.escapeHtml(card.level) + '</span>' : '') +
                             '</div>' +
                             '<button type="button" class="fc-grid-check-btn' + (isCompleted ? ' is-checked' : '') + '" title="' + (isCompleted ? 'Mark incomplete' : 'Mark complete') + '" aria-label="' + (isCompleted ? 'Mark incomplete' : 'Mark complete') + '">' +
                                 '<svg viewBox="0 0 20 20" width="13" height="13" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>' +
@@ -524,7 +638,10 @@
                     '</div>' +
                     '<div class="fc-card-back">' +
                         '<div class="fc-card-top-row">' +
-                            '<span class="fc-card-badge">' + card.unit + '</span>' +
+                            '<div style="display:flex; align-items:center; gap:8px;">' +
+                                '<span class="fc-card-badge">' + card.unit + '</span>' +
+                                (card.level ? '<span class="fc-card-level-badge">' + self.escapeHtml(card.level) + '</span>' : '') +
+                            '</div>' +
                         '</div>' +
                         '<div class="fc-card-back-body">' +
                             '<p class="fc-def-text">' + self.escapeHtml(card.definition) + '</p>' +
@@ -706,8 +823,8 @@
             if (starBtn) {
                 var svg = starBtn.querySelector('svg');
                 if (svg) {
-                    svg.setAttribute('fill', isStarred ? '#f59e0b' : 'none');
-                    svg.setAttribute('stroke', isStarred ? '#f59e0b' : 'currentColor');
+                    svg.setAttribute('fill', isStarred ? 'var(--gold, var(--warn))' : 'none');
+                    svg.setAttribute('stroke', isStarred ? 'var(--gold, var(--warn))' : 'currentColor');
                 }
                 starBtn.classList.toggle('is-starred', isStarred);
             }

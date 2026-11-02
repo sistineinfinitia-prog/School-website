@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deadlines &amp; Announcements | IB Computer Science &mdash; Emirates International School</title>
+    <title>Deadlines &amp; Announcements | IB Computer Science &bull; Emirates International School</title>
     <meta name="description" content="Official academic calendar, assessment deadlines, internal assessment checkpoints, and faculty announcements for IB Computer Science (SL/HL) at Emirates International School.">
     <script>
         (function () {
@@ -39,8 +39,7 @@
     <a class="skip-link" href="#main">Skip to main content</a>
     <canvas class="ribbons" id="interactive-canvas" aria-hidden="true"></canvas>
 
-    <!-- Standard Header with brand and header-right -->
-        <header class="site-header">
+    <header class="site-header">
         <div class="wrap">
             <a href="../index.html" class="brand">
                 <span class="brand-name">
@@ -71,17 +70,19 @@
     </header>
 
     <main id="main" class="wrap wrap-wide">
-        <!-- Practice / Revision Village Inspired Header -->
         <header class="rv-header-wrap">
-            <div class="rv-breadcrumbs">
+            <nav class="rv-breadcrumbs" aria-label="Breadcrumb">
                 <a href="../index.html">Home</a>
-                <span class="sep">/</span>
-                <span>Deadlines &amp; Announcements</span>
-            </div>
+                <span class="sep" aria-hidden="true">/</span>
+                <span aria-current="page">Deadlines &amp; Announcements</span>
+            </nav>
             <div class="rv-header-main">
-                <h1 class="rv-subject-title">Deadlines &amp; Faculty Announcements</h1>
+                <div>
+                    <h1 class="rv-subject-title">Deadlines &amp; Faculty Announcements</h1>
+                    <p class="rv-subject-subtitle">Academic schedule, IA milestones, and department bulletins &bull; Dubai Time (GST)</p>
+                </div>
                 <div class="rv-header-actions">
-                    <button type="button" class="btn btn-sm btn-primary" id="export-ical-btn" title="Export all deadlines to .ics calendar format">
+                    <button type="button" class="btn btn-sm btn-primary" id="export-ical-btn" title="Export deadlines to .ics calendar format">
                         <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                             <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -89,50 +90,45 @@
                             <line x1="3" y1="10" x2="21" y2="10"></line>
                             <path d="M12 14v4m0 0l-2-2m2 2l2-2"></path>
                         </svg>
-                        <span>Export iCal (.ics)</span>
+                        <span id="export-ical-label">Export iCal (.ics)</span>
                     </button>
                 </div>
             </div>
 
-            <!-- 3 Primary Tabs Navigation (Practice Style) -->
             <nav class="rv-tabs-nav" role="tablist" aria-label="Deadlines and announcements view tabs">
                 <button type="button" class="rv-tab-btn active" data-tab="all" role="tab" aria-selected="true" id="view-all-btn">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect></svg>
                     <span>All Updates</span>
                     <span class="rv-tab-badge" id="badge-all-count">0</span>
                 </button>
                 <button type="button" class="rv-tab-btn" data-tab="deadlines" role="tab" aria-selected="false" id="view-deadlines-btn">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                     <span>Deadlines</span>
                     <span class="rv-tab-badge" id="badge-deadlines-count">0</span>
                 </button>
                 <button type="button" class="rv-tab-btn" data-tab="announcements" role="tab" aria-selected="false" id="view-announcements-btn">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
                     <span>Announcements</span>
                     <span class="rv-tab-badge" id="badge-announcements-count">0</span>
                 </button>
             </nav>
         </header>
 
-        <!-- Command Center Split Layout -->
         <div class="deadlines-split">
             <!-- Left Pane: Interactive Monthly Calendar & Filters -->
-            <aside class="calendar-card" aria-label="Interactive Calendar">
+            <aside class="calendar-card" aria-label="Interactive Calendar and Filters">
                 <div class="calendar-head">
-                    <h2 class="calendar-title" id="calendar-month-label">November 2026</h2>
+                    <button type="button" class="calendar-title-btn" id="cal-toggle-months" aria-expanded="false" title="Click to jump to any month">
+                        <span class="calendar-title" id="calendar-month-label">November 2026</span>
+                        <svg class="calendar-title-chevron" viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
                     <div class="calendar-nav-btns">
-                        <!-- Vector SVGs for Previous, Month Selector, Next -->
+                        <button type="button" class="calendar-btn calendar-btn-today" id="cal-today" title="Jump to current month">Today</button>
                         <button type="button" class="calendar-btn" id="cal-prev" aria-label="Previous month" title="Previous month">
                             <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <polyline points="15 18 9 12 15 6"></polyline>
-                            </svg>
-                        </button>
-                        <button type="button" class="calendar-btn" id="cal-toggle-months" aria-label="Select month" title="Select month">
-                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="16" y1="2" x2="16" y2="6"></line>
-                                <line x1="8" y1="2" x2="8" y2="6"></line>
-                                <line x1="3" y1="10" x2="21" y2="10"></line>
                             </svg>
                         </button>
                         <button type="button" class="calendar-btn" id="cal-next" aria-label="Next month" title="Next month">
@@ -145,7 +141,7 @@
 
                 <!-- Calendar View Container -->
                 <div id="calendar-days-container">
-                    <div class="calendar-grid">
+                    <div class="calendar-grid calendar-weekdays-row">
                         <div class="calendar-weekday">Mo</div>
                         <div class="calendar-weekday">Tu</div>
                         <div class="calendar-weekday">We</div>
@@ -155,7 +151,7 @@
                         <div class="calendar-weekday">Su</div>
                     </div>
                     <div class="calendar-grid" id="calendar-days-grid">
-                        <!-- Populated dynamically via JS with squircle 8px styles -->
+                        <!-- Populated dynamically via JS -->
                     </div>
                 </div>
 
@@ -164,139 +160,163 @@
                     <!-- Populated dynamically with Jan..Dec buttons -->
                 </div>
 
-                <!-- Square Legend (Renamed Projects to Others) -->
-                <div class="calendar-legend">
-                    <div class="legend-item"><span class="legend-square sq-exam"></span><span>Tests</span></div>
-                    <div class="legend-item"><span class="legend-square sq-ia"></span><span>IA</span></div>
-                    <div class="legend-item"><span class="legend-square sq-other"></span><span>Others</span></div>
-                    <div class="legend-item"><span class="legend-square sq-announcement"></span><span>Announcements</span></div>
+                <!-- Category Dot Legend -->
+                <div class="calendar-legend" aria-label="Calendar category key">
+                    <div class="legend-item"><span class="legend-dot dot-exam"></span><span>Tests</span></div>
+                    <div class="legend-item"><span class="legend-dot dot-ia"></span><span>IA</span></div>
+                    <div class="legend-item"><span class="legend-dot dot-other"></span><span>Projects</span></div>
+                    <div class="legend-item"><span class="legend-dot dot-announcement"></span><span>Notices</span></div>
                 </div>
 
                 <!-- Cohort / Year Group Filter -->
-                <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line);">
-                    <span class="filter-section-title">COHORT FILTER</span>
-                    <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                        <button type="button" class="filter-btn active" data-cohort="all">Both</button>
-                        <button type="button" class="filter-btn" data-cohort="Year 1">Y12</button>
-                        <button type="button" class="filter-btn" data-cohort="Year 2">Y13</button>
+                <div class="sidebar-filter-group">
+                    <div class="sidebar-filter-header">
+                        <span class="filter-section-title">COHORT</span>
+                        <span class="filter-saved-hint" id="cohort-saved-hint">Saved</span>
+                    </div>
+                    <div class="segmented-filter" role="group" aria-label="Filter by Year Group">
+                        <button type="button" class="filter-btn active" data-cohort="all">All Years</button>
+                        <button type="button" class="filter-btn" data-cohort="Year 1">Y12 (DP1)</button>
+                        <button type="button" class="filter-btn" data-cohort="Year 2">Y13 (DP2)</button>
                     </div>
                 </div>
 
-                <!-- Category Filter (Renamed Projects to Others) -->
-                <div style="margin-top: 16px;">
+                <!-- Category Filter -->
+                <div class="sidebar-filter-group">
                     <span class="filter-section-title">CATEGORY</span>
-                    <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                    <div class="chip-filter-group" role="group" aria-label="Filter by Category">
                         <button type="button" class="filter-btn active" data-type="all">All</button>
                         <button type="button" class="filter-btn" data-type="exam">Tests</button>
                         <button type="button" class="filter-btn" data-type="ia">IA</button>
-                        <button type="button" class="filter-btn" data-type="other">Others</button>
-                        <button type="button" class="filter-btn" data-type="announcement">Announcements</button>
+                        <button type="button" class="filter-btn" data-type="other">Projects</button>
+                        <button type="button" class="filter-btn" data-type="announcement">Notices</button>
                     </div>
                 </div>
 
-                <!-- Reset Filters Button Cleanly Integrated at Bottom of Sidebar -->
-                <button type="button" id="reset-filters-btn" class="btn-reset-filters">
-                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
-                    <span>Reset All Filters</span>
-                </button>
+                <!-- Progress Summary & Reset -->
+                <div class="sidebar-footer-actions">
+                    <button type="button" id="reset-filters-btn" class="btn-reset-filters">
+                        <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+                        <span>Reset All Filters</span>
+                    </button>
+                </div>
             </aside>
 
             <!-- Right Pane: Agenda & Announcements -->
-            <section class="deadlines-agenda" aria-labelledby="agenda-heading">
-                <!-- Practice-styled Search Bar -->
-                <div class="rv-search-bar-wrap">
-                    <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                        <circle cx="8.5" cy="8.5" r="5.5"></circle>
-                        <path d="M13 13l4 4" stroke-linecap="round"></path>
-                    </svg>
-                    <label class="visually-hidden" for="content-search">Search deadlines or announcements</label>
-                    <input type="search" id="content-search" class="rv-search-input" placeholder="Search all deadlines and announcements">
+            <section class="deadlines-agenda" aria-label="Academic Schedule Feed">
+                <!-- Up Next Spotlight Banner -->
+                <div id="up-next-banner" class="up-next-banner" hidden>
+                    <!-- Dynamically populated with the next upcoming deadline -->
                 </div>
 
-                <!-- Status row with month indicator and toggle view all -->
-                <div class="deadlines-meta-bar">
-                    <div style="display:flex; align-items:center; gap:8px;">
-                        <span id="results-count" class="results-counter-pill" role="status" aria-live="polite">Showing items</span>
-                        <span id="active-date-indicator" class="pill-cohort-tag" style="display:none; font-size:0.75rem;"></span>
+                <!-- Search & Scope Toolbar -->
+                <div class="agenda-toolbar">
+                    <div class="rv-search-bar-wrap">
+                        <svg viewBox="0 0 20 20" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                            <circle cx="8.5" cy="8.5" r="5.5"></circle>
+                            <path d="M13 13l4 4" stroke-linecap="round"></path>
+                        </svg>
+                        <label class="visually-hidden" for="content-search">Search deadlines or announcements</label>
+                        <input type="search" id="content-search" class="rv-search-input" placeholder="Search by title, syllabus code (e.g. A.1, Crit B), or keyword...">
                     </div>
                     <button type="button" id="toggle-all-months-btn" class="btn-toggle-months">
-                        <span>View All Months</span>
+                        <span>All Months</span>
                     </button>
                 </div>
 
+                <!-- Status bar with active filter pills -->
+                <div class="deadlines-meta-bar">
+                    <div class="meta-bar-left">
+                        <span id="results-count" class="results-counter-pill" role="status" aria-live="polite">Showing items</span>
+                        <button type="button" id="active-date-indicator" class="active-filter-chip" hidden title="Click to clear date filter"></button>
+                    </div>
+                    <div class="meta-bar-right" id="completion-summary-pill" hidden></div>
+                </div>
+
                 <!-- View 1: Unified All Feed -->
-                <div id="all-container">
+                <div id="all-container" class="feed-container">
                     <!-- Cards populated via JS -->
                 </div>
 
                 <!-- View 2: Deadlines Only Feed -->
-                <div id="deadlines-container" hidden>
+                <div id="deadlines-container" class="feed-container" hidden>
                     <!-- Cards populated via JS -->
                 </div>
 
                 <!-- View 3: Announcements Only Feed -->
-                <div id="announcements-container" hidden>
+                <div id="announcements-container" class="feed-container" hidden>
                     <!-- Announcements populated via JS -->
                 </div>
             </section>
         </div>
     </main>
 
-    <!-- Center Modal Dialog for "More Information" -->
+    <!-- Center Modal Dialog for Full Assessment Specifications -->
     <div class="modal-overlay" id="details-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
         <div class="modal-dialog">
             <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close details">
-                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
             </button>
 
-            <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
+            <div class="modal-badges-row">
                 <span id="modal-type-badge" class="badge-exam">Unit Test</span>
-                <span id="modal-cohort-badge" class="pill">Y12</span>
-                <span id="modal-countdown-pill" class="deadline-countdown-pill">Due in 11 days</span>
+                <span id="modal-cohort-badge" class="pill-cohort-tag">Y12</span>
+                <span id="modal-countdown-pill" class="deadline-countdown-pill">Due in 4 days</span>
             </div>
 
-            <h2 class="h1" id="modal-title" style="margin-bottom: 6px; font-size:1.45rem;">Title</h2>
-            
-            <p id="modal-meta-row" style="font-size:0.85rem; color:var(--text-3); margin-bottom:16px; font-family:var(--font-mono);">
-                <!-- Date, time, weight -->
-            </p>
+            <h2 class="modal-heading" id="modal-title">Title</h2>
 
-            <div style="margin-bottom: 20px;">
-                <p id="modal-description" style="color:var(--text-2); line-height:1.55; font-size:0.92rem;"></p>
+            <div id="modal-meta-row" class="modal-specs-grid">
+                <!-- Populated dynamically with Date/Time, Location, Weight -->
             </div>
+
+            <p id="modal-description" class="modal-body-text"></p>
 
             <!-- Syllabus Topics Section -->
-            <div id="modal-topics-section" style="margin-bottom: 22px;">
-                <h3 style="font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase; color:var(--text-3); margin-bottom:10px; letter-spacing:0.05em;">
-                    Syllabus Topics Covered
-                </h3>
-                <div id="modal-topics-grid" style="display:flex; flex-wrap:wrap; gap:6px;">
+            <div id="modal-topics-section" class="modal-section">
+                <h3 class="modal-section-label">Syllabus Topics Covered</h3>
+                <div id="modal-topics-grid" class="modal-topics-list">
                     <!-- Topic chips injected here -->
                 </div>
             </div>
 
             <!-- Instructions & Deliverables -->
-            <div id="modal-deliverables-box" class="panel" style="padding:14px 16px; margin-bottom: 20px; font-size:0.86rem; background:var(--surface-2);">
-                <strong style="color:var(--text); display:block; margin-bottom:4px; font-size:0.78rem; text-transform:uppercase; font-family:var(--font-mono);">Instructions &amp; Requirements</strong>
-                <span id="modal-deliverables-text" style="color:var(--text-2);"></span>
+            <div id="modal-deliverables-box" class="modal-deliverables-card">
+                <strong class="modal-section-label">Submission &amp; Assessment Requirements</strong>
+                <span id="modal-deliverables-text" class="modal-deliverables-copy"></span>
             </div>
 
             <!-- Study Links / Attachments -->
-            <div id="modal-resources-section">
-                <h3 style="font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase; color:var(--text-3); margin-bottom:10px; letter-spacing:0.05em;">
-                    Study Materials &amp; Downloads
-                </h3>
-                <div id="modal-resources-list" style="display:flex; flex-wrap:wrap; gap:10px;">
+            <div id="modal-resources-section" class="modal-section">
+                <h3 class="modal-section-label">Study Materials &amp; Downloads</h3>
+                <div id="modal-resources-list" class="modal-resources-row">
                     <!-- Links injected here -->
                 </div>
+            </div>
+
+            <!-- Modal Footer Actions: Completion Toggle + Single Event iCal -->
+            <div class="modal-footer-bar">
+                <button type="button" class="btn-modal-complete" id="modal-complete-btn">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span id="modal-complete-label">Mark as Completed</span>
+                </button>
+                <button type="button" class="btn-modal-ics" id="modal-single-ics-btn">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <span>Add to Calendar (.ics)</span>
+                </button>
             </div>
         </div>
     </div>
 
-        <footer class="site-footer">
+    <footer class="site-footer">
         <div class="wrap">
             <div class="footer-grid">
                 <div>
@@ -314,14 +334,16 @@
                         <li><a href="ia.html">Internal Assessment (IA)</a></li>
                         <li><a href="case-study.html">Case Study (Paper 1 Section B)</a></li>
                         <li><a href="resources.html">Resources &amp; Worksheets</a></li>
+                        <li><a href="feedback.html">Feedback &amp; Requests</a></li>
                     </ul>
                 </div>
                 <div>
                     <div class="footer-title">Department Team &amp; Ambassadors</div>
                     <ul>
-                        <li><a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui &mdash; Head of CS</a></li>
-                        <li><a href="mailto:anishdongarkar@gmail.com">Anish Dongarkar &mdash; Tech Ambassador</a></li>
-                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaran &mdash; AI Ambassador</a></li>
+                        <li><a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui &bull; Head of CS</a></li>
+                        <li><a href="mailto:anishdongarkar@gmail.com">Anish Dongarkar &bull; Tech Ambassador</a></li>
+                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaran &bull; Lead Web Architect &amp; AI/ML</a></li>
+                        <li><a href="mailto:yahya.syed2017@outlook.com">Yahya Syed Muhammad &bull; Support / Advisor</a></li>
                         <li><a href="about-us.html">About the Department</a></li>
                         <li><a href="admin.html">Faculty Administration Portal</a></li>
                     </ul>
@@ -336,6 +358,7 @@
     </footer>
 
     <script src="../assets/js/site.js" defer></script>
+    <script src="../assets/js/data-service.js" defer></script>
     <script src="../assets/js/deadlines.js" defer></script>
 </body>
 </html>

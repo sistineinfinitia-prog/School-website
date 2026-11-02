@@ -78,21 +78,23 @@
 
             <!-- Quick Navigation Hub -->
             <nav class="home-anchors" aria-label="Course section navigation">
-                <a href="pages/deadlines.html" class="home-anchor-link">
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="18" y2="10"></line></svg>
+                <a href="pages/deadlines.html" class="home-anchor-link" id="home-nav-deadlines">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="18" y2="10"></line></svg>
+                    <span class="home-nav-badge" id="badge-deadlines-unread" style="display: none;"></span>
                     <span>Deadlines</span>
                 </a>
-                <a href="pages/practice.html" class="home-anchor-link">
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                    <span>Exam Practice</span>
+                <a href="pages/resources.html" class="home-anchor-link" id="home-nav-resources">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    <span class="home-nav-badge" id="badge-resources-unread" style="display: none;"></span>
+                    <span>Resources</span>
                 </a>
                 <a href="pages/curriculum.html" class="home-anchor-link">
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                     <span>Syllabus</span>
                 </a>
-                <a href="pages/resources.html" class="home-anchor-link">
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                    <span>Resources</span>
+                <a href="pages/practice.html" class="home-anchor-link">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    <span>Exam Practice</span>
                 </a>
             </nav>
         </section>
@@ -105,8 +107,8 @@
                     <p>Active term checkpoints, unit assessments, and faculty bulletins.</p>
                 </div>
                 <a class="home-more" href="pages/deadlines.html">
-                    <span>Full Calendar</span>
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    <span>Full Page</span>
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                 </a>
             </div>
 
@@ -118,10 +120,6 @@
                             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                             Upcoming Deadlines
                         </h3>
-                        <a href="pages/deadlines.html?tab=deadlines">
-                            <span>View all</span>
-                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                        </a>
                     </div>
                     <ol class="feed-list" id="home-deadlines-list">
                         <li>
@@ -197,10 +195,6 @@
                             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
                             Faculty Announcements
                         </h3>
-                        <a href="pages/deadlines.html?tab=announcements">
-                            <span>View all</span>
-                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                        </a>
                     </div>
                     <ol class="feed-list" id="home-announcements-list">
                         <li>
@@ -237,7 +231,6 @@
                 </div>
             </div>
         </section>
-
     </main>
 
         <footer class="site-footer">
@@ -258,14 +251,16 @@
                         <li><a href="pages/ia.html">Internal Assessment (IA)</a></li>
                         <li><a href="pages/case-study.html">Case Study (Paper 1 Section B)</a></li>
                         <li><a href="pages/resources.html">Resources &amp; Worksheets</a></li>
+                        <li><a href="pages/feedback.html">Feedback &amp; Requests</a></li>
                     </ul>
                 </div>
                 <div>
                     <div class="footer-title">Department Team &amp; Ambassadors</div>
                     <ul>
-                        <li><a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui &mdash; Head of CS</a></li>
-                        <li><a href="mailto:anishdongarkar@gmail.com">Anish Dongarkar &mdash; Tech Ambassador</a></li>
-                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaran &mdash; AI Ambassador</a></li>
+                        <li><a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui &bull; Head of CS</a></li>
+                        <li><a href="mailto:anishdongarkar@gmail.com">Anish Dongarkar &bull; Tech Ambassador</a></li>
+                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaran &bull; Lead Web Architect &amp; AI/ML</a></li>
+                        <li><a href="mailto:yahya.syed2017@outlook.com">Yahya Syed Muhammad &bull; Support / Advisor</a></li>
                         <li><a href="pages/about-us.html">About the Department</a></li>
                         <li><a href="pages/admin.html">Faculty Administration Portal</a></li>
                     </ul>
@@ -280,6 +275,7 @@
     </footer>
 
     <script src="assets/js/site.js" defer></script>
+    <script src="assets/js/data-service.js" defer></script>
     <script src="assets/js/home-sync.js" defer></script>
 </body>
 </html>

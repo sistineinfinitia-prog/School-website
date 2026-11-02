@@ -241,23 +241,37 @@
 
             allQuestions.forEach(function (q) {
                 var st = statuses[q.id] || 'not_done';
-                var u = q.unit || 'A1';
-                if (!unitMap[u]) {
-                    unitMap[u] = { name: q.unitName || u, theme: q.theme || 'A', total: 0, completed: 0, correct: 0, wrong: 0 };
+                var qUnits = [];
+                if (Array.isArray(q.units) && q.units.length > 0) {
+                    qUnits = q.units.map(function (u) { return String(u).trim().toUpperCase(); });
+                } else if (Array.isArray(q.unit) && q.unit.length > 0) {
+                    qUnits = q.unit.map(function (u) { return String(u).trim().toUpperCase(); });
+                } else if (typeof q.unit === 'string') {
+                    qUnits = q.unit.split(/[,/&+]+/).map(function (s) { return s.trim().toUpperCase(); }).filter(Boolean);
                 }
-                unitMap[u].total += 1;
+                if (qUnits.length === 0) qUnits = ['A1'];
 
                 if (st === 'correct') {
                     completed += 1;
                     correct += 1;
-                    unitMap[u].completed += 1;
-                    unitMap[u].correct += 1;
                 } else if (st === 'wrong') {
                     completed += 1;
                     wrong += 1;
-                    unitMap[u].completed += 1;
-                    unitMap[u].wrong += 1;
                 }
+
+                qUnits.forEach(function (u) {
+                    if (!unitMap[u]) {
+                        unitMap[u] = { name: q.unitName || u, theme: q.theme || 'A', total: 0, completed: 0, correct: 0, wrong: 0 };
+                    }
+                    unitMap[u].total += 1;
+                    if (st === 'correct') {
+                        unitMap[u].completed += 1;
+                        unitMap[u].correct += 1;
+                    } else if (st === 'wrong') {
+                        unitMap[u].completed += 1;
+                        unitMap[u].wrong += 1;
+                    }
+                });
             });
 
             var accuracy = completed > 0 ? Math.round((correct / completed) * 100) : 0;

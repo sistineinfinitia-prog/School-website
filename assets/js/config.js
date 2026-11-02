@@ -5,13 +5,14 @@ import { getDatabase, ref } from "https://www.gstatic.com/firebasejs/12.13.0/fir
 import { getStorage } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-storage.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAyVpu_pdHkwqETOcj5ePZYAUNAoU0IvqQ",
-    authDomain: "computer-science-webstie.firebaseapp.com",
-    databaseURL: "https://computer-science-webstie-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "computer-science-webstie",
-    storageBucket: "computer-science-webstie.firebasestorage.app",
-    messagingSenderId: "775591822351",
-    appId: "1:775591822351:web:dc928bb5fa692592cd8f7a"
+    apiKey: "AIzaSyDUUj1yqmXfjY9rPPmw-vqyRhIts4i986g",
+    authDomain: "computer-science-eism.firebaseapp.com",
+    databaseURL: "https://computer-science-eism-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "computer-science-eism",
+    storageBucket: "computer-science-eism.firebasestorage.app",
+    messagingSenderId: "361142639070",
+    appId: "1:361142639070:web:f9114ecc44701d0b91a54f",
+    measurementId: "G-3G4062C07E"
 };
 
 const app = initializeApp(firebaseConfig);

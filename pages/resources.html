@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resources &amp; Past Papers | IB Computer Science &mdash; EIS</title>
-    <meta name="description" content="Searchable archive of all 151 student resources, worksheets, Python guides, IB subject guides, and interactive practice questions at Emirates International School.">
+    <title>Resources | IB Computer Science &bull; EIS</title>
+    <meta name="description" content="Searchable repository of 151 department resources, faculty coursework drops, Python guides, interactive labs, and ManageBac task integrations at Emirates International School.">
     <script>
         (function () {
             try {
@@ -30,7 +30,7 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/site.css">
     <link rel="stylesheet" href="../assets/css/resources.css">
 </head>
@@ -38,7 +38,7 @@
     <a class="skip-link" href="#main">Skip to main content</a>
     <canvas class="ribbons" id="interactive-canvas" aria-hidden="true"></canvas>
 
-            <header class="site-header">
+    <header class="site-header">
         <div class="wrap">
             <a href="../index.html" class="brand">
                 <span class="brand-name">
@@ -68,109 +68,206 @@
         </div>
     </header>
 
-    <main id="main" class="wrap wrap-wide">
-        <!-- Practice / Revision Village Inspired Header -->
+    <main id="main" class="wrap wrap-wide resources-main">
+        <!-- Page Header & Faculty / ManageBac Action Bar -->
         <header class="rv-header-wrap">
-            <div class="rv-breadcrumbs">
+            <nav class="rv-breadcrumbs" aria-label="Breadcrumb">
                 <a href="../index.html">Home</a>
-                <span class="sep">/</span>
-                <span>Resources</span>
-            </div>
+                <span class="sep" aria-hidden="true">/</span>
+                <span aria-current="page">Resources</span>
+            </nav>
+
             <div class="rv-header-main">
-                <div>
-                    <h1 class="rv-subject-title">Resources &amp; Course Drops</h1>
-                    <p class="rv-subject-desc">Searchable archive of 151 department files, syllabus slide decks, Python guides, and recent teacher coursework drops.</p>
+                <div class="rv-header-copy">
+                    <div class="rv-title-row">
+                        <h1 class="rv-subject-title">Resources</h1>
+                    </div>
+                    <p class="rv-subject-desc">
+                        Syllabus slide decks, coursework drops, Python references, interactive simulators, and subject archives across Themes A &amp; B.
+                    </p>
                 </div>
             </div>
 
-            <!-- Primary Tabs Navigation (Practice Style) -->
-            <nav class="rv-tabs-nav resources-tabs" role="tablist" aria-label="Resource Library Views">
-                <button type="button" class="rv-tab-btn resources-tab-btn active is-active" data-tab="drops" id="tab-btn-drops" role="tab" aria-selected="true" aria-controls="tab-pane-drops">
-                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                    </svg>
-                    <span>Teacher Drops &amp; Updates</span>
-                    <span class="rv-tab-badge resources-tab-count" id="drops-count-badge">11</span>
-                </button>
-                <button type="button" class="rv-tab-btn resources-tab-btn" data-tab="archive" id="tab-btn-archive" role="tab" aria-selected="false" aria-controls="tab-pane-archive">
-                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <span>Department Archive</span>
-                    <span class="rv-tab-badge resources-tab-count">151 Files</span>
-                </button>
-            </nav>
+            <!-- Primary Navigation Bar: Tabs + Other Information Links -->
+            <div class="resources-nav-row">
+                <nav class="rv-tabs-nav resources-tabs" role="tablist" aria-label="Resource Library Views">
+                    <button type="button" class="rv-tab-btn resources-tab-btn active is-active" data-tab="drops" id="tab-btn-drops" role="tab" aria-selected="true" aria-controls="tab-pane-drops">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <span>This Month</span>
+                        <span class="rv-tab-badge resources-tab-count" id="drops-count-badge">11</span>
+                    </button>
+                    <button type="button" class="rv-tab-btn resources-tab-btn" data-tab="archive" id="tab-btn-archive" role="tab" aria-selected="false" aria-controls="tab-pane-archive">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <span>All Resources/Files</span>
+                        <span class="rv-tab-badge resources-tab-count" data-library-count="*">151 Files</span>
+                    </button>
+                </nav>
+
+                <!-- Other Information (Coursework Hubs) -->
+                <div class="coursework-hub-links" aria-label="Other course information hubs">
+                    <span class="hub-links-label">Other Information:</span>
+                    <a href="ia.html" class="hub-pill-link">
+                        <span>Internal Assessment (IA)</span>
+                        <svg class="hub-pill-arrow" viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+                    </a>
+                    <a href="case-study.html" class="hub-pill-link">
+                        <span>2027 Case Study (P1 Sec B)</span>
+                        <svg class="hub-pill-arrow" viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+                    </a>
+                </div>
+            </div>
         </header>
 
-
-        <!-- View 1: Teacher Drops Feed -->
+        <!-- ==================================================================
+             VIEW 1: THIS MONTH STREAM
+             ================================================================== -->
         <section id="tab-pane-drops" role="tabpanel" aria-labelledby="tab-btn-drops">
-            <!-- Lost Navigation Helper Banner -->
-            <aside class="resources-lost-banner" aria-label="Course section navigation helper">
-                <div class="lost-banner-content">
-                    <div class="lost-badge">
-                        <svg class="lost-icon-compass" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
-                        </svg>
-                        <span>Lost?</span>
+            <!-- Topics & Subtopics Pill Selector (1:1 with Practice & Syllabus) -->
+            <div class="rv-topics-box">
+                <div class="rv-topics-header">
+                    <div class="rv-topics-label">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path></svg>
+                        <span>TOPICS</span>
+                        <span id="topics-count-badge" style="font-weight: normal; text-transform: none; color: var(--text-muted);"></span>
                     </div>
-                    <span class="lost-message">Looking for IA guidelines or the 2027 Case Study? Visit their dedicated hubs:</span>
+                    <button type="button" class="rv-topics-reset-btn" id="reset-topics-btn">Reset</button>
                 </div>
-                <div class="lost-links-group">
-                    <a href="ia.html?from=lost" class="lost-chip-link" title="Navigate to Internal Assessment (IA)">
-                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                            <line x1="16" y1="13" x2="8" y2="13"></line>
-                            <line x1="16" y1="17" x2="8" y2="17"></line>
-                            <polyline points="10 9 9 9 8 9"></polyline>
-                        </svg>
-                        <span>Internal Assessment (IA)</span>
-                        <svg class="lost-chip-arrow" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
-                    </a>
-                    <a href="case-study.html?from=lost" class="lost-chip-link" title="Navigate to Case Study (Paper 1)">
-                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                            <line x1="8" y1="21" x2="16" y2="21"></line>
-                            <line x1="12" y1="17" x2="12" y2="21"></line>
-                        </svg>
-                        <span>Case Study (Paper 1)</span>
-                        <svg class="lost-chip-arrow" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
-                    </a>
-                </div>
-            </aside>
 
-            <div class="resources-feed-toolbar">
-                <div class="search-wrap">
-                    <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <div class="topic-pills-grid" id="topics-pill-container">
+                    <!-- Injected dynamically by resources-feed.js -->
+                </div>
+
+                <div class="match-mode-row">
+                    <div class="match-mode-toggle" role="toolbar" aria-label="Topic Matching Mode">
+                        <button type="button" class="match-mode-btn active" data-mode="any">Include any selected topic</button>
+                        <button type="button" class="match-mode-btn" data-mode="within">Stay within selected topics</button>
+                    </div>
+
+                    <div class="rv-topics-hint">
+                        Click a topic to include it, click again to <span class="pill-hint-exclude"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg> exclude</span> it, and once more to clear.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collapsible Filters Drawer (1:1 with Practice & Syllabus) -->
+            <div class="rv-filters-card">
+                <button type="button" class="rv-filters-toggle-bar" id="toggle-filters-drawer" aria-expanded="false">
+                    <span style="display:inline-flex; align-items:center; gap:8px;">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+                        <span>Filters</span>
+                        <span class="rv-filter-count-badge" id="active-filters-count" style="display:none;">0</span>
+                    </span>
+                    <span class="rv-chevron" id="filters-drawer-chevron" aria-hidden="true">&#9660;</span>
+                </button>
+
+                <div class="rv-filters-drawer" id="filters-drawer">
+                    <div class="drawer-grid">
+                        <!-- Col 1: Show Papers / Themes -->
+                        <div class="drawer-col">
+                            <span class="drawer-col-title">Show Papers</span>
+                            <div class="drawer-cb-group">
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-paper" value="theme-a"> Theme A (Concepts &amp; Case Study &bull; P1)</label>
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-paper" value="theme-b"> Theme B (Computational Thinking &bull; P2)</label>
+                            </div>
+                        </div>
+
+                        <!-- Col 2: Target Cohort -->
+                        <div class="drawer-col">
+                            <span class="drawer-col-title">Cohort &amp; Year</span>
+                            <div class="drawer-cb-group">
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-cohort" value="Year 1"> Year 1 / DP1 (M27)</label>
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-cohort" value="Year 2"> Year 2 / DP2 (M26)</label>
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-cohort" value="HL"> Higher Level (HL Only)</label>
+                            </div>
+                        </div>
+
+                        <!-- Col 3: Resource Format -->
+                        <div class="drawer-col">
+                            <span class="drawer-col-title">Resource Format</span>
+                            <div class="drawer-cb-group">
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-format" value="doc"> Documents &amp; PDFs</label>
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-format" value="slide"> Slide Decks (.pptx)</label>
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-format" value="lab"> Code &amp; Interactive Labs</label>
+                                <label class="drawer-cb-label"><input type="checkbox" name="filter-format" value="external"> External Tools &amp; Links</label>
+                            </div>
+                        </div>
+
+                        <!-- Col 4: Show Status -->
+                        <div class="drawer-col">
+                            <span class="drawer-col-title">Show Status</span>
+                            <div class="drawer-status-segment" id="filter-status-segment" role="toolbar" aria-label="Status Filter">
+                                <button type="button" class="status-segment-btn active" data-status="all">All</button>
+                                <button type="button" class="status-segment-btn" data-status="saved">Saved (<span id="saved-segment-count">0</span>)</button>
+                                <button type="button" class="status-segment-btn" data-status="pinned">Pinned</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="drawer-reset-link" id="reset-drawer-filters">Reset all filters</button>
+                </div>
+            </div>
+
+            <!-- Search Bar Wrap -->
+            <div class="rv-search-bar-wrap">
+                <div class="search-wrap" style="position:relative;">
+                    <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-muted);pointer-events:none;">
                         <circle cx="8.5" cy="8.5" r="5.5"></circle>
                         <path d="M13 13l4 4" stroke-linecap="round"></path>
                     </svg>
-                    <label class="visually-hidden" for="resource-search-input">Search teacher drops</label>
-                    <input type="search" id="resource-search-input" class="search-input" placeholder="Search teacher drops by topic, code (A.1, B.2, IA), title, or linked assessment...">
+                    <label class="visually-hidden" for="resource-search-input">Search resources by keyword</label>
+                    <input type="search" id="resource-search-input" class="rv-search-input" style="padding-left:42px;" placeholder="Search resources by title, topic code (A1.1, A2.3, B3, Crit B), or guidance... (Press /)">
+                    <button type="button" class="search-clear-btn" id="btn-clear-drop-search" hidden aria-label="Clear search" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:18px;">&times;</button>
                 </div>
+            </div>
 
-                <div class="resources-feed-controls">
-                    <div class="topic-chip-bar" role="toolbar" aria-label="Filter by Topic">
-                        <button type="button" class="topic-chip is-active" data-topic="all">All Topics</button>
-                        <button type="button" class="topic-chip" data-topic="Theme A">Theme A</button>
-                        <button type="button" class="topic-chip" data-topic="Theme B">Theme B</button>
-                        <button type="button" class="topic-chip" data-topic="IA">IA Milestone</button>
-                        <button type="button" class="topic-chip" data-topic="Revision">Revision</button>
-                    </div>
+            <!-- Cross-Archive Search Bridge -->
+            <div class="cross-archive-bridge" id="cross-archive-bridge" hidden style="margin-bottom:16px;">
+                <div class="bridge-info">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span id="cross-archive-bridge-text">Found matching files in the 151-file Department Archive.</span>
+                </div>
+                <button type="button" class="bridge-jump-btn" id="btn-jump-archive-search">
+                    <span>View in All Resources/Files</span>
+                    <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+                </button>
+            </div>
 
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <span id="resource-search-summary" class="sub" style="font-size: 0.78rem; font-family: var(--font-mono);">11 drops available</span>
-                        <button type="button" class="sort-toggle-btn" id="sort-toggle-btn" aria-label="Toggle sort order">
-                            <span id="sort-order-label">Newest First</span>
-                            <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <polyline points="7 10 12 15 17 10"></polyline>
+            <!-- Results Summary Strip & View Modes -->
+            <div class="resources-results-strip">
+                <div class="feed-meta-left">
+                    <span id="resource-search-summary" class="feed-summary-mono">Showing 11 drops</span>
+                </div>
+                <div class="feed-meta-right" style="display:flex;align-items:center;gap:12px;">
+                    <button type="button" class="sort-toggle-btn" id="sort-toggle-btn" aria-label="Change sort order">
+                        <span id="sort-order-label">Newest First</span>
+                        <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M5 11l3 3 3-3M11 5L8 2 5 5"/>
+                        </svg>
+                    </button>
+
+                    <div class="view-mode-switch" role="group" aria-label="Display layout">
+                        <button type="button" class="view-mode-btn is-active" data-view="cards" title="Card Feed View" aria-label="Card Feed View">
+                            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="3" y="3" width="18" height="7" rx="1"></rect>
+                                <rect x="3" y="14" width="18" height="7" rx="1"></rect>
+                            </svg>
+                        </button>
+                        <button type="button" class="view-mode-btn" data-view="table" title="Compact Table View" aria-label="Compact Table View">
+                            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <line x1="8" y1="6" x2="21" y2="6"></line>
+                                <line x1="8" y1="12" x2="21" y2="12"></line>
+                                <line x1="8" y1="18" x2="21" y2="18"></line>
+                                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                <line x1="3" y1="18" x2="3.01" y2="18"></line>
                             </svg>
                         </button>
                     </div>
@@ -183,30 +280,46 @@
             </div>
         </section>
 
-        <!-- View 2: Complete 151-File Archive -->
+        <!-- ==================================================================
+             VIEW 2: COMPLETE 151-FILE DEPARTMENT ARCHIVE
+             ================================================================== -->
         <section id="tab-pane-archive" role="tabpanel" aria-labelledby="tab-btn-archive" hidden>
-            <div class="section-head" style="margin-bottom: 20px;">
-                <div>
-                    <h2 class="h2" style="margin-bottom: 4px;">Department Archive (151 Student Files)</h2>
-                    <p class="sub">
-                        Direct access to every syllabus slide deck, worksheet, Python handbook, and coursework exemplar in the repository.
-                    </p>
-                </div>
-            </div>
-
             <div data-library="full">
                 <p class="sub">Loading department resource index&hellip;</p>
-            </div>
-
-            <div class="missing-box" style="margin-top: 32px;">
-                <div>
-                    <strong>Faculty Notice:</strong> All permanent curriculum and revision files are indexed above. For recently dumped homework sheets and assessment materials, switch to the <em>Teacher Drops &amp; Updates</em> tab.
-                </div>
             </div>
         </section>
     </main>
 
-        <footer class="site-footer">
+    <!-- In-Page Document & Lab Preview Drawer -->
+    <div class="res-preview-backdrop" id="res-preview-modal" role="dialog" aria-modal="true" aria-labelledby="res-preview-title" hidden>
+        <div class="res-preview-dialog">
+            <header class="res-preview-head">
+                <div class="res-preview-meta">
+                    <a class="topic-tag-code topic-tag-link" id="res-preview-code" href="curriculum.html" target="_blank" rel="noopener" title="Open topic in Syllabus">A2.3</a>
+                    <span class="format-chip" id="res-preview-format">PDF</span>
+                    <h2 class="res-preview-title" id="res-preview-title">Resource Preview</h2>
+                </div>
+                <div class="res-preview-actions">
+                    <a href="#" class="btn-res-primary btn-res-sm" id="res-preview-open-btn" target="_blank" rel="noopener">
+                        <span>Open in New Tab</span>
+                        <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12L12 4M6 4h6v6"/></svg>
+                    </a>
+                    <button type="button" class="btn-res-icon" id="res-preview-close" aria-label="Close preview">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+            <div class="res-preview-body" id="res-preview-body"></div>
+        </div>
+    </div>
+
+    <!-- Subtle Toast Notification for Clipboard & Publish Feedback -->
+    <div class="res-toast" id="res-toast" role="status" aria-live="polite" hidden></div>
+
+    <footer class="site-footer">
         <div class="wrap">
             <div class="footer-grid">
                 <div>
@@ -224,14 +337,16 @@
                         <li><a href="ia.html">Internal Assessment (IA)</a></li>
                         <li><a href="case-study.html">Case Study (Paper 1 Section B)</a></li>
                         <li><a href="resources.html">Resources &amp; Worksheets</a></li>
+                        <li><a href="feedback.html">Feedback &amp; Requests</a></li>
                     </ul>
                 </div>
                 <div>
                     <div class="footer-title">Department Team &amp; Ambassadors</div>
                     <ul>
-                        <li><a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui &mdash; Head of CS</a></li>
-                        <li><a href="mailto:anishdongarkar@gmail.com">Anish Dongarkar &mdash; Tech Ambassador</a></li>
-                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaran &mdash; AI Ambassador</a></li>
+                        <li><a href="mailto:Siddiquin@eischools.ae">Neha Siddiqui &bull; Head of CS</a></li>
+                        <li><a href="mailto:anishdongarkar@gmail.com">Anish Dongarkar &bull; Tech Ambassador</a></li>
+                        <li><a href="mailto:rudolphmacrinebabaran@gmail.com">Rudolph Babaran &bull; Lead Web Architect &amp; AI/ML</a></li>
+                        <li><a href="mailto:yahya.syed2017@outlook.com">Yahya Syed Muhammad &bull; Support / Advisor</a></li>
                         <li><a href="about-us.html">About the Department</a></li>
                         <li><a href="admin.html">Faculty Administration Portal</a></li>
                     </ul>
@@ -246,6 +361,7 @@
     </footer>
 
     <script src="../assets/js/site.js" defer></script>
+    <script src="../assets/js/data-service.js" defer></script>
     <script src="../assets/js/library.js" defer></script>
     <script src="../assets/js/resources-feed.js" defer></script>
 </body>

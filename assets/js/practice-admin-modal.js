@@ -181,7 +181,10 @@
             }
 
             var unit = unitSelect ? unitSelect.value : 'A1';
-            var theme = unit.charAt(0) === 'A' ? 'A' : (unit.charAt(0) === 'B' ? 'B' : 'CaseStudy');
+            var unitTokens = unit.split(/[,/&+]+/).map(function (s) { return s.trim().toUpperCase(); }).filter(Boolean);
+            if (unitTokens.length === 0) unitTokens = ['A1'];
+            var isSynoptic = unitTokens.length > 1;
+            var theme = unitTokens.every(function (u) { return u.charAt(0) === 'A'; }) ? 'A' : (unitTokens.every(function (u) { return u.charAt(0) === 'B'; }) ? 'B' : 'Synoptic');
 
             var msRows = document.querySelectorAll('.teacher-ms-row');
             var markScheme = [];
@@ -196,12 +199,14 @@
             }
 
             return {
-                id: 'q-' + unit.toLowerCase() + '-' + Date.now(),
+                id: 'q-' + unitTokens.map(function (u) { return u.toLowerCase(); }).join('-') + '-' + Date.now(),
                 theme: theme,
-                unit: unit,
-                unitName: unitSelect.options[unitSelect.selectedIndex].text,
-                subtopicCode: (subCodeInput ? subCodeInput.value : unit + '.1').trim() || unit + '.1',
+                units: unitTokens,
+                unit: unitTokens.join(', '),
+                unitName: unitSelect && unitSelect.options && unitSelect.options[unitSelect.selectedIndex] ? unitSelect.options[unitSelect.selectedIndex].text : unitTokens.join(' & '),
+                subtopicCode: (subCodeInput ? subCodeInput.value : unitTokens[0] + '.1').trim() || unitTokens[0] + '.1',
                 subtopicName: (subNameInput ? subNameInput.value : 'Syllabus Topic').trim() || 'Syllabus Topic',
+                isSynoptic: isSynoptic,
                 level: levelSelect ? levelSelect.value : 'SL/HL',
                 paper: parseInt(paperSelect ? paperSelect.value : 1, 10),
                 difficulty: diffSelect ? diffSelect.value : 'Medium',

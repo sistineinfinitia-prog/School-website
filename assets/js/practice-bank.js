@@ -30,99 +30,63 @@
         arrowRight: '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>'
     };
 
-    // Official Syllabus Structure strictly matching curriculum.html
-    var SYLLABUS_UNITS = [
-        {
-            code: 'A1',
-            name: 'Computer Fundamentals',
-            theme: 'A',
-            subtopics: [
-                { code: 'A1.1', name: 'Computer hardware and operation' },
-                { code: 'A1.2', name: 'Data representation and computer logic' },
-                { code: 'A1.3', name: 'Operating systems and control systems' },
-                { code: 'A1.4', name: 'Translation (HL only)' }
-            ]
-        },
-        {
-            code: 'A2',
-            name: 'Networks',
-            theme: 'A',
-            subtopics: [
-                { code: 'A2.1', name: 'Network fundamentals' },
-                { code: 'A2.2', name: 'Network architecture' },
-                { code: 'A2.3', name: 'Data transmissions' },
-                { code: 'A2.4', name: 'Network security' }
-            ]
-        },
-        {
-            code: 'A3',
-            name: 'Databases',
-            theme: 'A',
-            subtopics: [
-                { code: 'A3.1', name: 'Database fundamentals' },
-                { code: 'A3.2', name: 'Database design' },
-                { code: 'A3.3', name: 'Database programming' },
-                { code: 'A3.4', name: 'Alternative databases and data warehouses (HL only)' }
-            ]
-        },
-        {
-            code: 'A4',
-            name: 'Machine Learning',
-            theme: 'A',
-            subtopics: [
-                { code: 'A4.1', name: 'Machine learning fundamentals' },
-                { code: 'A4.2', name: 'Data preprocessing (HL only)' },
-                { code: 'A4.3', name: 'Machine learning approaches (HL only)' },
-                { code: 'A4.4', name: 'Ethical considerations' }
-            ]
-        },
-        {
-            code: 'B1',
-            name: 'Computational Thinking',
-            theme: 'B',
-            subtopics: [
-                { code: 'B1.1', name: 'Approaches to computational thinking' }
-            ]
-        },
-        {
-            code: 'B2',
-            name: 'Programming',
-            theme: 'B',
-            subtopics: [
-                { code: 'B2.1', name: 'Programming fundamentals' },
-                { code: 'B2.2', name: 'Data structures' },
-                { code: 'B2.3', name: 'Programming constructs' },
-                { code: 'B2.4', name: 'Programming algorithms' },
-                { code: 'B2.5', name: 'File processing' }
-            ]
-        },
-        {
-            code: 'B3',
-            name: 'Object-Oriented Programming',
-            theme: 'B',
-            subtopics: [
-                { code: 'B3.1', name: 'Fundamentals of OOP for a single class' },
-                { code: 'B3.2', name: 'Fundamentals of OOP for multiple classes (HL only)' }
-            ]
-        },
-        {
-            code: 'B4',
-            name: 'Abstract Data Types',
-            theme: 'B',
-            subtopics: [
-                { code: 'B4.1', name: 'Fundamentals of ADTs' }
-            ]
-        },
-        {
-            code: 'CS',
-            name: '2027 Case Study (Paper 1 Section B)',
-            theme: 'CaseStudy',
-            subtopics: [
-                { code: 'CS.1', name: 'Scenario Analysis & System Specifications' },
-                { code: 'CS.2', name: 'Technical Evaluation & Recommendations' }
-            ]
+    // Helper: Normalize question units array for single or multi-unit questions (Supports multiple syllabus units e.g. A3 & A4)
+    function getQuestionUnits(q) {
+        if (!q) return [];
+        if (Array.isArray(q.units) && q.units.length > 0) {
+            return q.units.map(function (u) { return String(u).trim().toUpperCase(); });
         }
-    ];
+        if (Array.isArray(q.unit) && q.unit.length > 0) {
+            return q.unit.map(function (u) { return String(u).trim().toUpperCase(); });
+        }
+        if (typeof q.unit === 'string') {
+            return q.unit.split(/[,/&+]+/).map(function (s) { return s.trim().toUpperCase(); }).filter(Boolean);
+        }
+        return ['A1'];
+    }
+
+    // Official Syllabus Structure hydrated dynamically from DataService (Requirement R3)
+    function hydrateSyllabusUnits() {
+        if (typeof window !== 'undefined' && window.DataService && typeof window.DataService.getSyllabus === 'function') {
+            var raw = window.DataService.getSyllabus();
+            if (Array.isArray(raw) && raw.length > 0) {
+                var units = raw.map(function (u) {
+                    return {
+                        code: u.code,
+                        name: u.name,
+                        theme: (u.theme && u.theme.indexOf('Theme A') !== -1) ? 'A' : 'B',
+                        subtopics: (u.subtopics || []).map(function (st) {
+                            return { code: st.code, name: st.title || st.name };
+                        })
+                    };
+                });
+                if (!units.some(function (u) { return u.code === 'CS'; })) {
+                    units.push({
+                        code: 'CS',
+                        name: '2027 Case Study (Paper 1 Section B)',
+                        theme: 'CaseStudy',
+                        subtopics: [
+                            { code: 'CS.1', name: 'Scenario Analysis & System Specifications' },
+                            { code: 'CS.2', name: 'Technical Evaluation & Recommendations' }
+                        ]
+                    });
+                }
+                return units;
+            }
+        }
+        return [
+            { code: 'A1', name: 'Computer Fundamentals', theme: 'A', subtopics: [{ code: 'A1.1', name: 'Computer hardware and operation' }, { code: 'A1.2', name: 'Data representation and computer logic' }, { code: 'A1.3', name: 'Operating systems and control systems' }, { code: 'A1.4', name: 'Translation (HL only)' }] },
+            { code: 'A2', name: 'Networks', theme: 'A', subtopics: [{ code: 'A2.1', name: 'Network fundamentals' }, { code: 'A2.2', name: 'Network architecture' }, { code: 'A2.3', name: 'Data transmissions' }, { code: 'A2.4', name: 'Network security' }] },
+            { code: 'A3', name: 'Databases', theme: 'A', subtopics: [{ code: 'A3.1', name: 'Database fundamentals' }, { code: 'A3.2', name: 'Database design' }, { code: 'A3.3', name: 'Database programming' }, { code: 'A3.4', name: 'Alternative databases and data warehouses (HL only)' }] },
+            { code: 'A4', name: 'Machine Learning', theme: 'A', subtopics: [{ code: 'A4.1', name: 'Machine learning fundamentals' }, { code: 'A4.2', name: 'Data preprocessing (HL only)' }, { code: 'A4.3', name: 'Machine learning approaches (HL only)' }, { code: 'A4.4', name: 'Ethical considerations' }] },
+            { code: 'B1', name: 'Computational Thinking', theme: 'B', subtopics: [{ code: 'B1.1', name: 'Approaches to computational thinking' }] },
+            { code: 'B2', name: 'Programming', theme: 'B', subtopics: [{ code: 'B2.1', name: 'Programming fundamentals' }, { code: 'B2.2', name: 'Data structures' }, { code: 'B2.3', name: 'Programming constructs' }, { code: 'B2.4', name: 'Programming algorithms' }, { code: 'B2.5', name: 'File processing' }] },
+            { code: 'B3', name: 'Object-Oriented Programming', theme: 'B', subtopics: [{ code: 'B3.1', name: 'Fundamentals of OOP for a single class' }, { code: 'B3.2', name: 'Fundamentals of OOP for multiple classes (HL only)' }] },
+            { code: 'B4', name: 'Abstract Data Types', theme: 'B', subtopics: [{ code: 'B4.1', name: 'Fundamentals of ADTs' }] },
+            { code: 'CS', name: '2027 Case Study (Paper 1 Section B)', theme: 'CaseStudy', subtopics: [{ code: 'CS.1', name: 'Scenario Analysis & System Specifications' }, { code: 'CS.2', name: 'Technical Evaluation & Recommendations' }] }
+        ];
+    }
+    var SYLLABUS_UNITS = hydrateSyllabusUnits();
 
     // Aliases from index.html and theme pages
     var TOPIC_ALIASES = {
@@ -198,15 +162,19 @@
                 this.selectedLevel = lvl.toLowerCase();
             }
 
-            // Topic / Unit
-            var t = params.get('topic');
+            // Topic / Unit(s) - Supports single or comma-separated units (e.g. ?topic=A3,A4 or ?units=A3,A4)
+            var t = params.get('topics') || params.get('topic');
             if (t) {
-                var cleanT = t.toLowerCase();
-                var targetUnit = TOPIC_ALIASES[cleanT] || cleanT.toUpperCase();
-                var exists = SYLLABUS_UNITS.some(function (u) { return u.code === targetUnit; });
-                if (exists) {
-                    this.unitStates[targetUnit] = 'included';
-                }
+                var self = this;
+                var tokens = t.split(/[,+]/);
+                tokens.forEach(function (token) {
+                    var cleanT = token.trim().toLowerCase();
+                    var targetUnit = TOPIC_ALIASES[cleanT] || cleanT.toUpperCase();
+                    var exists = SYLLABUS_UNITS.some(function (u) { return u.code === targetUnit; });
+                    if (exists) {
+                        self.unitStates[targetUnit] = 'included';
+                    }
+                });
             }
 
             // Subtopic
@@ -222,6 +190,12 @@
             var m = params.get('mode');
             if (m === 'browse' || m === 'practice') {
                 this.currentMode = m;
+            }
+
+            // Direct Question Target
+            var qId = params.get('q');
+            if (qId) {
+                this.targetQuestionId = qId;
             }
         },
 
@@ -517,22 +491,32 @@
                     if (q.level !== 'HL' && q.level !== 'HL Only') return false;
                 }
 
-                // 2. Excluded Units Check
-                if (excludedUnits.indexOf(q.unit) !== -1) {
-                    return false;
+                // Multi-Unit Resolution
+                var qUnits = getQuestionUnits(q);
+
+                // 2. Excluded Units Check (If any of the question's units are excluded)
+                if (excludedUnits.length > 0) {
+                    var isExcluded = qUnits.some(function (u) { return excludedUnits.indexOf(u) !== -1; });
+                    if (isExcluded) return false;
                 }
 
-                // 3. Included Units / Subtopics Check
+                // 3. Included Units / Subtopics Check (Supports multi-unit combinations like A3 & A4)
                 if (includedUnits.length > 0) {
                     if (self.topicMatchMode === 'within') {
-                        if (includedUnits.indexOf(q.unit) === -1) return false;
+                        // In 'within' mode, all units of the question must be within the included set
+                        var allWithin = qUnits.every(function (u) { return includedUnits.indexOf(u) !== -1; });
+                        if (!allWithin) return false;
                     } else {
-                        if (includedUnits.indexOf(q.unit) === -1) return false;
+                        // In 'any' mode (default), at least one unit of the question must match
+                        var anyMatch = qUnits.some(function (u) { return includedUnits.indexOf(u) !== -1; });
+                        if (!anyMatch) return false;
                     }
                 }
 
                 if (activeSubtopics.length > 0) {
-                    if (activeSubtopics.indexOf(q.subtopicCode) === -1) return false;
+                    var qSubs = (q.subtopicCode || '').split(/[,/]+/).map(function (s) { return s.trim(); });
+                    var subMatch = qSubs.some(function (s) { return activeSubtopics.indexOf(s) !== -1; });
+                    if (!subMatch) return false;
                 }
 
                 // 4. Paper
@@ -563,9 +547,10 @@
                     if (self.filterStatus === 'not_done' && st !== 'not_done') return false;
                 }
 
-                // 9. Search query
+                // 9. Search query (Includes multi-unit codes and synoptic keywords)
                 if (self.searchQuery) {
-                    var text = (q.prompt + ' ' + (q.subtopicName || '') + ' ' + (q.unitName || '') + ' ' + (q.origin || '') + ' ' + (q.codeSnippet || '')).toLowerCase();
+                    var synopticTerm = (qUnits.length > 1 || q.isSynoptic) ? 'synoptic cross-topic' : '';
+                    var text = (q.prompt + ' ' + (q.subtopicName || '') + ' ' + (q.unitName || '') + ' ' + qUnits.join(' ') + ' ' + synopticTerm + ' ' + (q.origin || '') + ' ' + (q.codeSnippet || '')).toLowerCase();
                     if (text.indexOf(self.searchQuery) === -1) return false;
                 }
 
@@ -653,6 +638,23 @@
                     loadMoreWrap.style.display = 'none';
                 }
             }
+
+            if (this.targetQuestionId) {
+                var targetId = this.targetQuestionId;
+                this.targetQuestionId = null;
+                setTimeout(function () {
+                    var targetEl = document.getElementById('card-' + targetId);
+                    if (targetEl) {
+                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        targetEl.style.transition = 'box-shadow 0.3s ease, border-color 0.3s ease';
+                        targetEl.style.borderColor = 'var(--accent)';
+                        targetEl.style.boxShadow = '0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent)';
+                        setTimeout(function () {
+                            targetEl.style.boxShadow = '';
+                        }, 3000);
+                    }
+                }, 200);
+            }
         },
 
         createQuestionCard: function (q, questionNum) {
@@ -676,22 +678,43 @@
 
             var html = '';
 
-            // Card Top Row
+            // Card Top Row with Multi-Unit Support & Curriculum Cross-Linking
+            var qUnits = getQuestionUnits(q);
+            var isSynoptic = qUnits.length > 1 || q.isSynoptic;
+            var primaryUnit = qUnits[0] || 'A1';
+            var targetCurriculumHash = 'curriculum.html#' + primaryUnit.toLowerCase();
+            if (primaryUnit === 'CS') targetCurriculumHash = 'case-study.html';
+            var subtopicHash = targetCurriculumHash;
+            if (q.subtopicCode) {
+                var firstSub = q.subtopicCode.split(/[,/]/)[0].trim().toLowerCase();
+                var subParent = firstSub.split('.')[0];
+                if (/^[ab][1-4]$/.test(subParent)) {
+                    subtopicHash = 'curriculum.html#' + subParent;
+                }
+            }
+
+            var unitPillsHtml = qUnits.map(function (uCode) {
+                var uLink = (uCode === 'CS') ? 'case-study.html' : ('curriculum.html#' + uCode.toLowerCase());
+                return '<a href="' + uLink + '" class="rv-tag rv-tag-unit-badge" target="_blank" rel="noopener" title="Syllabus Unit ' + uCode + '">' + uCode + '</a>';
+            }).join(' ');
+
+            if (isSynoptic) {
+                unitPillsHtml += ' <span class="rv-tag rv-tag-synoptic" title="Cross-Topic Synoptic Question (Combines ' + qUnits.join(' & ') + ')">Synoptic</span>';
+            }
+
             html += '<div class="rv-card-top">' +
                         '<div class="rv-card-title-group">' +
                             '<span class="rv-q-number">Question ' + questionNum + '</span>' +
-                            '<span class="rv-q-origin">' + (q.origin || 'IB CS Specimen') + ' &bull; Paper ' + q.paper + ' &bull; ' + q.level + '</span>' +
-                        '</div>' +
-                        '<div class="rv-card-syllabus-badge">' +
-                            '<span class="unit-notes-tag">' + q.unit + ': ' + (q.subtopicName || q.unitName) + '</span>' +
+                            '<span class="rv-q-origin">' + (q.origin || 'IB CS Specimen') + ' &bull; Paper ' + q.paper + ' &bull; ' + q.level + (isSynoptic ? ' &bull; Synoptic (' + qUnits.join(' & ') + ')' : '') + '</span>' +
                         '</div>' +
                     '</div>';
 
-            // Card Meta & Actions Row (Clean SVG Action Buttons)
+            // Card Meta & Actions Row (Clean SVG Action Buttons with Multi-Unit Badges)
             html += '<div class="rv-card-bar">' +
                         '<div class="rv-card-tags">' +
+                            unitPillsHtml +
                             '<span class="rv-tag rv-tag-format">' + q.format + '</span>' +
-                            '<span class="rv-tag rv-tag-subtopic">' + q.subtopicCode + '</span>' +
+                            '<a href="' + subtopicHash + '" class="rv-tag rv-tag-subtopic" target="_blank" rel="noopener" title="View outcome statements in syllabus" style="text-decoration:none; color:inherit;">' + q.subtopicCode + '</a>' +
                             '<span class="rv-tag rv-tag-diff ' + diffClass + '">' +
                                 '<span class="diff-dot"></span>' + q.difficulty +
                             '</span>' +

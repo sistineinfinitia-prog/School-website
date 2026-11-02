@@ -1,0 +1,321 @@
+{
+  "scenario": {
+    "year": 2027,
+    "title": "Generative AI for Image Creation",
+    "subtitle": "A diffuse vision — Visionary Studios, technical generative architectures & Paper 1 Section B exam preparation.",
+    "company": "Visionary Studios",
+    "companyType": "Commercial creative design agency",
+    "assessment": "Paper 1, Section B (Replaces old HL Paper 3 case study format)",
+    "markAllocation": "SL 12 Marks • HL 24 Marks (SL: ~20 mins | HL: ~40 mins)",
+    "coreArchitectures": "Diffusion, GANs, Hybrids (DDPM, VAE, U-Net, CLIP, WGAN-GP)",
+    "lead": "Visionary Studios, a premier creative design agency, is evaluating state-of-the-art generative artificial intelligence to revolutionize the production of high-fidelity advertising campaigns, concept art, and digital assets. This comprehensive dossier covers the technical mechanics of diffusion models, generative adversarial networks (GANs), hybrid architectures, evaluation metrics, and copyright governance for IB DP Computer Science Paper 1 Section B.",
+    "pipeline": [
+      {
+        "phase": 1,
+        "name": "Concept Ideation",
+        "badge": "Ideation",
+        "description": "Art directors input text prompts into CLIP-conditioned diffusion models to generate rapid visual mood boards and thematic exploration drafts."
+      },
+      {
+        "phase": 2,
+        "name": "Client Review Drafting",
+        "badge": "Fast Drafting",
+        "description": "Designers utilize accelerated DDIM schedulers in latent space (20–40 steps) to produce interactive iterations in 2–4 seconds during live client meetings."
+      },
+      {
+        "phase": 3,
+        "name": "High-DPI Upscaling",
+        "badge": "Super-Res",
+        "description": "Approved drafts pass through a hybrid perceptual super-resolution GAN or latent decoder pass to restore micro-textures, typography, and edge sharpness for print."
+      },
+      {
+        "phase": 4,
+        "name": "Legal Clearance & C2PA",
+        "badge": "Governance",
+        "description": "Assets undergo perceptual deduplication against copyrighted databases and are stamped with cryptographically verifiable C2PA provenance credentials."
+      }
+    ]
+  },
+  "challenges": [
+    {
+      "id": "challenge-1",
+      "number": 1,
+      "title": "Challenge 1: Iterative Denoising & Compute Demands",
+      "level": "SL & HL",
+      "lead": "Managing the multi-step reverse denoising process in diffusion models and resolving the severe latency and GPU computational demands required to synthesize client-ready photorealistic visuals.",
+      "technicalMechanics": "Forward diffusion progressively adds Gaussian noise across T=1000 steps according to variance schedule beta_t. Reverse denoising requires executing a parameterized U-Net neural network at every single step, creating an inference bottleneck of ~45s per image.",
+      "optimizationSolutions": "Employing non-Markovian deterministic schedulers (such as DDIM) slashes sampling to 20–50 steps (2–4 seconds) without retraining.",
+      "equations": [
+        "q(x_t | x_{t-1}) = N(x_t; sqrt(1 - beta_t) * x_{t-1}, beta_t * I)",
+        "q(x_t | x_0) = N(x_t; sqrt(alpha_bar_t) * x_0, (1 - alpha_bar_t) * I)"
+      ],
+      "guidingQuestions": [
+        "Why does reverse diffusion create a computational bottleneck during inference?",
+        "How do deterministic schedulers like DDIM reduce inference latency without retraining?"
+      ]
+    },
+    {
+      "id": "challenge-2",
+      "number": 2,
+      "title": "Challenge 2: Dataset Curation, Copyright & Bias",
+      "level": "SL & HL",
+      "lead": "Safeguarding against intellectual property infringement from scraping online artists, navigating commercial client IP indemnity liabilities, and mitigating demographic and cultural representation bias in training corpora.",
+      "technicalMechanics": "Models can memorize and regurgitate trademarked elements or artist-distinctive styles (substantial similarity). Commercial contracts require explicit IP warranties and indemnification against copyright lawsuits.",
+      "optimizationSolutions": "Enforce curated training sets with documented chain-of-title, perceptual image deduplication, cryptographic C2PA provenance watermarking, and demographic auditing.",
+      "equations": [],
+      "guidingQuestions": [
+        "What legal liabilities arise if training data contains copyrighted artistic works without licenses?",
+        "How does C2PA cryptographic provenance protect agency and client intellectual property?"
+      ]
+    },
+    {
+      "id": "challenge-3",
+      "number": 3,
+      "title": "Challenge 3: GAN Generator vs. Discriminator Equilibrium",
+      "level": "HL Only",
+      "lead": "Balancing the zero-sum adversarial minimax game between generator and discriminator networks in GANs, eliminating vanishing gradients, and preventing debilitating mode collapse during advertising texture synthesis.",
+      "technicalMechanics": "Generator maps noise vector z to synthetic images trying to minimize log(1 - D(G(z))). Discriminator maximizes log D(x) + log(1 - D(G(z))). If D overpowers G, gradients vanish; if G exploits a loophole, mode collapse occurs.",
+      "optimizationSolutions": "Wasserstein GAN with Gradient Penalty (WGAN-GP) uses Earth Mover's Distance and 1-Lipschitz continuity to ensure smooth, non-vanishing gradient flow throughout training.",
+      "equations": [
+        "min_G max_D V(D, G) = E_{x ~ p_data}[log D(x)] + E_{z ~ p_z}[log(1 - D(G(z)))]"
+      ],
+      "guidingQuestions": [
+        "Why do standard GANs suffer from vanishing gradients when the discriminator becomes too accurate?",
+        "What is mode collapse and why is it critical in commercial advertising?"
+      ]
+    },
+    {
+      "id": "challenge-4",
+      "number": 4,
+      "title": "Challenge 4: Hybrid Architecture Optimization",
+      "level": "HL Only",
+      "lead": "Evaluating how hybrid architectures (combining Variational Autoencoders [VAEs], flow-based models, GANs, and diffusion) can trade off perceptual compression, generation speed, and structural detail fidelity.",
+      "technicalMechanics": "Pure pixel-space diffusion is unsustainable at 4K resolution. Latent Diffusion Models (LDM) compress pixels with a VAE encoder by 8x spatial factor, run diffusion in the 64x smaller latent space, and decode back to pixels.",
+      "optimizationSolutions": "Benchmarking candidate models using Fréchet Inception Distance (FID) to quantify distribution similarity against real commercial assets, avoiding the shortcomings of Inception Score (IS).",
+      "equations": [],
+      "guidingQuestions": [
+        "How does decoupling perceptual compression from semantic generation optimize compute in Latent Diffusion?",
+        "Why is FID superior to Inception Score for evaluating commercial image generation?"
+      ]
+    }
+  ],
+  "architectures": {
+    "ddpm": {
+      "name": "Denoising Diffusion Probabilistic Models (DDPM)",
+      "forwardProcess": "Starting from an original clean image x_0, Gaussian noise is incrementally added over T discrete timesteps (commonly T = 1000) according to variance schedule beta_1..beta_T. Closed-form shortcut allows direct sampling of any state x_t without step-by-step simulation.",
+      "reverseProcess": "Begins with pure isotropic Gaussian noise x_T ~ N(0, I) and sequentially denoises it backward step-by-step using a trained U-Net to recover x_0.",
+      "trainingLoss": "L_simple(theta) = E_{t, x_0, epsilon} [ || epsilon - epsilon_theta(x_t, t) ||^2 ]",
+      "bottleneckReason": "Reverse sampling is strictly sequential. Executing 1,000 U-Net forward passes takes up to 45s per 1024x1024 image on workstation GPUs.",
+      "schedulers": {
+        "ddim": "Non-Markovian deterministic sampling sharing DDPM training objective, reducing steps to 20–50 and latency to 2.5s."
+      },
+      "conditioning": {
+        "clip": "Contrastive Language-Image Pretraining text encoder maps prompts into high-dimensional embeddings injected into U-Net intermediate layers via cross-attention (Q from visual feature maps, K and V from text embeddings)."
+      }
+    },
+    "gans": {
+      "name": "Generative Adversarial Networks (GANs)",
+      "gameDynamic": "Two-player zero-sum minimax optimization between Generator G (mapping latent noise z to synthetic images) and Discriminator D (classifying authentic from synthetic).",
+      "failureModes": {
+        "modeCollapse": "Generator outputs only a narrow subset of realistic images that fools the Discriminator, ruining campaign diversity.",
+        "vanishingGradients": "When Discriminator becomes too optimal, log(1 - D(G(z))) saturates and gradients vanish, halting Generator learning."
+      },
+      "stabilization": {
+        "wganGp": "Replaces Jensen-Shannon divergence with Earth Mover's Distance (Wasserstein metric) and enforces 1-Lipschitz continuity via gradient penalty."
+      }
+    },
+    "hybrids": {
+      "name": "Latent Diffusion Models (LDM)",
+      "stages": [
+        {
+          "stage": 1,
+          "name": "VAE Encoder (E)",
+          "role": "Perceptual Compression",
+          "details": "Compresses high-resolution pixel space (H x W x 3) by an 8x spatial factor into a compact latent space (h x w x c), removing imperceptible high-frequency noise."
+        },
+        {
+          "stage": 2,
+          "name": "Latent Diffusion",
+          "role": "Semantic Generation",
+          "details": "Iterative noise addition and U-Net denoising occur strictly in the 64x smaller latent space, conditioned on CLIP text embeddings."
+        },
+        {
+          "stage": 3,
+          "name": "VAE Decoder (D)",
+          "role": "Image Reconstruction",
+          "details": "Reconstructs denoised latent vector back into high-resolution pixel space with patch-based discriminator loss ensuring sharp textures."
+        }
+      ]
+    },
+    "evaluation": {
+      "is": {
+        "name": "Inception Score (IS)",
+        "type": "Reference-Free",
+        "description": "Evaluates synthetic images using Inception-v3 classifier. Measures sharpness via low conditional entropy and diversity via high marginal entropy. Does not compare with real reference images and cannot detect mode collapse if outputs are sharp.",
+        "direction": "Higher is better"
+      },
+      "fid": {
+        "name": "Fréchet Inception Distance (FID)",
+        "type": "Reference-Based (Gold Standard)",
+        "description": "Extracts deep feature representations from Inception-v3 for both real and generated datasets, fitting multivariate Gaussian distributions (mu, Sigma) and calculating Wasserstein-2 distance. Penalizes distribution mismatch and mode collapse.",
+        "direction": "Lower is better (0 is identical)"
+      }
+    },
+    "governance": {
+      "copyright": "Scraping unverified art exposes agencies to copyright infringement lawsuits (substantial similarity, model memorization). Demands clean chain-of-title, commercially licensed training data, and IP indemnity warranties.",
+      "provenance": "Embedding cryptographically signed Coalition for Content Provenance and Authenticity (C2PA) watermarks to certify AI origin and attribution.",
+      "biasAuditing": "Demographic and cultural audits to identify and eliminate systematic stereotyping in advertising visual generation."
+    }
+  },
+  "glossary": {
+    "DDPM": "Denoising Diffusion Probabilistic Model: A generative deep learning framework that models data generation as the reverse of a progressive Gaussian noise injection Markov chain.",
+    "Diffusion Model": "A class of generative models that learns to recover target data by estimating and subtracting injected noise across parameterized discrete timesteps.",
+    "Noise Injection": "The deliberate, scheduled addition of Gaussian noise to an image tensor over timesteps t during the forward diffusion process.",
+    "Denoising": "The algorithmic estimation and removal of injected noise from a corrupted input representation, performed by a parameterized neural network (typically a U-Net).",
+    "Conditional Generation": "Image generation guided by explicit external constraints, such as natural language text prompts, class category labels, segmentation depth maps, or edge sketches.",
+    "Unconditional Generation": "Generating novel samples purely from learned data distribution statistics without any external guiding prompts or class conditions.",
+    "Text-to-Image Generation": "Synthesizing coherent spatial imagery conditioned on textual descriptions using multimodal semantic cross-attention embeddings (e.g. CLIP).",
+    "Image-to-Image Translation": "Transforming an existing source visual representation into a target artistic style or domain while preserving underlying spatial geometry.",
+    "Embedding-based Approach": "Mapping discrete words or visual patches into a continuous, dense, semantic vector space where distance corresponds to contextual conceptual similarity.",
+    "Dataset Curation": "Systematically filtering, balancing, deduplicating, and auditing training data to ensure copyright compliance, artist permission, and representational fairness.",
+    "Bias Mitigation": "Active algorithmic and statistical measures designed to identify and eliminate systematic skew, prejudice, or demographic stereotyping in AI generation.",
+    "Character Consistency": "Preserving identical facial identity, attire, proportions, and lighting of a subject across multiple distinct generated camera angles and scenes.",
+    "CNN": "Convolutional Neural Network: A specialized deep architecture using spatial kernels with translation invariance, widely utilized in early computer vision and GAN discriminators.",
+    "GAN": "Generative Adversarial Network: A two-player zero-sum minimax framework where a Generator and Discriminator compete against each other to produce synthetic outputs.",
+    "Generator & Discriminator": "The two networks in a GAN: the Generator synthesizes fake samples from random noise, while the Discriminator acts as a binary classifier discerning real from fake.",
+    "Adversarial Dynamic": "The continuous competitive optimization dynamic between Generator and Discriminator, converging ideally toward a Nash equilibrium where the discriminator cannot distinguish authentic from synthetic data.",
+    "Mode Collapse": "A severe failure mode in GAN training where the Generator outputs only a narrow subset of realistic images that fools the Discriminator, ignoring the variety of the true dataset distribution.",
+    "Latent Space": "A compressed, lower-dimensional manifold representation where high-dimensional data (e.g. 1024x1024 images) is compactly encoded while retaining core perceptual semantics.",
+    "VAE": "Variational Autoencoder: A probabilistic generative architecture that encodes input data into a parameterized latent Gaussian distribution and reconstructs it via a decoder.",
+    "Hybrid Model": "An architectural fusion combining distinct generative approaches (such as VAE perceptual compression + latent diffusion + GAN perceptual patch loss) to maximize fidelity while minimizing compute.",
+    "Flow-based Model": "An exact-likelihood generative architecture utilizing invertible transformations with tractable Jacobian determinants to map directly between data and latent spaces.",
+    "FID": "Fréchet Inception Distance: The gold standard metric evaluating synthetic imagery by calculating the Wasserstein-2 distance between Gaussian feature distributions of real and fake images in deep feature space. Lower is better.",
+    "Inception Score": "An early generative metric measuring conditional class confidence (sharpness) and marginal distribution entropy (diversity) on synthetic images alone, without reference to real images. Higher is better."
+  },
+  "mediaAndResources": {
+    "masterclassVideo": {
+      "title": "Comprehensive 1-Hour Talk: 2027 IB Computer Science Case Study",
+      "youtubeId": "QT4Gkni0aJc",
+      "embedUrl": "https://www.youtube-nocookie.com/embed/QT4Gkni0aJc?enablejsapi=1",
+      "duration": "1:02:15",
+      "chapters": [
+        {
+          "seconds": 0,
+          "timestamp": "00:00",
+          "title": "Case Study Overview & Syllabus Transition",
+          "description": "How the new 2027 syllabus integrates the Case Study into Paper 1 Section B."
+        },
+        {
+          "seconds": 330,
+          "timestamp": "05:30",
+          "title": "Visionary Studios: Scenario & Business Context",
+          "description": "Commercial advertising, digital concept art, and high-DPI asset pipelines."
+        },
+        {
+          "seconds": 860,
+          "timestamp": "14:20",
+          "title": "Forward & Reverse Diffusion Deep-Dive",
+          "description": "Markov chains, Gaussian noise scheduling, U-Net architecture, and DDPM loss."
+        },
+        {
+          "seconds": 1510,
+          "timestamp": "25:10",
+          "title": "Text Conditioning with CLIP & Fast Schedulers",
+          "description": "Cross-attention mechanics, prompt steering, and accelerating sampling with DDIM."
+        },
+        {
+          "seconds": 2320,
+          "timestamp": "38:40",
+          "title": "GANs: Adversarial Dynamics & Mode Collapse (HL)",
+          "description": "Minimax objective, generator vs discriminator balance, and WGAN-GP stabilization."
+        },
+        {
+          "seconds": 2895,
+          "timestamp": "48:15",
+          "title": "Hybrid Latent Diffusion Models & FID Metrics (HL)",
+          "description": "VAE perceptual compression, latent space diffusion, and Fréchet Inception Distance."
+        },
+        {
+          "seconds": 3360,
+          "timestamp": "56:00",
+          "title": "Paper 1 Section B Strategy & 12-Mark Response Criteria",
+          "description": "Deconstructing command terms, synthesizing recommendations, and mark scheme keys."
+        }
+      ]
+    },
+    "officialBooklet": {
+      "title": "Official 2027 IB Computer Science Case Study Booklet",
+      "fileUrl": "resources/Curriculum/2027-Case-Study-Generative-AI-Image-Creation.pdf",
+      "fileSize": "3.4 MB",
+      "pageCount": 8,
+      "sitemap": [
+        {
+          "pages": "1–2",
+          "content": "Cover & Instructions"
+        },
+        {
+          "pages": "3",
+          "content": "Introduction, Scenario & Generative Techniques"
+        },
+        {
+          "pages": "4",
+          "content": "Diffusion Models & DDPM"
+        },
+        {
+          "pages": "5",
+          "content": "GANs & Hybrid Models (HL)"
+        },
+        {
+          "pages": "6",
+          "content": "Evaluation & Ethical Considerations"
+        },
+        {
+          "pages": "7",
+          "content": "Challenges Faced (SL & HL)"
+        },
+        {
+          "pages": "8",
+          "content": "Official Additional Terminology Bank"
+        }
+      ]
+    }
+  },
+  "examStrategy": {
+    "overview": {
+      "sl": {
+        "marks": 12,
+        "timeMins": 20,
+        "scope": "2 Scenario Challenges (Challenges 1 & 2)"
+      },
+      "hl": {
+        "marks": 24,
+        "timeMins": 40,
+        "scope": "4 Scenario Challenges (Challenges 1–4) + 12-mark evaluation climax"
+      }
+    },
+    "commandTerms": [
+      {
+        "term": "Explain / Outline",
+        "marks": "2–4 Marks",
+        "guidance": "Provide clear cause-and-effect reasoning. Link mathematical properties directly to visual outcomes."
+      },
+      {
+        "term": "Compare / Contrast",
+        "marks": "4–6 Marks",
+        "guidance": "Structure systematically with comparison axes (computational complexity, reference reliance, artifact sensitivity)."
+      },
+      {
+        "term": "Evaluate / Discuss",
+        "marks": "12 Marks",
+        "guidance": "Balanced assessment: present both compelling advantages and tangible limitations, finishing with a justified, synthesized operational recommendation for Visionary Studios."
+      }
+    ],
+    "linkedQuestionIds": [
+      "q-cs-2027-1",
+      "q-cs-2027-2",
+      "q-cs-2027-3",
+      "q-cs-2027-4",
+      "q-cs-2027-5"
+    ]
+  }
+}

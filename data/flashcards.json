@@ -160,13 +160,233 @@
     "example": "Used in the call stack for managing function execution and recursion frames."
   },
   {
-    "id": "fc-17",
+    "id": "fc-cs-1",
     "unit": "CS",
-    "unitName": "HL Case Study",
+    "unitName": "2027 Case Study: Generative AI",
     "theme": "CaseStudy",
-    "term": "Edge Computing",
-    "definition": "A distributed computing paradigm that brings computation and data storage closer to the location where it is needed (e.g. onboard vehicles), minimizing bandwidth use and latency.",
+    "term": "DDPM",
+    "definition": "Denoising Diffusion Probabilistic Model: A generative deep learning framework that models data generation as the reverse of a progressive Gaussian noise injection Markov chain.",
+    "level": "SL/HL",
+    "example": "Visionary Studios art directors use DDPM to synthesize initial photorealistic campaign concepts from pure Gaussian noise."
+  },
+  {
+    "id": "fc-cs-2",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "Diffusion Model",
+    "definition": "A class of generative models that learns to recover target data by estimating and subtracting injected noise across parameterized discrete timesteps.",
+    "level": "SL/HL",
+    "example": "Used for high-fidelity text-to-image synthesis by iteratively denoising Gaussian noise tensors over T=1000 timesteps."
+  },
+  {
+    "id": "fc-cs-3",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "Noise Injection",
+    "definition": "The deliberate, scheduled addition of Gaussian noise to an image tensor over timesteps t during the forward diffusion process.",
+    "level": "SL/HL",
+    "example": "At timestep T=1000 in the variance schedule βt, the original graphic x0 is transformed into isotropic Gaussian noise."
+  },
+  {
+    "id": "fc-cs-4",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "Denoising",
+    "definition": "The algorithmic estimation and removal of injected noise from a corrupted input representation, performed by a parameterized neural network (typically a U-Net).",
+    "level": "SL/HL",
+    "example": "The U-Net predicts the exact noise vector εθ added at timestep t, subtracting it from xt to recover xt-1."
+  },
+  {
+    "id": "fc-cs-5",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "Conditional Generation",
+    "definition": "Image generation guided by explicit external constraints, such as natural language text prompts, class category labels, segmentation depth maps, or edge sketches.",
+    "level": "SL/HL",
+    "example": "Conditioning synthesis on 'luxury watch in minimalist marble studio' via cross-attention token embeddings."
+  },
+  {
+    "id": "fc-cs-6",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "Unconditional Generation",
+    "definition": "Generating novel samples purely from learned data distribution statistics without any external guiding prompts or class conditions.",
+    "level": "SL/HL",
+    "example": "Sampling randomly from isotropic Gaussian noise to generate diverse unguided landscape visuals."
+  },
+  {
+    "id": "fc-cs-7",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "Text-to-Image Generation",
+    "definition": "Synthesizing coherent spatial imagery conditioned on textual descriptions using multimodal semantic cross-attention embeddings (e.g. CLIP).",
+    "level": "SL/HL",
+    "example": "Translating natural language advertising copy into high-fidelity concept storyboard assets for Visionary Studios."
+  },
+  {
+    "id": "fc-cs-8",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "Image-to-Image Translation",
+    "definition": "Transforming an existing source visual representation into a target artistic style or domain while preserving underlying spatial geometry.",
+    "level": "SL/HL",
+    "example": "Converting rough client hand-sketched wireframes into photorealistic rendered product mockups."
+  },
+  {
+    "id": "fc-cs-9",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "Embedding-based Approach",
+    "definition": "Mapping discrete words or visual patches into a continuous, dense, semantic vector space where distance corresponds to contextual conceptual similarity.",
+    "level": "SL/HL",
+    "example": "A CLIP text encoder converts prompt tokens into 768-dimensional normalized directional vectors."
+  },
+  {
+    "id": "fc-cs-10",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "Dataset Curation",
+    "definition": "Systematically filtering, balancing, deduplicating, and auditing training data to ensure copyright compliance, artist permission, and representational fairness.",
+    "level": "SL/HL",
+    "example": "Visionary Studios audits image corpora to remove scraped uncredited artist portfolios and prevent IP infringement."
+  },
+  {
+    "id": "fc-cs-11",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "Bias Mitigation",
+    "definition": "Active algorithmic and statistical measures designed to identify and eliminate systematic skew, prejudice, or demographic stereotyping in AI generation.",
+    "level": "SL/HL",
+    "example": "Balancing training sets across demographic and cultural axes so generated professional roles avoid historical societal skew."
+  },
+  {
+    "id": "fc-cs-12",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "Character Consistency",
+    "definition": "Preserving identical facial identity, attire, proportions, and lighting of a subject across multiple distinct generated camera angles and scenes.",
+    "level": "SL/HL",
+    "example": "Using identity embeddings or LoRA adaptations to keep the same brand ambassador consistent across a multi-ad rollout."
+  },
+  {
+    "id": "fc-cs-13",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "CNN",
+    "definition": "Convolutional Neural Network: A specialized deep architecture using spatial kernels with translation invariance, widely utilized in computer vision and GAN discriminators.",
     "level": "HL",
-    "example": "Processing autonomous LiDAR obstacle telemetry locally on a car rather than round-tripping to cloud servers."
+    "example": "Feature extraction layers in the Inception-v3 classifier used to extract deep perceptual feature maps for FID calculations."
+  },
+  {
+    "id": "fc-cs-14",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "GAN",
+    "definition": "Generative Adversarial Network: A two-player zero-sum minimax framework where a Generator and Discriminator compete against each other to produce synthetic outputs.",
+    "level": "HL",
+    "example": "Using an adversarial discriminator patch loss to force super-resolution upscalers to produce photorealistic fine micro-textures."
+  },
+  {
+    "id": "fc-cs-15",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "Generator & Discriminator",
+    "definition": "The two competing networks in a GAN: the Generator synthesizes fake samples from random noise, while the Discriminator acts as a binary classifier discerning real from fake.",
+    "level": "HL",
+    "example": "Generator minimizes log(1 - D(G(z))) while Discriminator maximizes log D(x) + log(1 - D(G(z)))."
+  },
+  {
+    "id": "fc-cs-16",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "Adversarial Dynamic",
+    "definition": "The continuous competitive optimization dynamic between Generator and Discriminator, converging toward a Nash equilibrium where the discriminator cannot distinguish authentic from synthetic data.",
+    "level": "HL",
+    "example": "Both networks improve simultaneously until discriminator accuracy hovers at random guessing (D(x) = 0.5)."
+  },
+  {
+    "id": "fc-cs-17",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "Mode Collapse",
+    "definition": "A severe failure mode in GAN training where the Generator outputs only a narrow subset of realistic images that fools the Discriminator, ignoring the variety of the true dataset distribution.",
+    "level": "HL",
+    "example": "Synthesizing only one specific car angle repeatedly across all vehicle prompts, destroying advertising campaign diversity."
+  },
+  {
+    "id": "fc-cs-18",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "Latent Space",
+    "definition": "A compressed, lower-dimensional manifold representation where high-dimensional data (e.g. 1024x1024 images) is compactly encoded while retaining core perceptual semantics.",
+    "level": "HL",
+    "example": "Compressing an image from 1024x1024x3 down to a 128x128x4 latent tensor to execute diffusion with 64x less computation."
+  },
+  {
+    "id": "fc-cs-19",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "VAE",
+    "definition": "Variational Autoencoder: A probabilistic generative architecture that encodes input data into a parameterized latent Gaussian distribution and reconstructs it via a decoder.",
+    "level": "HL",
+    "example": "The VAE encoder strips imperceptible high-frequency pixel noise before latent diffusion, while the decoder reconstructs crisp pixels."
+  },
+  {
+    "id": "fc-cs-20",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "Hybrid Model",
+    "definition": "An architectural fusion combining distinct generative approaches (such as VAE perceptual compression + latent diffusion + GAN perceptual patch loss) to maximize fidelity while minimizing compute.",
+    "level": "HL",
+    "example": "Latent Diffusion Models (LDM) marry VAE compression with U-Net score-based denoising to achieve fast, high-DPI generation."
+  },
+  {
+    "id": "fc-cs-21",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "Flow-based Model",
+    "definition": "An exact-likelihood generative architecture utilizing invertible transformations with tractable Jacobian determinants to map directly between data and latent spaces.",
+    "level": "HL",
+    "example": "Provides exact log-likelihood calculation and bijective mapping between pixel space and latent vectors without approximation."
+  },
+  {
+    "id": "fc-cs-22",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "FID",
+    "definition": "Fréchet Inception Distance: The gold standard metric evaluating synthetic imagery by calculating the Wasserstein-2 distance between Gaussian feature distributions of real and fake images in deep feature space. Lower is better.",
+    "level": "HL",
+    "example": "Visionary Studios measures FID against client reference photos; lower scores confirm high visual fidelity and diverse outputs."
+  },
+  {
+    "id": "fc-cs-23",
+    "unit": "CS",
+    "unitName": "2027 Case Study: Generative AI",
+    "theme": "CaseStudy",
+    "term": "Inception Score",
+    "definition": "An early generative metric measuring conditional class confidence (sharpness) and marginal distribution entropy (diversity) on synthetic images alone, without reference to real images. Higher is better.",
+    "level": "HL",
+    "example": "Unable to detect mode collapse when generated outputs are sharp, making it inferior to FID for commercial quality assurance."
   }
 ]

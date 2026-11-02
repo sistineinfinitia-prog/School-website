@@ -15,17 +15,51 @@
 }(typeof self !== 'undefined' ? self : this, function (State) {
     'use strict';
 
-    var SYLLABUS_UNITS = [
-        { code: 'A1', name: 'Computer Fundamentals', theme: 'A' },
-        { code: 'A2', name: 'Networks', theme: 'A' },
-        { code: 'A3', name: 'Databases', theme: 'A' },
-        { code: 'A4', name: 'Machine Learning', theme: 'A' },
-        { code: 'B1', name: 'Computational Thinking', theme: 'B' },
-        { code: 'B2', name: 'Programming', theme: 'B' },
-        { code: 'B3', name: 'Object-Oriented Programming', theme: 'B' },
-        { code: 'B4', name: 'Abstract Data Types', theme: 'B' },
-        { code: 'CS', name: '2027 Case Study (Paper 1 Section B)', theme: 'CaseStudy' }
-    ];
+    function getBuilderSyllabusUnits() {
+        if (typeof window !== 'undefined' && window.DataService && typeof window.DataService.getSyllabus === 'function') {
+            var raw = window.DataService.getSyllabus();
+            if (Array.isArray(raw) && raw.length > 0) {
+                var units = raw.map(function (u) {
+                    return {
+                        code: u.code,
+                        name: u.name,
+                        theme: (u.theme && u.theme.indexOf('Theme A') !== -1) ? 'A' : 'B'
+                    };
+                });
+                if (!units.some(function (u) { return u.code === 'CS'; })) {
+                    units.push({ code: 'CS', name: '2027 Case Study (Paper 1 Section B)', theme: 'CaseStudy' });
+                }
+                return units;
+            }
+        }
+        return [
+            { code: 'A1', name: 'Computer Fundamentals', theme: 'A' },
+            { code: 'A2', name: 'Networks', theme: 'A' },
+            { code: 'A3', name: 'Databases', theme: 'A' },
+            { code: 'A4', name: 'Machine Learning', theme: 'A' },
+            { code: 'B1', name: 'Computational Thinking', theme: 'B' },
+            { code: 'B2', name: 'Programming', theme: 'B' },
+            { code: 'B3', name: 'Object-Oriented Programming', theme: 'B' },
+            { code: 'B4', name: 'Abstract Data Types', theme: 'B' },
+            { code: 'CS', name: '2027 Case Study (Paper 1 Section B)', theme: 'CaseStudy' }
+        ];
+    }
+    var SYLLABUS_UNITS = getBuilderSyllabusUnits();
+
+    // Helper: Normalize question units array for single or multi-unit questions (Supports multiple syllabus units e.g. A3 & A4)
+    function getQuestionUnits(q) {
+        if (!q) return [];
+        if (Array.isArray(q.units) && q.units.length > 0) {
+            return q.units.map(function (u) { return String(u).trim().toUpperCase(); });
+        }
+        if (Array.isArray(q.unit) && q.unit.length > 0) {
+            return q.unit.map(function (u) { return String(u).trim().toUpperCase(); });
+        }
+        if (typeof q.unit === 'string') {
+            return q.unit.split(/[,/&+]+/).map(function (s) { return s.trim().toUpperCase(); }).filter(Boolean);
+        }
+        return ['A1'];
+    }
 
     var Builder = {
         allQuestions: [],
@@ -287,8 +321,10 @@
                 if (self.config.level === 'sl' && q.level === 'HL') return false;
                 if (self.config.level === 'hl' && q.level === 'SL') return false;
 
+                var qUnits = getQuestionUnits(q);
                 if (self.config.selectedUnits.length > 0) {
-                    if (self.config.selectedUnits.indexOf(q.unit) === -1) return false;
+                    var matchesAny = qUnits.some(function (u) { return self.config.selectedUnits.indexOf(u) !== -1; });
+                    if (!matchesAny) return false;
                 }
 
                 if (self.config.papers.length > 0) {
@@ -416,10 +452,12 @@
             if (qList) {
                 qList.innerHTML = '';
                 t.questions.forEach(function (q, i) {
+                    var qUnits = getQuestionUnits(q);
+                    var unitDisplay = (qUnits.length > 1 ? qUnits.join(' & ') : (q.unit || 'A1'));
                     var li = document.createElement('li');
                     li.className = 'tb-preview-qitem';
                     li.innerHTML = '<span class="qitem-num">Q' + (i + 1) + '</span>' +
-                                   '<span class="qitem-unit">' + q.unit + ': ' + q.subtopicCode + '</span>' +
+                                   '<span class="qitem-unit">' + unitDisplay + ': ' + q.subtopicCode + '</span>' +
                                    '<span class="qitem-prompt">' + q.prompt.substring(0, 75) + '...</span>' +
                                    '<span class="qitem-mark">[' + q.marks + 'm]</span>';
                     qList.appendChild(li);
@@ -480,9 +518,11 @@
             var q = r.test.questions[r.currentIndex];
             if (!q) return;
 
+            var qUnits = getQuestionUnits(q);
+            var unitDisplay = (qUnits.length > 1 ? qUnits.join(' & ') : (q.unit || 'A1'));
             document.getElementById('runner-q-indicator').textContent = 'Question ' + (r.currentIndex + 1) + ' of ' + r.test.questions.length;
             document.getElementById('runner-q-marks').textContent = '[' + q.marks + ' Marks]';
-            document.getElementById('runner-q-unit').textContent = q.unit + ': ' + (q.subtopicName || q.unitName);
+            document.getElementById('runner-q-unit').textContent = unitDisplay + ': ' + (q.subtopicName || q.unitName);
             document.getElementById('runner-q-prompt').innerHTML = q.prompt.replace(/\n/g, '<br>');
 
             var codeBox = document.getElementById('runner-code-wrap');
@@ -667,9 +707,11 @@
                 '</div>';
 
             test.questions.forEach(function (q, i) {
+                var qUnits = getQuestionUnits(q);
+                var unitDisplay = (qUnits.length > 1 ? qUnits.join(' & ') : (q.unit || 'A1'));
                 html += '<div class="question-block">' +
                     '<div class="q-head">' +
-                    '<span>Question ' + (i + 1) + ' [' + q.unit + ': ' + q.subtopicCode + ']</span>' +
+                    '<span>Question ' + (i + 1) + ' [' + unitDisplay + ': ' + q.subtopicCode + ']</span>' +
                     '<span>[' + q.marks + ' Marks]</span>' +
                     '</div>' +
                     '<div class="q-prompt">' + q.prompt.replace(/\n/g, '<br>') + '</div>';

@@ -1,6 +1,7 @@
 /**
  * home-sync.js - Dynamic Live Sync for Revamped Homepage
- * Syncs deadlines, announcements, hero countdown capsule, and question of the day.
+ * Unified with DataService for offline-first caching, Firebase RTDB sync,
+ * hero alert banner, dynamic QOTD, deadlines, and announcements.
  * Clean, uncluttered, and strictly aligned with the Zen Atelier design system.
  */
 
@@ -41,14 +42,56 @@ function escapeHtml(str) {
         .replace(/'/g, '&#039;');
 }
 
+// 0. Sync Hero Alert Banner from DataService Settings
+function syncHeroBanner() {
+    const heroSection = document.querySelector('.home-hero');
+    if (!heroSection) return;
+
+    let bannerEl = document.getElementById('home-hero-alert-banner');
+    const settings = window.DataService ? window.DataService.getSettings() : null;
+    const banner = settings ? settings.heroBanner : null;
+    const isEnabled = window.DataService ? window.DataService.isFeatureEnabled('heroBanner') : false;
+
+    if (!banner || !banner.enabled || !isEnabled) {
+        if (bannerEl) bannerEl.remove();
+        return;
+    }
+
+    if (!bannerEl) {
+        bannerEl = document.createElement('div');
+        bannerEl.id = 'home-hero-alert-banner';
+        bannerEl.className = 'home-hero-banner';
+        bannerEl.style.cssText = 'margin-bottom: 22px; display: inline-flex; align-items: center; gap: 10px; background: var(--surface-elevated); border: 1px solid var(--accent); padding: 8px 18px; border-radius: 9999px; font-size: 0.85rem; max-width: 100%; box-shadow: 0 4px 14px rgba(0,0,0,0.06); text-decoration: none; color: var(--text); flex-wrap: wrap; justify-content: center;';
+        heroSection.insertBefore(bannerEl, heroSection.firstChild);
+    } else {
+        bannerEl.style.display = 'inline-flex';
+    }
+
+    const badge = banner.badge || 'Notice';
+    const text = banner.text || '';
+    const link = banner.link || 'pages/deadlines.html';
+    const linkText = banner.linkText || 'Details &rarr;';
+
+    bannerEl.innerHTML = `
+        <span class="pill pill-accent" style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.04em;">${escapeHtml(badge)}</span>
+        <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:500px;">${escapeHtml(text)}</span>
+        <a href="${escapeHtml(link)}" style="color:var(--accent); font-weight:600; text-decoration:none; margin-left:4px; white-space:nowrap;">${linkText}</a>
+    `;
+}
+
 // 1. Sync Deadlines
 async function syncDeadlines() {
     const listEl = document.getElementById('home-deadlines-list');
 
     try {
-        const res = await fetch('data/deadlines.json', { cache: 'no-cache' });
-        if (!res.ok) return;
-        const deadlines = await res.json();
+        let deadlines = [];
+        if (window.DataService && typeof window.DataService.getDeadlines === 'function') {
+            deadlines = window.DataService.getDeadlines();
+        } else {
+            const res = await fetch('data/deadlines.json', { cache: 'no-cache' });
+            if (res.ok) deadlines = await res.json();
+        }
+
         if (!Array.isArray(deadlines) || deadlines.length === 0) return;
 
         // Sort by date ascending
@@ -96,10 +139,8 @@ async function syncDeadlines() {
                     countdownHtml = `<span class="countdown-badge ${isUrgent ? 'is-urgent' : ''}">${text}</span>`;
                 }
 
-                // Clean, non-cluttered concise subtitle (max 1-2 key topics or short description)
                 let subtitle = '';
                 if (item.topics && item.topics.length > 0) {
-                    // Just take top 2 topics max
                     subtitle = item.topics.slice(0, 2).map(t => {
                         const name = (t.name || t.code || '').split('(')[0].trim();
                         return name;
@@ -146,12 +187,37 @@ async function syncAnnouncements() {
     if (!listEl) return;
 
     try {
-        const res = await fetch('data/announcements.json', { cache: 'no-cache' });
-        if (!res.ok) return;
-        const posts = await res.json();
+        let posts = [];
+        if (window.DataService && typeof window.DataService.getAnnouncements === 'function') {
+            posts = window.DataService.getAnnouncements();
+        } else {
+            const res = await fetch('data/announcements.json', { cache: 'no-cache' });
+            if (res.ok) posts = await res.json();
+        }
+
         if (!Array.isArray(posts) || posts.length === 0) return;
 
-        const top3 = posts.slice(0, 3);
+        // Support teacher-chosen 3 homepage announcements from settings
+        const settings = window.DataService ? window.DataService.getSettings() : null;
+        let chosenPosts = [];
+        if (settings && Array.isArray(settings.featuredAnnouncements) && settings.featuredAnnouncements.length > 0) {
+            settings.featuredAnnouncements.forEach(id => {
+                const match = posts.find(p => p.id === id);
+                if (match && !chosenPosts.find(cp => cp.id === match.id)) chosenPosts.push(match);
+            });
+        }
+        if (chosenPosts.length === 0) {
+            const flagged = posts.filter(p => p.featured || p.showOnHome);
+            chosenPosts = flagged.length > 0 ? flagged.slice(0, 3) : posts.slice(0, 3);
+        }
+        if (chosenPosts.length < 3) {
+            posts.forEach(p => {
+                if (chosenPosts.length < 3 && !chosenPosts.find(cp => cp.id === p.id)) {
+                    chosenPosts.push(p);
+                }
+            });
+        }
+        const top3 = chosenPosts.slice(0, 3);
 
         const html = top3.map(post => {
             const { day, mon } = formatEventDate(post.date);
@@ -194,10 +260,22 @@ async function syncQuestionOfTheDay() {
     const qotdCard = document.getElementById('qotd-card');
     if (!qotdCard) return;
 
+    if (window.DataService && !window.DataService.isFeatureEnabled('qotd')) {
+        qotdCard.style.display = 'none';
+        return;
+    } else {
+        qotdCard.style.display = '';
+    }
+
     try {
-        const res = await fetch('data/questions.json', { cache: 'no-cache' });
-        if (!res.ok) return;
-        const questions = await res.json();
+        let questions = [];
+        if (window.DataService && typeof window.DataService.getQuestions === 'function') {
+            questions = window.DataService.getQuestions();
+        } else {
+            const res = await fetch('data/questions.json', { cache: 'no-cache' });
+            if (res.ok) questions = await res.json();
+        }
+
         if (!Array.isArray(questions) || questions.length === 0) return;
 
         // Pick question based on day of year for daily rotation
@@ -275,15 +353,184 @@ window.toggleMarkScheme = function (button) {
     }
 };
 
-// Initialize on DOM ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        syncDeadlines();
-        syncAnnouncements();
-        syncQuestionOfTheDay();
-    });
-} else {
+// Initialize and bind reactive subscriptions
+
+// 5. Dynamic Unread Badges for Deadlines & Resources
+function syncUnreadBadges() {
+    const deadlinesBadge = document.getElementById('badge-deadlines-unread');
+    const resourcesBadge = document.getElementById('badge-resources-unread');
+
+    // Deadlines & Announcements
+    if (deadlinesBadge) {
+        try {
+            let deadlines = [];
+            let announcements = [];
+            if (window.DataService) {
+                if (typeof window.DataService.getDeadlines === 'function') deadlines = window.DataService.getDeadlines() || [];
+                if (typeof window.DataService.getAnnouncements === 'function') announcements = window.DataService.getAnnouncements() || [];
+            }
+            const allItems = [...deadlines, ...announcements];
+            const allIds = allItems.map(item => item.id).filter(Boolean);
+
+            const seenRaw = localStorage.getItem('eis_seen_deadlines_ids');
+            if (seenRaw === null) {
+                const unreadCount = Math.min(3, allIds.length);
+                deadlinesBadge.textContent = String(unreadCount).padStart(2, '0');
+                deadlinesBadge.style.display = unreadCount > 0 ? 'inline-flex' : 'none';
+            } else {
+                const seenIds = JSON.parse(seenRaw || '[]');
+                const unreadItems = allIds.filter(id => !seenIds.includes(id));
+                const unreadCount = unreadItems.length;
+                if (unreadCount > 0) {
+                    deadlinesBadge.textContent = String(unreadCount).padStart(2, '0');
+                    deadlinesBadge.style.display = 'inline-flex';
+                } else {
+                    deadlinesBadge.style.display = 'none';
+                }
+            }
+        } catch (e) {
+            deadlinesBadge.style.display = 'none';
+        }
+    }
+
+    // Teacher Drops & Updates (Resources)
+    if (resourcesBadge) {
+        try {
+            let drops = [];
+            if (window.DataService && typeof window.DataService.getTeacherResources === 'function') {
+                drops = window.DataService.getTeacherResources() || [];
+            }
+            const dropIds = drops.map(d => d.id).filter(Boolean);
+
+            const seenRaw = localStorage.getItem('eis_seen_resources_ids');
+            if (seenRaw === null) {
+                const unreadCount = Math.min(2, dropIds.length);
+                resourcesBadge.textContent = String(unreadCount).padStart(2, '0');
+                resourcesBadge.style.display = unreadCount > 0 ? 'inline-flex' : 'none';
+            } else {
+                const seenIds = JSON.parse(seenRaw || '[]');
+                const unreadItems = dropIds.filter(id => !seenIds.includes(id));
+                const unreadCount = unreadItems.length;
+                if (unreadCount > 0) {
+                    resourcesBadge.textContent = String(unreadCount).padStart(2, '0');
+                    resourcesBadge.style.display = 'inline-flex';
+                } else {
+                    resourcesBadge.style.display = 'none';
+                }
+            }
+        } catch (e) {
+            resourcesBadge.style.display = 'none';
+        }
+    }
+}
+
+// 6. Sync Teacher Resources & Coursework Drops
+let currentThemeFilter = 'all';
+
+async function syncTeacherResources() {
+    const gridEl = document.getElementById('home-teacher-resources-grid');
+    if (!gridEl) return;
+
+    try {
+        let drops = [];
+        if (window.DataService && typeof window.DataService.getTeacherResources === 'function') {
+            drops = window.DataService.getTeacherResources();
+        } else {
+            const res = await fetch('data/teacher-resources.json', { cache: 'no-cache' });
+            if (res.ok) drops = await res.json();
+        }
+
+        if (!Array.isArray(drops) || drops.length === 0) {
+            gridEl.innerHTML = '<p class="empty" style="grid-column: 1 / -1; padding: 24px; text-align: center; color: var(--text-2);">No coursework drops published yet.</p>';
+            return;
+        }
+
+        // Filter by theme if active
+        let filtered = drops;
+        if (currentThemeFilter !== 'all') {
+            filtered = drops.filter(d => (d.theme || '').toLowerCase() === currentThemeFilter.toLowerCase());
+        }
+
+        // Show top 6
+        const topDrops = filtered.slice(0, 6);
+
+        gridEl.innerHTML = topDrops.map(drop => {
+            const dateStr = drop.date ? formatEventDate(drop.date).full : '';
+            const unit = drop.unit || (drop.theme === 'Theme A' ? 'A1' : drop.theme === 'Theme B' ? 'B1' : drop.theme || 'CORE');
+            const format = (drop.fileType || 'FILE').toUpperCase();
+            const level = drop.level || (drop.cohort ? drop.cohort.split('(')[0].trim() : 'SL/HL');
+            const fileUrl = drop.fileUrl || '#';
+            const isOpenInBrowser = /\.(pdf|html?)$/i.test(fileUrl) || /^https?:\/\//i.test(fileUrl);
+            const isManagebac = drop.managebacType || drop.managebacUrl || /managebac/i.test(fileUrl);
+
+            return `
+                <article class="home-res-card" data-id="${escapeHtml(drop.id)}">
+                    <div class="home-res-card-top">
+                        <div class="home-res-meta">
+                            <div class="home-res-meta-left">
+                                <span class="home-res-unit-badge">${escapeHtml(unit)}</span>
+                                <span class="home-res-format-badge">${escapeHtml(format)}</span>
+                                ${isManagebac ? `<span class="home-res-mb-badge"><svg viewBox="0 0 16 16" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="8" cy="8" r="6"></circle><path d="M5 8h6M8 5v6"></path></svg>ManageBac</span>` : ''}
+                            </div>
+                            <span class="home-res-date">${escapeHtml(dateStr)}</span>
+                        </div>
+                        <a class="home-res-title" href="pages/resources.html#drop-${encodeURIComponent(drop.id)}" title="${escapeHtml(drop.title)}">
+                            ${escapeHtml(drop.title)}
+                        </a>
+                        ${drop.description ? `<p class="home-res-sub">${escapeHtml(drop.description)}</p>` : ''}
+                    </div>
+                    <div class="home-res-footer">
+                        <span class="cohort-chip">${escapeHtml(level)}</span>
+                        <div class="home-res-actions">
+                            <a class="btn-home-quick btn-home-primary" href="${escapeHtml(fileUrl)}" ${isOpenInBrowser ? 'target="_blank" rel="noopener"' : 'download'}>${isOpenInBrowser ? 'Open' : 'Download'}</a>
+                        </div>
+                    </div>
+                </article>
+            `;
+        }).join('');
+
+        // Bind filter pill clicks if not yet bound
+        const filterContainer = document.querySelector('.home-res-filters');
+        if (filterContainer && !filterContainer._bound) {
+            filterContainer._bound = true;
+            filterContainer.addEventListener('click', (e) => {
+                const btn = e.target.closest('.home-res-filter');
+                if (!btn) return;
+                filterContainer.querySelectorAll('.home-res-filter').forEach(b => b.classList.remove('is-active'));
+                btn.classList.add('is-active');
+                currentThemeFilter = btn.dataset.theme;
+                syncTeacherResources();
+            });
+        }
+
+    } catch (e) {
+        console.debug('Teacher resources live sync fallback:', e);
+    }
+}
+
+function initHome() {
+    syncHeroBanner();
     syncDeadlines();
     syncAnnouncements();
+    syncTeacherResources();
     syncQuestionOfTheDay();
+    syncUnreadBadges();
+
+    if (window.DataService && typeof window.DataService.subscribe === 'function') {
+        window.DataService.subscribe('announcements', () => { syncAnnouncements(); syncUnreadBadges(); });
+        window.DataService.subscribe('deadlines', () => { syncDeadlines(); syncUnreadBadges(); });
+        window.DataService.subscribe('teacherResources', () => { syncTeacherResources(); syncUnreadBadges(); });
+        window.DataService.onSettingsChange(() => {
+            syncHeroBanner();
+            syncQuestionOfTheDay();
+            syncAnnouncements();
+        });
+    }
+}
+
+// Initialize on DOM ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHome);
+} else {
+    initHome();
 }
