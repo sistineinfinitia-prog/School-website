@@ -140,18 +140,6 @@
                         </p>
                     </div>
                     <div class="rv-header-actions">
-                        <span class="admin-session-badge" id="session-status-text">
-                            <span class="admin-pulse-dot" aria-hidden="true"></span>
-                            <span>Authorized &bull; Faculty Portal</span>
-                        </span>
-                        <a href="../index.html" target="_blank" class="btn btn-sm btn-secondary" title="Open student view in new tab">
-                            <span>Student View</span>
-                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                <polyline points="15 3 21 3 21 9"></polyline>
-                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                            </svg>
-                        </a>
                         <button type="button" id="logout-btn" class="btn btn-sm btn-secondary" title="Lock faculty portal">
                             <span>Lock / Sign Out</span>
                         </button>
@@ -214,7 +202,7 @@
                             <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
                         </svg>
                         <span>Questions &amp; Flashcards</span>
-                        <span class="rv-tab-badge" id="badge-questions-count">0</span>
+                        <span class="rv-tab-badge" id="badge-questions-count">39</span>
                     </button>
                     <button type="button" class="rv-tab-btn" data-tab="settings" role="tab" aria-selected="false" id="tab-btn-settings">
                         <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -294,7 +282,7 @@
                         </svg>
                         <span>Questions &amp; Cards</span>
                     </div>
-                    <div class="admin-kpi-val" id="stat-questions">0</div>
+                    <div class="admin-kpi-val" id="stat-questions">39</div>
                     <div class="admin-kpi-sub" id="stat-flashcards-sub">Questions &amp; flashcards</div>
                 </div>
                             <div class="admin-kpi-card">
@@ -889,7 +877,7 @@
                             <line x1="2" y1="10" x2="22" y2="10"></line>
                         </svg>
                         <span>Official Flashcard Studio</span>
-                        <span class="rv-tab-badge" id="fc-badge-count">20 Cards</span>
+                        <span class="rv-tab-badge" id="fc-badge-count">39 Cards</span>
                     </button>
                 </div>
 
@@ -1594,7 +1582,6 @@
         const btnTogglePasskey = document.getElementById("btn-toggle-passkey");
         const eyeIcon = document.getElementById("eye-icon");
         const logoutBtn = document.getElementById("logout-btn");
-        const sessionStatusText = document.getElementById("session-status-text");
 
         // KPI Counters
         const statPosts = document.getElementById("stat-posts");
@@ -2063,9 +2050,6 @@
             initAdminTabs();
             initViewSwitches();
 
-            if (sessionStatusText) {
-                sessionStatusText.innerHTML = `<span class="admin-pulse-dot" aria-hidden="true"></span><span>Authorized &bull; ${modeLabel || 'Faculty Portal'}</span>`;
-            }
 
             loadPosts();
             loadDeadlines();
@@ -2091,37 +2075,7 @@
             if (adminKeyInput) adminKeyInput.value = "";
         }
 
-        // Master Access Shortcuts ("power", "eis2026", "admin", "ibdp2026", "#admin@eism2026")
-        function triggerPowerUnlock(source) {
-            sessionStorage.setItem("eis_admin_master_auth", "true");
-            unlockFacultyPortal(source || "Master Access");
-        }
-
-        const isMasterKey = (v) => {
-            if (!v) return false;
-            const s = v.trim().toLowerCase();
-            return s === "power" || s === "eis2026" || s === "admin" || s === "ibdp2026" || s === "#admin@eism2026" || s === "admin@eism2026";
-        };
-
-        if (adminKeyInput) {
-            adminKeyInput.addEventListener("input", function () {
-                if (isMasterKey(this.value)) {
-                    triggerPowerUnlock("Passkey");
-                }
-            });
-        }
-
-        let keySequence = "";
-        window.addEventListener("keydown", function (e) {
-            if (e.key && e.key.length === 1) {
-                keySequence += e.key.toLowerCase();
-                if (keySequence.length > 20) keySequence = keySequence.slice(-20);
-                if (keySequence.endsWith("power")) {
-                    triggerPowerUnlock("Keyboard Shortcut");
-                    keySequence = "";
-                }
-            }
-        }, true);
+        
 
         if (loginForm) {
             loginForm.addEventListener("submit", async function (e) {
@@ -2129,10 +2083,7 @@
                 if (loginError) loginError.hidden = true;
                 const key = adminKeyInput ? adminKeyInput.value.trim() : "";
 
-                if (isMasterKey(key)) {
-                    triggerPowerUnlock("Passkey");
-                    // Also attempt Firebase auth in background if available
-                }
+                
 
                 if (fbAuth && fbFns && fbFns.signInWithEmailAndPassword) {
                     try {
@@ -2155,7 +2106,7 @@
                             }
                         }
 
-                        if (!signedIn && !isMasterKey(key)) {
+                        if (!signedIn) {
                             if (loginError) {
                                 loginError.textContent = `Access denied (${lastErr ? lastErr.code : 'auth-failed'}). Please verify passkey.`;
                                 loginError.hidden = false;
@@ -2165,10 +2116,10 @@
                         console.error("Login unexpected error:", outerErr);
                     }
                 } else {
-                    if (!isMasterKey(key) && loginError) {
+                    if (loginError) {
                         const isFile = window.location.protocol === "file:";
                         loginError.textContent = isFile 
-                            ? "Firebase requires http:// server (not file://). Use master passkey or open via web server."
+                            ? "Firebase requires an http:// server (not file://). Please open via web server."
                             : "Firebase not yet initialized. Please check connection.";
                         loginError.hidden = false;
                     }
@@ -2185,9 +2136,7 @@
             });
         }
 
-        if (sessionStorage.getItem("eis_admin_master_auth") === "true") {
-            unlockFacultyPortal("Active Session");
-        }
+        
 
         if (dropDateInput) {
             dropDateInput.value = new Date().toISOString().split('T')[0];
@@ -3941,7 +3890,7 @@
                 };
 
                 fbFns.onAuthStateChanged(fbAuth, (user) => {
-                    if (user || sessionStorage.getItem("eis_admin_master_auth") === "true") {
+                    if (user) {
                         unlockFacultyPortal("Faculty Account");
                     }
                 });

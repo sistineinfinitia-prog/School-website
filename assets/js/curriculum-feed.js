@@ -21,6 +21,8 @@
     var container = document.getElementById('syllabus-container');
     var searchInput = document.getElementById('syllabus-search');
     var visibleStatementCountEl = document.getElementById('visible-statement-count');
+    var totalStatementCountEl = document.getElementById('total-statement-count');
+    var tabSyllabusBadgeEl = document.querySelector('#tab-syllabus .rv-tab-badge');
     var visibleUnitCountEl = document.getElementById('visible-unit-count');
     var tabButtons = document.querySelectorAll('.rv-tabs-nav .rv-tab-btn, .segmented-control .segmented-btn');
     var sectionTabs = document.querySelectorAll('.curriculum-section-tab');
@@ -133,6 +135,10 @@
 
         var html = syllabusData.map(renderUnitHtml).join('');
         container.innerHTML = html;
+
+        var totalStatements = container.querySelectorAll('.statement-item').length;
+        if (totalStatementCountEl) totalStatementCountEl.textContent = totalStatements;
+        if (tabSyllabusBadgeEl) tabSyllabusBadgeEl.textContent = totalStatements;
 
         // Apply filters & router immediately
         applyFilters();

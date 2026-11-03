@@ -815,8 +815,7 @@
 
         isFacultyUnlocked: function () {
             try {
-                return sessionStorage.getItem('eis_admin_master_auth') === 'true' ||
-                       sessionStorage.getItem(FACULTY_AUTH_KEY) === 'true' ||
+                return sessionStorage.getItem(FACULTY_AUTH_KEY) === 'true' ||
                        localStorage.getItem(FACULTY_AUTH_KEY) === 'true';
             } catch (e) { return false; }
         },
@@ -824,11 +823,9 @@
         setFacultyUnlocked: function (unlocked) {
             try {
                 if (unlocked) {
-                    sessionStorage.setItem('eis_admin_master_auth', 'true');
                     sessionStorage.setItem(FACULTY_AUTH_KEY, 'true');
                     localStorage.setItem(FACULTY_AUTH_KEY, 'true');
                 } else {
-                    sessionStorage.removeItem('eis_admin_master_auth');
                     sessionStorage.removeItem(FACULTY_AUTH_KEY);
                     localStorage.removeItem(FACULTY_AUTH_KEY);
                 }
