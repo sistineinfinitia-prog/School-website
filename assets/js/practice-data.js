@@ -1022,5 +1022,968 @@ window.IB_PRACTICE_QUESTIONS = [
     ],
     "examinerTip": "Ensure you use the methods of your QueueADT rather than raw list indexing inside bfs_traversal to adhere to ADT encapsulation principles.",
     "isSynoptic": true
+  },
+  {
+    "id": "q-a4-01",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.1",
+    "subtopicName": "Machine learning fundamentals",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Medium",
+    "format": "Section B",
+    "skill": "Analysis/Design",
+    "marks": 5,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "An autonomous vehicle system uses machine learning for object detection and path planning in real-time driving scenarios.\n\n(a) Distinguish between supervised learning and unsupervised learning for training the vehicle's object detection system. [3]\n\n(b) The object detection model is trained on a large dataset of driving images. Outline one reason a graphics processing unit (GPU) is used rather than a central processing unit (CPU) to train this model. [2]",
+    "hint": "Focus on labeled ground-truth bounding boxes versus unguided clustering, and contrast GPU massively parallel SIMD execution against sequential CPU pipelines.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "(a) Supervised learning relies on labeled training pairs (e.g., camera images tagged with exact bounding boxes and category labels such as 'pedestrian' or 'cyclist') so the model minimises classification/localization error against ground truth.",
+        "marks": 2
+      },
+      {
+        "point": "(a) Unsupervised learning processes unlabeled visual or sensor data without explicit ground-truth targets, seeking natural clusters, anomalies, or underlying representations (e.g., detecting novel road obstacles without prior training classes).",
+        "marks": 1
+      },
+      {
+        "point": "(b) Training deep convolutional neural networks involves billions of simultaneous matrix multiplications and gradient updates; GPUs feature thousands of high-throughput compute cores operating in parallel (SIMD/tensor architecture), significantly accelerating training time compared to low-core sequential CPUs.",
+        "marks": 2
+      }
+    ],
+    "examinerTip": "Avoid vague claims like 'GPUs are faster'. Specifically emphasize the thousands of parallel execution cores performing matrix multiplications concurrently."
+  },
+  {
+    "id": "q-a4-02",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.1",
+    "subtopicName": "Machine learning fundamentals",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Medium",
+    "format": "Section A",
+    "skill": "Analysis/Design",
+    "marks": 4,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "A ride-sharing platform uses machine learning for dynamic pricing, driver matching, and route optimization while facing scrutiny over algorithmic fairness and labor practices.\n\n(a) Describe how supervised learning could be used to reduce passenger wait times, and how reinforcement learning could be used to improve route choices. [4]",
+    "hint": "Map historical labeled trip records to supervised regression/prediction, and frame vehicle navigation as an agent taking actions in an environment to maximize rewards.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Supervised Learning: Trained on historical labeled datasets of pickup requests, time of day, weather, and traffic conditions to accurately predict passenger demand in specific zones, allowing drivers to be prepositioned ahead of time to minimize pickup delays.",
+        "marks": 2
+      },
+      {
+        "point": "Reinforcement Learning: An agent (the routing system) navigates dynamic road conditions, choosing sequential navigation actions (turns/detours) to maximize a cumulative reward function (e.g., lowest transit duration, minimal fuel/traffic delay) based on environmental feedback.",
+        "marks": 2
+      }
+    ],
+    "examinerTip": "Clearly contrast the historical static labels of supervised learning with the iterative action-reward feedback loop of reinforcement learning."
+  },
+  {
+    "id": "q-a4-03",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.4",
+    "subtopicName": "Ethical considerations",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Medium",
+    "format": "Section B",
+    "skill": "Evaluation/Discussion",
+    "marks": 5,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "(a) A company states that its machine learning system is fair because it treats every applicant identically. Discuss this claim. [5]",
+    "hint": "Address equality of treatment vs equity of impact, historical training biases, and proxy variables that systematically disadvantage marginalized demographics.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Identical treatment (procedural fairness) does not guarantee fair outcomes (disparate impact) because algorithms reflect and amplify societal inequalities embedded in historical training datasets.",
+        "marks": 2
+      },
+      {
+        "point": "Proxy variables (such as postal code, university attended, or employment gaps) closely correlate with protected characteristics (socioeconomic status, ethnicity, gender), indirectly discriminating against groups even when explicit sensitive attributes are removed.",
+        "marks": 2
+      },
+      {
+        "point": "True algorithmic fairness requires outcome evaluation, counterfactual fairness testing, debiasing techniques, and ongoing human oversight rather than blind uniform rule application.",
+        "marks": 1
+      }
+    ],
+    "examinerTip": "In IB evaluations, balance the theoretical justification of mathematical neutrality against real-world systemic bias and proxy correlation."
+  },
+  {
+    "id": "q-a4-04",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.1",
+    "subtopicName": "Machine learning fundamentals",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Easy",
+    "format": "Section A",
+    "skill": "Recall/Concept",
+    "marks": 2,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "(a) Identify two real-world applications of machine learning. [2]",
+    "hint": "Select distinct domains such as healthcare imaging, automated spam filtering, speech synthesis, recommendation engines, or fraud detection.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Medical diagnosis / computer vision (e.g., detecting malignant tumors or retinopathy in MRI/X-ray scans).",
+        "marks": 1
+      },
+      {
+        "point": "Email spam filtering / natural language processing (e.g., classifying messages as spam vs. ham based on text token weights).",
+        "marks": 1
+      }
+    ],
+    "examinerTip": "Provide specific, concrete applications rather than broad labels like 'technology' or 'science'."
+  },
+  {
+    "id": "q-a4-05",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.4",
+    "subtopicName": "Ethical considerations",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Medium",
+    "format": "Section A",
+    "skill": "Evaluation/Discussion",
+    "marks": 3,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "(a) During an election, thousands of varied false articles appear within a single day. Outline why misinformation generated by machine learning is harder to counter than misinformation written by people. [3]",
+    "hint": "Analyze automated velocity, stylistic diversity, synthetic personalization, and evasion of static keyword filters.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Scale and velocity: Generative AI models can produce thousands of unique, syntactically coherent variations within seconds, overwhelming manual human fact-checking capacity.",
+        "marks": 1
+      },
+      {
+        "point": "Stylistic diversity and evasion: Because machine learning rephrases arguments dynamically, automated content moderation cannot rely on simple string or hash blacklists.",
+        "marks": 1
+      },
+      {
+        "point": "Hyper-personalized persuasion: ML models can tailor micro-targeted disinformation to exploit specific demographic anxieties identified across social graph metrics.",
+        "marks": 1
+      }
+    ],
+    "examinerTip": "Structure your answer around scale, dynamic variance, and micro-targeting to achieve full marks."
+  },
+  {
+    "id": "q-a4-06",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.4",
+    "subtopicName": "Ethical considerations",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Easy",
+    "format": "Section A",
+    "skill": "Recall/Concept",
+    "marks": 2,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "A regulator asks a company to demonstrate that its model does not disadvantage any group.\n\n(a) Outline what is meant by algorithmic fairness. [2]",
+    "hint": "Consider statistical parity, absence of systematic bias against protected groups, and equal opportunity in model outcomes.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Algorithmic fairness refers to designing and validating machine learning models to ensure that decisions do not exhibit systematic prejudice or disparate impact against individuals based on protected traits (e.g., race, gender, religion, age).",
+        "marks": 1
+      },
+      {
+        "point": "It requires parity in performance metrics (such as false positive/false negative rates or predictive accuracy) across all demographic sub-populations.",
+        "marks": 1
+      }
+    ],
+    "examinerTip": "Highlight both the moral/legal objective and the mathematical criterion (equal error rates across sub-populations)."
+  },
+  {
+    "id": "q-a4-07",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.4",
+    "subtopicName": "Ethical considerations",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Medium",
+    "format": "Section B",
+    "skill": "Evaluation/Discussion",
+    "marks": 4,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "A technology company trains an AI model on a large dataset of customer records, which includes names, addresses and purchase histories collected through its website.\n\n(a) Discuss the ethical concerns that arise from the company training its model on this dataset. [4]",
+    "hint": "Evaluate informed consent, purpose limitation, data re-identification risks, and third-party commercial exploitation.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Informed Consent & Purpose Limitation: Customers provided personal data for purchasing/fulfillment, not for training internal AI architectures; using it without explicit secondary consent violates privacy expectations and data protection frameworks (e.g., GDPR).",
+        "marks": 2
+      },
+      {
+        "point": "Re-identification & Data Leakage: Trained model weights or memorization attacks can inadvertently expose sensitive personally identifiable information (PII) like residential addresses or niche transaction habits.",
+        "marks": 1
+      },
+      {
+        "point": "Behavioral Manipulation: Mining granular customer purchasing profiles allows the company to train predictive nudges and dynamic exploitation algorithms that capitalize on user vulnerabilities.",
+        "marks": 1
+      }
+    ],
+    "examinerTip": "Use precise terminology such as 'informed consent', 'purpose specification', and 're-identification risk'."
+  },
+  {
+    "id": "q-a4-08",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.4",
+    "subtopicName": "Ethical considerations",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Medium",
+    "format": "Section B",
+    "skill": "Evaluation/Discussion",
+    "marks": 4,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "(a) A hospital prepares to let an algorithm prioritise patients for scanning. Explain why an oversight committee is recommended when machine learning is used in healthcare. [4]",
+    "hint": "Discuss life-critical liability, validation against clinical clinical bias, patient safety, and ensuring human-in-the-loop overrides.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Accountability and Legal Liability: Autonomous decisions in triage directly affect patient mortality; an oversight committee establishes clear governance chains regarding malpractice, software defects, and clinician responsibility.",
+        "marks": 2
+      },
+      {
+        "point": "Validation Against Algorithmic Drift and Subgroup Bias: Committees independently audit the model to detect if prioritization rules systematically disadvantage specific demographic cohorts or exhibit data drift when diagnostic protocols shift.",
+        "marks": 1
+      },
+      {
+        "point": "Ensuring Human-in-the-Loop Override: Oversight mandates that algorithmic suggestions remain decision-support tools rather than unquestioned mandates, guaranteeing physicians can override anomalous rankings.",
+        "marks": 1
+      }
+    ],
+    "examinerTip": "Healthcare questions require emphasis on patient safety, algorithmic accountability, and clinician override authority."
+  },
+  {
+    "id": "q-a4-09",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.1",
+    "subtopicName": "Machine learning fundamentals",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Hard",
+    "format": "Section B",
+    "skill": "Analysis/Design",
+    "marks": 9,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "A supermarket chain applies machine learning in three ways: grouping customers by shopping habits, predicting whether an email is promotional or personal, and improving the routes taken by its delivery vans over time.\n\n(a) Identify the type of machine learning used in each of the three cases. [3]\n\n(b) Outline why the customer grouping cannot use supervised learning. [3]\n\n(c) Outline why the van routing improves over time while the email classifier does not. [3]",
+    "hint": "Categorize unsupervised clustering, supervised classification, and reinforcement learning. Contrast static training boundaries with active environment feedback.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "(a) Grouping customers: Unsupervised learning (clustering).\nPredicting email category: Supervised learning (classification).\nImproving van delivery routes: Reinforcement learning.",
+        "marks": 3
+      },
+      {
+        "point": "(b) Supervised learning requires pre-existing labeled output targets for each input instance; in customer segmentation, the retailer has no predefined ground-truth groups or explicit labels, meaning the algorithm must uncover latent clusters autonomously from purchasing attributes.",
+        "marks": 3
+      },
+      {
+        "point": "(c) Reinforcement learning continuously updates its policy in response to ongoing environmental trial-and-error rewards (traffic conditions, delivery delays), whereas a standard supervised email classifier operates on fixed weights frozen after training unless manually retrained on newly labeled datasets.",
+        "marks": 3
+      }
+    ],
+    "examinerTip": "For 9-mark multi-part questions, ensure each sub-part explicitly references the given scenario context (customers, emails, delivery vans)."
+  },
+  {
+    "id": "q-a4-10",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.4",
+    "subtopicName": "Ethical considerations",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Easy",
+    "format": "Section A",
+    "skill": "Recall/Concept",
+    "marks": 1,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "(a) A clinic introduces software that suggests a diagnosis before the doctor sees the patient. State one reason patients should be told when a machine learning algorithm contributes to their diagnosis. [1]",
+    "hint": "Think about medical transparency, patient autonomy, or informed consent.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Upholds patient autonomy and informed consent, allowing patients to understand how their diagnostic assessment was formulated and seek human doctor confirmation.",
+        "marks": 1
+      }
+    ],
+    "examinerTip": "Direct state questions require only one clear, unambiguous reason."
+  },
+  {
+    "id": "q-a4-11",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.4",
+    "subtopicName": "Ethical considerations",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Medium",
+    "format": "Section B",
+    "skill": "Evaluation/Discussion",
+    "marks": 4,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "Only four organizations worldwide can afford to train models of a given scale.\n\n(a) Explain why the energy cost of training large models raises questions of equity as well as environment. [4]",
+    "hint": "Analyze carbon footprint alongside compute disparity between wealthy tech oligopolies and global researchers.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Environmental Impact: Training trillion-parameter foundation models consumes millions of kilowatt-hours and enormous cooling water, contributing substantially to global carbon emissions and resource depletion.",
+        "marks": 2
+      },
+      {
+        "point": "Equity & Digital Oligopoly: The exorbitant financial capital required creates an extreme compute divide, monopolizing frontier AI development within a few multinational corporations and excluding academic institutions, non-profits, and the Global South from shaping foundational technologies.",
+        "marks": 2
+      }
+    ],
+    "examinerTip": "Do not treat this as purely an environmental question; address both the ecological footprint and the geopolitical/economic equity imbalance."
+  },
+  {
+    "id": "q-a4-12",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.4",
+    "subtopicName": "Ethical considerations",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Hard",
+    "format": "Section B",
+    "skill": "Evaluation/Discussion",
+    "marks": 8,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "A recruitment company trains a model on ten years of its own hiring decisions. It removes gender and ethnicity from the data before training. Applications from certain groups are still rejected at a much higher rate.\n\n(a) Explain why removing those fields did not prevent the disparity. [4]\n\n(b) Outline why the disparity is harder to detect once the fields have been removed. [2]\n\n(c) Outline what the company should do instead. [2]",
+    "hint": "Investigate proxy variables, blind auditing obstacles, and proactive debiasing techniques.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "(a) Proxy variables / Latent feature correlation: Other input features (such as school attended, postal code, sports, extracurriculars, or phrasing in resumes) strongly correlate with gender and ethnicity; the model learns to associate these proxies with historical hiring bias embedded in the ten-year training decisions.",
+        "marks": 4
+      },
+      {
+        "point": "(b) Without demographic attributes attached to validation predictions, the company cannot easily compute stratified performance metrics (e.g., disparate impact ratio or false rejection rates across sub-populations), masking institutional discrimination under a guise of 'blind' neutrality.",
+        "marks": 2
+      },
+      {
+        "point": "(c) Retain sensitive demographic labels exclusively for fairness auditing and algorithmic stress-testing; actively debias historical training labels, retrain on curated balanced datasets, and implement human-in-the-loop review.",
+        "marks": 2
+      }
+    ],
+    "examinerTip": "This is a classic algorithmic bias question. Define 'proxy variable' explicitly in part (a)."
+  },
+  {
+    "id": "q-a4-13",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.4",
+    "subtopicName": "Ethical considerations",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Medium",
+    "format": "Section B",
+    "skill": "Evaluation/Discussion",
+    "marks": 5,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "(a) A government proposes using machine learning to identify benefit claims likely to be fraudulent. Discuss this proposal. [5]",
+    "hint": "Balance administrative efficiency and taxpayer savings against false accusation risks, systemic bias against vulnerable citizens, and due process/appeal guarantees.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Benefits / Efficiency: Automated pattern recognition can rapidly analyze massive transaction volumes, flag suspicious inconsistencies, reduce bureaucratic processing costs, and safeguard public funds against organized fraud.",
+        "marks": 2
+      },
+      {
+        "point": "Risks / Harm: False positives unfairly cut off essential survival stipends for vulnerable families; historical audit data often over-samples marginalized communities, training algorithms that disproportionately suspect the disadvantaged.",
+        "marks": 2
+      },
+      {
+        "point": "Governance Conclusion: Automated flagging must require independent human caseworker investigation, robust explainability, and accessible legal appeal mechanisms before benefits are suspended.",
+        "marks": 1
+      }
+    ],
+    "examinerTip": "For 'Discuss' command terms, present a balanced appraisal with both benefits and severe ethical hazards before concluding."
+  },
+  {
+    "id": "q-a4-14",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.4",
+    "subtopicName": "Ethical considerations",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Easy",
+    "format": "Section A",
+    "skill": "Recall/Concept",
+    "marks": 1,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "(a) A recruitment model favours applicants resembling those a company has hired before. State the ethical issue this raises. [1]",
+    "hint": "Mention perpetuation of historical bias or lack of diversity.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Perpetuation of historical bias / systemic discrimination that reinforces existing workforce homogeneity and excludes qualified diverse candidates.",
+        "marks": 1
+      }
+    ],
+    "examinerTip": "State terms like 'historical bias reinforcement' or 'systemic exclusion'."
+  },
+  {
+    "id": "q-a4-15",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.4",
+    "subtopicName": "Ethical considerations",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Easy",
+    "format": "Section A",
+    "skill": "Evaluation/Discussion",
+    "marks": 2,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "(a) A messaging platform ranks, filters and auto-replies to its users' messages. Identify two ethical issues raised by the use of machine learning in online communication. [2]",
+    "hint": "Consider privacy/content scanning, algorithmic censorship, communicative authenticity, or behavioral manipulation.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Privacy Violation / Surveillance: The platform must inspect the semantic content of private communications to train models and generate context-aware suggestions.",
+        "marks": 1
+      },
+      {
+        "point": "Erosion of Authenticity / Algorithmic Manipulation: Automated filtering and synthetic responses can influence interpersonal relationships, prioritize inflammatory content for engagement, or suppress genuine user expression.",
+        "marks": 1
+      }
+    ],
+    "examinerTip": "Give two distinctly different ethical issues (e.g., privacy vs. message manipulation)."
+  },
+  {
+    "id": "q-a4-16",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.1",
+    "subtopicName": "Machine learning fundamentals",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Easy",
+    "format": "Section A",
+    "skill": "Recall/Concept",
+    "marks": 2,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "Current systems protect data in transit using encryption methods that rely on certain calculations being computationally infeasible.\n\n(a) Outline one security threat that quantum computing poses to systems designed in this way. [2]",
+    "hint": "Consider Shor's algorithm breaking asymmetric cryptography like RSA or ECC by solving prime factorization in polynomial time.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Quantum computers utilizing Shor's algorithm can solve discrete logarithm and prime factorization problems in polynomial time.",
+        "marks": 1
+      },
+      {
+        "point": "This renders ubiquitous asymmetric public-key cryptography (such as RSA and Diffie-Hellman/ECC) obsolete, enabling adversaries to decrypt captured encrypted communications (harvest now, decrypt later).",
+        "marks": 1
+      }
+    ],
+    "examinerTip": "Mention the theoretical basis (prime factorization / discrete logarithms) and the practical consequence (public key encryption failure)."
+  },
+  {
+    "id": "q-a4-17",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.4",
+    "subtopicName": "Ethical considerations",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Hard",
+    "format": "Section B",
+    "skill": "Evaluation/Discussion",
+    "marks": 8,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "A logistics company automates a warehouse using machine learning, reducing its workforce by 60 per cent while doubling output.\n\n(a) Discuss the societal impact of this change. [5]\n\n(b) Outline why the ethical assessment depends on decisions beyond the technology itself. [3]",
+    "hint": "Analyze economic productivity and consumer prices vs worker redundancy, regional unemployment, retraining programs, and safety.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "(a) Positive societal impact: Substantially increases operational efficiency, lowers supply chain costs for consumers, reduces human workplace injuries in hazardous manual labor tasks, and creates demand for higher-skilled robotic technician roles.",
+        "marks": 2
+      },
+      {
+        "point": "(a) Negative societal impact: Sudden mass layoffs lead to acute financial distress for vulnerable manual laborers, exacerbate regional socioeconomic inequality, and strain social welfare systems if displaced staff cannot transition into knowledge economy roles.",
+        "marks": 3
+      },
+      {
+        "point": "(b) The technology itself is neutral automation; ethical validity depends on corporate governance and public policy, such as whether profits fund worker severance and reskilling programs, or if staff are discarded without compensation.",
+        "marks": 3
+      }
+    ],
+    "examinerTip": "In part (b), make sure to emphasize that ethical evaluation rests on socioeconomic policy and transition management, not merely the robotics software."
+  },
+  {
+    "id": "q-a4-18",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.4",
+    "subtopicName": "Ethical considerations",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Hard",
+    "format": "Section B",
+    "skill": "Evaluation/Discussion",
+    "marks": 8,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "Software capable of generating realistic synthetic video of real people has become widely available.\n\n(a) State two legitimate uses of this technology. [2]\n\n(b) Discuss the ethical implications of its wide availability. [5]\n\n(c) State the ethical principle that the depicted person's agreement relates to. [1]",
+    "hint": "Identify valid creative/educational applications, analyze deepfake harm (fraud, defamation, erosion of public trust), and name informed consent.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "(a) Film dubbing / multilingual translation with natural lip-syncing; digital avatar creation for interactive educational simulators or assistive technology.",
+        "marks": 2
+      },
+      {
+        "point": "(b) Severe risks include identity theft, corporate financial fraud (CEO voice cloning), non-consensual synthetic imagery, political disinformation during elections, and the 'liar's dividend' where bad actors dismiss authentic evidence as synthetic media.",
+        "marks": 5
+      },
+      {
+        "point": "(c) Informed consent / bodily and identity autonomy.",
+        "marks": 1
+      }
+    ],
+    "examinerTip": "For (c), name 'informed consent' or 'autonomy' explicitly."
+  },
+  {
+    "id": "q-a4-19",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.1",
+    "subtopicName": "Machine learning fundamentals",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Easy",
+    "format": "Section A",
+    "skill": "Recall/Concept",
+    "marks": 1,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "(a) A retailer analyses purchase records to find groupings of similar customers, without being told in advance what those groups are. State the type of machine learning being used. [1]",
+    "hint": "Learning patterns without pre-labeled targets is...",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Unsupervised learning (clustering).",
+        "marks": 1
+      }
+    ],
+    "examinerTip": "Accept 'Unsupervised learning' or 'Clustering'."
+  },
+  {
+    "id": "q-a4-20",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.4",
+    "subtopicName": "Ethical considerations",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Medium",
+    "format": "Section A",
+    "skill": "Evaluation/Discussion",
+    "marks": 4,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "(a) A social media platform uses machine learning to decide which posts each user sees. Describe two ethical concerns this raises. [4]",
+    "hint": "Analyze algorithmic filter bubbles/echo chambers, engagement-driven radicalization, addiction loops, and surveillance capitalism.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Echo Chambers & Societal Polarization: Recommendation algorithms optimize for user engagement (clicks, watch time), frequently prioritizing sensationalist, divisive, or extremist content, which isolates users into ideological echo chambers.",
+        "marks": 2
+      },
+      {
+        "point": "Behavioral Addiction & Mental Health: ML models learn dopamine-triggering feedback loops to maximize session duration, contributing to compulsive usage patterns, anxiety, and depression especially among adolescent cohorts.",
+        "marks": 2
+      }
+    ],
+    "examinerTip": "Clearly explain the mechanism (optimizing for watch time/clicks) and its ethical consequence."
+  },
+  {
+    "id": "q-a4-21",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.1",
+    "subtopicName": "Machine learning fundamentals",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Hard",
+    "format": "Section B",
+    "skill": "Analysis/Design",
+    "marks": 7,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "A smart agriculture system uses machine learning to predict crop yields, detect plant diseases, and optimize irrigation schedules based on sensor data and weather patterns.\n\n(a) The trained model runs on edge devices installed in remote fields, rather than on a cloud-based platform. Describe why edge devices are suitable for this deployment. [3]\n\n(b) Outline one way in which bias in the training data could affect the disease detection model. [2]\n\n(c) Outline one consequence of a false positive and one consequence of a false negative in the disease detection system. [2]",
+    "hint": "Evaluate latency, low bandwidth in rural areas, regional dataset bias, and the agricultural impacts of false alarm vs missed blight.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "(a) Edge devices process telemetry locally on-site without relying on continuous internet connectivity, overcoming the unreliable cellular/satellite bandwidth common in remote agricultural fields while eliminating cloud transmission latency.",
+        "marks": 3
+      },
+      {
+        "point": "(b) If the training dataset predominantly contains crop imagery from temperate climates or specific plant variants, the model will perform poorly (high error rates) when deployed in different soil types, lighting conditions, or regional cultivars.",
+        "marks": 2
+      },
+      {
+        "point": "(c) False positive: Healthy crops are mistakenly flagged, causing unnecessary chemical pesticide costs, labor waste, and potential environmental runoff.\nFalse negative: An active crop infestation is overlooked, allowing disease to spread unchecked and destroy harvest yields.",
+        "marks": 2
+      }
+    ],
+    "examinerTip": "In part (c), explicitly label both 'False positive' and 'False negative' and link each to an agricultural repercussion."
+  },
+  {
+    "id": "q-a4-22",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.4",
+    "subtopicName": "Ethical considerations",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Hard",
+    "format": "Section B",
+    "skill": "Evaluation/Discussion",
+    "marks": 6,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "A school district uses a supervised learning algorithm to predict which students are at risk of failing their final examinations. Teachers are encouraged to focus extra support on students flagged by the system.\n\n(a) Identify two ethical concerns that might arise from using this supervised learning algorithm in education. [2]\n\n(b) Explain two measures the school district could take to reduce the risk of harm from labelling while still using the predictions to support students. [4]",
+    "hint": "Consider stigmatization, self-fulfilling prophecies, bias in teacher input data, confidential notifications, and strengths-based intervention.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "(a) Self-fulfilling prophecy / Stigmatization: Flagging students as 'at-risk' can lower teacher expectations and damage student self-esteem, paradoxically decreasing academic performance.",
+        "marks": 1
+      },
+      {
+        "point": "(a) Perpetuation of socioeconomic bias: Historical grading data may reflect institutional inequalities, causing minority or lower-income students to be flagged at disproportionate rates.",
+        "marks": 1
+      },
+      {
+        "point": "(b) Confidentiality and Positive Framing: Keep model risk scores private from students and peers, framing support interventions around constructive skill clinics rather than remedial or punitive tracking.",
+        "marks": 2
+      },
+      {
+        "point": "(b) Holistic Human Oversight: Require teachers and counselors to review qualitative student progress and personal circumstances before applying interventions, ensuring algorithms never trigger automated academic tracking.",
+        "marks": 2
+      }
+    ],
+    "examinerTip": "For (b), provide concrete institutional safeguards rather than vague generalizations like 'be careful'."
+  },
+  {
+    "id": "q-a4-23",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.1",
+    "subtopicName": "Machine learning fundamentals",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Easy",
+    "format": "Section A",
+    "skill": "Analysis/Design",
+    "marks": 2,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "A vineyard runs one model on sensors among the vines and another on rented remote servers.\n\n(a) Outline what distinguishes an edge device from a cloud-based platform in a machine learning deployment. [2]",
+    "hint": "Differentiate physical proximity to data generation, compute power, and network dependence.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Edge Device: Low-power embedded hardware located directly at the site of data collection (e.g., in the vineyard fields) performing localized, real-time inference with minimal latency and without requiring constant network connectivity.",
+        "marks": 1
+      },
+      {
+        "point": "Cloud Platform: Scalable remote server clusters with high compute/storage capacity suitable for heavy model training and centralized multi-source analytics, accessible over high-bandwidth internet connections.",
+        "marks": 1
+      }
+    ],
+    "examinerTip": "Contrast physical location (on-site vs remote datacenters) and compute scale (constrained inference vs massive elastic training capacity)."
+  },
+  {
+    "id": "q-a4-24",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.4",
+    "subtopicName": "Ethical considerations",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Hard",
+    "format": "Section B",
+    "skill": "Evaluation/Discussion",
+    "marks": 6,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "A city government deploys a machine learning–based facial recognition system in all major train stations to identify missing persons and wanted criminals. The system stores captured face images for later comparison.\n\n(a) Identify two ethical concerns that might arise from using this facial recognition system. [2]\n\n(b) Outline two measures the city government could implement to reduce these ethical risks. [4]",
+    "hint": "Analyze mass surveillance, chill on civil liberties, differential demographic error rates, data retention limits, and independent auditing.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "(a) Mass Surveillance & Privacy Intrusion: Citizens moving through public spaces are continuously biometric-scanned without individualized suspicion or consent, creating a chilling effect on freedom of assembly.",
+        "marks": 1
+      },
+      {
+        "point": "(a) Demographic Misidentification: Facial recognition models historically exhibit higher false positive rates for women and ethnic minorities, risking unlawful stops and wrongful arrests.",
+        "marks": 1
+      },
+      {
+        "point": "(b) Strict Data Retention and Immediate Purging: Automatically delete biometric scans of individuals who do not match the target criminal database immediately upon capture, preventing mass surveillance databases.",
+        "marks": 2
+      },
+      {
+        "point": "(b) Mandatory Human Verification & Independent Audits: Require certified human biometric examiners to verify any algorithmic alert before law enforcement intervention, backed by recurring third-party fairness audits.",
+        "marks": 2
+      }
+    ],
+    "examinerTip": "Focus on the balance between public safety and civil liberties, backed by data governance policies."
+  },
+  {
+    "id": "q-a4-25",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.4",
+    "subtopicName": "Ethical considerations",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Hard",
+    "format": "Section B",
+    "skill": "Evaluation/Discussion",
+    "marks": 9,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "A government department deploys a system that predicts which children are at risk of harm, so that social workers can intervene earlier.\n\n(a) State two ethical issues raised. [2]\n\n(b) Explain why the historical training data is a particular concern in this application. [4]\n\n(c) Outline how the department should use the system's output. [3]",
+    "hint": "Investigate over-surveillance of impoverished families, biased referral records, decision-support bounds, and caseworker agency.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "(a) False positives leading to traumatizing, unjustified family separations; systemic stigma against economically disadvantaged households.",
+        "marks": 2
+      },
+      {
+        "point": "(b) Historical child welfare data predominantly documents poor families who interact more frequently with public health and welfare agencies, creating an over-sampling bias where poverty is conflated with parental neglect, training the model to target underprivileged demographics.",
+        "marks": 4
+      },
+      {
+        "point": "(c) The output must serve strictly as an advisory triage flag for allocating preventative family support resources (not automatic punitive action), and every case must be independently evaluated by qualified human social workers.",
+        "marks": 3
+      }
+    ],
+    "examinerTip": "In part (b), clearly articulate that public administrative records reflect institutional surveillance bias rather than genuine underlying rates of harm."
+  },
+  {
+    "id": "q-a4-26",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.4",
+    "subtopicName": "Ethical considerations",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Hard",
+    "format": "Section B",
+    "skill": "Evaluation/Discussion",
+    "marks": 9,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "A bank replaces its loan officers with a model that approves or refuses applications automatically. An applicant refused a loan asks why.\n\n(a) State the ethical principle the applicant is appealing to. [1]\n\n(b) Outline why the bank may be unable to answer. [3]\n\n(c) Discuss whether refusal decisions should be automated at all. [5]",
+    "hint": "Reference the right to explanation, deep neural network black box problem, complex non-linear feature interactions, and human recourse.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "(a) The right to explanation / algorithmic transparency.",
+        "marks": 1
+      },
+      {
+        "point": "(b) Complex machine learning architectures (such as deep neural networks or ensemble gradient boosters) function as opaque 'black boxes' where millions of non-linear parameter weights make it mathematically intractable to isolate the precise causal factor behind a single prediction.",
+        "marks": 3
+      },
+      {
+        "point": "(c) Arguments for automation: Consistent application of credit scoring, high processing speed, reduction of human loan officer interpersonal prejudice.\nArguments against automation: Lack of contextual empathy for atypical financial hardships, inability to contest opaque mistakes, systemic exclusion of gig-economy workers.\nConclusion: Refusals carry major financial life consequences and should require human review and clear actionable counterfactual explanations.",
+        "marks": 5
+      }
+    ],
+    "examinerTip": "Use the term 'black box problem' and explain non-linear feature weights when discussing why explanations cannot be provided."
+  },
+  {
+    "id": "q-a4-27",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.4",
+    "subtopicName": "Ethical considerations",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Medium",
+    "format": "Section A",
+    "skill": "Evaluation/Discussion",
+    "marks": 3,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "(a) A fraud model rejects a transaction and no one can determine which factors caused it. Outline why a model that cannot explain its decisions is described as a security as well as an ethical concern. [3]",
+    "hint": "Analyze debuggability, vulnerability to adversarial evasion attacks, and lack of customer recourse.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Ethical Concern: Denies legitimate customers transparency and due process when their rightful assets are frozen without verifiable justification.",
+        "marks": 1
+      },
+      {
+        "point": "Security Concern - Adversarial Blindspots: If engineers cannot explain how the model reaches decisions, they cannot detect whether malicious actors are craftily exploiting edge-case blind spots (adversarial perturbations) to bypass fraud filters.",
+        "marks": 1
+      },
+      {
+        "point": "Auditability & Maintenance: Prevents cybersecurity auditors from debugging model failures, testing edge cases, or validating that security compliance standards are met.",
+        "marks": 1
+      }
+    ],
+    "examinerTip": "Ensure you address both the 'security' dimension (adversarial attacks/auditability) and the 'ethical' dimension (recourse/fairness)."
+  },
+  {
+    "id": "q-a4-28",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.1",
+    "subtopicName": "Machine learning fundamentals",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Easy",
+    "format": "Section A",
+    "skill": "Analysis/Design",
+    "marks": 2,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "(a) A hospital uses a supervised learning algorithm for diagnosis. Identify two factors that might determine the need for an increase in processing power. [2]",
+    "hint": "Consider dataset volume/resolution, model architecture complexity, or real-time inference latency requirements.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Dataset scale and input dimensionality (e.g., transitioning from low-res 2D X-rays to high-resolution 3D volumetric MRI/CT scans with millions of voxels).",
+        "marks": 1
+      },
+      {
+        "point": "Model architecture depth / latency constraints (e.g., increasing neural network layers and parameter count to achieve higher diagnostic accuracy under strict real-time emergency triage deadlines).",
+        "marks": 1
+      }
+    ],
+    "examinerTip": "Mention concrete factors like input dimensionality or model parameter depth."
+  },
+  {
+    "id": "q-a4-29",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.1",
+    "subtopicName": "Machine learning fundamentals",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Easy",
+    "format": "Section A",
+    "skill": "Recall/Concept",
+    "marks": 2,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "(a) A voice assistant converts speech to text and then determines what the speaker is asking for. Outline the branch of machine learning involved. [2]",
+    "hint": "Think of Natural Language Processing (NLP), speech recognition, and intent classification.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Natural Language Processing (NLP) / Automated Speech Recognition (ASR).",
+        "marks": 1
+      },
+      {
+        "point": "Converts acoustic audio waveform features into textual phonetic representations and applies semantic parsing / intent classification models to understand syntactic meaning and extract user command parameters.",
+        "marks": 1
+      }
+    ],
+    "examinerTip": "Name Natural Language Processing (NLP) and explain both speech-to-text tokenization and semantic intent extraction."
+  },
+  {
+    "id": "q-a4-30",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.1",
+    "subtopicName": "Machine learning fundamentals",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Hard",
+    "format": "Section B",
+    "skill": "Analysis/Design",
+    "marks": 11,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "A supermarket chain wants to improve operations using machine learning (ML). It plans two features:\n- grouping customers based on purchase behaviour to design targeted promotions\n- using an in-store camera system to detect when shelves are running low (near real-time)\n\n(a) Outline one key characteristic of each of the following approaches:\n- supervised learning\n- unsupervised learning\n- reinforcement learning [3]\n\n(b) Describe how unsupervised learning could be used to group customers based on their shopping behaviour. [4]\n\n(c) Explain two differences in hardware requirements between deploying the shelf-monitoring model on an edge device in the store and deploying it on a cloud-based platform. [4]",
+    "hint": "Outline the three core paradigms, detail clustering algorithms (k-means/hierarchical) with transaction vectors, and contrast local edge GPU/accelerator power and bandwidth with centralized cloud instances.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "(a) Supervised Learning: Trained using paired input data and explicit ground-truth labels to minimize prediction loss.\nUnsupervised Learning: Analyzes unlabeled data to detect latent patterns, distributions, or groupings without predefined target outputs.\nReinforcement Learning: An agent iteratively learns an optimal policy through exploratory actions, receiving feedback via scalar rewards and penalties from an environment.",
+        "marks": 3
+      },
+      {
+        "point": "(b) Feature extraction: Customer transactions are transformed into numerical vectors (e.g., spend amount, visit frequency, categories purchased).\nClustering: An algorithm (e.g., k-means) computes geometric distances between customer data points in multi-dimensional feature space, grouping customers with similar buying patterns together so customized marketing incentives can be directed to each cluster.",
+        "marks": 4
+      },
+      {
+        "point": "(c) Edge Deployment: Requires dedicated on-premise hardware accelerators (e.g., low-power tensor processing chips, local GPUs) installed in-store to handle real-time multi-camera video frame inferencing locally without saturating external network bandwidth.\nCloud Deployment: The store requires high-bandwidth upload network hardware and switches to continuously stream multi-camera video feeds, while the computation runs on elastic, high-memory virtualized cloud server clusters with centralized maintenance.",
+        "marks": 4
+      }
+    ],
+    "examinerTip": "In part (b), mention feature vectors and geometric distance/clustering in multi-dimensional space to secure top-band marks."
+  },
+  {
+    "id": "q-a4-31",
+    "theme": "A",
+    "unit": "A4",
+    "unitName": "Machine Learning",
+    "subtopicCode": "A4.4",
+    "subtopicName": "Ethical considerations",
+    "level": "SL/HL",
+    "paper": 1,
+    "difficulty": "Medium",
+    "format": "Section A",
+    "skill": "Evaluation/Discussion",
+    "marks": 4,
+    "origin": "RevisionDojo Practice (A4.1/A4.4)",
+    "prompt": "A university uses online proctoring software that records students through their webcams while they sit exams at home. A machine learning model flags any behaviour it considers suspicious.\n\n(a) Outline two ethical concerns. [4]",
+    "hint": "Analyze privacy invasion of domestic environments, neurodivergent movement flagging, racial disparity in lighting/facial tracking, and presumption of guilt.",
+    "codeSnippet": null,
+    "markScheme": [
+      {
+        "point": "Invasive Surveillance & Domestic Privacy: Continuous webcam monitoring and audio capture intrude into students' private home environments, forcing them to expose domestic living conditions and family members.",
+        "marks": 2
+      },
+      {
+        "point": "Algorithmic Inequity & Neurodivergent Bias: Facial tracking models struggle with non-ideal domestic lighting or darker skin tones, and frequently misinterpret normative fidgeting, looking away, or reading aloud (common among neurodivergent students) as cheating, causing intense psychological stress and false disciplinary accusations.",
+        "marks": 2
+      }
+    ],
+    "examinerTip": "Clearly outline the ethical concerns with specific attention to technical biases (lighting/skin tone tracking) and domestic privacy."
   }
 ];

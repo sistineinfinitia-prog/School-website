@@ -1057,8 +1057,16 @@
                             </div>
 
                             <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 24px;">
-                                <button type="button" class="btn btn-primary" id="btn-admin-copy-qjson">
-                                    <span>Copy Question JSON</span>
+                                <button type="button" class="btn btn-primary" id="btn-admin-publish-question">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                                    <span>Publish to Database</span>
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="btn-admin-sync-rtdb-questions" title="Sync all validated questions to Firebase RTDB">
+                                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                    <span>Sync All to RTDB</span>
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="btn-admin-copy-qjson">
+                                    <span>Copy JSON</span>
                                 </button>
                                 <button type="button" class="btn btn-secondary" id="btn-admin-export-questions">
                                     <span>Export questions.json</span>
@@ -1066,6 +1074,18 @@
                                 <span id="admin-q-status" class="form-status" style="margin: 0 0 0 8px;"></span>
                             </div>
                         </form>
+
+                        <!-- Question Bank Database Viewer -->
+                        <div style="margin-top: 36px; border-top: 1px solid var(--border-subtle); padding-top: 24px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                                <div>
+                                    <h3 style="font-size: 1.1rem; font-weight: 600; margin: 0;">Question Bank in Database</h3>
+                                    <p style="font-size: 0.85rem; color: var(--text-muted); margin: 4px 0 0;">Synchronized live with Firebase Realtime Database (/questions).</p>
+                                </div>
+                                <span class="rv-tab-badge" id="admin-db-q-count">0 Questions</span>
+                            </div>
+                            <div id="admin-questions-list" style="display: flex; flex-direction: column; gap: 12px; max-height: 480px; overflow-y: auto; padding-right: 4px;"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -1669,6 +1689,10 @@
         const msMarksSum = document.getElementById("ms-marks-sum");
         const copyQJsonBtn = document.getElementById("btn-admin-copy-qjson");
         const exportQuestionsBtn = document.getElementById("btn-admin-export-questions");
+        const publishQuestionBtn = document.getElementById("btn-admin-publish-question");
+        const syncQuestionsRtdbBtn = document.getElementById("btn-admin-sync-rtdb-questions");
+        const adminDbQCount = document.getElementById("admin-db-q-count");
+        const adminQuestionsList = document.getElementById("admin-questions-list");
         const qStatus = document.getElementById("admin-q-status");
 
         // Flashcards Elements
@@ -3399,6 +3423,85 @@
             });
         }
 
+        if (publishQuestionBtn) {
+            publishQuestionBtn.addEventListener('click', async () => {
+                const q = extractAdminQuestion();
+                if (!q) return;
+                publishQuestionBtn.disabled = true;
+                publishQuestionBtn.querySelector('span').textContent = 'Publishing...';
+                try {
+                    if (window.DataService && typeof window.DataService.saveQuestion === 'function') {
+                        window.DataService.saveQuestion(q);
+                    }
+                    if (fbDb && fbFns && fbFns.set && fbFns.dbRef) {
+                        await fbFns.set(fbFns.dbRef(fbDb, 'questions/' + q.id), q);
+                    }
+                    liveQuestionsCache.unshift(q);
+                    renderAdminQuestionsList(liveQuestionsCache);
+                    if (statQuestions) statQuestions.textContent = String(liveQuestionsCache.length);
+                    if (badgeQuestionsCount) badgeQuestionsCount.textContent = String(liveQuestionsCache.length);
+                    if (qStatus) {
+                        qStatus.textContent = `✓ Question ${q.id} published to database!`;
+                        qStatus.className = 'form-status is-success';
+                        setTimeout(() => { qStatus.textContent = ''; }, 4000);
+                    }
+                    const promptEl = document.getElementById('tq-prompt');
+                    if (promptEl) promptEl.value = '';
+                    const hintEl = document.getElementById('tq-hint');
+                    if (hintEl) hintEl.value = '';
+                    const modelEl = document.getElementById('tq-model-answer');
+                    if (modelEl) modelEl.value = '';
+                } catch (err) {
+                    if (qStatus) {
+                        qStatus.textContent = 'Error publishing: ' + err.message;
+                        qStatus.className = 'form-status is-error';
+                    }
+                } finally {
+                    publishQuestionBtn.disabled = false;
+                    publishQuestionBtn.querySelector('span').textContent = 'Publish to Database';
+                }
+            });
+        }
+
+        if (syncQuestionsRtdbBtn) {
+            syncQuestionsRtdbBtn.addEventListener('click', async () => {
+                if (!confirm('Sync all questions from questions.json into Firebase Realtime Database (/questions)?')) return;
+                syncQuestionsRtdbBtn.disabled = true;
+                syncQuestionsRtdbBtn.querySelector('span').textContent = 'Syncing...';
+                try {
+                    const res = await fetch('../data/questions.json');
+                    const questions = res.ok ? await res.json() : [];
+                    if (!Array.isArray(questions) || questions.length === 0) {
+                        throw new Error('No questions found in questions.json');
+                    }
+                    if (fbDb && fbFns && fbFns.set && fbFns.dbRef) {
+                        for (let i = 0; i < questions.length; i++) {
+                            const q = questions[i];
+                            syncQuestionsRtdbBtn.querySelector('span').textContent = `Syncing (${i + 1}/${questions.length})...`;
+                            await fbFns.set(fbFns.dbRef(fbDb, 'questions/' + q.id), q);
+                        }
+                    }
+                    liveQuestionsCache = questions;
+                    renderAdminQuestionsList(liveQuestionsCache);
+                    if (statQuestions) statQuestions.textContent = String(questions.length);
+                    if (badgeQuestionsCount) badgeQuestionsCount.textContent = String(questions.length);
+                    if (qStatus) {
+                        qStatus.textContent = `✓ Successfully synced ${questions.length} questions to Firebase RTDB!`;
+                        qStatus.className = 'form-status is-success';
+                        setTimeout(() => { qStatus.textContent = ''; }, 5000);
+                    }
+                } catch (err) {
+                    if (qStatus) {
+                        qStatus.textContent = 'Sync error: ' + err.message;
+                        qStatus.className = 'form-status is-error';
+                    }
+                } finally {
+                    syncQuestionsRtdbBtn.disabled = false;
+                    syncQuestionsRtdbBtn.querySelector('span').textContent = 'Sync All to RTDB';
+                }
+            });
+        }
+
         if (exportQuestionsBtn) {
             exportQuestionsBtn.addEventListener('click', async () => {
                 try {
@@ -3407,7 +3510,7 @@
                     const newQ = extractAdminQuestion();
                     if (newQ) questions.unshift(newQ);
 
-                    const blob = new Blob([JSON.stringify(questions, null, 2) + '\\n'], { type: 'application/json' });
+                    const blob = new Blob([JSON.stringify(questions, null, 2) + '\n'], { type: 'application/json' });
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = url;
@@ -3425,6 +3528,59 @@
             });
         }
 
+        function renderAdminQuestionsList(questions) {
+            if (!adminQuestionsList) return;
+            adminQuestionsList.innerHTML = '';
+            if (adminDbQCount) adminDbQCount.textContent = `${questions.length} Questions`;
+            if (!questions || questions.length === 0) {
+                adminQuestionsList.innerHTML = '<div style="color:var(--text-muted); font-size:0.85rem; padding:12px;">No questions found in database.</div>';
+                return;
+            }
+            questions.forEach(q => {
+                const item = document.createElement('div');
+                item.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:var(--surface-sunken); border:1px solid var(--border-subtle); border-radius:8px; gap:12px;';
+                item.innerHTML = `
+                    <div style="flex:1; min-width:0;">
+                        <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px; flex-wrap:wrap;">
+                            <span class="rv-tab-badge" style="font-size:0.75rem;">${escapeHtml(q.id || '')}</span>
+                            <span style="font-weight:600; font-size:0.85rem; color:var(--text);">${escapeHtml(q.unit || '')} &bull; ${escapeHtml(q.subtopicCode || '')}</span>
+                            <span style="font-size:0.75rem; color:var(--text-muted);">${q.marks || 0} Marks &bull; ${escapeHtml(q.difficulty || 'Medium')} &bull; ${escapeHtml(q.format || '')}</span>
+                        </div>
+                        <div style="font-size:0.82rem; color:var(--text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml((q.prompt || '').slice(0, 110))}...</div>
+                    </div>
+                    <button type="button" class="btn btn-danger btn-sm btn-delete-q" data-id="${escapeHtml(q.id)}" style="padding:4px 8px; font-size:0.75rem;" title="Delete question from database">
+                        <span>Delete</span>
+                    </button>
+                `;
+                adminQuestionsList.appendChild(item);
+            });
+
+            adminQuestionsList.querySelectorAll('.btn-delete-q').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const id = btn.getAttribute('data-id');
+                    if (!id || !confirm(`Delete question ${id} from database?`)) return;
+                    btn.disabled = true;
+                    btn.textContent = 'Deleting...';
+                    try {
+                        if (window.DataService && typeof window.DataService.deleteQuestion === 'function') {
+                            window.DataService.deleteQuestion(id);
+                        }
+                        if (fbDb && fbFns && fbFns.remove && fbFns.dbRef) {
+                            await fbFns.remove(fbFns.dbRef(fbDb, 'questions/' + id));
+                        }
+                        liveQuestionsCache = liveQuestionsCache.filter(q => q.id !== id);
+                        renderAdminQuestionsList(liveQuestionsCache);
+                        if (statQuestions) statQuestions.textContent = String(liveQuestionsCache.length);
+                        if (badgeQuestionsCount) badgeQuestionsCount.textContent = String(liveQuestionsCache.length);
+                    } catch (err) {
+                        alert('Failed to delete question: ' + err.message);
+                        btn.disabled = false;
+                        btn.textContent = 'Delete';
+                    }
+                });
+            });
+        }
+
         async function loadQuestionsCount() {
             try {
                 let questions = [];
@@ -3438,11 +3594,11 @@
                     liveQuestionsCache = questions;
                     if (statQuestions) statQuestions.textContent = String(questions.length);
                     if (badgeQuestionsCount) badgeQuestionsCount.textContent = String(questions.length);
+                    renderAdminQuestionsList(liveQuestionsCache);
                 }
             } catch (e) {}
         }
 
-        // ----------------------------------------------------------------------
         // 11. FLASHCARD STUDIO: Official Curriculum Flashcards
         // ----------------------------------------------------------------------
         function renderFlashcardsList(list) {
